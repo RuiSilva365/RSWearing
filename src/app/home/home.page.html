@@ -1,20 +1,157 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <img src="assets/img/logo.png" alt="Brand Logo" class="brand-logo">
+      </ion-title>
+      <ion-buttons slot="end">
+        <span class="user-name">{{ user.name }}</span>
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-icon name="person-circle-outline" class="person-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+  <div class="main-menu">
+    <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
+      Men
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
+        <!-- Submenu content for "Man" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="menu-item" (mouseenter)="showSubMenu('woman')" (mouseleave)="hideSubMenu()">
+      Women
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'woman'}">
+        <!-- Submenu content for "Woman" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="menu-item" (mouseenter)="showSubMenu('kids')" (mouseleave)="hideSubMenu()">
+      Kids
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
+        <!-- Submenu content for "Kids" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="search">
+    <div class="search-box">
+      <div class="search-field">
+        <input placeholder="Search..." class="input" type="text">
+        <div class="search-box-icon">
+          <button class="btn-icon-content">
+            <i class="search-icon">
+              <svg xmlns="://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" ></path></svg>
+            </i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</ion-content>
+  <div class="new-collection-section" 
+  (mouseenter)="toggleHover('new-collection', true)" 
+  (mouseleave)="toggleHover('new-collection', false)">
+<h2>New Collection:</h2>
+<div class="new-collection-items">
+ <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoSettings()">
+   <img [src]="item.imageUrl" alt="{{ item.title }}">
+   <p>{{ item.title }}</p>
+ </div>
+</div>
+</div>
+
+<div class="trending-section" 
+  (mouseenter)="toggleHover('trending', true)" 
+  (mouseleave)="toggleHover('trending', false)">
+<h2>Trending right now:</h2>
+<div class="trending-items">
+ <div class="item" *ngFor="let item of trendingItems" (click)="gotoSettings()">
+   <img [src]="item.imageUrl" alt="{{ item.title }}">
+   <p>{{ item.title }}</p>
+ </div>
+</div>
+</div>
+
+<div class="recommended-section" 
+  (mouseenter)="toggleHover('recommended', true)" 
+  (mouseleave)="toggleHover('recommended', false)">
+<h2>You may also like:</h2>
+<div class="recommended-items">
+ <div class="item" *ngFor="let item of recommendedItems" (click)="gotoProfile()">
+   <img [src]="item.imageUrl" alt="{{ item.title }}">
+   <p>{{ item.title }}"></p>
+ </div>
+</div>
+</div>
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="sidebar-content">
+    <h3>Menu</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoSettings()">Settings</button>
+      <button (click)="gotoLogout()">Logout</button>
+      <img src="assets/img/logo.png" alt="logo Icon" />
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>Recursos</h3>
+    <ul>
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Ajuda</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Suporte</a></li>
+      <li><a href="#">Contate-nos</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Empresa</h3>
+    <ul>
+      <li><a href="#">Sobre nós</a></li>
+      <li><a href="#">Carreiras</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>País</h3>
+    <ul>
+      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+    </ul>
+  </div>
+</footer>

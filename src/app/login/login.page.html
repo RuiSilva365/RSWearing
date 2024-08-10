@@ -1,0 +1,125 @@
+<ion-header [translucent]="true">
+  <div class="main-menu">
+    <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
+      Men
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
+        <!-- Submenu content for "Man" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="menu-item" (mouseenter)="showSubMenu('woman')" (mouseleave)="hideSubMenu()">
+      Women
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'woman'}">
+        <!-- Submenu content for "Woman" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="menu-item" (mouseenter)="showSubMenu('kids')" (mouseleave)="hideSubMenu()">
+      Kids
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
+        <!-- Submenu content for "Kids" -->
+        <ul>
+          <button>Sweats</button>
+          <p></p>
+          <button>Shirts</button>
+          <p></p>
+          <button>Accessories</button>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  
+  <div class="login-container">
+    <div class="screen-1">
+      <form>
+        <div class="email">
+          <label for="email">E-mail       </label>
+          <ion-icon name="mail"></ion-icon>
+          <div class="input-user"><ion-input [(ngModel)]="email" name="email" type="email" placeholder="something@example.com"></ion-input></div>
+        </div>
+        <div class="password">
+          <label for="password">Password      </label>
+          <ion-icon name="lock-closed"></ion-icon>
+          <ion-input [(ngModel)]="password" name="password" type="password" placeholder="••••••"></ion-input>
+        </div>
+        <button class="login" (click)="login()">Login</button>
+        <button class="continue" (click)="continueWithoutLogin()">Continue without Login</button>
+      </form>
+      <div class="social-login">
+        <p>Login with:</p>
+        <button (click)="signInWithGoogle()" class="social-btn google-btn">
+          <img src="../../assets/icon/google-logo.png" alt="Google Logo">
+        </button>
+        <button (click)="signInWithFacebook()" class="social-btn facebook-btn">
+          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+        </button>
+      </div>
+      <div class="links">
+        <a (click)="goToRegister()">Don't have an account? Sign up</a>
+        <a (click)="forgotPassword()">Forgot password?</a>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="forgotPasswordMessage" class="forgot-password-message">
+        {{ forgotPasswordMessage }}
+      </div>
+    </div>
+  </div>
+  <div class="footer-text">
+    
+  </div>
+</ion-content>
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>Recursos</h3>
+    <ul>
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Ajuda</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Suporte</a></li>
+      <li><a href="#">Contate-nos</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Empresa</h3>
+    <ul>
+      <li><a href="#">Sobre nós</a></li>
+      <li><a href="#">Carreiras</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>País</h3>
+    <ul>
+      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+    </ul>
+  </div>
+</footer>

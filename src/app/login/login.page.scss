@@ -1,0 +1,241 @@
+ion-content {
+    --background: none;
+    background: linear-gradient(to bottom, #111111 50%, #ff6124 50%);
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+  }
+  
+  .image-container .logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: start;
+  }
+  
+  .screen-1 {
+    background: #000000;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    width: 300px;
+    z-index: 1;
+  }
+  
+  .email, .password {
+    margin-top: 20px;
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff6124;
+  }
+  
+  .sec-2 {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  
+  ion-icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #ff6124;
+  }
+  
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+  }
+  
+  ion-input{
+    color: white
+  }
+  
+  button.login {
+    display: block;
+    width: 100%;
+    background: #ff6124;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+  }
+  
+  button.continue {
+    display: block;
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border: 1px solid #ff6124;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #ff6124;
+    font-size: 16px;
+  }
+  
+  button.social-btn {
+    display: inline-block;
+    background: rgb(2, 2, 2);
+    border: 1px solid #ff6124;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  button.social-btn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .social-login p {
+    margin-top: 20px;
+    color: #ff6124;
+    font-size: 16px;
+  }
+  
+  
+  .links {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .links a {
+    color: #ff6124;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .footer-text {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 18px;
+    position: absolute;
+    padding-left: 20px;
+    bottom: 20px;  
+  }
+  
+  .login-container .forgot-password-message {
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  
+.main-menu {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2rem;
+  }
+  
+  .menu-item {
+    position: relative;
+  }
+  
+  .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+  }
+  
+  .sub-menu.visible {
+    display: block;
+  }
+  
+  .sub-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sub-menu ul li {
+    padding: 5px 0;
+  }
+  
+  .sub-menu ul li:hover {
+    background-color: #f5f5f5;
+  }
+  
+  footer.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: transparent;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-section ul li ion-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
