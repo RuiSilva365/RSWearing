@@ -63,4 +63,17 @@ export class LoginPage {
   hideSubMenu() {
     this.subMenuVisible = null;  // Hide the submenu
   }
+
+    
+  gotoFacebookPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
+  
+  gotoInstagramPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
+
+  gotoTwitterPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
 }

@@ -1,11 +1,10 @@
 ion-header {
-  .home-user-bar {
+  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
     --background: transparent !important;
 
 
     ion-toolbar {
       --background: transparent !important;
-
       --min-height: 80px; /* Ensure consistent toolbar height */
       display: flex;
       justify-content: space-between; /* Ensure space between logo and search bar/user icon */
@@ -31,7 +30,7 @@ ion-header {
 
         ion-icon {
           font-size: 28px;
-          color: goldenrod;
+          color: rgba(1, 25, 32, 0.596);
         }
       }
     }
@@ -43,26 +42,66 @@ ion-header {
     vertical-align: auto;
     margin: 10px;
   }
+
+.welcome-message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 20px;
+  color: transparentize($color: black, $amount: 0.5);
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
 }
 
+
+}
 ion-content {
   --background: transparent !important;
   background-image: linear-gradient(166deg, rgb(255,255,255),transparent),linear-gradient(166deg, rgb(255,255,255),transparent),repeating-linear-gradient(256deg, rgb(175,175,175) 0px, rgb(175,175,175) 2px,transparent 2px, transparent 4px),linear-gradient(211deg, rgb(255,255,255),rgb(255,255,255));
 }
+ion-toolbar {
+  position: relative;
+}
 
+.banner-top {
+  width: 100%; /* Make the banner take up the full width of its container */
+  max-width: 1200px; /* Set a maximum width for the banner */
+  margin-top: 100px;
+  margin: 0 auto; /* Center the banner horizontally */
+  position: relative;
+  display: flex;
+  justify-content: center; /* Center the content inside the banner */
+  align-items: center; /* Vertically center the content */
+  border-radius: 10px;
+}
 
+.banner-top img {
+  margin-top: 100px;
+  width: 90%; /* Ensure the image scales to the width of the banner */
+  height: auto; /* Maintain the image's aspect ratio */
+  object-fit: cover; /* Ensure the image covers the entire banner area */
+  border: 2px solid transparentize($color: goldenrod, $amount: 0.8); /* Set the border color and thickness */
+  border-radius: 10px; /* Apply rounded corners */
+}
 .search {
-  margin-top: 20px;
-  margin-left: 20px;
-  --input-line: #cccccc;
-  --input-text-color: #808080;
-  --input-text-hover-color: transparent;
+  display: fixed;
+  margin-top: 40px;
+  margin-left: 45%;
+  --input-line: black;
+  --input-text-color: black;
+  --input-text-hover-color: #808080;
   --input-border-color: #808080;
-  --input-border-hover-color: #999999;
-  --input-bg-color: rgb(240, 235, 235);
+  --input-border-hover-color: black;
+  --input-bg-color:transparent ;
   --search-max-width: 250px;
   --search-min-width: 150px;
-  --border-radius: 5px;
+  --border-radius: 8px;
   --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -74,7 +113,7 @@ ion-content {
   border-radius: var(--border-radius);
   padding: 5px 15px;
   background: var(--input-bg-color);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px transparentize($color: goldenrod, $amount: 0.75);
   transition: var(--transition-cubic-bezier);
 }
 
@@ -142,7 +181,7 @@ ion-content {
 }
 
 .search-box-icon:hover {
-  background: var(--input-border-color);
+  background: black;
 }
 
 .btn-icon-content {
@@ -173,6 +212,7 @@ ion-content {
 }
 
 .new-collection-section,
+.hot-deals-section,
 .trending-section,
 .recommended-section {
   margin-top: 80px;
@@ -183,6 +223,7 @@ ion-content {
 }
 
 .new-collection-section:hover,
+.hot-deals-section:hover,
 .trending-section:hover,
 .recommended-section:hover {
   overflow-x: scroll;  /* Show scrollbar on hover */
@@ -191,6 +232,7 @@ ion-content {
 }
 
 .new-collection-section::-webkit-scrollbar,
+.hot-deals-section::-webkit-scrollbar,
 .trending-section::-webkit-scrollbar,
 .recommended-section::-webkit-scrollbar {
   height: 8px;
@@ -198,12 +240,14 @@ ion-content {
 }
 
 .new-collection-section::-webkit-scrollbar-track,
+.hot-deals-section ::-webkit-scrollbar-track,
 .trending-section::-webkit-scrollbar-track,
 .recommended-items::-webkit-scrollbar-track {
   background: #333;
 }
 
 .new-collection-section::-webkit-scrollbar-thumb,
+.hot-deals-section::-webkit-scrollbar-thumb,
 .trending-section::-webkit-scrollbar-thumb,
 .recommended-section::-webkit-scrollbar-thumb {
   background-color: #888;
@@ -290,16 +334,21 @@ ion-content {
 
 #user-sidebar {
   position: fixed;
+  display: flex;
   right: 0;
   top: 0;
-  margin-top: 50px;
+  margin-top: 150px;
   width: 150px;
   height: 100%;
-  background: #ffffff;
+  background: transparentize($color: goldenrod, $amount: 0.90);
   color: white;
   transform: translateX(100%);
   transition: transform 0.3s ease;
+  transition-delay: 0.3s;
   z-index: 1000;
+  font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+  font-weight: 400; /* Set font weight to regular */
+  font-style: normal; /* Set font style to normal */
 }
 
 #user-sidebar.visible {
@@ -314,12 +363,14 @@ ion-button#user-icon:hover + #user-sidebar {
 .sidebar-content {
   color: #000000;
   padding: 20px;
+  font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
 }
 
 .sidebar-content ul {
   list-style: none;
   color: #050100;
   padding: 0;
+  font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
 }
 
 .sidebar-content ul li {
@@ -331,6 +382,7 @@ ion-button#user-icon:hover + #user-sidebar {
   color: #000000;
   text-decoration: none;
   font-size: 18px;
+  font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
 }
 
 .sidebar-content ul li a:hover {
@@ -351,11 +403,12 @@ ion-button#user-icon:hover + #user-sidebar {
   border-radius: 5px;
   width: 100%;
   text-align: left;
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
+  font-family: "Chakra Petch", sans-serif; /* Apply the font to the buttons */
 }
 
 #buttons-sidebar button:hover {
-  background: rgb(240, 235, 235);
+  background: transparent;
   border-color: goldenrod;
 }
 
@@ -364,35 +417,42 @@ ion-button#user-icon:hover + #user-sidebar {
   border-color: goldenrod;
 }
 
+
 .sidebar-content img {
-  max-width: 100%; /* Adjust this value as needed */
+  max-width: 60%; /* Adjust this value as needed */
   position: absolute;
-  bottom: 20px;
+  bottom: 200px;
   left: 50%; /* Center the logo horizontally */
   transform: translateX(-50%); /* Center the logo horizontally */
   height: auto;
 }
 
 .new-collection-section,
+.hot-deals-section,
 .trending-section,
 .recommended-section {
   overflow-x: hidden;
 }
 
 .new-collection-section.hovering,
+.hot-deals-section.hovering,
 .trending-section.hovering,
 .recommended-section.hovering {
   overflow-x: scroll;
 }
-
 .main-menu {
   display: flex;
   justify-content: space-around;
   font-size: 1.2rem;
+  font-family: "Noto Serif Khitan Small Script", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: goldenrod;
 }
 
 .menu-item {
   position: relative;
+  color: goldenrod;
 }
 
 .sub-menu {
@@ -400,10 +460,10 @@ ion-button#user-icon:hover + #user-sidebar {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background-color: transparentize($color: white, $amount: 0.75);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 12px;
   z-index: 1000;
 }
 
@@ -412,60 +472,112 @@ ion-button#user-icon:hover + #user-sidebar {
 }
 
 .sub-menu ul {
+  background-color: transparent;
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.sub-menu ul li {
-  padding: 5px 0;
+.sub-menu ul li button {
+  background-color: transparent !important; /* Ensure the background is fully transparent */
+  background: none !important; /* Override any background settings */
+  border: 1px solid goldenrod; /* Add a goldenrod border */
+  color: goldenrod; /* Text color goldenrod */
+  padding: 10px 15px; /* Padding for the button */
+  border-radius: 8px; /* Slight rounding of the corners */
+  font-family: "Noto Serif Khitan Small Script", serif; /* Your font */
+  font-size: 1rem; /* Font size */
+  width: 100%; /* Make the button fill the width */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: none !important; /* Ensure any box shadow is removed */
+  outline: none; /* Remove any outline */
+  border-width: 2px; /* Control border thickness */
+  border-style: solid; /* Ensure border is solid */
+  -webkit-appearance: none; /* Remove default button styling on WebKit browsers */
+  -moz-appearance: none; /* Remove default button styling on Mozilla browsers */
+  appearance: none; /* Remove default button styling */
+  opacity: 1; /* Ensure full opacity */
 }
 
-.sub-menu ul li:hover {
-  background-color: #f5f5f5;
+.sub-menu ul li button:hover {
+  background-color: goldenrod !important; /* Add a background color on hover */
+  color: white; /* Change text color on hover for contrast */
 }
+
+.sub-menu ul li button:active,
+.sub-menu ul li button:focus {
+  outline: none !important; /* Ensure there's no outline when the button is focused or active */
+}
+
 
 footer.footer {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  background: transparent;
   background-color: transparent;
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
+  border-top: 2px solid goldenrod;
+  margin-top: 150px;
 }
-
 .footer-section {
   flex: 1;
   text-align: center;
-}
-
-.footer-section h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #333;
 }
 
 .footer-section ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.footer-section ul li {
-  margin-bottom: 5px;
-}
-
 .footer-section ul li a {
   text-decoration: none;
-  color: #555;
+  color: goldenrod; /* Change the color to goldenrod */
   font-size: 14px;
 }
 
 .footer-section ul li a:hover {
   text-decoration: underline;
+  color: #f0a500; /* Slightly lighter goldenrod for hover */
 }
 
-.footer-section ul li ion-icon {
-  vertical-align: middle;
-  margin-right: 5px;
+.social-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.social-btn:hover img {
+  opacity: 0.8;
+}
+
+/* If there are any other specific rules overriding the color, add !important */
+.footer-section ul li a {
+  color: black!important;
+}
+.footer-section .social-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px; /* Space between the buttons */
+}
+
+.social-btn img {
+  width: 24px; /* Adjust the size to fit your design */
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%; /* Make it circular if you want */
+}
+
+.social-btn:hover img {
+  opacity: 0.8; /* Slightly dim the icon on hover */
 }

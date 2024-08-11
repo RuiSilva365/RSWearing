@@ -11,6 +11,7 @@ export class HomePage implements OnInit {
   items: any[] = [];
   trendingItems: any[] = [];
   newCollectionItems: any[] = [];
+  hotDealsItems: any[] = [];
   recommendedItems: any[] = [];
   sidebarVisible: boolean = false;
   subMenuVisible: string | null = null;  // Add this line to define the property
@@ -33,6 +34,7 @@ export class HomePage implements OnInit {
   gotoProfile() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
+
 
   gotoSearch(searchText: string) {
     this.router.navigate(['/search'], { queryParams: { query: searchText } });
@@ -60,5 +62,18 @@ export class HomePage implements OnInit {
 
   hideSubMenu() {
     this.subMenuVisible = null;  // Hide the submenu
+  }
+
+  
+  gotoFacebookPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
+  
+  gotoInstagramPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
+
+  gotoTwitterPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
   }
 }
