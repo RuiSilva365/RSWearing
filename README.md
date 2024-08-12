@@ -67,7 +67,7 @@ We welcome contributions to RSWearing! To contribute:
 Please ensure your code adheres to the existing coding conventions and includes appropriate tests.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 For any inquiries or issues, feel free to reach out:
