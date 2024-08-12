@@ -42,7 +42,7 @@ npm install
 ionic serve
 ```
 The application should now be running on localhost port 8100.
-## Usage
+
 ### Logging In
 Users can log in using their email and password or use Google/Facebook accounts. There is also an option to continue without logging in.
 
@@ -53,3 +53,25 @@ Users can log in using their email and password or use Google/Facebook accounts.
 ### Additional Features
 - Loader Animation: Displays when transitioning between the login page and the home page.
 - Services Section: Showcases services like fast delivery, free shipping on orders over €50, and easy returns.
+
+## Folder Structure
+![Captura de ecrã 2024-08-12 033520](https://github.com/user-attachments/assets/eeb22677-20c2-46c6-ae05-b0301ec46629)
+
+
+## Contributing
+We welcome contributions to RSWearing! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request with a detailed explanation of your changes.
+Please ensure your code adheres to the existing coding conventions and includes appropriate tests.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+For any inquiries or issues, feel free to reach out:
+
+Email: rui.silva@ipvc.pt 
+GitHub: RuiSilva365
+Twitter: @_ruisilva
