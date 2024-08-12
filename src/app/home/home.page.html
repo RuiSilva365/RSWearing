@@ -7,8 +7,13 @@
       <ion-title class="test-font">
         <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
       </ion-title>
+      
       <ion-buttons slot="end">
         <span class="user-name">{{ user.name }}</span>
+        <ion-button id="fav-icon">
+          <ion-icon name="heart-outline"></ion-icon>
+        </ion-button>
+        
         <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
           <ion-icon name="person-sharp" class="person-circle-outline"></ion-icon>
         </ion-button>
@@ -19,23 +24,19 @@
   <div class="welcome-message">
     Welcome to RSWearing's official webpage&trade;.
 </div>
+
+<button data-quantity="0" class="btn-cart">
+  <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+    <title>icon-cart</title>
+    <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+  </svg>
+  <span class="quantity"></span>
+</button>
   <div class="main-menu">
     <!-- Men Menu Item -->
     <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
       Men
       <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
-        <ul>
-          <li><button>Sweats</button></li>
-          <li><button>Shirts</button></li>
-          <li><button>Accessories</button></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Women Menu Item -->
-    <div class="menu-item" (mouseenter)="showSubMenu('woman')" (mouseleave)="hideSubMenu()">
-      Women
-      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'woman'}">
         <ul>
           <li><button>Sweats</button></li>
           <li><button>Shirts</button></li>
@@ -79,6 +80,7 @@
       </div>
     </div>
   </div>
+  
 
   <div class="new-collection-section" 
   (mouseenter)="toggleHover('new-collection', true)" 
@@ -137,6 +139,22 @@
       <button (click)="gotoLogout()">Logout</button>
       <img src="assets/icon/logo.png" alt="logo Icon" />
     </div>
+  </div>
+</div>
+
+
+<div class="services-section">
+  <div class="service-item">
+    <ion-icon name="speedometer-outline"></ion-icon>
+      <p>Fast shipping</p>
+  </div>
+  <div class="service-item">
+    <ion-icon name="airplane-outline"></ion-icon>
+      <p>Free delivery for purchases above 50€</p>
+  </div>
+  <div class="service-item">
+    <ion-icon name="help-buoy-outline"></ion-icon>
+      <p>Customer Support always ready to assist you</p>
   </div>
 </div>
 

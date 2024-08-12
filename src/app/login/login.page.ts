@@ -1,23 +1,18 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface LoginResponse {
-  token: string;
-}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   email = '';
   password = '';
   errorMessage: string | null = null;
   forgotPasswordMessage: string | null = null;
   sidebarVisible: boolean = false;
-  subMenuVisible: string | null = null;  // Add this line to define the property
+  subMenuVisible: string | null = null; 
 
   isHovering: { [key: string]: boolean } = {
     'new-collection': false,
@@ -25,10 +20,45 @@ export class LoginPage {
     'recommended': false
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router) {}
+
+  // Hide the loader when the component initializes
+  ngOnInit() {
+    this.hideLoader();
+  }
+
+  // Show the loader
+  showLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.remove('hidden');
+  }
+
+  // Hide the loader
+  hideLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.add('hidden');
+  }
 
   login() {
-    // Implement the login functionality here
+    this.showLoader(); // Show loader on login click
+
+    // Simulate a delay before navigating (to show the loader)
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+      this.hideLoader(); // Hide loader after navigation
+    }, 2000); // Simulate a 2-second delay
+  }
+
+  continueWithoutLogin() {
+    this.showLoader(); // Show loader on continue without login click
+
+    localStorage.setItem('continueWithoutLogin', 'true');
+    
+    // Simulate a delay before navigating (to show the loader)
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+      this.hideLoader(); // Hide loader after navigation
+    }, 2000); // Simulate a 2-second delay
   }
 
   signInWithGoogle(): void {
@@ -37,11 +67,6 @@ export class LoginPage {
 
   signInWithFacebook(): void {
     // Implement Facebook sign-in logic here
-  }
-
-  continueWithoutLogin() {
-    localStorage.setItem('continueWithoutLogin', 'true');
-    this.router.navigate(['/home']);
   }
 
   goToRegister() {
@@ -64,7 +89,6 @@ export class LoginPage {
     this.subMenuVisible = null;  // Hide the submenu
   }
 
-    
   gotoFacebookPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
