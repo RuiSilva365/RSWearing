@@ -100,4 +100,7 @@ export class LoginPage implements OnInit {
   gotoTwitterPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
+  gotoTiktokPage() {
+    this.router.navigate(['/profile']);  // Use the injected Router
+  }
 }
