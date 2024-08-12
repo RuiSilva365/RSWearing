@@ -73,5 +73,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 For any inquiries or issues, feel free to reach out:
 
 Email: rui.silva@ipvc.pt 
+
 GitHub: RuiSilva365
+
 Twitter: @_ruisilva
