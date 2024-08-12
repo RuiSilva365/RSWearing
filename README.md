@@ -41,3 +41,15 @@ npm install
 ```
 ionic serve
 ```
+The application should now be running on localhost port 8100.
+## Usage
+### Logging In
+Users can log in using their email and password or use Google/Facebook accounts. There is also an option to continue without logging in.
+
+### Navigating the App
+- Home Page: Displays featured collections and categories like "New Collection," "Hot Deals," and "Trending Right Now."
+- Search: Use the search bar to find specific products.
+- User Sidebar: Access profile settings, orders, and logout options.
+### Additional Features
+- Loader Animation: Displays when transitioning between the login page and the home page.
+- Services Section: Showcases services like fast delivery, free shipping on orders over €50, and easy returns.
