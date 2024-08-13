@@ -7,12 +7,38 @@
       <ion-title class="test-font">
         <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
       </ion-title>
+
+
       
       <ion-buttons slot="end">
         <span class="user-name">{{ user.name }}</span>
-        <ion-button id="fav-icon">
-          <ion-icon name="heart-outline"></ion-icon>
-        </ion-button>
+        <button data-quantity="0" class="btn-cart">
+          <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+            <title>icon-cart</title>
+            <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+          </svg>
+          <div class="cart-dropdown">
+            <p>No items added yet to the shoplist.</p>
+          </div>
+        </button>
+
+
+        <button class="btn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.503"
+            height="20.625"
+            viewBox="0 0 17.503 15.625"
+          >
+            <path
+              id="Fill"
+              d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+              transform="translate(0 0)"
+            ></path>
+          </svg>
+        </button>
+        
         
         <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
           <ion-icon name="person-sharp" class="person-circle-outline"></ion-icon>
@@ -25,13 +51,7 @@
     Welcome to RSWearing's official webpage&trade;.
 </div>
 
-<button data-quantity="0" class="btn-cart">
-  <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
-    <title>icon-cart</title>
-    <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
-  </svg>
-  <span class="quantity"></span>
-</button>
+
   <div class="main-menu">
     <!-- Men Menu Item -->
     <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
@@ -61,7 +81,7 @@
 
 <ion-content [fullscreen]="true">
 <div class = "banner-top">
-  <img src="assets/img/banner-top.png" alt="Banner Top">
+  <img src="assets/img/bannerfortop.png" alt="Banner Top">
 </div>
 
 
@@ -85,47 +105,50 @@
   <div class="new-collection-section" 
   (mouseenter)="toggleHover('new-collection', true)" 
   (mouseleave)="toggleHover('new-collection', false)">
-<h2>New Collection:</h2>
-<div class="new-collection-items">
- <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoSettings()">
-   <img [src]="item.imageUrl" alt="{{ item.title }}">
-   <p>{{ item.title }}</p>
- </div>
-</div>
+  
+  <h2 (click)="gotoNewCollection()">New Collection <ion-icon name="pulse-sharp"></ion-icon></h2>
+  
+  <div class="new-collection-items">
+    <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoSettings()">
+      <img [src]="item.imageUrl" alt="{{ item.title }}">
+    </div>
+  </div>
 </div>
 
 <div class="hot-deals-section" 
   (mouseenter)="toggleHover('hot-deal', true)" 
   (mouseleave)="toggleHover('hot-deal', false)">
-<h2>Hot deals:</h2>
-<div class="hot-deals-items">
- <div class="item" *ngFor="let item of hotDealsItems" (click)="gotoSettings()">
-   <img [src]="item.imageUrl" alt="{{ item.title }}">
-   <p>{{ item.title }}</p>
- </div>
-</div>
+  
+  <h2 (click)="gotoHotDeals()">Hot deals <ion-icon name="flame-sharp"></ion-icon></h2>
+  
+  <div class="hot-deals-items">
+    <div class="item" *ngFor="let item of hotDealsItems" (click)="gotoSettings()">
+      <img [src]="item.imageUrl" alt="{{ item.title }}">
+    </div>
+  </div>
 </div>
 
 <div class="trending-section" 
   (mouseenter)="toggleHover('trending', true)" 
   (mouseleave)="toggleHover('trending', false)">
-<h2>Trending right now:</h2>
-<div class="trending-items">
- <div class="item" *ngFor="let item of trendingItems" (click)="gotoSettings()">
-   <img [src]="item.imageUrl" alt="{{ item.title }}">
-   <p>{{ item.title }}</p>
- </div>
+  
+  <h2 (click)="gotoTrending()">Trending right now <ion-icon name="trending-up-sharp"></ion-icon></h2>
+  
+  <div class="trending-items">
+    <div class="item" *ngFor="let item of trendingItems" (click)="gotoSettings()">
+      <img [src]="item.imageUrl" alt="{{ item.title }}">
+    </div>
+  </div>
 </div>
-</div>
+
 
 <div class="recommended-section" 
   (mouseenter)="toggleHover('recommended', true)" 
   (mouseleave)="toggleHover('recommended', false)">
-<h2>You may also like:</h2>
+  <h2 (click)="gotoHotDeals()">Recommend for you <ion-icon name="finger-print-sharp"></ion-icon></h2>
 <div class="recommended-items">
  <div class="item" *ngFor="let item of recommendedItems" (click)="gotoProfile()">
    <img [src]="item.imageUrl" alt="{{ item.title }}">
-   <p>{{ item.title }}"></p>
  </div>
 </div>
 </div>
@@ -162,8 +185,8 @@
   <div class="footer-section">
     <h3>Resources</h3>
     <ul>
-      <li><a href="#">Link 1</a></li>
-      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Gallery</a></li>
       <li><a href="#">Link 3</a></li>
     </ul>
   </div>
