@@ -1,13 +1,193 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>item</ion-title>
-  </ion-toolbar>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@595&display=swap" rel="stylesheet">
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <a [routerLink]="['/home']"> <!-- Add this line -->
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </a>
+      </ion-title>
+
+
+      
+      <ion-buttons slot="end">
+        <span class="user-name">{{ user.name }}</span>
+        <button data-quantity="0" class="btn-cart">
+          <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+            <title>icon-cart</title>
+            <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+          </svg>
+          <div class="cart-dropdown">
+            <p>No items added yet to the shoplist.</p>
+          </div>
+        </button>
+
+
+        <button class="btn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.503"
+            height="20.625"
+            viewBox="0 0 17.503 15.625"
+          >
+            <path
+              id="Fill"
+              d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+              transform="translate(0 0)"
+            ></path>
+          </svg>
+        </button>
+        
+        
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-icon name="navigate-circle-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+  <div class="welcome-message">
+    RSWearing&trade; official webpage.
+</div>
+
+
+  <div class="main-menu">
+    <!-- Men Menu Item -->
+    <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
+      Men
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
+        <ul>
+          <li><button>Sweats</button></li>
+          <li><button>Shirts</button></li>
+          <li><button>Accessories</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Kids Menu Item -->
+    <div class="menu-item" (mouseenter)="showSubMenu('kids')" (mouseleave)="hideSubMenu()">
+      Kids
+      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
+        <ul>
+          <li><button>Sweats</button></li>
+          <li><button>Shirts</button></li>
+          <li><button>Accessories</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">item</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content>
+  <div class="item-details">
+    <div class="item-image">
+      <button class="arrow-left" (click)="prevImage()">&#10094;</button> <!-- Left Arrow -->
+      <img [src]="currentImageUrl" alt="{{ item?.title }}">
+      <button class="arrow-right" (click)="nextImage()">&#10095;</button> <!-- Right Arrow -->
+      <div class="additional-images">
+        <img *ngFor="let img of item?.additionalImages; let i = index" [src]="img" (click)="setImage(i)" [alt]="'Additional Image ' + (i+1)">
+      </div>
+    </div>
+    <div class="item-info">
+      <h1>{{ item?.title }}</h1>
+      <p class="price">{{ item?.price }}</p> 
+      <p>Insert item description here. This text can be longer and include details about the product.</p>
+      <div class="size-selector">
+        <label for="size">Select size:</label>
+        <select id="size" class="custom-select">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+      <button class="cartBtn">
+        <svg class="cart" fill="white" viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg>
+        ADD TO CART
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="product"><path d="M211.8 0c7.8 0 14.3 5.7 16.7 13.2C240.8 51.9 277.1 80 320 80s79.2-28.1 91.5-66.8C413.9 5.7 420.4 0 428.2 0h12.6c22.5 0 44.2 7.9 61.5 22.3L628.5 127.4c6.6 5.5 10.7 13.5 11.4 22.1s-2.1 17.1-7.8 23.6l-56 64c-11.4 13.1-31.2 14.6-44.6 3.5L480 197.7V448c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64V197.7l-51.5 42.9c-13.3 11.1-33.1 9.6-44.6-3.5l-56-64c-5.7-6.5-8.5-15-7.8-23.6s4.8-16.6 11.4-22.1L137.7 22.3C155 7.9 176.7 0 199.2 0h12.6z"></path></svg>
+      </button>
+    </div>
+  </div>
 </ion-content>
+
+
+
+
+
+
+
+
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="sidebar-content">
+    <h3>Go to:</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoHome()">Home</button>
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoLogout()">Logout</button>
+      <img src="assets/icon/logo.png" alt="logo Icon" />
+    </div>
+  </div>
+</div>
+
+
+<div class="services-section">
+  <div class="service-item">
+    <ion-icon name="speedometer-outline"></ion-icon>
+      <p>Fast shipping</p>
+  </div>
+  <div class="service-item">
+    <ion-icon name="airplane-outline"></ion-icon>
+      <p>Free delivery for purchases above 50€</p>
+  </div>
+  <div class="service-item">
+    <ion-icon name="help-buoy-outline"></ion-icon>
+      <p>Customer Support always ready to assist you</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>Resources</h3>
+    <ul>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Help</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Company</h3>
+    <ul>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a>Social media:</a></li>
+      <li class="social-buttons">
+        <button (click)="gotoFacebookPage()" class="social-btn">
+          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+        </button>
+        <button (click)="gotoInstagramPage()" class="social-btn">
+          <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
+        </button>
+        <button (click)="gotoTwitterPage()" class="social-btn">
+          <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
+        </button>
+        <button (click)="gotoTiktokPage()" class="social-btn">
+          <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
+        </button>
+      </li>
+    </ul>
+  </div>

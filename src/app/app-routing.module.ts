@@ -24,9 +24,13 @@ const routes: Routes = [
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'item',
-    loadChildren: () => import('./item/item.module').then( m => m.ItemPageModule)
+    path: 'item/:id',
+    loadChildren: () => import('./item/item.module').then(m => m.ItemPageModule)
+  },  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+
 ];
 
 @NgModule({

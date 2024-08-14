@@ -1,0 +1,647 @@
+ion-header {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+      --background: transparent !important;
+  
+      .brand-logo {
+        width: 100px;  /* Set a fixed width */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn’t exceed the container */
+        object-fit: contain;  /* Prevent distortion */
+      }
+  
+  
+      ion-toolbar {
+        --background: transparent !important;
+        --min-height: 80px; /* Ensure consistent toolbar height */
+        display: flex;
+        justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Playfair Display', serif;
+      }
+  
+      .btn-cart {
+        position: relative; /* Changed to relative for testing */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border: none;
+        margin-top: 10px;
+        margin-left: 10px;
+        z-index: 10; /* Ensures the icon is on top */
+    }
+    
+    .icon-cart {
+        width: 24.38px;
+        height: 30.52px;
+        fill: black; /* Ensures the icon is visible */
+    }
+    
+    .btn-cart:hover .icon-cart {
+        transform: scale(1.32);
+        fill: goldenrod; /* Ensures hover effect is visible */
+    }
+      .cart-dropdown {
+        display: none;
+        position: absolute;
+        top: -20px; /* Adjust based on where you want the dropdown to appear */
+        left: -75px; /* Adjust based on alignment */
+        width: 200px; /* Set width as needed */
+        background-color: white;
+        border: 1px solid goldenrod;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+        text-align: center;
+      }
+      
+      .btn-cart:hover .cart-dropdown {
+        display: block;
+      }
+      
+      .cart-dropdown p {
+        margin: 0;
+        font-size: 14px;
+        color: black;
+      }
+      
+      
+      
+  /* From Uiverse.io by boryanakrasteva */ 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: relative;
+  }
+  
+  .btn::after {
+    content: "Favorites";
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 12px;
+    color: goldenrod;
+    font-family:sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s linear;
+    top: 115%;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    transition: 0.2s linear;
+  }
+  
+  .icon path {
+    fill: gray;
+    transition: 0.2s linear;
+  }
+  
+  .btn:hover > .icon {
+    transform: scale(1.2);
+  }
+  
+  .btn:hover > .icon path {
+    fill: goldenrod;
+  }
+  
+  .btn:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+  }
+  
+      ion-buttons {
+        display: flex;
+        align-items: center;
+  
+        .user-name {
+          margin-right: 5px;
+          font-size: 18px;
+          color: goldenrod;
+          font-family: 'Playfair Display', serif;
+        }
+  
+        ion-button {
+          color: goldenrod;
+  
+          ion-icon {
+            font-size: 28px;
+            color: rgba(1, 25, 32, 0.596);
+          }
+        }
+      }
+    }
+  
+  
+  .welcome-message {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 20px;
+    color: transparentize($color: black, $amount: 0.1);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  
+  }
+  ion-page {
+    background-image: linear-gradient(166deg, rgb(255,255,255),transparent),
+                      linear-gradient(166deg, rgb(255,255,255),transparent),
+                      repeating-linear-gradient(256deg, rgb(175,175,175) 0px, rgb(175,175,175) 2px, transparent 2px, transparent 4px),
+                      linear-gradient(211deg, rgb(255,255,255), rgb(255,255,255));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+  ion-toolbar {
+    position: relative;
+  }
+
+  
+.main-menu {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    font-family: "Noto Serif Khitan Small Script", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: goldenrod;
+  }
+  
+  .menu-item {
+    position: relative;
+    color: goldenrod;
+  }
+  
+  .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: transparentize($color: white, $amount: 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border: solid 1px ;
+    border-radius: 12px;
+    z-index: 1000;
+  }
+  
+  .sub-menu.visible {
+    display: block;
+  }
+  
+  .sub-menu ul {
+    background-color: transparent;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sub-menu ul li button {
+    background-color: transparent !important; /* Ensure the background is fully transparent */
+    background: none !important; /* Override any background settings */
+    border: 1px solid goldenrod; /* Add a goldenrod border */
+    color: black; /* Text color goldenrod */
+    padding: 10px 15px; /* Padding for the button */
+    border-radius: 8px; /* Slight rounding of the corners */
+    font-family: "Noto Serif Khitan Small Script", serif; /* Your font */
+    font-size: 1rem; /* Font size */
+    width: 100%; /* Make the button fill the width */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: none !important; /* Ensure any box shadow is removed */
+    outline: none; /* Remove any outline */
+    border-width: 2px; /* Control border thickness */
+    border-style: solid; /* Ensure border is solid */
+    -webkit-appearance: none; /* Remove default button styling on WebKit browsers */
+    -moz-appearance: none; /* Remove default button styling on Mozilla browsers */
+    appearance: none; /* Remove default button styling */
+    opacity: 1; /* Ensure full opacity */
+  }
+  
+  .sub-menu ul li button:hover {
+    background-color: goldenrod !important; /* Add a background color on hover */
+    color: white; /* Change text color on hover for contrast */
+  }
+  
+  .sub-menu ul li button:active,
+  .sub-menu ul li button:focus {
+    outline: none !important; /* Ensure there's no outline when the button is focused or active */
+  }
+
+ //____________________________________________________________CONTENT
+ .item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .item-image {
+    width: 40%;
+    text-align: center;
+  
+    img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      object-fit: contain;
+    }
+  
+    .additional-images {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+  
+      img {
+        width: 70px;
+        height: 70px;
+        margin: 0 10px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .item-info {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .price {
+        font-size: 24px;
+        font-weight: bold;
+        color: goldenrod; // Change color as per your design
+        margin-bottom: 10px;
+      }
+  
+   /* Container styling */
+.size-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    label {
+        font-family: 'Chakra Petch', sans-serif; /* Matching font */
+        font-size: 16px;
+        margin-right: 10px;
+        color: goldenrod;
+    }
+}
+
+/* Select box styling */
+.custom-select {
+    width: 200px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid goldenrod;
+    background-color: white;
+    color: black;
+    font-family: 'Chakra Petch', sans-serif; /* Matching font */
+    font-size: 16px;
+    appearance: none; /* Removes default arrow in select */
+    background-image: url('../../assets/icon/arrow-down.svg'); /* Custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.custom-select:hover {
+    border-color: goldenrod;
+}
+
+/* Focus state */
+.custom-select:focus {
+    outline: none;
+    border-color: darkgoldenrod;
+    box-shadow: 0 0 5px rgba(218, 165, 32, 0.5); /* Adds a subtle glow */
+}
+
+/* Option styling */
+.custom-select option {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 16px;
+}
+
+/* When dropdown is opened */
+.custom-select:focus option {
+    background-color: white;
+    color: black;
+}
+  
+   /* From Uiverse.io by vinodjangid07 */ 
+.cartBtn {
+    width: 155px;
+    height: 50px;
+    border: none;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 500;
+    position: relative;
+    background-color: goldenrod;
+    box-shadow: 0 20px 30px -7px rgba(27, 27, 27, 0.219);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .cart {
+    z-index: 2;
+  }
+  
+  .cartBtn:active {
+    transform: scale(0.96);
+  }
+  
+  .product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 23px;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
+  }
+  
+  .cartBtn:hover .product {
+    animation: slide-in-top 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  @keyframes slide-in-top {
+    0% {
+      transform: translateY(-30px);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translateY(0) rotate(-90deg);
+      opacity: 1;
+    }
+  }
+  
+  .cartBtn:hover .cart {
+    animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  }
+  
+
+//_____________________________
+//SIDEBAR_____________________________________________
+  #user-sidebar {
+    position: fixed;
+    display: flex;
+    right: 0;
+    top: 0;
+    margin-top: 150px;
+    width: 150px;
+    height: 100%;
+    background: transparentize($color: white, $amount: 0.40);
+    color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    transition-delay: 0.3s;
+    z-index: 1000;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+    font-weight: 400; /* Set font weight to regular */
+    font-style: normal; /* Set font style to normal */
+  }
+  
+  #user-sidebar.visible {
+    transform: translateX(0);
+  }
+  
+  #user-sidebar:hover,
+  ion-button#user-icon:hover + #user-sidebar {
+    transform: translateX(0);
+  }
+  
+  .sidebar-content {
+    color: #000000;
+    padding: 20px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
+  }
+  
+  .sidebar-content ul {
+    list-style: none;
+    color: #050100;
+    padding: 0;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
+  }
+  
+  .sidebar-content ul li {
+    margin: 15px 0;
+    color: #000000;
+  }
+  
+  .sidebar-content ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
+  }
+  
+  .sidebar-content ul li a:hover {
+    text-decoration: underline;
+    background: transparent;
+  }
+  
+  .buttons-sidebar {
+    color: #020000;
+    text-decoration: wavy;
+    background-color: black;
+  }
+  
+  #buttons-sidebar button {
+    background: transparent;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the buttons */
+  }
+  
+  #buttons-sidebar button:hover {
+    background: transparent;
+    border-color: goldenrod;
+  }
+  
+  #buttons-sidebar button:active {
+    background: rgb(240, 235, 235);
+    border-color: goldenrod;
+  }
+  
+  
+  .sidebar-content img {
+    max-width: 100%; /* Adjust this value as needed */
+    position: absolute;
+    bottom: 200px;
+    left: 50%; /* Center the logo horizontally */
+    transform: translateX(-50%); /* Center the logo horizontally */
+    height: auto;
+  }
+ //___________________________________________________ 
+ 
+ 
+//BOTTOM WEBSITE_______________________________________________________________ 
+.services-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 10px;
+    background: none; // Remove background from this section
+  }
+  
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #000;
+    font-family: 'Chakra Petch', sans-serif;
+  }
+  
+  .service-item ion-icon {
+    font-size: 40px;
+    color: goldenrod;
+    margin-bottom: 10px;
+  }
+  
+  .service-item p {
+    font-size: 14px;
+    color: black;
+  }
+  
+  footer.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: none;
+    background-color: none;
+    border-top: 2px solid goldenrod;
+    margin-top: 20px;
+  }
+  .footer-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-section ul li a {
+    text-decoration: none;
+    color: goldenrod; /* Change the color to goldenrod */
+    font-size: 14px;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #f0a500; /* Slightly lighter goldenrod for hover */
+  }
+  
+  .social-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8;
+  }
+  
+  /* If there are any other specific rules overriding the color, add !important */
+  .footer-section ul li a {
+    color: black!important;
+  }
+  .footer-section .social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px; /* Space between the buttons */
+  }
+  
+  .social-btn img {
+    width: 24px; /* Adjust the size to fit your design */
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%; /* Make it circular if you want */
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8; /* Slightly dim the icon on hover */
+  }
+  .item-details, 
+.services-section, 
+footer.footer {
+    background: none; /* Ensure these sections don't have individual backgrounds */
+}

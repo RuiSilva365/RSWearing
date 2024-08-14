@@ -26,61 +26,73 @@ export class HomePage implements OnInit {
   };
 
   constructor(private http: HttpClient, private router: Router) {
+
     this.newCollectionItems = [
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
-      { imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
+      { id: '1', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '2',imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
+      { id: '3', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
+      { id: '4',imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
+      { id: '5',imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
+      { id: '6',imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '7',imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
+      { id: '8',imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
+      { id: '9', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' }
     ];
 
     this.hotDealsItems = [
-      { imageUrl: '../../assets/examples/braceletsilver.png', title: 'Silver bracelet' },
-      { imageUrl: '../../assets/examples/watch.png', title: 'Watch' },
-      { imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-hirt' },
-      { imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
-      { imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' }
+      { id: '8', imageUrl: '../../assets/examples/braceletsilver.png', title: 'Silver bracelet' },
+      { id: '7', imageUrl: '../../assets/examples/watch.png', title: 'Watch' },
+      { id: '9', imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-hirt' },
+      { id: '10', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
+      { id: '11', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
+      { id: '12', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '13', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
+      { id: '14', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
+      { id: '15', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' }
 
 
     ];
 
     this.trendingItems = [
-      { imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-shirt' },
-      { imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
-      { imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' }
+      { id: '16', imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-shirt' },
+      { id: '17', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
+      { id: '18', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
+      { id: '19', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '20', imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
+      { id: '21', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
+      { id: '22', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
+      { id: '23', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' }
     ];
 
     this.recommendedItems = [
-      { imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
-      { imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
-      { imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' }
+      { id: '24', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
+      { id: '25', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
+      { id: '26', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
+      { id: '27', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '28', imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
+      { id: '29', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
+      { id: '30', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
+      { id: '31', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
+      { id: '32', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
+      { id: '33', imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
+      { id: '34', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
+      { id: '35', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' }
     ];
   }
+// Show the loader
+showLoader() {
+  const loaderContainer = document.querySelector('.loader-container');
+  loaderContainer?.classList.remove('hidden');
+}
 
+// Hide the loader
+hideLoader() {
+  const loaderContainer = document.querySelector('.loader-container');
+  loaderContainer?.classList.add('hidden');
+}
   ngOnInit() {
-    // Initialization logic here
+    this.hideLoader();
+
   }
 
   gotoProfile() {
@@ -101,15 +113,15 @@ export class HomePage implements OnInit {
 
   
   gotoHotDeals() {
-  //pass
+    this.router.navigate(['/settings']);
     }
 
   gotoTrending() {
-  //pass
+    this.router.navigate(['/settings']);
     }
 
   gotoNewCollection() {
-      //pass
+    this.router.navigate(['/settings']);
     }
 
     
@@ -143,5 +155,16 @@ export class HomePage implements OnInit {
 
   gotoTiktokPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
+  }
+  
+  gotoItem(id: string) {
+    this.showLoader(); // Show loader on login click
+
+    // Simulate a delay before navigating (to show the loader)
+    setTimeout(() => {
+      this.router.navigate(['/item', id]); 
+      this.hideLoader(); // Hide loader after navigation
+    }, 2000); // Simulate a 2-second delay
+     // Navigates to the item detail page with the item's id
   }
 }

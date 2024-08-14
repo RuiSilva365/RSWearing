@@ -1,0 +1,257 @@
+ion-header{
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+    --background: transparent !important;
+
+    .brand-logo {
+        width: 100px;  /* Set a fixed width */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn’t exceed the container */
+        object-fit: contain;  /* Prevent distortion */
+      }
+
+      
+      ion-toolbar {
+        --background: transparent !important;
+        --min-height: 80px; /* Ensure consistent toolbar height */
+        display: flex;
+        justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Playfair Display', serif;
+      }
+      .welcome-message {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Dancing Script", cursive;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-size: 20px;
+        color: transparentize($color: black, $amount: 0.1);
+        background-color: transparent;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      ion-toolbar {
+        position: relative;
+      }
+
+}
+ion-content {
+    --background: none;
+    background-image: repeating-radial-gradient(circle at center center, transparent 0px, transparent 2px,rgba(0,0,0, 0.1) 2px, rgba(0,0,0, 0.1) 3px,transparent 3px, transparent 5px,rgba(0,0,0, 0.1) 5px, rgba(0,0,0, 0.1) 7px),repeating-radial-gradient(circle at center center, rgb(255,255,255) 0px, rgb(255,255,255) 9px,rgb(255,255,255) 9px, rgb(255,255,255) 21px,rgb(255,255,255) 21px, rgb(255,255,255) 31px,rgb(255,255,255) 31px, rgb(255,255,255) 40px); background-size: 20px 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This ensures the container takes the full height of the viewport */
+    text-align: center;
+  }
+  .form_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: transparentize($color: goldenrod, $amount: 0.75);
+    height: auto;
+    width: 350px;
+    border: 2px solid #264143;
+    border-radius: 20px;
+    box-shadow: 3px 4px 0px 1px #E99F4C;
+    padding: 20px;
+  }
+  
+  .title {
+    color: #264143;
+    font-weight: 900;
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+  
+  .sub_title {
+    font-weight: 600;
+    margin: 5px 0;
+  }
+  
+  .form_group {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin: 10px;
+  }
+  
+  .form_style {
+    outline: none;
+    border: 2px solid #264143;
+    box-shadow: 3px 4px 0px 1px #E99F4C;
+    width: 290px;
+    padding: 12px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  
+  .form_style:focus, .btn:focus {
+    transform: translateY(4px);
+    box-shadow: 1px 2px 0px 0px #E99F4C;
+  }
+  
+  .btn {
+    padding: 15px;
+    margin: 25px 0px;
+    width: 290px;
+    font-size: 15px;
+    background: goldenrod;
+    border-radius: 10px;
+    font-weight: 800;
+    box-shadow: 3px 3px 0px 0px #f88603;
+  }
+  
+  .btn:hover {
+    opacity: .9;
+  }
+  
+  .link {
+    font-weight: 800;
+    color: #264143;
+    padding: 5px;
+  }
+
+  ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+  
+  .footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid goldenrod;
+    width: 100%;
+    position: relative;
+  }
+  
+  .footer-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-section ul li {
+    margin: 5px 0;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: goldenrod;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .social-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .social-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8;
+  }
+  
+
+  .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark overlay background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures the loader is above other elements */
+  }
+  
+  .loader {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    transform: rotate(45deg);
+  }
+  
+  .loader-square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    margin: 2px;
+    border-radius: 0px;
+    background: white;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: square-animation 10s ease-in-out infinite both;
+  }
+  
+  /* Additional CSS for Loader Squares and Animation */
+  @keyframes square-animation {
+    0%, 10.5% { left: 0; top: 0; }
+    12.5%, 23% { left: 32px; top: 0; }
+    25%, 35.5% { left: 64px; top: 0; }
+    37.5%, 48% { left: 64px; top: 32px; }
+    50%, 60.5% { left: 32px; top: 32px; }
+    62.5%, 73% { left: 32px; top: 64px; }
+    75%, 85.5% { left: 0; top: 64px; }
+    87.5%, 98% { left: 0; top: 32px; }
+    100% { left: 0; top: 0; }
+  }
+  
+  .loader-square:nth-of-type(0) { animation-delay: 0s; }
+  .loader-square:nth-of-type(1) { animation-delay: -1.4285714286s; }
+  .loader-square:nth-of-type(2) { animation-delay: -2.8571428571s; }
+  .loader-square:nth-of-type(3) { animation-delay: -4.2857142857s; }
+  .loader-square:nth-of-type(4) { animation-delay: -5.7142857143s; }
+  .loader-square:nth-of-type(5) { animation-delay: -7.1428571429s; }
+  .loader-square:nth-of-type(6) { animation-delay: -8.5714285714s; }
+  .loader-square:nth-of-type(7) { animation-delay: -10s; }
+  
+  .hidden {
+    display: none;
+  }

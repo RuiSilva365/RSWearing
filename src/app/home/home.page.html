@@ -41,14 +41,14 @@
         
         
         <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
-          <ion-icon name="person-sharp" class="person-circle-outline"></ion-icon>
+          <ion-icon name="navigate-circle-sharp"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </div>
 
   <div class="welcome-message">
-    Welcome to RSWearing's official webpage&trade;.
+    Welcome to RSWearing's &trade; official webpage.
 </div>
 
 
@@ -109,7 +109,7 @@
   <h2 (click)="gotoNewCollection()">New Collection <ion-icon name="pulse-sharp"></ion-icon></h2>
   
   <div class="new-collection-items">
-    <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoSettings()">
+    <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoItem(item.id)">
       <img [src]="item.imageUrl" alt="{{ item.title }}">
     </div>
   </div>
@@ -122,7 +122,7 @@
   <h2 (click)="gotoHotDeals()">Hot deals <ion-icon name="flame-sharp"></ion-icon></h2>
   
   <div class="hot-deals-items">
-    <div class="item" *ngFor="let item of hotDealsItems" (click)="gotoSettings()">
+    <div class="item" *ngFor="let item of hotDealsItems" (click)="gotoItem(item.id)">
       <img [src]="item.imageUrl" alt="{{ item.title }}">
     </div>
   </div>
@@ -135,7 +135,7 @@
   <h2 (click)="gotoTrending()">Trending right now <ion-icon name="trending-up-sharp"></ion-icon></h2>
   
   <div class="trending-items">
-    <div class="item" *ngFor="let item of trendingItems" (click)="gotoSettings()">
+    <div class="item" *ngFor="let item of trendingItems" (click)="gotoItem(item.id)">
       <img [src]="item.imageUrl" alt="{{ item.title }}">
     </div>
   </div>
@@ -147,7 +147,7 @@
   (mouseleave)="toggleHover('recommended', false)">
   <h2 (click)="gotoHotDeals()">Recommend for you <ion-icon name="finger-print-sharp"></ion-icon></h2>
 <div class="recommended-items">
- <div class="item" *ngFor="let item of recommendedItems" (click)="gotoProfile()">
+ <div class="item" *ngFor="let item of recommendedItems" (click)="gotoItem(item.id)">
    <img [src]="item.imageUrl" alt="{{ item.title }}">
  </div>
 </div>
@@ -230,3 +230,15 @@
     </ul>
   </div>
 </footer>
+
+<div class="loader-container hidden">
+  <div class="loader">
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@595&display=swap" rel="stylesheet">
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <a [routerLink]="['/home']"> <!-- Add this line -->
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </a>
+      </ion-title>
+    </ion-toolbar>
+  </div>
+
+  <div class="welcome-message">
+    RSWearing&trade; - Join us.
+</div>
+</ion-header>
+
+
+<ion-content>
+  <div class="container">
+    <div class="form_area">
+      <p class="title">SIGN UP</p>
+      <form (ngSubmit)="register()">
+        <div *ngIf="step === 1" class="form_group">
+          <label class="sub_title" for="email">Email</label>
+          <input [(ngModel)]="email" name="email" placeholder="Enter your email" id="email" class="form_style" type="email">
+          <button (click)="checkEmail()" class="btn">Next</button>
+        </div>
+  
+        <div *ngIf="step === 2">
+          <div class="form_group">
+            <label class="sub_title" for="username">Name</label>
+            <input [(ngModel)]="username" name="username" placeholder="Enter your full name" class="form_style" type="text">
+          </div>
+          <div class="form_group">
+            <label class="sub_title" for="password">Password</label>
+            <input [(ngModel)]="password" name="password" placeholder="Enter your password" id="password" class="form_style" type="password">
+          </div>
+          <div class="form_group">
+            <label class="sub_title" for="confirmPassword">Confirm Password</label>
+            <input [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm your password" class="form_style" type="password">
+          </div>
+          <button type="submit" class="btn">SIGN UP</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ion-content>
+
+<div class="loader-container hidden">
+  <div class="loader">
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+  </div>
+</div>
