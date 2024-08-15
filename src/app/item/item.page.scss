@@ -320,6 +320,11 @@ ion-header {
         color: goldenrod;
     }
 }
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adjust the spacing between the buttons */
+}
 
 /* Select box styling */
 .custom-select {
@@ -327,7 +332,7 @@ ion-header {
     padding: 10px 15px;
     border-radius: 5px;
     border: 1px solid goldenrod;
-    background-color: white;
+    background-color: transparent;
     color: black;
     font-family: 'Chakra Petch', sans-serif; /* Matching font */
     font-size: 16px;
@@ -343,19 +348,21 @@ ion-header {
 /* Hover effect */
 .custom-select:hover {
     border-color: goldenrod;
+    background-color: transparentize($color: goldenrod, $amount: 0.77);
 }
 
 /* Focus state */
 .custom-select:focus {
     outline: none;
     border-color: darkgoldenrod;
+    background-color: transparentize($color: goldenrod, $amount: 0.57);
     box-shadow: 0 0 5px rgba(218, 165, 32, 0.5); /* Adds a subtle glow */
 }
 
 /* Option styling */
 .custom-select option {
     padding: 10px;
-    background-color: white;
+    background-color: black;
     color: black;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 16px;
@@ -440,6 +447,57 @@ ion-header {
   }
   }
   
+/* From Uiverse.io by alexmaracinaru */ 
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 3px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 5px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: goldenrod;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 
 //_____________________________
 //SIDEBAR_____________________________________________
@@ -528,7 +586,10 @@ ion-header {
     border-color: goldenrod;
   }
   
-  
+  ion-content {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+      --background: transparent !important;
+  }
   .sidebar-content img {
     max-width: 100%; /* Adjust this value as needed */
     position: absolute;
@@ -542,13 +603,12 @@ ion-header {
  
 //BOTTOM WEBSITE_______________________________________________________________ 
 .services-section {
+  padding-bottom: 60px;
     display: flex;
     justify-content: space-around;
-    padding: 20px;
     border-radius: 10px;
-    background: none; // Remove background from this section
-  }
-  
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    
+}
   .service-item {
     display: flex;
     flex-direction: column;
@@ -561,7 +621,6 @@ ion-header {
   .service-item ion-icon {
     font-size: 40px;
     color: goldenrod;
-    margin-bottom: 10px;
   }
   
   .service-item p {
@@ -572,11 +631,10 @@ ion-header {
   footer.footer {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background: none;
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+      --background: transparent !important;
     background-color: none;
     border-top: 2px solid goldenrod;
-    margin-top: 20px;
   }
   .footer-section {
     flex: 1;
@@ -643,5 +701,6 @@ ion-header {
   .item-details, 
 .services-section, 
 footer.footer {
-    background: none; /* Ensure these sections don't have individual backgrounds */
+  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    
+    --background: transparent !important;
 }

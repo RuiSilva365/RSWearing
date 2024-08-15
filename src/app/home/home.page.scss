@@ -1,5 +1,6 @@
 ion-header {
-  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+    .home-user-bar {
     --background: transparent !important;
 
     .brand-logo {
@@ -168,8 +169,8 @@ ion-header {
 }
 ion-content {
   --background: transparent !important;
-  background-image: linear-gradient(166deg, rgb(255,255,255),transparent),linear-gradient(166deg, rgb(255,255,255),transparent),repeating-linear-gradient(256deg, rgb(175,175,175) 0px, rgb(175,175,175) 2px,transparent 2px, transparent 4px),linear-gradient(211deg, rgb(255,255,255),rgb(255,255,255));
-}
+  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+  }
 ion-toolbar {
   position: relative;
 }
@@ -189,7 +190,7 @@ ion-toolbar {
 }
 
 .banner-top img {
-  margin-top: 5px;
+  margin-top: 10px;
   width: 2500px; /* Ensure the image scales to the width of the banner */
   height: 600px; /* Maintain the image's aspect ratio */
   object-fit: cover; /* Ensure the image covers the entire banner area */
@@ -562,6 +563,7 @@ ion-button#user-icon:hover + #user-sidebar {
   border-radius: 8px;
 }
 
+
 .main-menu {
   display: flex;
   justify-content: space-around;
@@ -570,6 +572,7 @@ ion-button#user-icon:hover + #user-sidebar {
   font-weight: 400;
   font-style: normal;
   color: goldenrod;
+  position: relative;
 }
 
 .menu-item {
@@ -577,21 +580,24 @@ ion-button#user-icon:hover + #user-sidebar {
   color: goldenrod;
 }
 
+/* Hide submenu by default */
 .sub-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: transparentize($color: white, $amount: 0.5);
+  top: 0; /* Keep the submenu at the same height as the parent menu */
+  left: 100%; /* Position it to the right of the parent menu item */
+  background-color: transparentize($color: white, $amount: 0.9);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  border: solid 1px ;
   border-radius: 12px;
   z-index: 1000;
+  white-space: nowrap;
+  flex-direction: row;
 }
 
-.sub-menu.visible {
-  display: block;
+/* Show submenu on hover */
+.menu-item:hover .sub-menu {
+  display: flex;
 }
 
 .sub-menu ul {
@@ -599,37 +605,37 @@ ion-button#user-icon:hover + #user-sidebar {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.sub-menu ul li {
+  margin-right: 15px;
 }
 
 .sub-menu ul li button {
-  background-color: transparent !important; /* Ensure the background is fully transparent */
-  background: none !important; /* Override any background settings */
-  border: 1px solid goldenrod; /* Add a goldenrod border */
-  color: black; /* Text color goldenrod */
-  padding: 10px 15px; /* Padding for the button */
-  border-radius: 8px; /* Slight rounding of the corners */
-  font-family: "Noto Serif Khitan Small Script", serif; /* Your font */
-  font-size: 1rem; /* Font size */
-  width: 100%; /* Make the button fill the width */
-  cursor: pointer; /* Pointer cursor on hover */
-  box-shadow: none !important; /* Ensure any box shadow is removed */
-  outline: none; /* Remove any outline */
-  border-width: 2px; /* Control border thickness */
-  border-style: solid; /* Ensure border is solid */
-  -webkit-appearance: none; /* Remove default button styling on WebKit browsers */
-  -moz-appearance: none; /* Remove default button styling on Mozilla browsers */
-  appearance: none; /* Remove default button styling */
-  opacity: 1; /* Ensure full opacity */
+  background-color: transparent !important;
+  background: none !important;
+  border: 1px solid goldenrod;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: "Noto Serif Khitan Small Script", serif;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: none !important;
+  outline: none;
+  opacity: 1;
 }
 
 .sub-menu ul li button:hover {
-  background-color: goldenrod !important; /* Add a background color on hover */
-  color: white; /* Change text color on hover for contrast */
+  background-color: goldenrod !important;
+  color: white;
 }
 
 .sub-menu ul li button:active,
 .sub-menu ul li button:focus {
-  outline: none !important; /* Ensure there's no outline when the button is focused or active */
+  outline: none !important;
 }
 
 

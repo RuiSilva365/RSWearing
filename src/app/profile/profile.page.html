@@ -1,13 +1,187 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Dancing+Script:wght@400..700&family=Noto+Serif+Khitan+Small+Script&family=Yanone+Kaffeesatz:wght@595&display=swap" rel="stylesheet">
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <a [routerLink]="['/home']"> <!-- Add this line -->
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </a>
+      </ion-title>
+
+
+      
+      <ion-buttons slot="end">
+        <span class="user-name">{{ user.name }}</span>
+        <button data-quantity="0" class="btn-cart">
+          <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+            <title>icon-cart</title>
+            <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+          </svg>
+          <div class="cart-dropdown">
+            <p>No items added yet to the shoplist.</p>
+          </div>
+        </button>
+
+
+        <button class="btn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.503"
+            height="20.625"
+            viewBox="0 0 17.503 15.625"
+          >
+            <path
+              id="Fill"
+              d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+              transform="translate(0 0)"
+            ></path>
+          </svg>
+        </button>
+        
+        
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-icon name="navigate-circle-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+  <div class="welcome-message">
+    RSWearing&trade; official webpage.
+</div>
+
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="card">
+    <div class="card__img"></div>
+   <div class="card__avatar"><svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><circle cx="64" cy="64" fill="#ff8475" r="60"></circle><circle cx="64" cy="64" fill="#f85565" opacity=".4" r="48"></circle><path d="m64 14a32 32 0 0 1 32 32v41a6 6 0 0 1 -6 6h-52a6 6 0 0 1 -6-6v-41a32 32 0 0 1 32-32z" fill="#7f3838"></path><path d="m62.73 22h2.54a23.73 23.73 0 0 1 23.73 23.73v42.82a4.45 4.45 0 0 1 -4.45 4.45h-41.1a4.45 4.45 0 0 1 -4.45-4.45v-42.82a23.73 23.73 0 0 1 23.73-23.73z" fill="#393c54" opacity=".4"></path><circle cx="89" cy="65" fill="#fbc0aa" r="7"></circle><path d="m64 124a59.67 59.67 0 0 0 34.69-11.06l-3.32-9.3a10 10 0 0 0 -9.37-6.64h-43.95a10 10 0 0 0 -9.42 6.64l-3.32 9.3a59.67 59.67 0 0 0 34.69 11.06z" fill="#4bc190"></path><path d="m45 110 5.55 2.92-2.55 8.92a60.14 60.14 0 0 0 9 1.74v-27.08l-12.38 10.25a2 2 0 0 0 .38 3.25z" fill="#356cb6" opacity=".3"></path><path d="m71 96.5v27.09a60.14 60.14 0 0 0 9-1.74l-2.54-8.93 5.54-2.92a2 2 0 0 0 .41-3.25z" fill="#356cb6" opacity=".3"></path><path d="m57 123.68a58.54 58.54 0 0 0 14 0v-25.68h-14z" fill="#fff"></path><path d="m64 88.75v9.75" fill="none" stroke="#fbc0aa" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"></path><circle cx="39" cy="65" fill="#fbc0aa" r="7"></circle><path d="m64 91a25 25 0 0 1 -25-25v-16.48a25 25 0 1 1 50 0v16.48a25 25 0 0 1 -25 25z" fill="#ffd8c9"></path><path d="m91.49 51.12v-4.72c0-14.95-11.71-27.61-26.66-28a27.51 27.51 0 0 0 -28.32 27.42v5.33a2 2 0 0 0 2 2h6.81a8 8 0 0 0 6.5-3.33l4.94-6.88a18.45 18.45 0 0 1 1.37 1.63 22.84 22.84 0 0 0 17.87 8.58h13.45a2 2 0 0 0 2.04-2.03z" fill="#bc5b57"></path><path d="m62.76 36.94c4.24 8.74 10.71 10.21 16.09 10.21h5" style="fill:none;stroke-linecap:round;stroke:#fff;stroke-miterlimit:10;stroke-width:2;opacity:.1"></path><path d="m71 35c2.52 5.22 6.39 6.09 9.6 6.09h3" style="fill:none;stroke-linecap:round;stroke:#fff;stroke-miterlimit:10;stroke-width:2;opacity:.1"></path><circle cx="76" cy="62.28" fill="#515570" r="3"></circle><circle cx="52" cy="62.28" fill="#515570" r="3"></circle><ellipse cx="50.42" cy="69.67" fill="#f85565" opacity=".1" rx="4.58" ry="2.98"></ellipse><ellipse cx="77.58" cy="69.67" fill="#f85565" opacity=".1" rx="4.58" ry="2.98"></ellipse><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="m64 67v4" stroke="#fbc0aa" stroke-width="4"></path><path d="m55 56h-9.25" opacity=".2" stroke="#515570" stroke-width="2"></path><path d="m82 56h-9.25" opacity=".2" stroke="#515570" stroke-width="2"></path></g><path d="m64 84c5 0 7-3 7-3h-14s2 3 7 3z" fill="#f85565" opacity=".4"></path><path d="m65.07 78.93-.55.55a.73.73 0 0 1 -1 0l-.55-.55c-1.14-1.14-2.93-.93-4.27.47l-1.7 1.6h14l-1.66-1.6c-1.34-1.4-3.13-1.61-4.27-.47z" fill="#f85565"></path></svg></div>
+    <div class="card__content">
+      <div class="card__title">Username Example</div>
+      <div class="card__subtitle">Normal account</div>
+      <div class="card__info">
+        <div class="card__detail">
+          <ion-icon name="call-outline"></ion-icon> +351 931221122
+        </div>
+        <div class="card__detail">
+          <ion-icon name="mail-outline"></ion-icon> user_name&#64;example.com
+        </div>
+        <div class="card__detail">
+          <ion-icon name="location-outline"></ion-icon> Portugal, Lisbon
+        </div>
+        <div class="card__detail">
+          <ion-icon name="home-outline"></ion-icon> Rua da Estrada, 45
+        </div>
+        <div class="card__detail">
+          <ion-icon name="mail-open-outline"></ion-icon> 4912-231
+        </div>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn">Edit info
+          <svg viewBox="0 0 512 512" class="svg">
+            <path
+              d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+            ></path>
+          </svg>
+        </button>
+        <button class="card__btn card__btn-solid">Avatar
+          <svg viewBox="0 0 512 512" class="svg">
+            <path
+              d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Accordion List -->
+      <ion-accordion-group>
+        <ion-accordion value="orders">
+          <ion-item slot="header" color="transparent">
+            <ion-label>Orders</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-list>
+              <ion-item [routerLink]="['/other-page']">Current orders</ion-item> <!-- Navigate to /other-page -->
+              <ion-item [routerLink]="['/other-page']">Order history</ion-item> <!-- Navigate to /other-page -->
+            </ion-list>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="returns">
+          <ion-item slot="header" color="transparent">
+            <ion-label>Returns</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-list>
+              <ion-item [routerLink]="['/other-page']">Return requests</ion-item> <!-- Navigate to /other-page -->
+              <ion-item [routerLink]="['/other-page']">Return history</ion-item> <!-- Navigate to /other-page -->
+            </ion-list>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="campaigns">
+          <ion-item slot="header" color="transparent">
+            <ion-label>Campaigns</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-list>
+              <ion-item [routerLink]="['/other-page']">Current campaigns and promotional codes</ion-item> <!-- Navigate to /other-page -->
+              <ion-item [routerLink]="['/other-page']">Refferal code</ion-item> <!-- Navigate to /other-page -->
+            </ion-list>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="others">
+          <ion-item slot="header" color="transparent">
+            <ion-label>Others</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-list>
+              <ion-item [routerLink]="['/other-page']">Other Options</ion-item> <!-- Navigate to /other-page -->
+            </ion-list>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </div>
+
+  <button class="button_return">
+    <div class="button_return-box">
+      <span class="button_return-elem">
+        <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+          ></path>
+        </svg>
+      </span>
+      <span class="button_return-elem">
+        <svg viewBox="0 0 46 40">
+          <path
+            d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+          ></path>
+        </svg>
+      </span>
+    </div>
+  </button>
+
 </ion-content>
+
+
+
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="sidebar-content">
+    <h3>Go to:</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoHome()">Home</button>
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoLogout()">Logout</button>
+      <img src="assets/icon/logo.png" alt="logo Icon" />
+    </div>
+  </div>
+</div>
+

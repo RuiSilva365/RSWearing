@@ -1,0 +1,511 @@
+ion-header {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+      --background: transparent !important;
+  
+      .brand-logo {
+        width: 100px;  /* Set a fixed width */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn’t exceed the container */
+        object-fit: contain;  /* Prevent distortion */
+      }
+  
+  
+      ion-toolbar {
+        --background: transparent !important;
+        --min-height: 80px; /* Ensure consistent toolbar height */
+        display: flex;
+        justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Playfair Display', serif;
+      }
+  
+      .btn-cart {
+        position: relative; /* Changed to relative for testing */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 45px;
+        background-color: transparent;
+        border: none;
+        margin-top: 4px;
+        margin-left: 10px;
+        z-index: 10; /* Ensures the icon is on top */
+    }
+    
+    .icon-cart {
+        width: 24.38px;
+        height: 30.52px;
+        fill: black; /* Ensures the icon is visible */
+    }
+    
+    .btn-cart:hover .icon-cart {
+        transform: scale(1.32);
+        fill: goldenrod; /* Ensures hover effect is visible */
+    }
+      .cart-dropdown {
+        display: none;
+        position: absolute;
+        top: -25px; /* Adjust based on where you want the dropdown to appear */
+        left: -75px; /* Adjust based on alignment */
+        width: 200px; /* Set width as needed */
+        background-color: white;
+        border: 1px solid goldenrod;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+        text-align: center;
+      }
+      
+      .btn-cart:hover .cart-dropdown {
+        display: block;
+      }
+      
+      .cart-dropdown p {
+        margin: 0;
+        font-size: 14px;
+        color: black;
+      }
+      
+      
+      
+  /* From Uiverse.io by boryanakrasteva */ 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: relative;
+  }
+  
+  .btn::after {
+    content: "Favorites";
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 12px;
+    color: goldenrod;
+    font-family:sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s linear;
+    top: 115%;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    transition: 0.2s linear;
+  }
+  
+  .icon path {
+    fill: gray;
+    transition: 0.2s linear;
+  }
+  
+  .btn:hover > .icon {
+    transform: scale(1.2);
+  }
+  
+  .btn:hover > .icon path {
+    fill: goldenrod;
+  }
+  
+  .btn:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+  }
+  
+      ion-buttons {
+        display: flex;
+        align-items: center;
+  
+        .user-name {
+          margin-right: 5px;
+          font-size: 18px;
+          color: goldenrod;
+          font-family: 'Playfair Display', serif;
+        }
+  
+        ion-button {
+          color: goldenrod;
+  
+          ion-icon {
+            font-size: 28px;
+            color: rgba(1, 25, 32, 0.596);
+          }
+        }
+      }
+    }
+  
+  
+  .welcome-message {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 20px;
+    color: transparentize($color: black, $amount: 0.1);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+}
+
+/* From Uiverse.io by andrew-demchenk0 */ 
+
+.card {
+  --main-color: #333;
+  --submain-color: #555;
+  --highlight-color: goldenrod;
+  --bg-color: #FFF;
+  --border-color:goldenrod;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--bg-color);
+  box-shadow: 0 4px 10px rgba(goldenrod, 0.46);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.card__img {
+  background: repeating-radial-gradient(circle at center center, transparent 0px, transparent 6px, rgba(255,255,255,0.05) 6px, rgba(255,255,255,0.05) 13px, transparent 13px, transparent 16px, rgba(255,255,255,0.05) 16px, rgba(255,255,255,0.05) 29px, transparent 29px, transparent 40px, rgba(255,255,255,0.05) 40px, rgba(255,255,255,0.05) 50px), repeating-radial-gradient(circle at center center, rgb(21,21,21) 0px, rgb(21,21,21) 13px, rgb(21,21,21) 13px, rgb(21,21,21) 14px, rgb(21,21,21) 14px, rgb(21,21,21) 15px, rgb(21,21,21) 15px, rgb(21,21,21) 25px, rgb(21,21,21) 25px, rgb(21,21,21) 37px, rgb(21,21,21) 37px, rgb(21,21,21) 42px);
+  background-size: 53px 53px;
+  height: 200px;
+  width: 100%;
+  border-radius: 20px 20px 20px 20px;
+  border: 3px solid goldenrod; /* Proper border syntax */
+}
+
+.card__avatar {
+  position: relative;
+  margin-top: -75px;
+  width: 150px;
+  height: 150px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  border: 3px solid rgba(goldenrod, 0.46);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card__avatar svg {
+  width: 120px;
+  height: 120px;
+}
+
+.card__content {
+  text-align: center;
+  padding: 20px;
+}
+
+.card__title {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 36px;
+  color: var(--main-color);
+  font-family: 'Dancing Script', cursive;
+}
+
+.card__subtitle {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Papyrus ;
+  color: var(--submain-color);
+}
+
+.card__info {
+  margin-top: 20px;
+  font-size: 18px;
+  font-family: serif;
+  color: var(--submain-color);
+}
+
+.card__detail {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__detail ion-icon {
+  margin-right: 8px;
+  color: var(--highlight-color);
+}
+
+.card__actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.card__btn{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 150px;
+  height: 50px;
+  border: none;
+  padding: 0px 10px;
+  margin: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 300;
+  font-family: serif;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px black;
+  transition-duration: 0.3s;
+}
+
+.svg {
+  width: 13px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: 0.3s;
+}
+
+.card__btn:hover {
+  color: transparent;
+}
+
+.card__btn:hover svg {
+  right: 43%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: 0.3s;
+}
+
+.card__btn:active {
+  transform: translate(3px, 3px);
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 0px white;
+}
+
+ion-accordion-group {
+  margin-top: 100px;
+  background-color: transparent !important; /* Match the card's background */
+  width: 1000px;
+  margin-bottom: 70px;
+}
+
+ion-accordion {
+  background-color: transparent !important; /* Match the card's background */
+  --color: goldenrod;
+  --border-color: goldenrod;
+  --padding: 20px;
+}
+
+ion-item {
+  --border-color: #d4d4d4;
+  --color-hover: transparent; /* Match hover color with background */
+
+  --color-focused: goldenrod;
+  --color-hover: goldenrod;
+  --padding-start: 20px;
+  --min-height: 50px;
+}
+  #user-sidebar {
+    position: fixed;
+    display: flex;
+    right: 0;
+    top: 0;
+    margin-top:100px;
+    width: 150px;
+    height: 100%;
+    background: transparentize($color: white, $amount: 0.60);
+    color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    transition-delay: 0.3s;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+    font-weight: 400; /* Set font weight to regular */
+    font-style: normal; /* Set font style to normal */
+  }
+  
+  #user-sidebar.visible {
+    transform: translateX(0);
+  }
+  
+  #user-sidebar:hover,
+  ion-button#user-icon:hover + #user-sidebar {
+    transform: translateX(0);
+  }
+  
+  .sidebar-content {
+    color: #000000;
+    padding: 20px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
+  }
+  
+  .sidebar-content ul {
+    list-style: none;
+    color: #050100;
+    padding: 0;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
+  }
+  
+  .sidebar-content ul li {
+    margin: 15px 0;
+    color: #000000;
+  }
+  
+  .sidebar-content ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
+  }
+  
+  .sidebar-content ul li a:hover {
+    text-decoration: underline;
+    background: transparent;
+  }
+  
+  .buttons-sidebar {
+    color: #020000;
+    text-decoration: wavy;
+    background-color: black;
+  }
+  
+  #buttons-sidebar button {
+    background: transparent;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the buttons */
+  }
+  
+  #buttons-sidebar button:hover {
+    background: transparent;
+    border-color: goldenrod;
+  }
+  
+  #buttons-sidebar button:active {
+    background: rgb(240, 235, 235);
+    border-color: goldenrod;
+  }
+  
+  
+  .sidebar-content img {
+    max-width: 100%; /* Adjust this value as needed */
+    position: absolute;
+    bottom: 200px;
+    left: 50%; /* Center the logo horizontally */
+    transform: translateX(-50%); /* Center the logo horizontally */
+    height: auto;
+  }
+
+  ion-content {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+      --background: transparent !important;
+  }
+  .button_return {
+    display: block;
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+  
+    /* Center horizontally and vertically */
+    top: 1200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .button_return:before,
+  .button_return:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 7px;
+  }
+  
+  .button_return:before {
+    border: 4px solid black;
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .button_return:after {
+    border: 4px solid goldenrod;
+    transform: scale(1.3);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+  
+  .button_return:hover:before,
+  .button_return:focus:before {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .button_return:hover:after,
+  .button_return:focus:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  
+  .button_return-box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .button_return-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: black;
+  }
+  
+  .button_return:hover .button_return-box,
+  .button_return:focus .button_return-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+  }
