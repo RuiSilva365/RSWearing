@@ -1,0 +1,187 @@
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <a [routerLink]="['/home']"> <!-- Add this line -->
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </a>
+      </ion-title>
+
+
+      
+      <ion-buttons slot="end">
+        <span class="user-name">{{ user.name }}</span>
+        
+
+
+        <button class="btn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.503"
+            height="20.625"
+            viewBox="0 0 17.503 15.625"
+          >
+            <path
+              id="Fill"
+              d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+              transform="translate(0 0)"
+            ></path>
+          </svg>
+        </button>
+        
+        
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-icon name="navigate-circle-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+  <div class="welcome-message">
+    RSWearing&trade; official webpage.
+</div>
+
+
+</ion-header>
+
+<ion-content>
+  <div class="master-container">
+
+  <!-- Left Image -->
+  <div class="left-image">
+    <img src="assets/examples/img_example_2.png" alt="Image 1">
+  </div>
+
+    <!-- Cart Items -->
+    <div class="card cart">
+      <label class="title">Your cart</label>
+      <div class="products">
+        <div class="product" *ngFor="let item of cartItems">
+          <svg fill="none" viewBox="0 0 60 60" height="60" width="60" xmlns="http://www.w3.org/2000/svg">
+            <rect fill="#FFF6EE" rx="8.25" height="60" width="60"></rect>
+            <!-- Product icon here -->
+          </svg>
+          <div>
+            <span>{{ item.title }}</span>
+            <p>{{ item.description }}</p>
+          </div>
+          <div class="quantity">
+            <button (click)="decreaseQuantity(item)">
+              <svg fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#47484b" d="M20 12L4 12"></path>
+              </svg>
+            </button>
+            <label>{{ item.quantity }}</label>
+            <button (click)="increaseQuantity(item)">
+              <svg fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#47484b" d="M12 4V20M20 12H4"></path>
+              </svg>
+            </button>
+          </div>
+          <label class="price small">{{ item.price | currency }}</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coupon Section -->
+    <div class="card coupons">
+      <label class="title">Apply coupons</label>
+      <form class="form">
+        <input type="text" placeholder="Apply your coupons here" class="input_field_discount">
+        <button class="coupon_btn" (click)="applyCoupons(1)">Apply</button>
+      </form>
+    </div>
+
+    <!-- Checkout Section -->
+    <div class="card checkout">
+      <label class="title">Checkout</label>
+      <div class="details">
+        <div class="detail-row">
+          <span class="description">Your cart subtotal:</span>
+          <span class="value">{{ cartSubtotal | currency }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="description">Discount through applied coupons:</span>
+          <span class="value">{{ couponDiscount | currency }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="description">Shipping fees:</span>
+          <span class="value">{{ 3.33 | currency }}</span>
+        </div>
+      </div>
+      
+      <div class="checkout--footer">
+        <label class="price"><sup>$</sup>{{ totalPrice }}</label>
+        <button class="checkout-btn" (click)="proceedToCheckout()">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="contShoppBtn">
+    <label class = "keep_shopping_label">Keep Shopping</label>
+   <svg class="contShopp" fill="goldenrod" viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path>
+      </svg>
+  </button>
+
+       <!-- Right Image -->
+       <div class="right-image">
+        <img src="assets/examples/img_example_2.png" alt="Image 2">
+      </div>
+  
+</ion-content>
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="sidebar-content">
+    <h3>Go to:</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoHome()">Home</button>
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoLogout()">Logout</button>
+      <img src="assets/icon/logo.png" alt="logo Icon" />
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>Resources</h3>
+    <ul>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Help</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Company</h3>
+    <ul>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a>Social media:</a></li>
+      <li class="social-buttons">
+        <button (click)="gotoFacebookPage()" class="social-btn">
+          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+        </button>
+        <button (click)="gotoInstagramPage()" class="social-btn">
+          <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
+        </button>
+        <button (click)="gotoTwitterPage()" class="social-btn">
+          <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
+        </button>
+        <button (click)="gotoTiktokPage()" class="social-btn">
+          <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
+        </button>
+      </li>
+    </ul>
+  </div>
