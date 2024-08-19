@@ -65,7 +65,7 @@ applyCoupons(discount_value: number) {
   }
 
   proceedToCheckout(): void {
-    // Proceed to checkout logic
+    this.router.navigate(['/checkout']);  // Use the injected Router
   }
 
   toggleSidebar(visible: boolean) {

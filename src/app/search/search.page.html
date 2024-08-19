@@ -1,0 +1,197 @@
+<ion-header>
+  <div class="home-user-bar">
+    <ion-toolbar>
+      <ion-title class="test-font">
+        <a [routerLink]="['/home']"> <!-- Add this line -->
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </a>
+      </ion-title>
+
+
+      
+      <ion-buttons slot="end">
+        <span class="user-name">{{ user.name }}</span>
+        <button data-quantity="0" class="btn-cart">
+          <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+            <title>icon-cart</title>
+            <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+          </svg>
+          <div class="cart-dropdown">
+            <p>No items added yet to the shoplist.</p>
+          </div>
+        </button>
+
+
+        <button class="btn">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.503"
+            height="20.625"
+            viewBox="0 0 17.503 15.625"
+          >
+            <path
+              id="Fill"
+              d="M8.752,15.625h0L1.383,8.162a4.824,4.824,0,0,1,0-6.762,4.679,4.679,0,0,1,6.674,0l.694.7.694-.7a4.678,4.678,0,0,1,6.675,0,4.825,4.825,0,0,1,0,6.762L8.752,15.624ZM4.72,1.25A3.442,3.442,0,0,0,2.277,2.275a3.562,3.562,0,0,0,0,5l6.475,6.556,6.475-6.556a3.563,3.563,0,0,0,0-5A3.443,3.443,0,0,0,12.786,1.25h-.01a3.415,3.415,0,0,0-2.443,1.038L8.752,3.9,7.164,2.275A3.442,3.442,0,0,0,4.72,1.25Z"
+              transform="translate(0 0)"
+            ></path>
+          </svg>
+        </button>
+        
+        
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-icon name="navigate-circle-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+
+  <div class="welcome-message">
+    RSWearing&trade; official webpage.
+</div>
+
+
+</ion-header>
+<ion-content>
+  <div class="search-filter-container">
+    <!-- Search Box -->
+    <div class="search">
+      <div class="search-box">
+        <div class="search-field">
+          <input [(ngModel)]="searchQuery" placeholder="Search..." class="input" type="text" (input)="onSearch()">
+          <div class="search-box-icon">
+            <button class="btn-icon-content" (click)="onSearch()">
+              <i class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512">
+                  <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                </svg>
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Filter Button -->
+    <button class="filter" (click)="toggleFilter()"> 
+      <svg viewBox="0 0 512 512" height="1em" fill = "black">
+        <path
+          d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
+        ></path>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Filter Section (Toggles on click) -->
+  <div *ngIf="filterVisible" class="filter-container">
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="selectedCategory" (ionChange)="onFilterChange()">
+        <ion-select-option value="">All</ion-select-option>
+        <ion-select-option value="mens">men</ion-select-option>
+        <ion-select-option value="kids">Kids</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Price Range</ion-label>
+      <ion-range dualKnobs="true" min="0" max="1000" step="10" [(ngModel)]="priceRange" (ionChange)="onFilterChange()">
+        <ion-label slot="start">{{ priceRange.lower | currency }}</ion-label>
+        <ion-label slot="end">{{ priceRange.upper | currency }}</ion-label>
+      </ion-range>
+    </ion-item>
+  </div>
+  <!-- Search Results -->
+<ion-grid>
+  <ion-row>
+    <ion-col size="6" size-md="4" *ngFor="let item of searchResults">
+      <ion-card (click)="goToItemDetail(item.id)" class="custom-card">
+        <img [src]="item.imageUrl" class="product-image"/>
+        <ion-card-header>
+          <ion-card-title class="custom-title">{{ item.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="custom-description">{{ item.description }}</p>
+          <p class="custom-price">{{ item.price | currency }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+  <div class="sidebar-content">
+    <h3>Go to:</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoHome()">Home</button>
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoLogout()">Logout</button>
+      <img src="assets/icon/logo.png" alt="logo Icon" />
+    </div>
+  </div>
+</div>
+
+
+
+
+<footer class="footer">
+  <div class="footer-section">
+    <h3>Resources</h3>
+    <ul>
+      <li><a href="#">Newsletter</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Link 3</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Help</h3>
+    <ul>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">Contact us</a></li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Company</h3>
+    <ul>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a>Social media:</a></li>
+      <li class="social-buttons">
+        <button (click)="gotoFacebookPage()" class="social-btn">
+          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+        </button>
+        <button (click)="gotoInstagramPage()" class="social-btn">
+          <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
+        </button>
+        <button (click)="gotoTwitterPage()" class="social-btn">
+          <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
+        </button>
+        <button (click)="gotoTiktokPage()" class="social-btn">
+          <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
+        </button>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="footer-section">
+    <h3>Country</h3>
+    <ul>
+      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="loader-container hidden">
+  <div class="loader">
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+  </div>
+</div>

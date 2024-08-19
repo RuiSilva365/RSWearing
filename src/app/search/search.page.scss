@@ -1,0 +1,613 @@
+ion-header {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+      --background: transparent !important;
+  
+      .brand-logo {
+        width: 100px;  /* Set a fixed width */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn’t exceed the container */
+        object-fit: contain;  /* Prevent distortion */
+      }
+  
+  
+      ion-toolbar {
+        --background: transparent !important;
+        --min-height: 80px; /* Ensure consistent toolbar height */
+        display: flex;
+        justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Playfair Display', serif;
+      }
+  
+      .btn-cart {
+        position: relative; /* Changed to relative for testing */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 45px;
+        background-color: transparent;
+        border: none;
+        margin-top: 4px;
+        margin-left: 10px;
+        z-index: 10; /* Ensures the icon is on top */
+    }
+    
+    .icon-cart {
+        width: 24.38px;
+        height: 30.52px;
+        fill: black; /* Ensures the icon is visible */
+    }
+    
+    .btn-cart:hover .icon-cart {
+        transform: scale(1.32);
+        fill: goldenrod; /* Ensures hover effect is visible */
+    }
+      .cart-dropdown {
+        display: none;
+        position: absolute;
+        top: -25px; /* Adjust based on where you want the dropdown to appear */
+        left: -75px; /* Adjust based on alignment */
+        width: 200px; /* Set width as needed */
+        background-color: white;
+        border: 1px solid goldenrod;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+        text-align: center;
+      }
+      
+      .btn-cart:hover .cart-dropdown {
+        display: block;
+      }
+      
+      .cart-dropdown p {
+        margin: 0;
+        font-size: 14px;
+        color: black;
+      }
+      
+      
+      
+  /* From Uiverse.io by boryanakrasteva */ 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: relative;
+  }
+  
+  .btn::after {
+    content: "Favorites";
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 12px;
+    color: goldenrod;
+    font-family:sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s linear;
+    top: 115%;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    transition: 0.2s linear;
+  }
+  
+  .icon path {
+    fill: gray;
+    transition: 0.2s linear;
+  }
+  
+  .btn:hover > .icon {
+    transform: scale(1.2);
+  }
+  
+  .btn:hover > .icon path {
+    fill: goldenrod;
+  }
+  
+  .btn:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+  }
+  
+      ion-buttons {
+        display: flex;
+        align-items: center;
+  
+        .user-name {
+          margin-right: 5px;
+          font-size: 18px;
+          color: goldenrod;
+          font-family: 'Playfair Display', serif;
+        }
+  
+        ion-button {
+          color: goldenrod;
+  
+          ion-icon {
+            font-size: 28px;
+            color: rgba(1, 25, 32, 0.596);
+          }
+        }
+      }
+    }
+  
+  
+  .welcome-message {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 20px;
+    color: transparentize($color: black, $amount: 0.1);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+}
+
+
+
+
+  ion-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  ion-card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  ion-card-content p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  ion-content {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+    --background: transparent !important;
+
+    .filter {
+        position: absolute;
+        top:4%;
+        right:30%;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 0, 0, 0.192);
+        cursor: pointer;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.021);
+        transition: all 0.3s;
+        background: transparent !important;
+        border: 2px solid goldenrod;
+        color: gold;
+      }
+      
+      .filter svg {
+        height: 16px;
+        fill: rgb(77, 77, 77);
+        transition: all 0.3s;
+      }
+      .filter:hover {
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.11);
+        background-color: goldenrod;
+      }
+      .filter:hover svg {
+        fill: black;
+      }
+
+
+      .search {
+        display: fixed;
+        margin-top: 40px;
+        margin-left: 40%;
+        --input-line: black;
+        --input-text-color: black;
+        --input-text-hover-color: #808080;
+        --input-border-color: #808080;
+        --input-border-hover-color: black;
+        --input-bg-color:transparent ;
+        --search-max-width: 550px;
+        --search-min-width: 150px;
+        --border-radius: 50px;
+        --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
+      }
+      
+      .search-box {
+        max-width: var(--search-max-width);
+        min-width: var(--search-min-width);
+        height: 45px;
+        border: 1px solid var(--input-border-color);
+        border-radius: var(--border-radius);
+        padding: 5px 15px;
+        background: var(--input-bg-color);
+        box-shadow: 0 0 20px transparentize($color: goldenrod, $amount: 0.75);
+        transition: var(--transition-cubic-bezier);
+      }
+      
+      .search-box:hover {
+        border-color: var(--input-border-hover-color);
+      }
+      
+      /*Section input*/
+      .search-field {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        left: -5px;
+        border: 0;
+      }
+      
+      .input {
+        width: calc(100% - 29px);
+        height: 100%;
+        border: 0;
+        border-color: transparent;
+        font-size: 1rem;
+        padding-right: 0px;
+        color: var(--input-line);
+        background: var(--input-bg-color);
+        border-right: 2px solid var(--input-border-color);
+        outline: none;
+      }
+      
+      .input::-webkit-input-placeholder {
+        color: var(--input-text-color);
+      }
+      
+      .input::-moz-input-placeholder {
+        color: var(--input-text-color);
+      }
+      
+      .input::-ms-input-placeholder {
+        color: var(--input-text-color);
+      }
+      
+      .input:focus::-webkit-input-placeholder {
+        color: var(--input-text-hover-color);
+      }
+      
+      .input:focus::-moz-input-placeholder {
+        color: var(--input-text-hover-color);
+      }
+      
+      .input:focus::-ms-input-placeholder {
+        color: var(--input-text-hover-color);
+      }
+      
+      /*Search button*/
+      .search-box-icon {
+        width: 52px;
+        height: 45px;
+        position: absolute;
+        top: -6px;
+        right: -21px;
+        background: transparent;
+        border-bottom-right-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        transition: var(--transition-cubic-bezier);
+      }
+      
+      .search-box-icon:hover {
+        background: black;
+      }
+      .btn-icon-content {
+        width: 52px;
+        height: 45px;
+        top: -6px;
+        right: -21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        border-bottom-right-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        transition: var(--transition-cubic-bezier);
+        opacity: .4;
+      }
+      
+      .btn-icon-content:hover {
+        opacity: .8;
+      }
+      
+      .search-icon {
+        width: 31px;
+        height: 31px;
+        position: absolute;
+        top: 7px;
+        right: 15px;
+        fill: gold; 
+      }
+      .custom-card {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+      }
+      
+      .product-image {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        margin-right: 20px;
+      }
+      
+      .custom-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      
+      .custom-description {
+        font-size: 0.9rem;
+        color: gray;
+      }
+      
+      .custom-price {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+  }
+  
+  #user-sidebar {
+    position: fixed;
+    display: flex;
+    right: 0;
+    top: 0;
+    margin-top:100px;
+    width: 150px;
+    height: 100%;
+    background: transparentize($color: white, $amount: 0.60);
+    color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    transition-delay: 0.3s;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+    font-weight: 400; /* Set font weight to regular */
+    font-style: normal; /* Set font style to normal */
+  }
+  
+  #user-sidebar.visible {
+    transform: translateX(0);
+  }
+  
+  #user-sidebar:hover,
+  ion-button#user-icon:hover + #user-sidebar {
+    transform: translateX(0);
+  }
+  
+  .sidebar-content {
+    color: #000000;
+    padding: 20px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
+  }
+  
+  .sidebar-content ul {
+    list-style: none;
+    color: #050100;
+    padding: 0;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
+  }
+  
+  .sidebar-content ul li {
+    margin: 15px 0;
+    color: #000000;
+  }
+  
+  .sidebar-content ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
+  }
+  
+  .sidebar-content ul li a:hover {
+    text-decoration: underline;
+    background: transparent;
+  }
+  
+  .buttons-sidebar {
+    color: #020000;
+    text-decoration: wavy;
+    background-color: black;
+  }
+  
+  #buttons-sidebar button {
+    background: transparent;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the buttons */
+  }
+  
+  #buttons-sidebar button:hover {
+    background: transparent;
+    border-color: goldenrod;
+  }
+  
+  #buttons-sidebar button:active {
+    background: rgb(240, 235, 235);
+    border-color: goldenrod;
+  }
+  
+  
+  .sidebar-content img {
+    max-width: 100%; /* Adjust this value as needed */
+    position: absolute;
+    bottom: 200px;
+    left: 50%; /* Center the logo horizontally */
+    transform: translateX(-50%); /* Center the logo horizontally */
+    height: auto;
+  }
+
+
+  
+  footer.footer {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+      --background: transparent !important;
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    background-color: transparent;
+    border-top: 2px solid goldenrod; 
+ }
+  .footer-section {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+    --background: transparent !important;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-section ul li a {
+    text-decoration: none;
+    color: goldenrod; /* Change the color to goldenrod */
+    font-size: 14px;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #f0a500; /* Slightly lighter goldenrod for hover */
+  }
+  
+  .social-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8;
+  }
+  
+  /* If there are any other specific rules overriding the color, add !important */
+  .footer-section ul li a {
+    color: black!important;
+  }
+  .footer-section .social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px; /* Space between the buttons */
+  }
+  
+  .social-btn img {
+    width: 24px; /* Adjust the size to fit your design */
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%; /* Make it circular if you want */
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8; /* Slightly dim the icon on hover */
+  }
+  
+  .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark overlay background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures the loader is above other elements */
+  }
+  
+  .loader {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    transform: rotate(45deg);
+  }
+  
+  .loader-square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    margin: 2px;
+    border-radius: 0px;
+    background: white;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: square-animation 10s ease-in-out infinite both;
+  }
+  
+  /* Additional CSS for Loader Squares and Animation */
+  @keyframes square-animation {
+    0%, 10.5% { left: 0; top: 0; }
+    12.5%, 23% { left: 32px; top: 0; }
+    25%, 35.5% { left: 64px; top: 0; }
+    37.5%, 48% { left: 64px; top: 32px; }
+    50%, 60.5% { left: 32px; top: 32px; }
+    62.5%, 73% { left: 32px; top: 64px; }
+    75%, 85.5% { left: 0; top: 64px; }
+    87.5%, 98% { left: 0; top: 32px; }
+    100% { left: 0; top: 0; }
+  }
+  
+  .loader-square:nth-of-type(0) { animation-delay: 0s; }
+  .loader-square:nth-of-type(1) { animation-delay: -1.4285714286s; }
+  .loader-square:nth-of-type(2) { animation-delay: -2.8571428571s; }
+  .loader-square:nth-of-type(3) { animation-delay: -4.2857142857s; }
+  .loader-square:nth-of-type(4) { animation-delay: -5.7142857143s; }
+  .loader-square:nth-of-type(5) { animation-delay: -7.1428571429s; }
+  .loader-square:nth-of-type(6) { animation-delay: -8.5714285714s; }
+  .loader-square:nth-of-type(7) { animation-delay: -10s; }
+  
+  .hidden {
+    display: none;
+  }

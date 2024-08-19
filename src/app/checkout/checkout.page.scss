@@ -1,0 +1,513 @@
+
+ion-header {
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+      --background: transparent !important;
+  
+      .brand-logo {
+        width: 100px;  /* Set a fixed width */
+        height: auto;  /* Maintain aspect ratio */
+        max-width: 100%;  /* Ensure it doesn’t exceed the container */
+        object-fit: contain;  /* Prevent distortion */
+      }
+  
+  
+      ion-toolbar {
+        --background: transparent !important;
+        --min-height: 80px; /* Ensure consistent toolbar height */
+        display: flex;
+        justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Playfair Display', serif;
+      }
+  
+      .btn-cart {
+        position: relative; /* Changed to relative for testing */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 45px;
+        background-color: transparent;
+        border: none;
+        margin-top: 4px;
+        margin-left: 10px;
+        z-index: 10; /* Ensures the icon is on top */
+    }
+    
+    .icon-cart {
+        width: 24.38px;
+        height: 30.52px;
+        fill: black; /* Ensures the icon is visible */
+    }
+    
+    .btn-cart:hover .icon-cart {
+        transform: scale(1.32);
+        fill: goldenrod; /* Ensures hover effect is visible */
+    }
+      .cart-dropdown {
+        display: none;
+        position: absolute;
+        top: -25px; /* Adjust based on where you want the dropdown to appear */
+        left: -75px; /* Adjust based on alignment */
+        width: 200px; /* Set width as needed */
+        background-color: white;
+        border: 1px solid goldenrod;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+        text-align: center;
+      }
+      
+      .btn-cart:hover .cart-dropdown {
+        display: block;
+      }
+      
+      .cart-dropdown p {
+        margin: 0;
+        font-size: 14px;
+        color: black;
+      }
+      
+      
+      
+  /* From Uiverse.io by boryanakrasteva */ 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: relative;
+  }
+  
+  .btn::after {
+    content: "Favorites";
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 12px;
+    color: goldenrod;
+    font-family:sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s linear;
+    top: 115%;
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    transition: 0.2s linear;
+  }
+  
+  .icon path {
+    fill: gray;
+    transition: 0.2s linear;
+  }
+  
+  .btn:hover > .icon {
+    transform: scale(1.2);
+  }
+  
+  .btn:hover > .icon path {
+    fill: goldenrod;
+  }
+  
+  .btn:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+  }
+  
+      ion-buttons {
+        display: flex;
+        align-items: center;
+  
+        .user-name {
+          margin-right: 5px;
+          font-size: 18px;
+          color: goldenrod;
+          font-family: 'Playfair Display', serif;
+        }
+  
+        ion-button {
+          color: goldenrod;
+  
+          ion-icon {
+            font-size: 28px;
+            color: rgba(1, 25, 32, 0.596);
+          }
+        }
+      }
+    }
+  
+  
+  .welcome-message {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 20px;
+    color: transparentize($color: black, $amount: 0.1);
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+}
+
+
+
+/* Modal styles */
+.modal {
+    margin-bottom: 50px;
+    position: fixed;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: transparentize($color: white, $amount: 0.35);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid goldenrod;
+    z-index: 1000;
+}
+
+  
+  /* Form and Input Styles */
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input_container {
+    margin-bottom: 15px;
+  }
+  
+  .input_label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input_field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .split {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .payment--options {
+    width: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .payment--options button {
+    height: 55px;
+    background: rgb(233, 231, 231);
+    border: 1px solid goldenrod !important;
+    border-radius: 11px;
+    padding: 0;
+    border: 0;
+    outline: none;
+  }
+  
+  .payment--options button svg {
+    height: 18px;
+  }
+  
+  .payment--options button:last-child svg {
+    height: 22px;
+  }
+  
+  .payment-option-btn:hover {
+    background-color: gold;
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .separator p {
+    margin: 0 10px;
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .purchase--btn {
+    background-color: goldenrod;
+    padding: 12px 0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .purchase--btn:hover {
+    background-color: darkgoldenrod;
+  }
+  
+
+  ion-content{
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+    --background: transparent !important;
+    min-height: 20vh; /* Ensure the page takes at least the full height of the viewport */
+
+  }
+
+
+  .card {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid black;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+    
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: goldenrod;
+  }
+  
+  .products {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .product svg {
+    margin-right: 10px;
+  }
+  
+  .product div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+  }
+  
+  .quantity {
+    display: flex;
+    align-items: center;
+  }
+
+  #user-sidebar {
+    position: fixed;
+    display: flex;
+    right: 0;
+    top: 0;
+    margin-top:100px;
+    width: 150px;
+    height: 100%;
+    background: transparentize($color: white, $amount: 0.60);
+    color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    transition-delay: 0.3s;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+    font-weight: 400; /* Set font weight to regular */
+    font-style: normal; /* Set font style to normal */
+  }
+  
+  #user-sidebar.visible {
+    transform: translateX(0);
+  }
+  
+  #user-sidebar:hover,
+  ion-button#user-icon:hover + #user-sidebar {
+    transform: translateX(0);
+  }
+  
+  .sidebar-content {
+    color: #000000;
+    padding: 20px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
+  }
+  
+  .sidebar-content ul {
+    list-style: none;
+    color: #050100;
+    padding: 0;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
+  }
+  
+  .sidebar-content ul li {
+    margin: 15px 0;
+    color: #000000;
+  }
+  
+  .sidebar-content ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
+  }
+  
+  .sidebar-content ul li a:hover {
+    text-decoration: underline;
+    background: transparent;
+  }
+  
+  .buttons-sidebar {
+    color: #020000;
+    text-decoration: wavy;
+    background-color: black;
+  }
+  
+  #buttons-sidebar button {
+    background: transparent;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the buttons */
+  }
+  
+  #buttons-sidebar button:hover {
+    background: transparent;
+    border-color: goldenrod;
+  }
+  
+  #buttons-sidebar button:active {
+    background: rgb(240, 235, 235);
+    border-color: goldenrod;
+  }
+
+  
+    
+  .sidebar-content img {
+    max-width: 100%; /* Adjust this value as needed */
+    position: absolute;
+    bottom: 200px;
+    left: 50%; /* Center the logo horizontally */
+    transform: translateX(-50%); /* Center the logo horizontally */
+    height: auto;
+  }
+
+
+  footer.footer {
+    display: flex;
+    justify-content: space-between;
+    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px, transparent 2px, transparent 5px, rgb(240,240,240) 5px, rgb(240,240,240) 7px, transparent 7px, transparent 9px, rgb(240,240,240) 9px, rgb(240,240,240) 11px), 
+      repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px, transparent 2px, transparent 5px, rgb(240,240,240) 5px, rgb(240,240,240) 7px, transparent 7px, transparent 14px, rgb(240,240,240) 14px, rgb(240,240,240) 16px), 
+      repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px, transparent 0px, transparent 1px, hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px, transparent 4px, transparent 5px, hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px), 
+      repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px, transparent 0px, transparent 1px, hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px, transparent 4px, transparent 5px, hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px), 
+      linear-gradient(90deg, rgb(251,251,251), rgb(251,251,251));
+    border-top: 2px solid goldenrod;
+    padding-bottom: 10px;
+    padding-top: 10px; /* Add some padding at the top if needed */
+    margin-top: auto; /* Ensures it sticks to the bottom */
+  }
+  
+  .footer-section {
+    flex: 1;
+    text-align: center;
+    padding-top: 0px;
+  }
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-section ul li a {
+    text-decoration: none;
+    color: goldenrod; /* Change the color to goldenrod */
+    font-size: 14px;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+    color: #f0a500; /* Slightly lighter goldenrod for hover */
+  }
+  
+  .social-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8;
+  }
+  
+  /* If there are any other specific rules overriding the color, add !important */
+  .footer-section ul li a {
+    color: black!important;
+  }
+  .footer-section .social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px; /* Space between the buttons */
+  }
+  
+  .social-btn img {
+    width: 24px; /* Adjust the size to fit your design */
+    height: 24px;
+    object-fit: cover;
+    border-radius: 50%; /* Make it circular if you want */
+  }
+  
+  .social-btn:hover img {
+    opacity: 0.8; /* Slightly dim the icon on hover */
+  }
+
+

@@ -9,7 +9,7 @@
       
       <ion-buttons slot="end">
         <span class="user-name">{{ user.name }}</span>
-        <button data-quantity="0" class="btn-cart">
+        <button data-quantity="0" class="btn-cart" (click)= "gotoCart()">
           <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
             <title>icon-cart</title>
             <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
@@ -55,9 +55,30 @@
       Men
       <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
         <ul>
-          <li><button>Sweats</button></li>
-          <li><button>Shirts</button></li>
-          <li><button>Accessories</button></li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Sweats</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Shirts</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Accessories</span>
+              </span>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -67,9 +88,31 @@
       Kids
       <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
         <ul>
-          <li><button>Sweats</button></li>
-          <li><button>Shirts</button></li>
-          <li><button>Accessories</button></li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Sweats</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Shirts</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Accessories</span>
+              </span>
+            </button>
+          </li>
+          
         </ul>
       </div>
     </div>
@@ -83,21 +126,22 @@
 
 
 
-  <div class="search">
-    <div class="search-box">
-      <div class="search-field">
-        <input placeholder="Search..." class="input" type="text">
-        <div class="search-box-icon">
-          <button class="btn-icon-content">
-            <i class="search-icon">
-              <svg xmlns="://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" ></path></svg>
-            </i>
-          </button>
-        </div>
+<div class="search">
+  <div class="search-box">
+    <div class="search-field">
+      <input [(ngModel)]="searchQuery" placeholder="Search..." class="input" type="text">
+      <div class="search-box-icon">
+        <button class="btn-icon-content" (click)="navigateToSearch()">
+          <i class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512">
+              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+            </svg>
+          </i>
+        </button>
       </div>
     </div>
   </div>
-  
+</div>
 
   <div class="new-collection-section" 
   (mouseenter)="toggleHover('new-collection', true)" 

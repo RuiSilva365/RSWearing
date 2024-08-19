@@ -216,7 +216,7 @@ ion-toolbar {
 .search-box {
   max-width: var(--search-max-width);
   min-width: var(--search-min-width);
-  height: 35px;
+  height: 45px;
   border: 1px solid var(--input-border-color);
   border-radius: var(--border-radius);
   padding: 5px 15px;
@@ -278,7 +278,7 @@ ion-toolbar {
 /*Search button*/
 .search-box-icon {
   width: 52px;
-  height: 35px;
+  height: 45px;
   position: absolute;
   top: -6px;
   right: -21px;
@@ -294,7 +294,7 @@ ion-toolbar {
 
 .btn-icon-content {
   width: 52px;
-  height: 35px;
+  height: 45px;
   top: -6px;
   right: -21px;
   background: transparent;
@@ -311,12 +311,12 @@ ion-toolbar {
 }
 
 .search-icon {
-  width: 21px;
-  height: 21px;
+  width: 31px;
+  height: 31px;
   position: absolute;
   top: 7px;
   right: 15px;
-  fill: goldenrod; 
+  fill: gold; 
 }
 
 .new-collection-section,
@@ -454,7 +454,7 @@ ion-toolbar {
   transition: transform 0.3s ease;
   transition-delay: 0.3s;
   z-index: 1000;
-  font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
+  font-family:  sans-serif; /* Apply the font to the entire sidebar */
   font-weight: 400; /* Set font weight to regular */
   font-style: normal; /* Set font style to normal */
 }
@@ -574,19 +574,12 @@ ion-button#user-icon:hover + #user-sidebar {
   color: goldenrod;
   position: relative;
 }
-
-.menu-item {
-  position: relative;
-  color: goldenrod;
-}
-
-/* Hide submenu by default */
 .sub-menu {
   display: none;
   position: absolute;
-  top: 0; /* Keep the submenu at the same height as the parent menu */
+  top: -25px; /* Keep the submenu at the same height as the parent menu */
   left: 100%; /* Position it to the right of the parent menu item */
-  background-color: transparentize($color: white, $amount: 0.9);
+  background-color: transparentize($color: silver, $amount: 0.3);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   border-radius: 12px;
@@ -599,14 +592,19 @@ ion-button#user-icon:hover + #user-sidebar {
 .menu-item:hover .sub-menu {
   display: flex;
 }
-
+.menu-item {
+  position: relative;
+  color: goldenrod;
+}
+/* Remove bullet points from the submenu */
 .sub-menu ul {
   background-color: transparent;
-  list-style-type: none;
+  list-style-type: none; /* Remove bullet points */
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Ensure buttons are in a row */
+  align-items: center; /* Align items in the center */
 }
 
 .sub-menu ul li {
@@ -614,30 +612,127 @@ ion-button#user-icon:hover + #user-sidebar {
 }
 
 .sub-menu ul li button {
-  background-color: transparent !important;
-  background: none !important;
-  border: 1px solid goldenrod;
-  color: black;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-family: "Noto Serif Khitan Small Script", serif;
-  font-size: 1rem;
+  position: relative;
+  padding: 8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all .15s ease;
+  background: none;
+  color: #0f1923;
   cursor: pointer;
-  box-shadow: none !important;
-  outline: none;
-  opacity: 1;
+  border: none;
 }
 
-.sub-menu ul li button:hover {
-  background-color: goldenrod !important;
-  color: white;
+/* Button pseudo-elements */
+.sub-menu ul li button::before,
+.sub-menu ul li button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid #7D8082;
+  transition: all .15s ease;
 }
 
+.sub-menu ul li button::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.sub-menu ul li button::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+/* Active and focus state */
 .sub-menu ul li button:active,
 .sub-menu ul li button:focus {
-  outline: none !important;
+  outline: none;
 }
 
+.sub-menu ul li button:active::before,
+.sub-menu ul li button:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.sub-menu ul li button:active::before {
+  top: 3px;
+}
+
+.sub-menu ul li button:active::after {
+  bottom: 3px;
+}
+
+/* Large button container */
+.sub-menu ul li .button_lg {
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #0f1923;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+/* Decorative elements */
+.sub-menu ul li .button_lg::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #0f1923;
+}
+
+.sub-menu ul li .button_lg::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: goldenrod;
+  transition: all .2s ease;
+}
+
+/* Slide effect */
+.sub-menu ul li .button_sl {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: gold;
+  transform: skew(-15deg);
+  transition: all .2s ease;
+}
+
+/* Button text container */
+.sub-menu ul li .button_text {
+  position: relative;
+}
+
+/* Hover effect */
+.sub-menu ul li button:hover {
+  color: #0f1923;
+}
+
+.sub-menu ul li button:hover .button_sl {
+  width: calc(100% + 15px);
+}
+
+.sub-menu ul li button:hover .button_lg::after {
+  background-color: #fff;
+}
 
 .services-section {
   display: flex;

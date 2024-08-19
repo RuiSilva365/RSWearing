@@ -19,6 +19,8 @@ export class HomePage implements OnInit {
     name: '',
     email: '',
   };
+  searchQuery: string = '';
+
   isHovering: { [key: string]: boolean } = {
     'new-collection': false,
     'trending': false,
@@ -110,6 +112,9 @@ hideLoader() {
   gotoSettings() {
     this.router.navigate(['/settings']);  // Use the injected Router
   }
+  gotoCart() {
+    this.router.navigate(['/cart']);
+    }
 
   
   gotoHotDeals() {
@@ -167,4 +172,17 @@ hideLoader() {
     }, 2000); // Simulate a 2-second delay
      // Navigates to the item detail page with the item's id
   }
+
+  navigateToSearch() {
+    if (this.searchQuery.trim().length > 0) {
+      this.showLoader();
+      setTimeout(() => {
+        this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+         this.hideLoader(); // Hide loader after navigation
+      }, 2000);
+      // Navigate to the search page and pass the search query as a parameter
+      
+    }
+  }
+
 }
