@@ -574,12 +574,13 @@ ion-button#user-icon:hover + #user-sidebar {
   color: goldenrod;
   position: relative;
 }
+/* Submenu style for larger screens (default) */
 .sub-menu {
   display: none;
   position: absolute;
   top: -25px; /* Keep the submenu at the same height as the parent menu */
   left: 100%; /* Position it to the right of the parent menu item */
-  background-color: transparentize($color: silver, $amount: 0.3);
+  background-color: transparent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px;
   border-radius: 12px;
@@ -592,83 +593,50 @@ ion-button#user-icon:hover + #user-sidebar {
 .menu-item:hover .sub-menu {
   display: flex;
 }
+
 .menu-item {
   position: relative;
   color: goldenrod;
 }
-/* Remove bullet points from the submenu */
-.sub-menu ul {
-  background-color: transparent;
-  list-style-type: none; /* Remove bullet points */
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row; /* Ensure buttons are in a row */
-  align-items: center; /* Align items in the center */
+
+/* For smaller screens (media query) */
+@media screen and (max-width: 768px) {
+  .sub-menu {
+    position: relative;
+    width: 100%;
+    top: auto; /* Position below the parent menu */
+    left: auto;
+     /* Align it with the parent menu */
+    width: 100%; /* Full width for smaller screens */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  /* Adjust the items in the submenu for mobile */
+  .sub-menu ul {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start;
+  }
+
+  .sub-menu ul li {
+    margin-bottom: 10px 0;
+  }
+
+  .sub-menu ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    background-color: transparent;
+    color: white;
+  }
+
+  .sub-menu ul li button:hover {
+    border: 2px;
+    background-color: transparent;
+    color: white;
+  }
 }
 
-.sub-menu ul li {
-  margin-right: 15px;
-}
-
-.sub-menu ul li button {
-  position: relative;
-  padding: 8px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all .15s ease;
-  background: none;
-  color: #0f1923;
-  cursor: pointer;
-  border: none;
-}
-
-/* Button pseudo-elements */
-.sub-menu ul li button::before,
-.sub-menu ul li button::after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0;
-  left: 0;
-  height: calc(50% - 5px);
-  border: 1px solid #7D8082;
-  transition: all .15s ease;
-}
-
-.sub-menu ul li button::before {
-  top: 0;
-  border-bottom-width: 0;
-}
-
-.sub-menu ul li button::after {
-  bottom: 0;
-  border-top-width: 0;
-}
-
-/* Active and focus state */
-.sub-menu ul li button:active,
-.sub-menu ul li button:focus {
-  outline: none;
-}
-
-.sub-menu ul li button:active::before,
-.sub-menu ul li button:active::after {
-  right: 3px;
-  left: 3px;
-}
-
-.sub-menu ul li button:active::before {
-  top: 3px;
-}
-
-.sub-menu ul li button:active::after {
-  bottom: 3px;
-}
-
-/* Large button container */
+/* Keep your original button styles intact */
 .sub-menu ul li .button_lg {
   position: relative;
   display: block;
@@ -700,7 +668,7 @@ ion-button#user-icon:hover + #user-sidebar {
   width: 4px;
   height: 4px;
   background-color: goldenrod;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 /* Slide effect */
@@ -713,7 +681,7 @@ ion-button#user-icon:hover + #user-sidebar {
   width: 0;
   background-color: gold;
   transform: skew(-15deg);
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 /* Button text container */
@@ -721,7 +689,7 @@ ion-button#user-icon:hover + #user-sidebar {
   position: relative;
 }
 
-/* Hover effect */
+/* Button hover effects */
 .sub-menu ul li button:hover {
   color: #0f1923;
 }
@@ -738,7 +706,7 @@ ion-button#user-icon:hover + #user-sidebar {
   display: flex;
   justify-content: space-around;
   background-color: transparent;
-  padding: 20px;
+  padding: 35px;
   border-radius: 10px;
   margin-top: 40px;
 }
@@ -775,6 +743,8 @@ footer.footer {
 .footer-section {
   flex: 1;
   text-align: center;
+  padding: 10px;
+  color: black;
 }
 
 .footer-section ul {

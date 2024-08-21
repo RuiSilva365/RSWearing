@@ -480,4 +480,7 @@ export class ItemPage implements OnInit {
   gotoHome() {
     this.router.navigate(['/home']);  // Use the injected Router
   }
+  gotoCart() {
+    this.router.navigate(['/cart']);  // Use the injected Router
+  }
 }

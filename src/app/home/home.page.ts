@@ -161,7 +161,10 @@ hideLoader() {
   gotoTiktokPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
-  
+
+  gotoFavorites() {
+    this.router.navigate(['/favorites']);  // Use the injected Router
+  }
   gotoItem(id: string) {
     this.showLoader(); // Show loader on login click
 

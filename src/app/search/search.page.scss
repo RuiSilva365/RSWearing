@@ -148,22 +148,7 @@ ion-header {
     }
   
   
-  .welcome-message {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-size: 20px;
-    color: transparentize($color: black, $amount: 0.1);
-    background-color: transparent;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
+
 }
 
 
@@ -173,6 +158,7 @@ ion-header {
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparentize($color: white, $amount: 0.4);
   }
   
   ion-card img {
@@ -198,8 +184,8 @@ ion-header {
 
     .filter {
         position: absolute;
-        top:4%;
-        right:30%;
+        margin-top: -50px;
+        margin-left: 25%;
         width: 50px;
         height: 50px;
         border-radius: 10px;
@@ -228,11 +214,95 @@ ion-header {
         fill: black;
       }
 
-
+      .filter-container {
+        padding: 15px;
+        background-image: repeating-linear-gradient(
+          147deg, 
+          rgb(240,240,240) 0px, 
+          rgb(240,240,240) 2px,
+          transparent 2px, 
+          transparent 5px,
+          rgb(240,240,240) 5px, 
+          rgb(240,240,240) 7px,
+          transparent 7px, 
+          transparent 9px,
+          rgb(240,240,240) 9px, 
+          rgb(240,240,240) 11px
+        ),
+        repeating-linear-gradient(
+          322deg, 
+          rgb(240,240,240) 0px, 
+          rgb(240,240,240) 2px,
+          transparent 2px, 
+          transparent 5px,
+          rgb(240,240,240) 5px, 
+          rgb(240,240,240) 7px,
+          transparent 7px, 
+          transparent 14px,
+          rgb(240,240,240) 14px, 
+          rgb(240,240,240) 16px
+        ),
+        repeating-linear-gradient(
+          0deg, 
+          hsla(199,0%,94%,0.15) 0px, 
+          hsla(199,0%,94%,0.15) 0px,
+          transparent 0px, 
+          transparent 1px,
+          hsla(199,0%,94%,0.15) 1px, 
+          hsla(199,0%,94%,0.15) 4px,
+          transparent 4px, 
+          transparent 5px,
+          hsla(199,0%,94%,0.15) 5px, 
+          hsla(199,0%,94%,0.15) 8px
+        ),
+        repeating-linear-gradient(
+          90deg, 
+          hsla(199,0%,94%,0.15) 0px, 
+          hsla(199,0%,94%,0.15) 0px,
+          transparent 0px, 
+          transparent 1px,
+          hsla(199,0%,94%,0.15) 1px, 
+          hsla(199,0%,94%,0.15) 4px,
+          transparent 4px, 
+          transparent 5px,
+          hsla(199,0%,94%,0.15) 5px, 
+          hsla(199,0%,94%,0.15) 8px
+        ),
+        linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+        background-color: transparentize($color: black, $amount: 0.3);
+        border-radius: 15px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+      }
+      
+      .filter-container ion-item {
+        --background: transparent !important;
+        --inner-padding: 10px;
+        border-radius: 10px;
+        background-color:transparentize($color: white, $amount: 0.77); /* Transparent white background */
+      }
+      
+      .filter-container ion-range {
+        --bar-background: goldenrod !important;
+        --bar-background-active: black !important;
+      }
+      
+      .filter-container ion-label {
+        color: black;
+      }
+      
+      .filter-container ion-select {
+        background: transparent;
+        border-radius: 10px;
+      }
+      
+      .filter-container ion-select-option {
+        color: black;
+      }
       .search {
         display: fixed;
         margin-top: 40px;
-        margin-left: 40%;
+        margin-left: 30%;
         --input-line: black;
         --input-text-color: black;
         --input-text-hover-color: #808080;
@@ -307,6 +377,10 @@ ion-header {
         color: var(--input-text-hover-color);
       }
       
+      .search-filter-container {
+        padding: 90px;
+
+      }
       /*Search button*/
       .search-box-icon {
         width: 52px;
@@ -358,8 +432,8 @@ ion-header {
       }
       
       .product-image {
-        width: 180px;
-        height: 180px;
+        width: 150px;
+        height: 150px;
         object-fit: contain;
         margin-right: 20px;
       }
@@ -379,6 +453,122 @@ ion-header {
         font-weight: bold;
         margin-top: 10px;
       }
+  }
+  @media screen and (max-width: 768px) {
+
+    /* Search Box adjustments */
+    .search {
+      display: block;
+      margin: 20px auto;
+      width: 90%; /* Make the search bar more responsive */
+    }
+  
+    .search-box {
+      min-width: 90%; /* Adjust the search box to fit the screen width */
+      max-width: none;
+      height: 45px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* Slight shadow for visibility */
+    }
+  
+    .search-field {
+      width: 100%;
+    }
+  
+    .input {
+      width: calc(100% - 40px); /* Ensures padding fits within screen */
+      font-size: 16px;
+      padding-left: 10px;
+    }
+  
+    .btn-icon-content {
+      width: 40px; /* Adjust icon button size */
+      height: 40px;
+      right: -10px; /* Position correctly on smaller screens */
+    }
+  
+    .search-icon {
+      width: 24px; /* Adjust icon size */
+      height: 24px;
+      top: 10px; /* Align with search bar */
+    }
+  
+    /* Filter Button adjustments */
+    .filter {
+      left: 1%;
+      bottom: 77%;
+
+    }
+  
+    .filter svg {
+      height: 20px; /* Adjust icon size for smaller screens */
+    }
+  
+    /* Product Card adjustments */
+    .custom-card {
+      flex-direction: column; /* Stack content vertically */
+      padding: 10px;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .product-image {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 10px;
+    }
+  
+    .custom-title {
+      font-size: 1.1rem;
+    }
+  
+    .custom-description {
+      font-size: 0.8rem;
+    }
+  
+    .custom-price {
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+  
+    /* Filter container adjustments */
+    .filter-container {
+      position: relative;
+      width: 100%; /* Full width on smaller screens */
+      box-shadow: none; /* Remove shadow to make it less cluttered */
+    }
+  
+    .filter-container ion-item {
+      --inner-padding: 5px;
+      border-radius: 8px;
+    }
+  
+    /* Adjust the font size inside the filter container */
+    .filter-container ion-label {
+      font-size: 8px;
+    }
+  
+    /* Adjust ion-cards for small screens */
+    ion-card {
+      margin: 15px 5px;
+      width: calc(100% - 10px); /* Make cards take full width minus padding */
+      box-shadow: none; /* Remove shadow for simplicity */
+    }
+  
+    ion-card-title {
+      font-size: 10px;
+    }
+  
+    ion-card-content p {
+      font-size: 10px;
+    }
+  
+    /* Ensures that the product list is responsive */
+    ion-content {
+      padding: 0;
+      margin: 0;
+    }
   }
   
   #user-sidebar {

@@ -148,22 +148,7 @@ ion-header {
     }
   
   
-  .welcome-message {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-size: 20px;
-    color: transparentize($color: black, $amount: 0.1);
-    background-color: transparent;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
+
 }
 
 /* From Uiverse.io by andrew-demchenk0 */ 
@@ -334,6 +319,187 @@ ion-item {
   --padding-start: 20px;
   --min-height: 50px;
 }
+/* General Styling for Mobile */
+@media screen and (max-width: 768px) {
+  /* Card Styling */
+  .card {
+    padding: 15px;
+    margin: 20px auto;
+    width: 95%; /* Take most of the screen width on mobile */
+    max-width: none; /* Remove max width constraint */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soften shadow for mobile */
+    border-radius: 10px;
+  }
+
+  .card__img {
+    height: 150px; /* Smaller height for mobile */
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .card__avatar {
+    width: 100px;
+    height: 100px;
+    margin-top: -50px; /* Adjust for the smaller avatar size */
+  }
+
+  .card__title {
+    font-size: 28px; /* Decrease font size */
+    margin-top: 15px;
+  }
+
+  .card__subtitle {
+    font-size: 16px; /* Slightly smaller subtitle */
+    margin-top: 5px;
+  }
+
+  .card__info {
+    font-size: 14px; /* Decrease text size for mobile */
+  }
+
+  .card__detail {
+    margin-top: 8px;
+  }
+
+  .card__actions {
+    flex-direction: column;
+    gap: 10px; /* Stack buttons vertically with space */
+  }
+
+  .card__btn {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  /* Button Return Styling */
+  .button_return {
+    width: 100%; /* Full width on mobile */
+  }
+
+  .button_return-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Accordion Group Styling */
+  ion-accordion-group {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px;
+    background-color: transparent;
+  }
+
+  ion-accordion {
+    --color: goldenrod;
+    --border-color: goldenrod;
+    background-color: transparent;
+  }
+
+  ion-item {
+    --padding-start: 15px;
+    --min-height: 40px;
+  }
+
+  /* Navbar & Toolbar Adjustments */
+  ion-header {
+    --min-height: 60px;
+  }
+
+  ion-toolbar {
+    --background: transparent;
+    --min-height: 60px;
+    padding: 0 10px;
+  }
+
+  .brand-logo {
+    width: 80px; /* Adjust brand logo size */
+    height: auto;
+  }
+
+  .btn-cart, .btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-cart {
+    width: 20px;
+    height: 25px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Cart Dropdown */
+  .cart-dropdown {
+    left: -50px;
+    width: 180px;
+    top: 0;
+  }
+
+  /* Sidebar Adjustments */
+  #user-sidebar {
+    width: 200px;
+    margin-top: 60px; /* Adjust according to the header height */
+  }
+
+  #buttons-sidebar button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Services Section */
+  .services-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .service-item {
+    margin-bottom: 15px;
+  }
+
+  .service-item ion-icon {
+    font-size: 30px;
+  }
+
+  .service-item p {
+    font-size: 12px;
+  }
+
+  /* Footer Adjustments */
+  footer.footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin-bottom: 20px;
+  }
+
+  .footer-section ul li {
+    font-size: 12px;
+  }
+
+  .social-buttons {
+    margin-top: 10px;
+  }
+
+  .social-btn img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Image Resizing for Mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
   #user-sidebar {
     position: fixed;
     display: flex;
@@ -342,7 +508,7 @@ ion-item {
     margin-top:100px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.60);
+    background: transparentize($color: white, $amount: 0.20);
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;

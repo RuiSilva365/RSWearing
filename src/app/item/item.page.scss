@@ -148,22 +148,7 @@ ion-header {
     }
   
   
-  .welcome-message {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-size: 20px;
-    color: transparentize($color: black, $amount: 0.1);
-    background-color: transparent;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
+
   
   }
   ion-page {
@@ -181,81 +166,170 @@ ion-header {
 
   
 .main-menu {
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.2rem;
-    font-family: "Noto Serif Khitan Small Script", serif;
-    font-weight: 400;
-    font-style: normal;
-    color: goldenrod;
-  }
-  
-  .menu-item {
-    position: relative;
-    color: goldenrod;
-  }
-  
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  font-family: "Noto Serif Khitan Small Script", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: goldenrod;
+  position: relative;
+}
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: -25px; /* Keep the submenu at the same height as the parent menu */
+  left: 100%; /* Position it to the right of the parent menu item */
+  background-color: transparentize($color: white, $amount: 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 12px;
+  z-index: 1000;
+  white-space: nowrap;
+  flex-direction: row;
+}
+
+/* Show submenu on hover */
+.menu-item:hover .sub-menu {
+  display: flex;
+}
+.menu-item {
+  position: relative;
+  color: goldenrod;
+}
+/* Submenu style for larger screens (default) */
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: -25px; /* Keep the submenu at the same height as the parent menu */
+  left: 100%; /* Position it to the right of the parent menu item */
+  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 12px;
+  z-index: 1000;
+  white-space: nowrap;
+  flex-direction: row;
+}
+
+/* Show submenu on hover */
+.menu-item:hover .sub-menu {
+  display: flex;
+}
+
+.menu-item {
+  position: relative;
+  color: goldenrod;
+}
+
+/* For smaller screens (media query) */
+@media screen and (max-width: 768px) {
   .sub-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: transparentize($color: white, $amount: 0.5);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border: solid 1px ;
-    border-radius: 12px;
-    z-index: 1000;
-  }
-  
-  .sub-menu.visible {
-    display: block;
-  }
-  
-  .sub-menu ul {
-    background-color: transparent;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sub-menu ul li button {
-    background-color: transparent !important; /* Ensure the background is fully transparent */
-    background: none !important; /* Override any background settings */
-    border: 1px solid goldenrod; /* Add a goldenrod border */
-    color: black; /* Text color goldenrod */
-    padding: 10px 15px; /* Padding for the button */
-    border-radius: 8px; /* Slight rounding of the corners */
-    font-family: "Noto Serif Khitan Small Script", serif; /* Your font */
-    font-size: 1rem; /* Font size */
-    width: 100%; /* Make the button fill the width */
-    cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: none !important; /* Ensure any box shadow is removed */
-    outline: none; /* Remove any outline */
-    border-width: 2px; /* Control border thickness */
-    border-style: solid; /* Ensure border is solid */
-    -webkit-appearance: none; /* Remove default button styling on WebKit browsers */
-    -moz-appearance: none; /* Remove default button styling on Mozilla browsers */
-    appearance: none; /* Remove default button styling */
-    opacity: 1; /* Ensure full opacity */
-  }
-  
-  .sub-menu ul li button:hover {
-    background-color: goldenrod !important; /* Add a background color on hover */
-    color: white; /* Change text color on hover for contrast */
-  }
-  
-  .sub-menu ul li button:active,
-  .sub-menu ul li button:focus {
-    outline: none !important; /* Ensure there's no outline when the button is focused or active */
+    position: relative;
+    width: 100%;
+    top: auto; /* Position below the parent menu */
+    left: auto;
+     /* Align it with the parent menu */
+    width: 100%; /* Full width for smaller screens */
+    flex-direction: column; /* Stack items vertically */
   }
 
+  /* Adjust the items in the submenu for mobile */
+  .sub-menu ul {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start;
+  }
+
+  .sub-menu ul li {
+    margin-bottom: 10px 0;
+  }
+
+  .sub-menu ul li button {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    background-color: transparent;
+    color: white;
+  }
+
+  .sub-menu ul li button:hover {
+    border: 2px;
+    background-color: transparent;
+    color: white;
+  }
+}
+
+/* Keep your original button styles intact */
+.sub-menu ul li .button_lg {
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #0f1923;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+/* Decorative elements */
+.sub-menu ul li .button_lg::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #0f1923;
+}
+
+.sub-menu ul li .button_lg::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: goldenrod;
+  transition: all 0.2s ease;
+}
+
+/* Slide effect */
+.sub-menu ul li .button_sl {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: gold;
+  transform: skew(-15deg);
+  transition: all 0.2s ease;
+}
+
+/* Button text container */
+.sub-menu ul li .button_text {
+  position: relative;
+}
+
+/* Button hover effects */
+.sub-menu ul li button:hover {
+  color: #0f1923;
+}
+
+.sub-menu ul li button:hover .button_sl {
+  width: calc(100% + 15px);
+}
+
+.sub-menu ul li button:hover .button_lg::after {
+  background-color: #fff;
+}
  //____________________________________________________________CONTENT
  .item-details {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 20px;
+    padding: 10px;
   }
   
   .item-image {
@@ -264,7 +338,7 @@ ion-header {
   
     img {
       width: 100%;
-      max-width: 350px;
+      max-width: 250px;
       height: auto;
       object-fit: contain;
     }
@@ -275,8 +349,8 @@ ion-header {
       margin-top: 10px;
   
       img {
-        width: 70px;
-        height: 70px;
+        width: 30px;
+        height: 30px;
         margin: 0 10px;
         object-fit: cover;
         border: 1px solid #ddd;
@@ -292,7 +366,9 @@ ion-header {
     justify-content: flex-start;
     
     h1 {
-      font-size: 24px;
+      font-size: 34px;
+      font-style: italic;
+      font-family: 'Segoe UI';
       margin-bottom: 20px;
     }
   
@@ -499,6 +575,100 @@ ion-header {
   transform-origin: bottom left;
 }
 
+
+.custom-ul {
+  position: relative;
+  display: flex;
+  gap: 25px;
+}
+
+.custom-ul li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  background: transparentize($color: white, $amount: 0.98);
+  border-radius: 60px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  left: -58px;
+  top: -10px;
+}
+
+.custom-ul li:hover {
+  width: 180px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+}
+
+.custom-ul li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 60px;
+  background: linear-gradient(45deg, var(--i), var(--j));
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.custom-ul li:hover::before {
+  opacity: 1;
+}
+
+.custom-ul li::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 60px;
+  background: linear-gradient(45deg, var(--i), var(--j));
+  transition: 0.5s;
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0;
+}
+
+.custom-ul li:hover::after {
+  opacity: 0.5;
+}
+
+.custom-ul li .icon {
+  color: #777;
+  font-size: 1.75em;
+  transition: 0.5s;
+  transition-delay: 0.25s;
+}
+
+.custom-ul li:hover .icon {
+  transform: scale(0);
+  color: #fff;
+  transition-delay: 0s;
+}
+
+.custom-ul li span {
+  position: absolute;
+}
+
+.custom-ul li .title {
+  color: #fff;
+  font-size: 0.8em;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: scale(0);
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.custom-ul li:hover .title {
+  transform: scale(1);
+  transition-delay: 0.25s;
+}
+
 //_____________________________
 //SIDEBAR_____________________________________________
   #user-sidebar {
@@ -506,10 +676,10 @@ ion-header {
     display: flex;
     right: 0;
     top: 0;
-    margin-top: 150px;
+    margin-top: 120px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.40);
+    background: transparentize($color: white, $amount: 0.10);
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;

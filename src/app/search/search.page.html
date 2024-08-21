@@ -46,9 +46,6 @@
     </ion-toolbar>
   </div>
 
-  <div class="welcome-message">
-    RSWearing&trade; official webpage.
-</div>
 
 
 </ion-header>
@@ -85,16 +82,27 @@
   <!-- Filter Section (Toggles on click) -->
   <div *ngIf="filterVisible" class="filter-container">
     <ion-item>
-      <ion-label>Category</ion-label>
+      <ion-label>Category:</ion-label>
       <ion-select [(ngModel)]="selectedCategory" (ionChange)="onFilterChange()">
         <ion-select-option value="">All</ion-select-option>
-        <ion-select-option value="mens">men</ion-select-option>
+        <ion-select-option value="men">Men</ion-select-option>
         <ion-select-option value="kids">Kids</ion-select-option>
+        <ion-select-option value="accessories">Accessories</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Type:</ion-label>
+      <ion-select [(ngModel)]="selectedType" (ionChange)="onFilterChange()">
+        <ion-select-option value="">All</ion-select-option>
+        <ion-select-option value="sweatshirt">Sweats</ion-select-option>
+        <ion-select-option value="t-shirt">T-shirts</ion-select-option>
+        <ion-select-option value="jacket">Jackets</ion-select-option>
       </ion-select>
     </ion-item>
   
     <ion-item>
-      <ion-label>Price Range</ion-label>
+      <ion-label>Price Range:</ion-label>
       <ion-range dualKnobs="true" min="0" max="1000" step="10" [(ngModel)]="priceRange" (ionChange)="onFilterChange()">
         <ion-label slot="start">{{ priceRange.lower | currency }}</ion-label>
         <ion-label slot="end">{{ priceRange.upper | currency }}</ion-label>

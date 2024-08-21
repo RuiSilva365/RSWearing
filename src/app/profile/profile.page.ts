@@ -36,6 +36,6 @@ export class ProfilePage implements OnInit {
   }
 
   gotoHome() {
-    this.router.navigate(['/Home']);  // Use the injected Router
+    this.router.navigate(['/home']);  // Use the injected Router
   }
 }

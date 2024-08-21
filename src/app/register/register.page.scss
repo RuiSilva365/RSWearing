@@ -20,21 +20,6 @@ ion-header{
         color: black;
         font-family: 'Playfair Display', serif;
       }
-      .welcome-message {
-        position: absolute;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-family: "Dancing Script", cursive;
-        font-optical-sizing: auto;
-        font-weight: 700;
-        font-size: 20px;
-        color: transparentize($color: black, $amount: 0.1);
-        background-color: transparent;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-      }
 
       ion-toolbar {
         position: relative;

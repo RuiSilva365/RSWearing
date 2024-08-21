@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';  // Import both Activa
 interface SearchResultItem {
   id: string;
   name: string;
+  type: string;
   category: string;
   price: number;
   description: string;
@@ -22,6 +23,7 @@ export class SearchPage implements OnInit {
   searchQuery: string = '';
   filterVisible: boolean = false;
   selectedCategory: string = '';
+  selectedType: string = '';
   priceRange: { lower: number; upper: number } = { lower: 0, upper: 1000 };
   sidebarVisible: boolean = false;
   user: any = {
@@ -62,16 +64,17 @@ export class SearchPage implements OnInit {
     this.filterVisible = !this.filterVisible;
   }
 
-  // Function to handle filter change
-  onFilterChange() {
-    // Apply filters for category and price range
-    this.searchResults = this.getInitialResults().filter(item => {
-      return (
-        (this.selectedCategory === '' || item.category === this.selectedCategory) &&
-        item.price >= this.priceRange.lower &&
-        item.price <= this.priceRange.upper
-      );
-    });
+ // Function to handle filter change
+ onFilterChange() {
+  // Apply filters for category, type, and price range
+  this.searchResults = this.getInitialResults().filter(item => {
+    return (
+      (this.selectedCategory === '' || item.category === this.selectedCategory) &&
+      (this.selectedType === '' || item.type === this.selectedType) && // Adjusted to filter by type
+      item.price >= this.priceRange.lower &&
+      item.price <= this.priceRange.upper
+    );
+  });
   }
 
   // Mock data for initial search results
@@ -81,6 +84,7 @@ export class SearchPage implements OnInit {
       {
         id: '9',
         name: 'T-Shirt',
+        type: 't-shirt',
         category: 'men',
         price: 20,
         description: 'A cool t-shirt.',
@@ -89,6 +93,7 @@ export class SearchPage implements OnInit {
       {
         id: '2',
         name: 'Sweatshirt',
+        type: 'sweatshirt',
         category: 'kids',
         price: 40,
         description: 'A warm sweatshirt.',
@@ -98,6 +103,7 @@ export class SearchPage implements OnInit {
       {
         id: '1', 
         name: 'Black Hoodie',
+        type: 'sweatshirt',
         category: 'men',
         price: 50,
         description: 'A stylish black hoodie.',
@@ -106,6 +112,7 @@ export class SearchPage implements OnInit {
       {
         id: '2',
         name: 'Beige Hoodie',
+        type: 'sweatshirt',
         category: 'men',
         price: 45,
         description: 'A comfortable beige hoodie.',
@@ -114,6 +121,7 @@ export class SearchPage implements OnInit {
       {
         id: '3',
         name: 'Gray Hoodie',
+        type: 'sweatshirt',
         category: 'men',
         price: 48,
         description: 'A trendy gray hoodie.',
@@ -122,6 +130,7 @@ export class SearchPage implements OnInit {
       {
         id: '4',
         name: 'Black Jacket',
+        type: 'jacket',
         category: 'men',
         price: 70,
         description: 'A sleek black jacket.',
@@ -130,6 +139,7 @@ export class SearchPage implements OnInit {
       {
         id:'5',
         name: 'Golden Bracelet',
+        type: 'bracelet',
         category: 'accessories',
         price: 100,
         description: 'A luxurious golden bracelet.',
@@ -139,6 +149,7 @@ export class SearchPage implements OnInit {
         id:'1',
         name: 'Black Hoodie',
         category: 'men',
+        type: 'sweatshirt',
         price: 50,
         description: 'Another stylish black hoodie.',
         imageUrl: '../../assets/examples/blackhoodie.png',
@@ -146,6 +157,7 @@ export class SearchPage implements OnInit {
       {
         id: '7',
         name: 'White Puffer',
+        type: 'jacket',
         category: 'men',
         price: 80,
         description: 'A cozy white puffer jacket.',
@@ -154,6 +166,7 @@ export class SearchPage implements OnInit {
       {
         id: '8',
         name: 'Red T-Shirt',
+        type: 't-shirt',
         category: 'men',
         price: 25,
         description: 'A vibrant red t-shirt.',
@@ -162,6 +175,7 @@ export class SearchPage implements OnInit {
       {
         id: '9',
         name: 'Blue T-Shirt',
+        type: 't-shirt',
         category: 'men',
         price: 20,
         description: 'A cool blue t-shirt.',
