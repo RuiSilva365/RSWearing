@@ -97,6 +97,9 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
 
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
   gotoTwitterPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }

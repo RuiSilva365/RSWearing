@@ -1,6 +1,154 @@
+@media screen and (max-width: 768px) {
+  /* Container takes full width and is centered */
+  .container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    min-height: 10vh; /* Ensure container takes full height of the viewport */
+  }
+
+  /* Form area width adjusted to be narrower and centered */
+  .form_area {
+    background-color: white;
+    width: 100%;
+    max-width: 600px; /* More reasonable max-width */
+    margin: 0 auto;
+    padding: 13px;
+    box-sizing: border-box;
+    margin-bottom: 190px;
+  }
+  /* Input fields take full width of their parent */
+  .form_style {
+    width: 100%; /* Input fields should be full width */
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: white !important; /* Force white background */
+    color: black !important; /* Force black text */
+  }
+  /* Button takes full width */
+  .btn {
+    color: black;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+    margin: 20px 0;
+    box-sizing: border-box;
+  }
+
+  /* Title and subtitle adjustments */
+  .title {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .sub_title {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  /* Header adjustments for mobile */
+  ion-header {
+    background-image: none;
+    --background: white;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Adjust logo size */
+  .brand-logo {
+    width: 70px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Content adjustments */
+  ion-content {
+    background-image: none;
+    --background: white;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  /* Adjust form group spacing for mobile */
+  .form_group {
+    width: 100%;
+    margin-bottom: 45px;
+  }
+}
+
+/* General Styles for larger screens */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.form_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  height: auto;
+  width: 100%;
+  padding: 25px;
+  max-width: 700px;
+  border: 2px solid #264143;
+  border-radius: 20px;
+  box-shadow: 3px 4px 0px 1px white;
+}
+
+.form_style {
+  outline: none;
+  border: 2px solid white;
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+  width: 100%;
+  padding: 25px;
+  max-width: 700px;
+  padding: 12px 10px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.form_style:focus,
+.btn:focus {
+  transform: translateY(4px);
+  box-shadow: 1px 2px 0px 0px goldenrod;
+}
+
+.btn {
+  padding: 15px;
+  margin: 25px 0;
+  width: 100%;
+  max-width: 300px;
+  font-size: 15px;
+  background: goldenrod;
+  border-radius: 10px;
+  font-weight: 800;
+  box-shadow: 3px 3px 0px 0px goldenrod;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.link {
+  font-weight: 800;
+  color: #264143;
+  padding: 5px;
+}
+
+
 ion-header{
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
-    --background: transparent !important;
+    background: white !important;
 
     .brand-logo {
         width: 100px;  /* Set a fixed width */
@@ -27,33 +175,34 @@ ion-header{
 
 }
 ion-content {
-    --background: none;
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));   
+    --background: white !important;
     }
   
   .container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* This ensures the container takes the full height of the viewport */
     text-align: center;
   }
+
   .form_area {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: transparentize($color: goldenrod, $amount: 0.75);
+    background-color: black;
     height: auto;
-    width: 750px;
+    width: 650px;
     border: 2px solid #264143;
     border-radius: 20px;
     box-shadow: 3px 4px 0px 1px #E99F4C;
-    padding: 20px;
+    padding: 25px;
   }
   
   .title {
-    color: #264143;
+    color: goldenrod;
     font-weight: 900;
     font-size: 1.5em;
     margin-top: 20px;
@@ -65,6 +214,8 @@ ion-content {
   }
   
   .form_group {
+    color: white;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -73,9 +224,10 @@ ion-content {
   
   .form_style {
     outline: none;
-    border: 2px solid #264143;
-    box-shadow: 3px 4px 0px 1px #E99F4C;
-    width: 490px;
+    border: 2px solid goldenrod;
+    color: black;
+    box-shadow: 3px 4px 0px 1px goldenrod;
+    width: 100%;
     padding: 12px 10px;
     border-radius: 4px;
     font-size: 15px;
@@ -83,7 +235,7 @@ ion-content {
   
   .form_style:focus, .btn:focus {
     transform: translateY(4px);
-    box-shadow: 1px 2px 0px 0px #E99F4C;
+    box-shadow: 1px 2px 0px 0px goldenrod;
   }
   
   .btn {
@@ -94,18 +246,13 @@ ion-content {
     background: goldenrod;
     border-radius: 10px;
     font-weight: 800;
-    box-shadow: 3px 3px 0px 0px #f88603;
+    box-shadow: 3px 3px 0px 0px goldenrod;
   }
   
   .btn:hover {
     opacity: .9;
   }
   
-  .link {
-    font-weight: 800;
-    color: #264143;
-    padding: 5px;
-  }
 
   ion-content {
     display: flex;
@@ -114,72 +261,7 @@ ion-content {
     min-height: 100vh;
   }
   
-  .footer {
-    background-color: #f8f8f8;
-    padding: 20px;
-    text-align: center;
-    border-top: 2px solid goldenrod;
-    width: 100%;
-    position: relative;
-  }
   
-  .footer-section {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .footer-section h3 {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .footer-section ul li {
-    margin: 5px 0;
-  }
-  
-  .footer-section ul li a {
-    text-decoration: none;
-    color: goldenrod;
-  }
-  
-  .footer-section ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .social-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .social-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .social-btn img {
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .social-btn:hover img {
-    opacity: 0.8;
-  }
-  
-
   .loader-container {
     position: fixed;
     top: 0;

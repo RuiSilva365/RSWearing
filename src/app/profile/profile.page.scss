@@ -1,6 +1,7 @@
 ion-header {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
-      --background: transparent !important;
+     .home-user-bar {
+      background-color: white;
+      background: white;
   
       .brand-logo {
         width: 100px;  /* Set a fixed width */
@@ -158,7 +159,7 @@ ion-header {
   --submain-color: #555;
   --highlight-color: goldenrod;
   --bg-color: #FFF;
-  --border-color:goldenrod;
+  --border-color:black;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   width: 100%;
   max-width: 1100px;
@@ -168,7 +169,7 @@ ion-header {
   padding: 20px;
   border-radius: 20px;
   background: var(--bg-color);
-  box-shadow: 0 4px 10px rgba(goldenrod, 0.46);
+  box-shadow: 6px 6px 10px 8px rgba(black, 0.56);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -296,36 +297,24 @@ ion-header {
   box-shadow: 2px 2px 0px white;
 }
 
-ion-accordion-group {
-  margin-top: 100px;
-  background-color: transparent !important; /* Match the card's background */
-  width: 1000px;
-  margin-bottom: 70px;
+
+
+html, body, ion-content {
+  background-color: black!important;
+  background: black !important; /* Ensure the text color is black for contrast */
 }
 
-ion-accordion {
-  background-color: transparent !important; /* Match the card's background */
-  --color: goldenrod;
-  --border-color: goldenrod;
-  --padding: 20px;
-}
-
-ion-item {
-  --border-color: #d4d4d4;
-  --color-hover: transparent; /* Match hover color with background */
-
-  --color-focused: goldenrod;
-  --color-hover: goldenrod;
-  --padding-start: 20px;
-  --min-height: 50px;
+.background {
+  background-color: black;
 }
 /* General Styling for Mobile */
 @media screen and (max-width: 768px) {
+
   /* Card Styling */
   .card {
     padding: 15px;
     margin: 20px auto;
-    width: 95%; /* Take most of the screen width on mobile */
+    width: 85%; /* Take most of the screen width on mobile */
     max-width: none; /* Remove max width constraint */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soften shadow for mobile */
     border-radius: 10px;
@@ -383,28 +372,50 @@ ion-item {
     justify-content: center;
   }
 
+
   /* Accordion Group Styling */
   ion-accordion-group {
-    width: 100%;
-    margin-top: 50px;
+    background-color: transparent !important; /* Match the card's background */
+    max-width: 280px;
     padding: 10px;
-    background-color: transparent;
+    background-color: white !important;
+    --color: white;
+    --border-color:black;
   }
 
   ion-accordion {
-    --color: goldenrod;
+    --color: white !important;
     --border-color: goldenrod;
-    background-color: transparent;
+    background-color:white !important;
   }
 
   ion-item {
+    --color: black;
+    --background:white;
     --padding-start: 15px;
     --min-height: 40px;
   }
 
+  ion-label {
+    color: black !important; /* Make all labels inside the accordion black */
+  }
+
+
+  
+  /* Accordion Header */
+  ion-accordion ion-item[slot="header"] {
+    background-color: white !important; /* Set header background to black */
+    color: black !important; /* Set header text color to white */
+  }
+  
+  ion-accordion ion-item[slot="content"] {
+    background-color: white !important; /* Ensure content background is white */
+    color: white !important; /* Make sure text in content is black */
+  }
   /* Navbar & Toolbar Adjustments */
   ion-header {
     --min-height: 60px;
+    background-color: white !important;
   }
 
   ion-toolbar {
@@ -451,53 +462,82 @@ ion-item {
     font-size: 14px;
   }
 
-  /* Services Section */
-  .services-section {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-  }
-
-  .service-item {
-    margin-bottom: 15px;
-  }
-
-  .service-item ion-icon {
-    font-size: 30px;
-  }
-
-  .service-item p {
-    font-size: 12px;
-  }
-
-  /* Footer Adjustments */
-  footer.footer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-section {
-    margin-bottom: 20px;
-  }
-
-  .footer-section ul li {
-    font-size: 12px;
-  }
-
-  .social-buttons {
-    margin-top: 10px;
-  }
-
-  .social-btn img {
-    width: 20px;
-    height: 20px;
-  }
 
   /* Image Resizing for Mobile */
   img {
     max-width: 100%;
     height: auto;
   }
+
+  
+/* Mobile-specific adjustments */
+
+
+
+  .button_return {
+    position:fixed;
+    max-width: 56px;
+    max-height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    /* Center horizontally and vertically */
+    margin-bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .button_return:before {
+    border: 4px solid black;
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+  }
+  .button_return-elem {
+    width: 40px; /* Smaller arrow size */
+    height: 40px;
+    margin: 0; /* Center the arrow properly */
+  }
+
+  /* Adjust circle sizes for mobile */
+  .button_return:before,
+  .button_return:after {
+    inset: 4px; /* Smaller inset for mobile */
+  }
+
+
+  .button_return:hover .button_return-box,
+    .button_return:focus .button_return-box {
+        transition: 0.4s;
+        transform: translateX(-56px);
+    }
+
+  
+}
+
+ion-accordion-group {
+  margin-top: 100px;
+  background-color: transparent !important; /* Match the card's background */
+  width: 1000px;
+  margin-bottom: 70px;
+}
+
+ion-accordion {
+  background-color: transparent !important; /* Match the card's background */
+  --color: goldenrod;
+  --border-color: goldenrod;
+  --padding: 20px;
+}
+
+ion-item {
+  --border-color: #d4d4d4;
+  --color-hover: transparent; /* Match hover color with background */
+
+  --color-focused: goldenrod;
+  --color-hover: goldenrod;
+  --padding-start: 20px;
+  --min-height: 50px;
 }
 
   #user-sidebar {
@@ -508,7 +548,7 @@ ion-item {
     margin-top:100px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.20);
+    background: transparentize($color: white, $amount: 0.05);
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -595,12 +635,14 @@ ion-item {
   }
 
   ion-content {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
-      --background: transparent !important;
+    background-color: black !important;
+    
   }
   .button_return {
     display: block;
-    position: absolute;
+    position: relative; /* Ensures the button stays fixed at the bottom */
+    bottom: 20px; /* Adjust this to move the button upwards from the bottom */
+    transform: translateX(-50%); /* Correct centering */
     width: 56px;
     height: 56px;
     margin: 0;
@@ -609,12 +651,8 @@ ion-item {
     background-color: transparent;
     cursor: pointer;
     border: 0;
-  
-    /* Center horizontally and vertically */
-    top: 1200px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    z-index: 1000; /* Make sure it's above other elements */
+}
   
   .button_return:before,
   .button_return:after {

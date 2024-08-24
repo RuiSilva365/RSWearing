@@ -1,95 +1,273 @@
-ion-header {
-  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
 
-}
 
-.home-user-bar {
-  --background: transparent !important;
+@media screen and (max-width: 768px) {
 
-  ion-toolbar {
-    --background: transparent !important;
-    --min-height: 80px; /* Ensure consistent toolbar height */
-    display: flex;
-    justify-content: space-between; /* Ensure space between logo and other elements */
-    align-items: center; /* Align elements vertically */
-    font-size: 24px;
-    font-weight: bold;
-    color: goldenrod;
-    font-family: 'Playfair Display', serif;
+  /* Adjust header for mobile */
+
+  ion-header {
+    .home-user-bar {
+      background-color: white;
+      justify-content: space-between; /* Ensure space between logo and other elements */
+      align-items: center; /* Vertically center items */
+      background: white;
+    }
+
+
+
+    .site-title-btn {
+      font-family: 'NexaRust';
+      font-weight: 400;
+      color: black;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left; /* Left-align the text */
+    }
+
+    .site-title-btn:hover {
+      color: goldenrod;
+    }
+    .site-title-container {
+      display: center;
+    }
+      /* Align the cart and other icons to the right */
+ 
+
   }
 
 
-  ion-buttons {
-    display: flex;
-    align-items: center;
 
-    .user-name {
-      margin-right: 10px;
-      font-size: 18px;
-      color: goldenrod;
-      font-family: 'Playfair Display', serif;
-    }
 
-    ion-button {
-      color: goldenrod;
-
-      ion-icon {
-        font-size: 28px;
-        color: goldenrod;
-      }
-    }
+  .logo-container {
+    display: none; /* Hides the logo container on smaller screens */
   }
-}
-ion-content {
-    --background: none;
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
-    }
+  .brand-logo-1 {
+    width: 0px;
+    height: 0px;
+    display:none;
+  }
+
+  .login-container {
+    position: fixed;
+    max-width: 100%; /* On smaller screens, login container takes full width */
+    max-height: 100%;
+    display: flex;
+    background-color: white;
+  }
+
+
+  .screen-1 {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .screen-1 .email, .screen-1 .password {
+    margin-top: 15px;
+  }
+
+  button.login, button.continue {
+    font-size: 14px;
+    padding: 8px;
+  }
   
-  /* Container for the entire header section */
-.header-container {
+  .footer, 
+  .footer-section, 
+  footer.footer {
+    display: none !important;
+    border-top: none !important; /* Forcefully remove the border */
+  }
+
+}
+
+//______________________
+//_________
+//__________
+
+  
+ion-header {
+  .home-user-bar {
+   background-color: white;
+   background: white;
+
+
+   .site-title-container {
+    display: flex;
+    justify-content: flex-start; 
+  }
+  
+  .site-title-btn {
+    font-family: 'NexaRust', sans-serif;
+    font-weight: bold;
+    font-size: 18px; /* Font size for larger screens */
+    color: black;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: left; /* Center the button text */
+  }
+  
+  .site-title-btn:hover {
+    color: goldenrod; /* Change color on hover */
+  }
+  
+
+   ion-toolbar {
+     --background: transparent !important;
+     display: flex;
+     justify-content: space-between; /* Ensure space between logo and search bar/user icon */
+     font-size: 24px;
+     font-weight: bold;
+     color: black;
+     font-family: 'Playfair Display', serif;
+   }
+
+   .btn-cart {
+     position: relative; /* Changed to relative for testing */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 50px;
+     height: 45px;
+     background-color: transparent;
+     border: none;
+     margin-top: 4px;
+     margin-left: 10px;
+     z-index: 10; /* Ensures the icon is on top */
+ }
+ 
+ .icon-cart {
+     width: 24.38px;
+     height: 30.52px;
+     fill: black; /* Ensures the icon is visible */
+ }
+ 
+ .btn-cart:hover .icon-cart {
+     transform: scale(1.32);
+     fill: goldenrod; /* Ensures hover effect is visible */
+ }
+
+   
+
+   
+   
+/* From Uiverse.io by boryanakrasteva */ 
+.btn {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 30px;
+ height: 30px;
+ border-radius: 10px;
+ cursor: pointer;
+ border: none;
+ background-color: transparent;
+ position: relative;
+}
+
+.btn::after {
+ content: "Favorites";
+ width: fit-content;
+ height: fit-content;
+ position: absolute;
+ font-size: 12px;
+ color: goldenrod;
+ font-family:sans-serif;
+ opacity: 0;
+ visibility: hidden;
+ transition: 0.2s linear;
+ top: 115%;
+}
+
+.icon {
+ width: 50px;
+ height: 50px;
+ transition: 0.2s linear;
+}
+
+.icon path {
+ fill: gray;
+ transition: 0.2s linear;
+}
+
+.btn:hover > .icon {
+ transform: scale(1.2);
+}
+
+.btn:hover > .icon path {
+ fill: goldenrod;
+}
+
+.btn:hover::after {
+ visibility: visible;
+ opacity: 1;
+ top: 105%;
+}
+
+   ion-buttons {
+     display: flex;
+     align-items: center;
+
+     .user-name {
+       margin-right: 5px;
+       font-size: 18px;
+       color: goldenrod;
+       font-family: 'Playfair Display', serif;
+     }
+
+     ion-button {
+       color: goldenrod;
+
+       ion-icon {
+         font-size: 28px;
+         color: rgba(1, 25, 32, 0.596);
+       }
+     }
+   }
+ }
+}
+
+/* Toolbar Styling */
+ion-toolbar {
   display: flex;
-  justify-content: space-between; /* Ensures that elements inside are spaced apart */
+  justify-content: center; /* Centers the header content */
   align-items: center;
-  width: 100%; /* Takes up the full width of the screen */
-  padding: 20px;
+  padding: 10px 20px;
+  --background: transparent;
+  --min-height: 80px; /* Ensures consistent toolbar height */
 }
 
 
-.logo-container {
-  position: absolute;
-  top: 50%; /* Center vertically */
-  left: 0; /* Align to the left of the viewport */
-  transform: translate(0, -50%); /* Correct centering by moving up by 50% of the element’s height */
-  width: 100%; /* Full width of the viewport */
-  display: flex;
-  justify-content: flex-start; /* Align the logo to the left */
-  align-items: center; /* Center vertically within the container */
-  padding-left: 20px; /* Optional: Add padding to move the logo away from the edge */
-}
-
-.brand-logo-1 {
-  max-width: 500px; /* Limit the maximum width */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensure the logo is fully visible without distortion */
-  margin-left: 50px; /* Space from the left side */
-}
 
 
-/* Center the login container */
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Center align the items within the container */
-  height: 100%; /* Full height */
-  width: 300px; /* Width of the login container */
-  margin: 0 auto; /* Automatically adjust margins to center the container */
-  transform: translateY(-50%); /* Adjust vertical centering */
+  align-items: center;
+  height: 100%; 
+  max-width: 100%; 
+  margin: 0 auto; 
+  position: relative;
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+.logo-container {
   position: absolute;
-  top: 50%; /* Center vertically on the screen */
-  left: 50%; /* Center horizontally on the screen */
-  transform: translate(-50%, -50%); /* Corrects centering by moving 50% left and up */
+  display: grid;
+  width: 20%; /* Set width for the logo */
+  height: auto;
+  top: 50%;
+  left: 10%; /* Align the logo to the left of the screen */
+  transform: translateY(-50%); /* Center the logo vertically */
+}
+
+.brand-logo-1 {
+  max-width: 100%; 
+  width: auto; 
+  height: auto; 
+  object-fit: contain;
 }
 
 
@@ -100,11 +278,11 @@ ion-content {
   }
   
   .screen-1 {
-    background: transparentize($color: white, $amount: 0.75);
+    background: black;
     padding: 10px 30px;
     border-radius: 10px;
-    box-shadow: 0 0 30px 4px goldenrod;
-    width: 300px;
+    box-shadow: 0 0 10px 4px goldenrod;
+    max-width: 80%;
     z-index: 1;
   }
   
@@ -121,7 +299,7 @@ ion-content {
   .sec-2 {
     display: flex;
     align-items: center;
-    background: #ffffff;
+    background: black;
     border-radius: 5px;
     padding: 10px;
     margin-top: 5px;
@@ -130,7 +308,7 @@ ion-content {
   ion-icon {
     margin-right: 10px;
     font-size: 20px;
-    color: black;
+    color: white;
   }
   
   input {
@@ -138,12 +316,12 @@ ion-content {
     outline: none;
     background: none;
     font-size: 16px;
-    color: black;
+    color: white;
     width: 100%;
   }
   
   ion-input{
-    color: black
+    color: white;
   }
   
   button.login {
@@ -155,7 +333,7 @@ ion-content {
     border-radius: 5px;
     margin-top: 20px;
     cursor: pointer;
-    color: black;
+    color: white;
     font-size: 16px;
   }
   
@@ -168,13 +346,13 @@ ion-content {
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
-    color: black;
+    color: white;
     font-size: 16px;
   }
   
   button.social-btn {
     display: inline-block;
-    background:transparentize($color: goldenrod, $amount: 0.87);
+    background:transparent;
     border: 1px solid gold;
     border-radius: 5px;
     padding: 10px;
@@ -189,7 +367,6 @@ ion-content {
   
   .social-login p {
     margin-top: 20px;
-    color: goldenrod;
     font-size: 16px;
   }
   
@@ -200,12 +377,15 @@ ion-content {
   }
   
   .links a {
+    font-family: sans-serif;
     color:goldenrod;
     text-decoration: none;
     display: block;
     margin-top: 10px;
     cursor: pointer;
   }
+
+  
   
   .footer-text {
     color: rgb(0, 0, 0);
@@ -221,84 +401,14 @@ ion-content {
     margin-top: 10px;
     text-align: center;
   }
-  .main-menu {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));  
-
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.2rem;
-    font-family: "Noto Serif Khitan Small Script", serif;
-    font-weight: 400;
-    font-style: normal;
-    color: goldenrod;
-  }
-  
-  .menu-item {
-    position: relative;
-    color: goldenrod;
-  }
-  
-  .sub-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: transparentize($color: white, $amount: 0.6);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 12px;
-    z-index: 1000;
-  }
-  
-  .sub-menu.visible {
-    display: block;
-  }
-  
-  .sub-menu ul {
-    background-color: transparent;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sub-menu ul li button {
-    background-color: transparent !important; /* Ensure the background is fully transparent */
-    background: none !important; /* Override any background settings */
-    border: 1px solid goldenrod; /* Add a goldenrod border */
-    color: goldenrod; /* Text color goldenrod */
-    padding: 10px 15px; /* Padding for the button */
-    border-radius: 8px; /* Slight rounding of the corners */
-    font-family: "Noto Serif Khitan Small Script", serif; /* Your font */
-    font-size: 1rem; /* Font size */
-    width: 100%; /* Make the button fill the width */
-    cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: none !important; /* Ensure any box shadow is removed */
-    outline: none; /* Remove any outline */
-    border-width: 2px; /* Control border thickness */
-    border-style: solid; /* Ensure border is solid */
-    -webkit-appearance: none; /* Remove default button styling on WebKit browsers */
-    -moz-appearance: none; /* Remove default button styling on Mozilla browsers */
-    appearance: none; /* Remove default button styling */
-    opacity: 1; /* Ensure full opacity */
-  }
-  
-  .sub-menu ul li button:hover {
-    background-color: goldenrod !important; /* Add a background color on hover */
-    color: white; /* Change text color on hover for contrast */
-  }
-  
-  .sub-menu ul li button:active,
-  .sub-menu ul li button:focus {
-    outline: none !important; /* Ensure there's no outline when the button is focused or active */
-  }
   
 
 footer.footer {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    
-    border-top: 2px solid goldenrod;
+  border-top: 2px solid goldenrod;
+  max-height: 20%;
 }
 .footer-section {
   flex: 1;
@@ -315,13 +425,11 @@ footer.footer {
 }
 .footer-section ul li a {
   text-decoration: none;
-  color: goldenrod; /* Change the color to goldenrod */
   font-size: 14px;
 }
 
 .footer-section ul li a:hover {
   text-decoration: underline;
-  color: #f0a500; /* Slightly lighter goldenrod for hover */
 }
 
 .social-btn img {
@@ -341,6 +449,7 @@ footer.footer {
 }
 .footer-section .social-buttons {
   display: flex;
+  
   justify-content: center;
   align-items: center;
 }
