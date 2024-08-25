@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
   recommendedItems: any[] = [];
   sidebarVisible: boolean = false;
   subMenuVisible: string | null = null;  // Add this line to define the property
+  isSidebarOpen: boolean = false;
+  isAccordionOpen: boolean = false;
   user: any = {
     name: '',
     email: '',
@@ -129,7 +131,14 @@ hideLoader() {
     this.router.navigate(['/settings']);
     }
 
-    
+  
+    toggleAccordion(event: CustomEvent) {
+      const menAccordion = event.detail.value === 'men';
+      const kidsAccordion = event.detail.value === 'kids';
+      
+      // If either accordion is open, set isAccordionOpen to true
+      this.isAccordionOpen = menAccordion || kidsAccordion;
+    }
   toggleSidebar(visible: boolean) {
     this.sidebarVisible = visible;
   }
@@ -165,6 +174,8 @@ hideLoader() {
   gotoFavorites() {
     this.router.navigate(['/favorites']);  // Use the injected Router
   }
+
+
   gotoItem(id: string) {
     this.showLoader(); // Show loader on login click
 

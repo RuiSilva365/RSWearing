@@ -152,6 +152,11 @@ ion-header {
 
 }
 
+
+.app-profile{
+  background-color: white !important;
+}
+
 /* From Uiverse.io by andrew-demchenk0 */ 
 
 .card {
@@ -168,8 +173,8 @@ ion-header {
   margin-bottom: 100px;
   padding: 20px;
   border-radius: 20px;
-  background: var(--bg-color);
-  box-shadow: 6px 6px 10px 8px rgba(black, 0.56);
+  background: white;
+  box-shadow: 10px 10px 14px 10px rgba(black, 0.56);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -243,6 +248,8 @@ ion-header {
   color: var(--highlight-color);
 }
 
+
+
 .card__actions {
   margin-top: 30px;
   display: flex;
@@ -300,23 +307,27 @@ ion-header {
 
 
 html, body, ion-content {
-  background-color: black!important;
-  background: black !important; /* Ensure the text color is black for contrast */
+  background-color: white!important;
+  background: white !important; /* Ensure the text color is black for contrast */
 }
 
-.background {
-  background-color: black;
-}
+
 /* General Styling for Mobile */
 @media screen and (max-width: 768px) {
+  body, ion-content,ion-header, ion-page {
+    background-color: white !important;
+    color:black;
+    --background: white !important;
+  }
 
   /* Card Styling */
   .card {
+    background-color: white;
     padding: 15px;
     margin: 20px auto;
     width: 85%; /* Take most of the screen width on mobile */
     max-width: none; /* Remove max width constraint */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soften shadow for mobile */
+    box-shadow: 8px 8px 8px 10px rgba(black, 0.66) !important; 
     border-radius: 10px;
   }
 
@@ -362,20 +373,11 @@ html, body, ion-content {
     margin: 5px 0;
   }
 
-  /* Button Return Styling */
-  .button_return {
-    width: 100%; /* Full width on mobile */
-  }
-
-  .button_return-box {
-    display: flex;
-    justify-content: center;
-  }
 
 
   /* Accordion Group Styling */
   ion-accordion-group {
-    background-color: transparent !important; /* Match the card's background */
+    background-color: white !important; /* Match the card's background */
     max-width: 280px;
     padding: 10px;
     background-color: white !important;
@@ -489,42 +491,31 @@ html, body, ion-content {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .button_return:before {
-    border: 4px solid black;
-    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-      transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+
+    .button_return-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 100px 0 18px !important;
+    transform: rotate(190deg);
+    fill: black;
   }
-  .button_return-elem {
-    width: 40px; /* Smaller arrow size */
-    height: 40px;
-    margin: 0; /* Center the arrow properly */
-  }
-
-  /* Adjust circle sizes for mobile */
-  .button_return:before,
-  .button_return:after {
-    inset: 4px; /* Smaller inset for mobile */
-  }
-
-
-  .button_return:hover .button_return-box,
-    .button_return:focus .button_return-box {
-        transition: 0.4s;
-        transform: translateX(-56px);
-    }
-
   
+
+ 
+  ion-content {
+    background-color: white !important;
+  }
 }
 
 ion-accordion-group {
   margin-top: 100px;
-  background-color: transparent !important; /* Match the card's background */
   width: 1000px;
   margin-bottom: 70px;
 }
 
 ion-accordion {
-  background-color: transparent !important; /* Match the card's background */
+  --background-color: white;
   --color: goldenrod;
   --border-color: goldenrod;
   --padding: 20px;
@@ -548,7 +539,7 @@ ion-item {
     margin-top:100px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.05);
+    background: white;
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -635,7 +626,7 @@ ion-item {
   }
 
   ion-content {
-    background-color: black !important;
+    background-color: white !important;
     
   }
   .button_return {
@@ -713,3 +704,5 @@ ion-item {
     transition: 0.4s;
     transform: translateX(-56px);
   }
+
+  

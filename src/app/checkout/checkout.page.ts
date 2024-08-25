@@ -62,6 +62,13 @@ export class CheckoutPage implements OnInit {
   gotoHome() {
     this.router.navigate(['/home']);  // Use the injected Router
   }
+
+  gotoFavorites() {
+    this.router.navigate(['/favorites']);  // Use the injected Router
+  }
+  gotoCart() {
+    this.router.navigate(['/cart']);  // Use the injected Router
+  }
   
 
   gotoFacebookPage() {

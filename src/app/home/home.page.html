@@ -39,83 +39,47 @@
         </button>
         
         
-        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+        <ion-button id="user-icon" [disabled]="isAccordionOpen" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
           <ion-icon name="navigate-circle-sharp"></ion-icon>
         </ion-button>
+        
       </ion-buttons>
     </ion-toolbar>
   </div>
 
 
-
-  <div class="main-menu">
-    <!-- Men Menu Item -->
-    <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
-      Men
-      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
-        <ul>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Sweats</span>
-              </span>
-            </button>
-          </li>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Shirts</span>
-              </span>
-            </button>
-          </li>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Accessories</span>
-              </span>
-            </button>
-          </li>
-        </ul>
+  <ion-accordion-group class="accordion-container" (ionChange)="toggleAccordion($event)">
+    <ion-accordion value="men">
+      <ion-item slot="header">
+        <ion-label>Men</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item [routerLink]="['/search']">Jackets</ion-item>
+          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
+          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
+          <ion-item [routerLink]="['/search']">Jeans</ion-item>
+        </ion-list>
       </div>
-    </div>
-
-    <!-- Kids Menu Item -->
-    <div class="menu-item" (mouseenter)="showSubMenu('kids')" (mouseleave)="hideSubMenu()">
-      Kids
-      <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
-        <ul>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Sweats</span>
-              </span>
-            </button>
-          </li>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Shirts</span>
-              </span>
-            </button>
-          </li>
-          <li>
-            <button class="button">
-              <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">Accessories</span>
-              </span>
-            </button>
-          </li>
-          
-        </ul>
+    </ion-accordion>
+  
+    <ion-accordion value="kids">
+      <ion-item slot="header">
+        <ion-label>Kids</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
+          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
+          <ion-item [routerLink]="['/search']">Jeans</ion-item>
+          <ion-item [routerLink]="['/search']">Jackets</ion-item>
+        </ion-list>
       </div>
-    </div>
-  </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  
+ 
+  
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -196,9 +160,9 @@
     <h3>Go to:</h3>
     <div id="buttons-sidebar">
       <button (click)="gotoProfile()">Profile</button>
-      <button (click)="gotoLogout()">Trending</button>
-      <button (click)="gotoLogout()">PROMOS</button>
-      <button (click)="gotoSettings()">Search</button>
+      <button (click)="gotoSearch('Trending')">Trending</button>
+      <button (click)="gotoSearch('Campaigns')">Campaigns</button>
+      <button (click)="gotoSearch('')">Search</button>
       <button (click)="gotoLogout()">Logout</button>
       <img src="assets/icon/logo.png" alt="logo Icon" />
     </div>
@@ -262,6 +226,7 @@
       </li>
     </ul>
   </div>
+  
   
   <div class="footer-section">
     <h3>Country</h3>

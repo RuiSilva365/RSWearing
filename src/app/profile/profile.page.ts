@@ -38,4 +38,7 @@ export class ProfilePage implements OnInit {
   gotoHome() {
     this.router.navigate(['/home']);  // Use the injected Router
   }
+  gotoSearch(searchText: string) {
+    this.router.navigate(['/search'], { queryParams: { query: searchText } });
+  }
 }

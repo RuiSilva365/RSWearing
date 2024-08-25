@@ -1,5 +1,6 @@
 ion-header {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+  background-color: white; 
+  .home-user-bar {
       --background: transparent !important;
   
       .brand-logo {
@@ -154,38 +155,17 @@ ion-header {
 
 
 
-  ion-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: transparentize($color: white, $amount: 0.4);
-  }
-  
-  ion-card img {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  ion-card-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  ion-card-content p {
-    font-size: 14px;
-    color: #666;
-  }
-  
+
   ion-content {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
+    background-color: white;
+  
+    
     --background: transparent !important;
 
     .filter {
         position: absolute;
         margin-top: -50px;
-        margin-left: 25%;
+        margin-left: 54%;
         width: 50px;
         height: 50px;
         border-radius: 10px;
@@ -216,60 +196,7 @@ ion-header {
 
       .filter-container {
         padding: 15px;
-        background-image: repeating-linear-gradient(
-          147deg, 
-          rgb(240,240,240) 0px, 
-          rgb(240,240,240) 2px,
-          transparent 2px, 
-          transparent 5px,
-          rgb(240,240,240) 5px, 
-          rgb(240,240,240) 7px,
-          transparent 7px, 
-          transparent 9px,
-          rgb(240,240,240) 9px, 
-          rgb(240,240,240) 11px
-        ),
-        repeating-linear-gradient(
-          322deg, 
-          rgb(240,240,240) 0px, 
-          rgb(240,240,240) 2px,
-          transparent 2px, 
-          transparent 5px,
-          rgb(240,240,240) 5px, 
-          rgb(240,240,240) 7px,
-          transparent 7px, 
-          transparent 14px,
-          rgb(240,240,240) 14px, 
-          rgb(240,240,240) 16px
-        ),
-        repeating-linear-gradient(
-          0deg, 
-          hsla(199,0%,94%,0.15) 0px, 
-          hsla(199,0%,94%,0.15) 0px,
-          transparent 0px, 
-          transparent 1px,
-          hsla(199,0%,94%,0.15) 1px, 
-          hsla(199,0%,94%,0.15) 4px,
-          transparent 4px, 
-          transparent 5px,
-          hsla(199,0%,94%,0.15) 5px, 
-          hsla(199,0%,94%,0.15) 8px
-        ),
-        repeating-linear-gradient(
-          90deg, 
-          hsla(199,0%,94%,0.15) 0px, 
-          hsla(199,0%,94%,0.15) 0px,
-          transparent 0px, 
-          transparent 1px,
-          hsla(199,0%,94%,0.15) 1px, 
-          hsla(199,0%,94%,0.15) 4px,
-          transparent 4px, 
-          transparent 5px,
-          hsla(199,0%,94%,0.15) 5px, 
-          hsla(199,0%,94%,0.15) 8px
-        ),
-        linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
-        background-color: transparentize($color: black, $amount: 0.3);
+   
         border-radius: 15px;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
         margin-top: 15px;
@@ -423,44 +350,33 @@ ion-header {
         right: 15px;
         fill: gold; 
       }
-      .custom-card {
-        margin-top: 40px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 10px;
-      }
-      
-      .product-image {
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
-        margin-right: 20px;
-      }
-      
-      .custom-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
-      
-      .custom-description {
-        font-size: 0.9rem;
-        color: gray;
-      }
-      
-      .custom-price {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-top: 10px;
-      }
+    }
+
+  /* Product Card adjustments */
+  .custom-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .product-image {
+    width: 600px;
+    height: 600px;
+    margin-bottom: 10px;
   }
   @media screen and (max-width: 768px) {
 
     /* Search Box adjustments */
     .search {
+      position: absolute;
+      display: fixed;
+      max-width: 40px;
+      top:-30px;
       display: block;
-      margin: 20px auto;
-      width: 90%; /* Make the search bar more responsive */
+      margin: 5px auto;
+      width: 100%; /* Make the search bar more responsive */
+      padding: 2px;
     }
   
     .search-box {
@@ -496,8 +412,10 @@ ion-header {
   
     /* Filter Button adjustments */
     .filter {
-      left: 1%;
-      bottom: 77%;
+      position: absolute;
+      display: fixed;
+      bottom: 90%;
+      left: -60px;
 
     }
   
@@ -507,29 +425,28 @@ ion-header {
   
     /* Product Card adjustments */
     .custom-card {
-      flex-direction: column; /* Stack content vertically */
-      padding: 10px;
+      flex-direction: column;
       align-items: center;
       text-align: center;
+      padding: 10px;
     }
   
     .product-image {
-      width: 30px;
-      height: 30px;
+      width: 100px;
+      height: 100px;
       margin-bottom: 10px;
     }
   
     .custom-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   
     .custom-description {
-      font-size: 0.8rem;
+      display: hidden;
     }
   
     .custom-price {
       font-size: 1rem;
-      margin-top: 5px;
     }
   
     /* Filter container adjustments */
@@ -551,24 +468,37 @@ ion-header {
   
     /* Adjust ion-cards for small screens */
     ion-card {
+      background-color: white;
       margin: 15px 5px;
-      width: calc(100% - 10px); /* Make cards take full width minus padding */
+      width: calc(100% - 20px); /* Make cards take full width minus padding */
       box-shadow: none; /* Remove shadow for simplicity */
     }
   
     ion-card-title {
+      color: black;
       font-size: 10px;
     }
   
     ion-card-content p {
+      background-color: white;
       font-size: 10px;
     }
   
     /* Ensures that the product list is responsive */
     ion-content {
+      background-color: white !important;
       padding: 0;
       margin: 0;
     }
+    
+  .footer-section h3 {
+    font-size:14px;
+    }
+  
+    .footer-section ul {
+      font-size: 5px;
+      }
+ 
   }
   
   #user-sidebar {
@@ -576,10 +506,10 @@ ion-header {
     display: flex;
     right: 0;
     top: 0;
-    margin-top:100px;
-    width: 150px;
+    margin-top:80px;
+    width: 190px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.60);
+    background: white;
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -601,26 +531,29 @@ ion-header {
   .sidebar-content {
     color: #000000;
     padding: 20px;
-    font-family: "Chakra Petch", sans-serif; /* Apply the font to the sidebar content */
+    font-family: "NexaRust"; /* Apply the font to the sidebar content */
   }
   
   .sidebar-content ul {
     list-style: none;
     color: #050100;
     padding: 0;
-    font-family: "Chakra Petch", sans-serif; /* Apply the font to the list items */
+    font-family: "NexaRust", sans-serif; /* Apply the font to the list items */
+    font-weight:bold ;
+    font-size: 1.8 r;
   }
   
   .sidebar-content ul li {
     margin: 15px 0;
+    font-size: 20px;
     color: #000000;
   }
   
   .sidebar-content ul li a {
     color: #000000;
     text-decoration: none;
-    font-size: 18px;
-    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
+    font-size: 28px;
+    font-family: "NexaRust", sans-serif; /* Apply the font to the links */
   }
   
   .sidebar-content ul li a:hover {
@@ -631,6 +564,7 @@ ion-header {
   .buttons-sidebar {
     color: #020000;
     text-decoration: wavy;
+    font-size: 20px;
     background-color: black;
   }
   
@@ -668,8 +602,7 @@ ion-header {
 
   
   footer.footer {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
-      --background: transparent !important;
+      --background-color: white;
     display: flex;
     justify-content: space-between;
     background: transparent;
@@ -677,13 +610,15 @@ ion-header {
     border-top: 2px solid goldenrod; 
  }
   .footer-section {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251)); 
-    --background: transparent !important;
+    color:black;
+    padding: auto;
+    background-color: white;
     flex: 1;
     text-align: center;
   }
   
   .footer-section ul {
+    color:black;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -703,10 +638,8 @@ ion-header {
   }
   
   .social-btn img {
-    width: 24px;
-    height: 24px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: auto;
+    height: auto;
   }
   
   .social-btn:hover img {
@@ -731,8 +664,8 @@ ion-header {
   }
   
   .social-btn img {
-    width: 24px; /* Adjust the size to fit your design */
-    height: 24px;
+    max-width:20px ; /* Adjust the size to fit your design */
+    max-height:20px;
     object-fit: cover;
     border-radius: 50%; /* Make it circular if you want */
   }

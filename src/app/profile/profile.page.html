@@ -177,8 +177,10 @@
   <div class="sidebar-content">
     <h3>Go to:</h3>
     <div id="buttons-sidebar">
-      <button (click)="gotoHome()">Home</button>
-      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoSettings()">Settings</button>
+      <button (click)="gotoSearch('Trending')">Trending</button>
+      <button (click)="gotoSearch('Campaigns')">Campaigns</button>
+      <button (click)="gotoSearch(' ')">Search</button>
       <button (click)="gotoLogout()">Logout</button>
       <img src="assets/icon/logo.png" alt="logo Icon" />
     </div>

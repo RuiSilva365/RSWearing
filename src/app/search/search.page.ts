@@ -212,11 +212,11 @@ export class SearchPage implements OnInit {
   }
   
   gotoInstagramPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    window.location.href = 'https://www.instagram.com/rswearing_official/';
   }
 
   gotoTwitterPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    window.location.href = 'https://x.com/RS_Wearing';  // Use the injected Router
   }
 
   gotoTiktokPage() {

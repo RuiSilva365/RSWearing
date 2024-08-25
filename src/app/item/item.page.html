@@ -51,74 +51,6 @@
 
 
 
-<div class="main-menu">
-  <!-- Men Menu Item -->
-  <div class="menu-item" (mouseenter)="showSubMenu('man')" (mouseleave)="hideSubMenu()">
-    Men
-    <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'man'}">
-      <ul>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Sweats</span>
-            </span>
-          </button>
-        </li>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Shirts</span>
-            </span>
-          </button>
-        </li>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Accessories</span>
-            </span>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Kids Menu Item -->
-  <div class="menu-item" (mouseenter)="showSubMenu('kids')" (mouseleave)="hideSubMenu()">
-    Kids
-    <div class="sub-menu" [ngClass]="{'visible': subMenuVisible === 'kids'}">
-      <ul>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Sweats</span>
-            </span>
-          </button>
-        </li>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Shirts</span>
-            </span>
-          </button>
-        </li>
-        <li>
-          <button class="button">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Accessories</span>
-            </span>
-          </button>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</div>
 </ion-header>
 
 
@@ -211,7 +143,7 @@
   </div>
   <div class="service-item">
     <ion-icon name="help-buoy-outline"></ion-icon>
-      <p>Customer Support always ready to assist you</p>
+      <p>Customer Support always here for you</p>
   </div>
 </div>
 
@@ -254,5 +186,13 @@
           <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
         </button>
       </li>
+    </ul>
+  </div>
+
+    
+  <div class="footer-section">
+    <h3>Country</h3>
+    <ul>
+      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
     </ul>
   </div>

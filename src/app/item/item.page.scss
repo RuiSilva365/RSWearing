@@ -1,5 +1,6 @@
 ion-header {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    .home-user-bar {
+  background-image: white;
+     .home-user-bar {
       --background: transparent !important;
   
       .brand-logo {
@@ -152,10 +153,7 @@ ion-header {
   
   }
   ion-page {
-    background-image: linear-gradient(166deg, rgb(255,255,255),transparent),
-                      linear-gradient(166deg, rgb(255,255,255),transparent),
-                      repeating-linear-gradient(256deg, rgb(175,175,175) 0px, rgb(175,175,175) 2px, transparent 2px, transparent 4px),
-                      linear-gradient(211deg, rgb(255,255,255), rgb(255,255,255));
+    background-color: white;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -165,171 +163,83 @@ ion-header {
   }
 
   
-.main-menu {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.2rem;
-  font-family: "Noto Serif Khitan Small Script", serif;
-  font-weight: 400;
-  font-style: normal;
-  color: goldenrod;
-  position: relative;
-}
-.sub-menu {
-  display: none;
-  position: absolute;
-  top: -25px; /* Keep the submenu at the same height as the parent menu */
-  left: 100%; /* Position it to the right of the parent menu item */
-  background-color: transparentize($color: white, $amount: 0.5);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-  z-index: 1000;
-  white-space: nowrap;
-  flex-direction: row;
-}
-
-/* Show submenu on hover */
-.menu-item:hover .sub-menu {
-  display: flex;
-}
-.menu-item {
-  position: relative;
-  color: goldenrod;
-}
-/* Submenu style for larger screens (default) */
-.sub-menu {
-  display: none;
-  position: absolute;
-  top: -25px; /* Keep the submenu at the same height as the parent menu */
-  left: 100%; /* Position it to the right of the parent menu item */
-  background-color: transparent;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-  z-index: 1000;
-  white-space: nowrap;
-  flex-direction: row;
-}
-
-/* Show submenu on hover */
-.menu-item:hover .sub-menu {
-  display: flex;
-}
-
-.menu-item {
-  position: relative;
-  color: goldenrod;
-}
 
 /* For smaller screens (media query) */
 @media screen and (max-width: 768px) {
-  .sub-menu {
-    position: relative;
+  body, ion-content,ion-header, ion-page {
+    background-color: white !important;
+    color:black;
+    --background: white !important;
+  }
+
+  .item-details {
+    max-width: 95%;
+  }
+  
+
+  .product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 0px !important;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
+  }
+  
+  .hover-underline-animation:after {
+    content: "";
+    position: absolute;
     width: 100%;
-    top: auto; /* Position below the parent menu */
-    left: auto;
-     /* Align it with the parent menu */
-    width: 100%; /* Full width for smaller screens */
-    flex-direction: column; /* Stack items vertically */
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white !important;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
   }
-
-  /* Adjust the items in the submenu for mobile */
-  .sub-menu ul {
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: flex-start;
+  
+  .cta:hover .hover-underline-animation:after {
+    transform: scaleX(2);
+    transform-origin: bottom left;
   }
+  .services-section {
+    display: flex;
+    justify-content: space-evenly !important; /* Evenly distribute space between items */
+    align-items: center; /* Vertically center the items */
+    text-align: center;
+}
 
-  .sub-menu ul li {
-    margin-bottom: 10px 0;
+
+  .service-item ion-icon {
+    max-width: 20px;
+    color: goldenrod;
   }
-
-  .sub-menu ul li button {
-    width: 100%;
-    text-align: left;
-    padding: 12px 20px;
-    background-color: transparent;
-    color: white;
+  
+  .service-item p {
+  font-size: 10px !important;
+    color: black;
+    max-width: 100px;
   }
+  .footer-section h3 {
+    font-size:14px;
+    }
+  
+    .footer-section ul {
+      font-size: 5px;
+      }
+  
 
-  .sub-menu ul li button:hover {
-    border: 2px;
-    background-color: transparent;
-    color: white;
-  }
 }
 
-/* Keep your original button styles intact */
-.sub-menu ul li .button_lg {
-  position: relative;
-  display: block;
-  padding: 10px 20px;
-  color: #fff;
-  background-color: #0f1923;
-  overflow: hidden;
-  box-shadow: inset 0px 0px 0px 1px transparent;
-}
-
-/* Decorative elements */
-.sub-menu ul li .button_lg::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 2px;
-  background-color: #0f1923;
-}
-
-.sub-menu ul li .button_lg::after {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 4px;
-  height: 4px;
-  background-color: goldenrod;
-  transition: all 0.2s ease;
-}
-
-/* Slide effect */
-.sub-menu ul li .button_sl {
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: -1px;
-  left: -8px;
-  width: 0;
-  background-color: gold;
-  transform: skew(-15deg);
-  transition: all 0.2s ease;
-}
-
-/* Button text container */
-.sub-menu ul li .button_text {
-  position: relative;
-}
-
-/* Button hover effects */
-.sub-menu ul li button:hover {
-  color: #0f1923;
-}
-
-.sub-menu ul li button:hover .button_sl {
-  width: calc(100% + 15px);
-}
-
-.sub-menu ul li button:hover .button_lg::after {
-  background-color: #fff;
-}
  //____________________________________________________________CONTENT
  .item-details {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 10px;
   }
   
   .item-image {
@@ -366,6 +276,7 @@ ion-header {
     justify-content: flex-start;
     
     h1 {
+      color: black;
       font-size: 34px;
       font-style: italic;
       font-family: 'Segoe UI';
@@ -373,6 +284,7 @@ ion-header {
     }
   
     p {
+      color: gray;
       font-size: 16px;
       margin-bottom: 20px;
     }
@@ -459,7 +371,7 @@ ion-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 5px;
     color: white;
     font-weight: 500;
     position: relative;
@@ -757,7 +669,7 @@ ion-header {
   }
   
   ion-content {
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+    background-color: white;
       --background: transparent !important;
   }
   .sidebar-content img {
@@ -773,15 +685,15 @@ ion-header {
  
 //BOTTOM WEBSITE_______________________________________________________________ 
 .services-section {
-  padding-bottom: 60px;
     display: flex;
-    justify-content: space-around;
-    border-radius: 10px;
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    
+    justify-content:space-evenly;
+    background-color: white;
 }
   .service-item {
     display: flex;
     flex-direction: column;
+    justify-content:space-evenly;
+
     align-items: center;
     text-align: center;
     color: #000;
@@ -801,17 +713,20 @@ ion-header {
   footer.footer {
     display: flex;
     justify-content: space-between;
-    background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
-      --background: transparent !important;
-    background-color: none;
+    background-color: white;
+    color:black;
     border-top: 2px solid goldenrod;
   }
   .footer-section {
+    background-color: white;
+    color:black;
     flex: 1;
     text-align: center;
   }
   
   .footer-section ul {
+    background-color: white;
+    color:black;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -831,10 +746,10 @@ ion-header {
   }
   
   .social-btn img {
-    width: 24px;
-    height: 24px;
+    width: 15px;
+    height: 15px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 30%;
   }
   
   .social-btn:hover img {
@@ -859,18 +774,19 @@ ion-header {
   }
   
   .social-btn img {
-    width: 24px; /* Adjust the size to fit your design */
-    height: 24px;
+    width: 15px;
+    height: 15px;
     object-fit: cover;
-    border-radius: 50%; /* Make it circular if you want */
+    border-radius: 30%;
   }
   
   .social-btn:hover img {
     opacity: 0.8; /* Slightly dim the icon on hover */
   }
+
+  
   .item-details, 
 .services-section, 
 footer.footer {
-  background-image: repeating-linear-gradient(147deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 9px,rgb(240,240,240) 9px, rgb(240,240,240) 11px),repeating-linear-gradient(322deg, rgb(240,240,240) 0px, rgb(240,240,240) 2px,transparent 2px, transparent 5px,rgb(240,240,240) 5px, rgb(240,240,240) 7px,transparent 7px, transparent 14px,rgb(240,240,240) 14px, rgb(240,240,240) 16px),repeating-linear-gradient(0deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),repeating-linear-gradient(90deg, hsla(199,0%,94%,0.15) 0px, hsla(199,0%,94%,0.15) 0px,transparent 0px, transparent 1px,hsla(199,0%,94%,0.15) 1px, hsla(199,0%,94%,0.15) 4px,transparent 4px, transparent 5px,hsla(199,0%,94%,0.15) 5px, hsla(199,0%,94%,0.15) 8px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));    
-    --background: transparent !important;
+  background-color: white
 }

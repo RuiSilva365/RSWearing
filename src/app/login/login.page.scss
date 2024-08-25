@@ -166,7 +166,7 @@ ion-header {
 }
 
 .btn::after {
- content: "Favorites";
+ content: "Stay tuned.";
  width: fit-content;
  height: fit-content;
  position: absolute;
@@ -366,6 +366,7 @@ ion-toolbar {
   }
   
   .social-login p {
+    color:goldenrod;
     margin-top: 20px;
     font-size: 16px;
   }

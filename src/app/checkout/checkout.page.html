@@ -1,4 +1,5 @@
-
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+</head>
 <ion-header>
   <div class="home-user-bar">
     <ion-toolbar>
@@ -12,10 +13,18 @@
       
       <ion-buttons slot="end">
         <span class="user-name">{{ user.name }}</span>
-        
+        <button data-quantity="0" class="btn-cart" (click)= "gotoCart()">
+          <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
+            <title>icon-cart</title>
+            <path transform="translate(-3.62 -0.85)" d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"></path>
+          </svg>
+          <div class="cart-dropdown">
+            <p>No items added yet to the shoplist.</p>
+          </div>
+        </button>
 
 
-        <button class="btn">
+        <button class="btn" (click) = "gotoFavorites()">
           <svg
             class="icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +49,38 @@
   </div>
 
 
-
+  <ion-accordion-group class="accordion-container">
+    <ion-accordion value="men">
+      <ion-item slot="header" color="white">
+        <ion-label>Men</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item [routerLink]="['/search']">Jackets</ion-item>
+          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
+          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
+          <ion-item [routerLink]="['/search']">Jeans</ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+  
+    <ion-accordion value="kids">
+      <ion-item slot="header" color="white">
+        <ion-label>Kids</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
+          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
+          <ion-item [routerLink]="['/search']">Jeans</ion-item>
+          <ion-item [routerLink]="['/search']">Jackets</ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  
 </ion-header>
+
 
 
 <ion-content>
@@ -213,4 +252,10 @@
         </button>
       </li>
     </ul>
-  </div>ss
+  </div>
+  <div class="footer-section">
+    <h3>Country</h3>
+    <ul>
+      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+    </ul>
+  </div>
