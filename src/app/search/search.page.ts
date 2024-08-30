@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
-
+import { AuthService } from '../../services/auth.service'; 
 
 // Define an interface for the search result items
 interface SearchResultItem {
@@ -34,9 +34,26 @@ export class SearchPage implements OnInit {
   // Explicitly define the type of searchResults using the interface
   searchResults: SearchResultItem[] = [];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private authService: AuthService  // Inject AuthService
+  ) {}
 
   ngOnInit() {
+    this.hideLoader();
+
+    // Get the authenticated user's info
+    this.authService.getUser().subscribe((user) => {
+      if (user) {
+        this.user.name = user.displayName || 'User';
+        this.user.email = user.email || '';
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
+
     // Initialize the search results with some mock data
     this.searchResults = this.getInitialResults();
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
+import { AuthService } from '../../services/auth.service';  
 
 @Component({
   selector: 'app-item',
@@ -19,7 +20,12 @@ export class ItemPage implements OnInit {
     email: '',
   };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private http: HttpClient, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private authService: AuthService  // Inject AuthService
+  ) {
     // Initialize all items (this could be done through a service)
     this.allItems = [
       {
@@ -410,9 +416,22 @@ export class ItemPage implements OnInit {
     ];
   }
 
-
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');  // Correctly use ActivatedRoute
+    // Retrieve authenticated user's info
+    this.authService.getUser().subscribe((user) => {
+      if (user) {
+        this.user.name = user.displayName || 'User';
+        this.user.email = user.email || '';
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
+
+    // Simulate fetching all items (you can replace this with an actual service call)
+    //this.allItems = this.getAllItems();
+
+    // Get the item ID from the route and find the corresponding item
+    const id = this.route.snapshot.paramMap.get('id');
     this.item = this.allItems.find(i => i.id === id);
     this.currentImageUrl = this.item?.imageUrl || '';
   }
@@ -450,37 +469,14 @@ export class ItemPage implements OnInit {
     this.subMenuVisible = null;  // Hide the submenu
   }
 
-  gotoFacebookPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-  
-  gotoInstagramPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-
-  gotoTwitterPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-
-  gotoTiktokPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-
-  gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
-  }
-
-  gotoSettings() {
-    this.router.navigate(['/settings']);  // Use the injected Router
-  }
-
-  gotoProfile() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-  gotoHome() {
-    this.router.navigate(['/home']);  // Use the injected Router
-  }
-  gotoCart() {
-    this.router.navigate(['/cart']);  // Use the injected Router
-  }
+ // Navigation functions
+ gotoFacebookPage() { this.router.navigate(['/profile']); }
+ gotoInstagramPage() { this.router.navigate(['/profile']); }
+ gotoTwitterPage() { this.router.navigate(['/profile']); }
+ gotoTiktokPage() { this.router.navigate(['/profile']); }
+ gotoLogout() { this.router.navigate(['/login']); }
+ gotoSettings() { this.router.navigate(['/settings']); }
+ gotoProfile() { this.router.navigate(['/profile']); }
+ gotoHome() { this.router.navigate(['/home']); }
+ gotoCart() { this.router.navigate(['/cart']); }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth'; // Import Firebase Auth
+import { AuthService } from '../../services/auth.service'; // Import your AuthService
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
   hotDealsItems: any[] = [];
   recommendedItems: any[] = [];
   sidebarVisible: boolean = false;
-  subMenuVisible: string | null = null;  // Add this line to define the property
+  subMenuVisible: string | null = null;
   isSidebarOpen: boolean = false;
   isAccordionOpen: boolean = false;
   user: any = {
@@ -28,8 +29,7 @@ export class HomePage implements OnInit {
     'trending': false,
     'recommended': false
   };
-
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
 
     this.newCollectionItems = [
       { id: '1', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
@@ -94,10 +94,18 @@ hideLoader() {
   const loaderContainer = document.querySelector('.loader-container');
   loaderContainer?.classList.add('hidden');
 }
-  ngOnInit() {
-    this.hideLoader();
-
-  }
+ngOnInit() {
+  // Subscribe to user state changes
+  this.authService.getUser().subscribe((user) => {
+    if (user) {
+      this.user.name = user.displayName || 'User';
+      this.user.email = user.email || '';
+    } else {
+      // If user is not signed in, you can redirect to login
+      //ignore for now
+    }
+  });
+}
 
   gotoProfile() {
     this.router.navigate(['/profile']);  // Use the injected Router
