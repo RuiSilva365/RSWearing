@@ -130,13 +130,7 @@ ion-header {
         display: flex;
         align-items: center;
   
-        .user-name {
-          margin-right: 5px;
-          font-size: 18px;
-          color: goldenrod;
-          font-family: 'Playfair Display', serif;
-        }
-  
+   
         ion-button {
           color: goldenrod;
   
@@ -705,4 +699,54 @@ ion-item {
     transform: translateX(-56px);
   }
 
+  .edit-frame-modal {
+    position: fixed; /* Fixed position */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center correction */
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Maximum width for desktop */
+    max-height: 85vh; /* Limit height to 80% of the viewport */
+    background-color: black; /* Background color */
+    color: white;
+    padding: 15px; /* Padding inside the modal */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    z-index: 1000; /* On top of everything */
+    overflow-y: auto; /* Add vertical scroll if content exceeds max height */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  .form-container {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Consistent space between fields */
+  }
+  
+  .form-container .form-group {
+    margin: 0; /* Remove default margins */
+  }
+  
+  .form-container input, .form-container select {
+    padding: 8px; /* Reduce padding for compact fields */
+    font-size: 14px; /* Adjust font size */
+    border-radius: 4px; /* Smaller border radius for inputs */
+    border: 1px solid black; /* Light border */
+  }
+  
+  .ion-button {
+    margin-top: 10px; /* Space above buttons */
+  }
+  
+  .edit-frame-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Dark backdrop */
+    z-index: -1; /* Keep backdrop behind modal */
+  }
   

@@ -1,16 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-
-// Import Firebase and FirebaseUI
+import { getDatabase } from 'firebase/database';
+// Import Firebase
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, EmailAuthProvider } from 'firebase/auth';
-import { setPersistence, browserLocalPersistence } from 'firebase/auth';
-import * as firebaseui from 'firebaseui';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, EmailAuthProvider, setPersistence, browserLocalPersistence, User } from 'firebase/auth';
 
 // Firebase configuration object (replace this with your Firebase config)
 const firebaseConfig = {
   apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
   authDomain: "rswearing-4b75f.firebaseapp.com",
+  databaseURL: "https://rswearing-4b75f-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "1:287024306857:web:85719ec1c07707648627b8",
   storageBucket: "rswearing-4b75f.appspot.com",
   messagingSenderId: "287024306857",
@@ -19,6 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 const auth = getAuth(app);
 
 @Component({
@@ -27,7 +27,6 @@ const auth = getAuth(app);
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit, OnDestroy {
-  ui: firebaseui.auth.AuthUI | null = null; // Initialize to null
   email = '';
   password = '';
   errorMessage: string | null = null;
@@ -39,39 +38,16 @@ export class LoginPage implements OnInit, OnDestroy {
     'trending': false,
     'recommended': false
   };
-  user: any = {
-    name: '',
-    email: '',
-  };
+  user: { name: string; email: string } = { name: '', email: '' };
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Configuration for FirebaseUI
-    const uiConfig = {
-      signInSuccessUrl: '/home',  // Redirect after sign-in
-      signInOptions: [
-        EmailAuthProvider.PROVIDER_ID,
-        GoogleAuthProvider.PROVIDER_ID,
-        FacebookAuthProvider.PROVIDER_ID,
-      ],
-      tosUrl: '/terms-of-service',
-      privacyPolicyUrl: '/privacy-policy'
-    };
-
-    // Initialize FirebaseUI Auth
-    if (!this.ui) {
-      this.ui = new firebaseui.auth.AuthUI(auth);
-    }
-
-    // Start the FirebaseUI auth widget
-    this.ui.start('#firebaseui-auth-container', uiConfig);
+    // No FirebaseUI initialization needed as we're using custom forms
   }
 
   ngOnDestroy(): void {
-    if (this.ui) {
-      this.ui.delete();  // Clean up FirebaseUI when the component is destroyed
-    }
+    // No FirebaseUI cleanup needed
   }
 
   // Show the loader
@@ -79,7 +55,13 @@ export class LoginPage implements OnInit, OnDestroy {
     const loaderContainer = document.querySelector('.loader-container');
     loaderContainer?.classList.remove('hidden');
   }
-  
+
+  // Hide the loader
+  hideLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.add('hidden');
+  }
+
   // Show success message
   showSuccessMessage() {
     const successMessage = document.createElement('div');
@@ -93,20 +75,12 @@ export class LoginPage implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  // Hide the loader
-  hideLoader() {
-    const loaderContainer = document.querySelector('.loader-container');
-    loaderContainer?.classList.add('hidden');
-  }
-
   // Handle Email/Password login using Firebase Authentication
   login() {
     this.showLoader(); // Show loader on login click
 
-    // Perform the login with email and password
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
-        // Extract the user from the userCredential object
         const user = userCredential.user;
 
         // Show welcome message
@@ -116,9 +90,8 @@ export class LoginPage implements OnInit, OnDestroy {
         // Set auth persistence and redirect
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
-            // Simulate a delay before navigating (to show the loader)
             setTimeout(() => {
-              this.router.navigate(['/home']);
+              this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a 2-second delay
           })
@@ -129,21 +102,7 @@ export class LoginPage implements OnInit, OnDestroy {
       })
       .catch((error) => {
         this.hideLoader(); // Hide the loader in case of error
-
-        // Show user-friendly error message
-        switch (error.code) {
-          case 'auth/invalid-email':
-            this.errorMessage = 'Invalid email address.';
-            break;
-          case 'auth/user-not-found':
-            this.errorMessage = 'User not found.';
-            break;
-          case 'auth/wrong-password':
-            this.errorMessage = 'Invalid credentials.';
-            break;
-          default:
-            this.errorMessage = 'An error occurred. Please try again.';
-        }
+        this.handleError(error);
       });
   }
 
@@ -154,7 +113,6 @@ export class LoginPage implements OnInit, OnDestroy {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // Extract the user from the result
         const user = result.user;
 
         // Show welcome message
@@ -164,9 +122,8 @@ export class LoginPage implements OnInit, OnDestroy {
         // Set auth persistence
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
-            // Navigate to the home page after setting persistence
             setTimeout(() => {
-              this.router.navigate(['/home']);
+              this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a delay before navigating
           })
@@ -176,8 +133,7 @@ export class LoginPage implements OnInit, OnDestroy {
           });
       })
       .catch((error) => {
-        // Handle error and display message
-        this.errorMessage = error.message;
+        this.handleError(error);
         this.hideLoader(); // Hide loader in case of error
       });
   }
@@ -189,7 +145,6 @@ export class LoginPage implements OnInit, OnDestroy {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // Extract the user from the result
         const user = result.user;
 
         // Show welcome message
@@ -199,9 +154,8 @@ export class LoginPage implements OnInit, OnDestroy {
         // Set auth persistence
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
-            // Navigate to the home page after setting persistence
             setTimeout(() => {
-              this.router.navigate(['/home']);
+              this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a delay before navigating
           })
@@ -211,26 +165,47 @@ export class LoginPage implements OnInit, OnDestroy {
           });
       })
       .catch((error) => {
-        // Handle error and display message
-        this.errorMessage = error.message;
+        this.handleError(error);
         this.hideLoader(); // Hide loader in case of error
       });
   }
 
+  // Continue without login
   continueWithoutLogin() {
     this.showLoader(); // Show loader on continue without login click
 
     localStorage.setItem('continueWithoutLogin', 'true');
     
-    // Simulate a delay before navigating (to show the loader)
     setTimeout(() => {
-      this.router.navigate(['/home']);
+      this.navigateTo('/home');
       this.hideLoader(); // Hide loader after navigation
     }, 2000); // Simulate a 2-second delay
   }
 
+  // Navigation function to streamline router navigation
+  private navigateTo(path: string) {
+    this.router.navigate([path]);
+  }
+
+  // Handle errors and display user-friendly messages
+  private handleError(error: any) {
+    switch (error.code) {
+      case 'auth/invalid-email':
+        this.errorMessage = 'Invalid email address.';
+        break;
+      case 'auth/user-not-found':
+        this.errorMessage = 'User not found.';
+        break;
+      case 'auth/wrong-password':
+        this.errorMessage = 'Invalid credentials.';
+        break;
+      default:
+        this.errorMessage = 'An error occurred. Please try again.';
+    }
+  }
+
   goToRegister() {
-    this.router.navigate(['/register']);
+    this.navigateTo('/register');
   }
 
   forgotPassword() {
@@ -250,22 +225,22 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   gotoFacebookPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.navigateTo('/profile');
   }
 
   gotoInstagramPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.navigateTo('/profile');
   }
 
   goToHome() {
-    this.router.navigate(['/home']);
+    this.navigateTo('/home');
   }
 
   gotoTwitterPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.navigateTo('/profile');
   }
 
   gotoTiktokPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.navigateTo('/profile');
   }
 }

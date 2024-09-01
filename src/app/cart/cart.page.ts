@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth'; // Import Firebase Auth
+import { AuthService } from '../../services/auth.service'; // Import your AuthService
 
 interface CartItem {
   title: string;
@@ -20,20 +22,29 @@ export class CartPage implements OnInit {
   cartSubtotal: number = 0;
   couponDiscount: number = 0;
   shippingFees: number = 4.99;
-
   sidebarVisible: boolean = false;
+  isLoggedIn: boolean = false; // Add this flag
   user: any = {
     name: '',
     email: '',
   };
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    // Initialize cart data
-    this.calculateTotal();
-  }
+    // Subscribe to user state changes
+    this.authService.getUser().subscribe((user) => {
+      if (user) {
+        this.isLoggedIn = true; // User is logged in
+        this.user.name = user.displayName || 'User';
+        this.user.email = user.email || '';
+      } else {
+        this.isLoggedIn = false; // No user is logged in
+      }
+    });
 
+    this.calculateTotal()
+  }
 
   // Getter for total price
   get totalPrice(): number {

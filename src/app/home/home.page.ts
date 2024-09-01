@@ -14,10 +14,11 @@ export class HomePage implements OnInit {
   newCollectionItems: any[] = [];
   hotDealsItems: any[] = [];
   recommendedItems: any[] = [];
-  sidebarVisible: boolean = false;
+  sidebarVisible: boolean = false; 
   subMenuVisible: string | null = null;
   isSidebarOpen: boolean = false;
-  isAccordionOpen: boolean = false;
+  isAccordionOpen: string | undefined; 
+  isLoggedIn: boolean = false; 
   user: any = {
     name: '',
     email: '',
@@ -98,6 +99,7 @@ ngOnInit() {
   // Subscribe to user state changes
   this.authService.getUser().subscribe((user) => {
     if (user) {
+      this.isLoggedIn = true;
       this.user.name = user.displayName || 'User';
       this.user.email = user.email || '';
     } else {
@@ -116,9 +118,26 @@ ngOnInit() {
   }
 
   gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
+    const auth = getAuth(); // Ensure you're using the initialized Firebase app
+  
+    if (auth.currentUser) {
+      // User is logged in, so sign them out and clear user data
+      auth.signOut().then(() => {
+        // Clear any stored user information
+        this.user = {
+          name: '',
+          email: '',
+        };
+        this.router.navigate(['/login']); // Redirect to login page after sign out
+      }).catch((error) => {
+        console.error("Error logging out:", error);
+      });
+    } else {
+      // No user is logged in, just navigate to the login page
+      this.router.navigate(['/login']);
+    }
   }
-
+  
   gotoSettings() {
     this.router.navigate(['/settings']);  // Use the injected Router
   }
@@ -141,11 +160,9 @@ ngOnInit() {
 
   
     toggleAccordion(event: CustomEvent) {
-      const menAccordion = event.detail.value === 'men';
-      const kidsAccordion = event.detail.value === 'kids';
-      
-      // If either accordion is open, set isAccordionOpen to true
-      this.isAccordionOpen = menAccordion || kidsAccordion;
+      const accordionValue = event.detail.value;
+      // Toggle the accordion value: close if already open, or set the new value
+      this.isAccordionOpen = this.isAccordionOpen === accordionValue ? undefined : accordionValue;
     }
   toggleSidebar(visible: boolean) {
     this.sidebarVisible = visible;

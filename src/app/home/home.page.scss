@@ -39,9 +39,22 @@
       font-size: 5px;
       }
   
+      .user-name {
+        font-size: 20px;/* Hide username on smaller screens */
+      }
   
-  
+      ion-title.test-font {
+        display: flex;
+        justify-content: flex-start; /* Aligns content to the left */
+        align-items: center; /* Centers items vertically if needed */
+        padding-left: 10px; /* Add some padding if needed for spacing */
+      }
+      
+      .brand-logo {
+        max-height: 50px; /* Adjust logo size as necessary */
+      }
 
+  
   ion-content{
     background-color: white !important;
   }
@@ -83,8 +96,8 @@ ion-header {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       background-color: transparent;
       border: none;
       margin-top: 1px;
@@ -136,8 +149,8 @@ ion-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 10px;
   cursor: pointer;
   border: none;
@@ -189,8 +202,7 @@ ion-header {
       align-items: center;
 
       .user-name {
-        margin-right: 5px;
-        font-size: 18px;
+        font-size: 15px;
         color: goldenrod;
         font-family: 'Playfair Display', serif;
       }

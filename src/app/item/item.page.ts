@@ -15,6 +15,7 @@ export class ItemPage implements OnInit {
   subMenuVisible: string | null = null;  // Add this line to define the property
   currentImageUrl: string = '';
   currentImageIndex: number = 0;
+  isLoggedIn: boolean = false; 
   user: any = {
     name: '',
     email: '',
@@ -420,10 +421,11 @@ export class ItemPage implements OnInit {
     // Retrieve authenticated user's info
     this.authService.getUser().subscribe((user) => {
       if (user) {
+        this.isLoggedIn = true; // User is logged in
         this.user.name = user.displayName || 'User';
         this.user.email = user.email || '';
       } else {
-        this.router.navigate(['/login']);
+        this.isLoggedIn = false; // User is logged in
       }
     });
 

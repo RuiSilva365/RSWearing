@@ -125,7 +125,7 @@
     <div id="buttons-sidebar">
       <button (click)="gotoHome()">Home</button>
       <button (click)="gotoProfile()">Profile</button>
-      <button (click)="gotoLogout()">Logout</button>
+      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
       <img src="assets/icon/logo.png" alt="logo Icon" />
     </div>
   </div>

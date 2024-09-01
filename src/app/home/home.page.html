@@ -48,7 +48,7 @@
   </div>
 
 
-  <ion-accordion-group class="accordion-container" (ionChange)="toggleAccordion($event)">
+  <ion-accordion-group class="accordion-container" [value]="isAccordionOpen" (ionChange)="toggleAccordion($event)">
     <ion-accordion value="men">
       <ion-item slot="header">
         <ion-label>Men</ion-label>
@@ -62,7 +62,7 @@
         </ion-list>
       </div>
     </ion-accordion>
-  
+
     <ion-accordion value="kids">
       <ion-item slot="header">
         <ion-label>Kids</ion-label>
@@ -77,9 +77,6 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
-  
- 
-  
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -163,7 +160,7 @@
       <button (click)="gotoSearch('Trending')">Trending</button>
       <button (click)="gotoSearch('Campaigns')">Campaigns</button>
       <button (click)="gotoSearch('')">Search</button>
-      <button (click)="gotoLogout()">Logout</button>
+      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
       <img src="assets/icon/logo.png" alt="logo Icon" />
     </div>
   </div>
@@ -181,7 +178,7 @@
   </div>
   <div class="service-item">
     <ion-icon name="help-buoy-outline"></ion-icon>
-      <p>Customer Support always ready to assist you</p>
+      <p>Customer support ready for assistance</p>
   </div>
 </div>
 

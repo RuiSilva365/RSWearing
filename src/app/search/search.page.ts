@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
 import { AuthService } from '../../services/auth.service'; 
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth'; 
 
 // Define an interface for the search result items
 interface SearchResultItem {
@@ -26,6 +27,7 @@ export class SearchPage implements OnInit {
   selectedType: string = '';
   priceRange: { lower: number; upper: number } = { lower: 0, upper: 1000 };
   sidebarVisible: boolean = false;
+  isLoggedIn: boolean = false;
   user: any = {
     name: '',
     email: '',
@@ -47,10 +49,11 @@ export class SearchPage implements OnInit {
     // Get the authenticated user's info
     this.authService.getUser().subscribe((user) => {
       if (user) {
+        this.isLoggedIn = true; 
         this.user.name = user.displayName || 'User';
         this.user.email = user.email || '';
       } else {
-        this.router.navigate(['/login']);
+        this.isLoggedIn = false;
       }
     });
 
@@ -208,7 +211,24 @@ export class SearchPage implements OnInit {
     this.sidebarVisible = visible;
   }
   gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
+    const auth = getAuth(); // Ensure you're using the initialized Firebase app
+  
+    if (auth.currentUser) {
+      // User is logged in, so sign them out and clear user data
+      auth.signOut().then(() => {
+        // Clear any stored user information
+        this.user = {
+          name: '',
+          email: '',
+        };
+        this.router.navigate(['/login']); // Redirect to login page after sign out
+      }).catch((error) => {
+        console.error("Error logging out:", error);
+      });
+    } else {
+      // No user is logged in, just navigate to the login page
+      this.router.navigate(['/login']);
+    }
   }
 
   gotoSettings() {

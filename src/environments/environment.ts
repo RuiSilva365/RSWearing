@@ -6,6 +6,7 @@ export const environment = {
   firebaseConfig: {
     apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
     authDomain: "rswearing-4b75f.firebaseapp.com",
+    databaseURL: "https://rswearing-4b75f-default-rtdb.europe-west1.firebasedatabase.app/", // Ensure this URL is correct
     projectId: "rswearing-4b75f",
     storageBucket: "rswearing-4b75f.appspot.com",
     messagingSenderId: "287024306857",
