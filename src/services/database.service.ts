@@ -21,7 +21,14 @@ export class DatabaseService {
     return get(child(dbRef, `users/${userId}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          return snapshot.val();
+          const userData = snapshot.val();
+          
+          if (typeof userData.privacyAccepted === 'undefined') {
+            console.log(`privacyAccepted field is missing for user: ${userId}`);
+            // Handle the missing field by setting a default value or triggering a flow
+            userData.privacyAccepted = false; // Or handle as needed
+          }
+          return userData;
         } else {
           console.log("No data available");
           return null;

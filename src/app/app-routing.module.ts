@@ -51,6 +51,15 @@ const routes: Routes = [
     path: 'maintenance',
     loadChildren: () => import('./maintenance/maintenance.module').then( m => m.MaintenancePageModule)
   },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'cookie-policy',
+    loadChildren: () => import('./cookie-policy/cookie-policy.module').then( m => m.CookiePolicyPageModule)
+  },
+
 
 ];
 

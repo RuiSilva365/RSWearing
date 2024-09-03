@@ -60,11 +60,11 @@ export class ProfilePage implements OnInit {
     this.isEditFrameVisible = true;
     this.editableUser = { ...this.user }; // Ensure it's a fresh copy
   }
-
+  
   closeEditFrame() {
     this.isEditFrameVisible = false;
   }
-
+  
   submitEditForm() {
     const auth = getAuth();
     const currentUser = auth.currentUser;
@@ -74,6 +74,8 @@ export class ProfilePage implements OnInit {
       if (this.editableUser.birthdate) {
         this.editableUser.birthdate = this.editableUser.birthdate.split('T')[0];
       }
+  
+      // Additional data validation or formatting can be added here
   
       this.databaseService.writeUserData(currentUser.uid, this.editableUser)
         .then(() => {

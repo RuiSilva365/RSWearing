@@ -9,12 +9,19 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment'; // Correct path
 import { AuthService } from '../services/auth.service';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PrivacyPolicyComponent } from './privacy-policy-modal/privacy-policy-modal.component'; // Ensure correct path
+
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    PrivacyPolicyComponent,
+
+    // other components
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

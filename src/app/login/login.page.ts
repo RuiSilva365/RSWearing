@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { getDatabase } from 'firebase/database';
-// Import Firebase
+import { ModalController } from '@ionic/angular';
+import { PrivacyPolicyComponent } from '../privacy-policy-modal/privacy-policy-modal.component'; // Import the privacy policy component
+import { DatabaseService } from '../../services/database.service';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, EmailAuthProvider, setPersistence, browserLocalPersistence, User } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, setPersistence, browserLocalPersistence } from 'firebase/auth';
 
-// Firebase configuration object (replace this with your Firebase config)
 const firebaseConfig = {
   apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
   authDomain: "rswearing-4b75f.firebaseapp.com",
@@ -16,7 +17,6 @@ const firebaseConfig = {
   appId: "1:287024306857:web:85719ec1c07707648627b8"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
@@ -40,14 +40,18 @@ export class LoginPage implements OnInit, OnDestroy {
   };
   user: { name: string; email: string } = { name: '', email: '' };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private modalController: ModalController, private databaseService: DatabaseService) {}
 
-  ngOnInit() {
-    // No FirebaseUI initialization needed as we're using custom forms
-  }
+  ngOnInit() {}
 
-  ngOnDestroy(): void {
-    // No FirebaseUI cleanup needed
+  ngOnDestroy(): void {}
+
+  // Method to open the Privacy Policy modal
+  async openPrivacyPolicy() {
+    const modal = await this.modalController.create({
+      component: PrivacyPolicyComponent,
+    });
+    await modal.present();
   }
 
   // Show the loader
@@ -68,8 +72,6 @@ export class LoginPage implements OnInit, OnDestroy {
     successMessage.classList.add('success-message');
     successMessage.textContent = 'Welcome back!';
     document.body.appendChild(successMessage);
-
-    // Remove the message after 2 seconds
     setTimeout(() => {
       successMessage.remove();
     }, 2000);
@@ -82,15 +84,13 @@ export class LoginPage implements OnInit, OnDestroy {
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
         const user = userCredential.user;
-
-        // Show welcome message
         this.showSuccessMessage();
         this.user.name = user.displayName || user.email || 'User';
-
-        // Set auth persistence and redirect
+        this.checkPrivacyPolicy(user.uid);
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
             setTimeout(() => {
+              this.checkPrivacyPolicy(user.uid);
               this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a 2-second delay
@@ -106,6 +106,45 @@ export class LoginPage implements OnInit, OnDestroy {
       });
   }
 
+  async checkPrivacyPolicy(userId: string) {
+    try {
+      const userData = await this.databaseService.getUserData(userId);
+      console.log('User data:', userData); // Debugging line
+  
+      // Show the privacy policy modal only if it hasn't been accepted
+      if (!userData?.privacyAccepted) {
+        console.log('Privacy policy not accepted, showing modal.'); // Debugging line
+        const modal = await this.modalController.create({
+          component: PrivacyPolicyComponent,
+          backdropDismiss: false, // Prevent the user from dismissing the modal by clicking outside
+          cssClass: 'privacy-policy-modal', // Add CSS class for additional styling if needed
+        });
+  
+        await modal.present();
+  
+        // Wait for the modal to be dismissed and handle the result
+        const { data } = await modal.onDidDismiss();
+        console.log('Modal dismissed with data:', data); // Debugging line
+  
+        if (data?.accepted) {
+          // If the user accepted the privacy policy, proceed to the home page
+          this.navigateTo('/home');
+        } else {
+          // Optionally handle if the user rejects the policy
+          console.warn('User did not accept the privacy policy.');
+          // Stay on the login page or handle rejection appropriately
+        }
+      } else {
+        // Directly navigate to home if the policy was already accepted
+        console.log('Privacy policy already accepted, navigating to home.'); // Debugging line
+        this.navigateTo('/home');
+      }
+    } catch (error) {
+      console.error('Error checking privacy policy:', error);
+      // Handle any errors retrieving user data
+    }
+  }
+  
   // Google sign-in using Firebase Authentication
   signInWithGoogle(): void {
     const provider = new GoogleAuthProvider();
@@ -118,6 +157,7 @@ export class LoginPage implements OnInit, OnDestroy {
         // Show welcome message
         this.showSuccessMessage();
         this.user.name = user.displayName || user.email || 'User';
+        this.checkPrivacyPolicy(user.uid);
 
         // Set auth persistence
         setPersistence(auth, browserLocalPersistence)
@@ -177,6 +217,7 @@ export class LoginPage implements OnInit, OnDestroy {
     localStorage.setItem('continueWithoutLogin', 'true');
     
     setTimeout(() => {
+      this.checkPrivacyPolicy("");
       this.navigateTo('/home');
       this.hideLoader(); // Hide loader after navigation
     }, 2000); // Simulate a 2-second delay

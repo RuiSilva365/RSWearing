@@ -700,43 +700,21 @@ ion-item {
   }
 
   .edit-frame-modal {
-    position: fixed; /* Fixed position */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center correction */
-    width: 90%; /* Responsive width */
-    max-width: 600px; /* Maximum width for desktop */
-    max-height: 85vh; /* Limit height to 80% of the viewport */
-    background-color: black; /* Background color */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    background-color: black;
     color: white;
-    padding: 15px; /* Padding inside the modal */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
-    border-radius: 8px; /* Rounded corners */
-    z-index: 1000; /* On top of everything */
-    overflow-y: auto; /* Add vertical scroll if content exceeds max height */
-    overflow-x: hidden; /* Prevent horizontal scroll */
-  }
-  
-  .form-container {
-    color:white;
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* Consistent space between fields */
-  }
-  
-  .form-container .form-group {
-    margin: 0; /* Remove default margins */
-  }
-  
-  .form-container input, .form-container select {
-    padding: 8px; /* Reduce padding for compact fields */
-    font-size: 14px; /* Adjust font size */
-    border-radius: 4px; /* Smaller border radius for inputs */
-    border: 1px solid black; /* Light border */
-  }
-  
-  .ion-button {
-    margin-top: 10px; /* Space above buttons */
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   
   .edit-frame-modal::before {
@@ -746,7 +724,123 @@ ion-item {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Dark backdrop */
-    z-index: -1; /* Keep backdrop behind modal */
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  
+  .container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    color: white;
+    background: black;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container header {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .container .form {
+    margin-top: 15px;
+  }
+  
+  .form .input-box {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .input-box label {
+    color: white;
+  }
+  
+  .form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: black;
+    margin-top: 5px;
+    border: 1px solid #EE4E34;
+    border-radius: 6px;
+    padding: 0 15px;
+    background: #FCEDDA;
+  }
+  
+  .input-box input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .form .column {
+    display: flex;
+    column-gap: 15px;
+  }
+  
+  .form .gender-box {
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    color: white;
+    column-gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .form .gender {
+    color: white;
+    column-gap: 5px;
+  }
+  
+  .gender input {
+    accent-color: #EE4E34;
+  }
+  
+  .form :where(.gender input, .gender label) {
+    cursor: pointer;
+  }
+  
+  .gender label {
+    color: white;
+  }
+  
+  .address :where(input, .select-box) {
+    margin-top: 10px;
+  }
+  
+  .select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #808080;
+    font-size: 1rem;
+    background: #FCEDDA;
+  }
+  
+  .form button {
+    height: 40px;
+    width: 100%;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: goldenrod;
+  }
+  
+  .form button:hover {
+    background: #EE3E34;
   }
   

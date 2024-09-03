@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { AlertController } from '@ionic/angular'; 
+import { AuthService } from '../../services/auth.service'; // Import AuthService
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,11 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService, // Inject AuthService
+    private alertController: AlertController // Inject AlertController
+  ) {}
 
   ngOnInit() {
     this.hideLoader();
@@ -79,6 +85,7 @@ export class RegisterPage implements OnInit {
         
         // Show success message
         this.successMessage = 'Registration successful! Welcome!';
+        this.authService.setShowConsentFlag(true);
 
         // Hide loader after success
         this.hideLoader();
@@ -86,6 +93,7 @@ export class RegisterPage implements OnInit {
         // Redirect to home page after a short delay
         setTimeout(() => {
           this.router.navigate(['/home']);
+          this.showCookieConsent();
         }, 2000);
       })
       .catch((error) => {
@@ -110,6 +118,52 @@ export class RegisterPage implements OnInit {
             this.errorMessage = 'An error occurred during registration. Please try again.';
         }
       });
+  }
+
+  async showCookieConsent() {
+    const alert = await this.alertController.create({
+      header: 'Cookie Consent',
+      message: 'We use cookies to enhance your experience. By continuing, you agree to our use of cookies.',
+      buttons: [
+        {
+          text: 'Accept',
+          handler: () => {
+            console.log('Cookies accepted');
+            this.authService.setShowConsentFlag(false); // Reset flag after accepting
+          },
+        },
+        {
+          text: 'Decline',
+          handler: () => {
+            console.log('Cookies declined');
+            this.authService.setShowConsentFlag(false); // Reset flag after declining
+            this.gotoLogout(); // Redirect to login if cookies are declined
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  gotoLogout() {
+    const auth = getAuth(); // Ensure you're using the initialized Firebase app
+  
+    if (auth.currentUser) {
+      // User is logged in, so sign them out and clear user data
+      auth.signOut().then(() => {
+        // Clear any stored user information
+        this.email = '';
+        this.username = '';
+        this.password = '';
+        this.router.navigate(['/login']); // Redirect to login page after sign out
+      }).catch((error) => {
+        console.error("Error logging out:", error);
+      });
+    } else {
+      // No user is logged in, just navigate to the login page
+      this.router.navigate(['/login']);
+    }
   }
 
   gotoFacebookPage() {

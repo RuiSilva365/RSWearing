@@ -9,6 +9,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null); // Store the user as an observable
   private _logoutFlag = false; // Private flag to manage logout state
   private authSubscription: Subscription; // To manage subscription cleanup
+  private showConsentFlag = false;
 
   constructor() {
     const auth = getAuth();
@@ -29,7 +30,14 @@ export class AuthService {
       })
     );
   }
+  setShowConsentFlag(value: boolean) {
+    this.showConsentFlag = value;
+  }
 
+  // Method to get the cookie consent flag
+  getShowConsentFlag(): boolean {
+    return this.showConsentFlag;
+  }
   // Get the current user as an observable
   getUser() {
     return this.userSubject.asObservable();
