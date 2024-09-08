@@ -28,6 +28,8 @@
     "@capacitor/ios": "6.1.1",
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
+    "@dicebear/collection": "^9.2.1",
+    "@dicebear/core": "^9.2.1",
     "@ionic/angular": "^8.0.0",
     "firebase": "^10.13.1",
     "firebaseui": "^6.1.0",

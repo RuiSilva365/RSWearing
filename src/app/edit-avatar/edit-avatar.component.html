@@ -1,0 +1,59 @@
+<div class="avatar-editor">
+  <h3>Customize Your Avatar</h3>
+  <img [src]="avatarUrl" alt="Avatar Preview" *ngIf="avatarUrl" />
+
+  <div class="form-row">
+    <div>
+      <label>Eyes:</label>
+      <select [(ngModel)]="avatarOptions.eyes" (change)="updateAvatar()">
+        <option *ngFor="let eyeVariant of eyeVariants" [value]="eyeVariant">{{ eyeVariant }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Glasses On?</label>
+      <select [(ngModel)]="avatarOptions.glassesOn" (change)="updateAvatar()">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div>
+      <label>Glasses:</label>
+      <select [(ngModel)]="avatarOptions.glasses" (change)="updateAvatar()">
+        <option *ngFor="let glassesVariant of glassesVariants" [value]="glassesVariant">{{ glassesVariant }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Color:</label>
+      <select [(ngModel)]="avatarOptions.backgroundColor" (change)="updateAvatar()">
+        <option value="b6e3f4">Blue</option>
+        <option value="c0aede">Purple</option>
+        <option value="d1d4f9">Gray</option>
+        <option value="ffd5dc">Pink</option>
+        <option value="ffdfbf">Yellow</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div>
+      <label>Eyebrows:</label>
+      <select [(ngModel)]="avatarOptions.eyebrows" (change)="updateAvatar()">
+        <option *ngFor="let eyebrowVariant of eyebrowVariants" [value]="eyebrowVariant">{{ eyebrowVariant }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Mouth:</label>
+      <select [(ngModel)]="avatarOptions.mouth" (change)="updateAvatar()">
+        <option *ngFor="let mouthVariant of mouthVariants" [value]="mouthVariant">{{ mouthVariant }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button (click)="saveAvatar()">Save Avatar</button>
+    <button (click)="close()">Cancel</button>
+  </div>
+</div>

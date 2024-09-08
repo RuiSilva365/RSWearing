@@ -1,0 +1,79 @@
+.avatar-editor {
+    background: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px goldenrod;
+    max-width: 600px; /* Adjust the width as needed */
+    margin: auto;
+    text-align: center;
+  }
+  
+  .avatar-editor h3 {
+    color: goldenrod;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .avatar-editor img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .avatar-editor .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Ensure consistent spacing between all select elements */
+    margin-bottom: 10px; /* Space between each row */
+  }
+  
+  .avatar-editor label {
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left; /* Align labels to the left */
+  }
+  
+  .avatar-editor .form-row > div {
+    flex: 1; /* Ensure each select container takes up equal space */
+  }
+  
+  .avatar-editor select {
+    padding: 8px;
+    width: 100%; /* Ensures selects take full width within their container */
+    border: 1px solid white;
+    color: black;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  .avatar-editor .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .avatar-editor button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .avatar-editor button:first-of-type {
+    background-color: goldenrod;
+    color: black;
+  }
+  
+  .avatar-editor button:last-of-type {
+    background-color: white;
+    color: black;
+  }
+  
+  .avatar-editor button:hover {
+    opacity: 0.9;
+  }
+  

@@ -13,6 +13,7 @@ import { getAuth } from 'firebase/auth';
 export class ProfilePage implements OnInit {
   sidebarVisible: boolean = false;
   isEditFrameVisible: boolean = false;
+  isEditAvatarVisible = false;
   user: any = {
     name: '',
     email: '',
@@ -22,7 +23,8 @@ export class ProfilePage implements OnInit {
     zipcode: '',
     birthdate: '',
     age: '',
-    preferredSize: ''
+    preferredSize: '',
+    avatarUrl: '' // Ensure the user object has an avatarUrl field
   };
   editableUser: any = { ...this.user }; // Make sure this is updated properly on init
 
@@ -38,22 +40,33 @@ export class ProfilePage implements OnInit {
       if (user) {
         this.user.name = user.displayName || 'User';
         this.user.email = user.email || '';
-  
+
         this.databaseService.getUserData(user.uid).then((data) => {
           if (data) {
             this.user = { ...this.user, ...data };
+
+            // Check if avatarUrl exists; if not, generate a random one
+            if (!this.user.avatarUrl) {
+              this.user.avatarUrl = this.generateRandomAvatarUrl();
+            }
+
             this.editableUser = { ...this.user };
           }
         }).catch((error) => {
           console.error("Error fetching user data:", error);
         });
       } else {
-        // Check the logout flag before showing the alert
         if (!this.authService.getCurrentUser() && !this.authService.logoutFlag) {
           this.presentLoginSignupAlert();
         }
       }
     });
+  }
+
+  generateRandomAvatarUrl() {
+    const randomSeed = Math.random().toString(36).substring(7); // Generate a random string as the seed
+    return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
+  
   }
   
   openEditFrame() {
@@ -64,20 +77,19 @@ export class ProfilePage implements OnInit {
   closeEditFrame() {
     this.isEditFrameVisible = false;
   }
-  
+
   submitEditForm() {
     const auth = getAuth();
     const currentUser = auth.currentUser;
-  
+
     if (currentUser) {
       // Ensure the birthdate is formatted as "YYYY-MM-DD"
       if (this.editableUser.birthdate) {
         this.editableUser.birthdate = this.editableUser.birthdate.split('T')[0];
       }
-  
-      // Additional data validation or formatting can be added here
-  
-      this.databaseService.writeUserData(currentUser.uid, this.editableUser)
+
+      // Use updateUserData to merge changes without overwriting other fields
+      this.databaseService.updateUserData(currentUser.uid, this.editableUser)
         .then(() => {
           this.user = { ...this.editableUser }; // Update user info with the new data
           this.closeEditFrame(); // Close the edit frame
@@ -89,16 +101,26 @@ export class ProfilePage implements OnInit {
         });
     }
   }
-  
-  formatPostalCode(event: any) {
-    const input = event.target.value.replace(/\D/g, ''); // Remove non-digit characters
-    if (input.length > 4) {
-      this.editableUser.postal_code = input.substring(0, 4) + ' ' + input.substring(4, 7);
-    } else {
-      this.editableUser.postal_code = input;
+
+  updateAvatar(newAvatarUrl: string) {
+    this.isEditAvatarVisible = false;
+    this.user.avatarUrl = newAvatarUrl; // Update local user data
+
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+
+    if (currentUser) {
+      // Use updateUserData to update only the avatarUrl
+      this.databaseService.updateUserData(currentUser.uid, { avatarUrl: newAvatarUrl })
+        .then(() => {
+          console.log('Avatar URL successfully updated in the database.');
+        })
+        .catch((error) => {
+          console.error("Error updating avatar:", error);
+        });
     }
   }
-  
+
   async presentLoginSignupAlert() {
     const alert = await this.alertController.create({
       header: 'Not Logged In',
@@ -128,13 +150,23 @@ export class ProfilePage implements OnInit {
     await alert.present();
   }
 
+  formatPostalCode(event: any) {
+    const input = event.target.value.replace(/\D/g, ''); // Remove non-digit characters
+    if (input.length > 4) {
+      this.editableUser.zipcode = input.substring(0, 4) + ' ' + input.substring(4, 7);
+    } else {
+      this.editableUser.zipcode = input;
+    }
+  }
+
+  
   toggleSidebar(visible: boolean) {
     this.sidebarVisible = visible;
   }
 
   gotoLogout() {
     const auth = getAuth();
-  
+
     if (auth.currentUser) {
       this.authService.logoutFlag = true; // Use the setter method
       auth.signOut().then(() => {
@@ -158,7 +190,10 @@ export class ProfilePage implements OnInit {
     }
   }
   
-  
+  openEditAvatar() {
+    this.isEditAvatarVisible = true;
+  }
+
   gotoSettings() {
     this.router.navigate(['/settings']);
   }

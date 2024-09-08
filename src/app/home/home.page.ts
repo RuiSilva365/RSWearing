@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth'; // Import Firebase Auth
-import { AuthService } from '../../services/auth.service'; // Import your AuthService
+import { AuthService } from '../../services/auth.service';
+import { DatabaseService } from '../../services/database.service'; // Import your DatabaseService
+import { getAuth } from 'firebase/auth'; // Import getAuth from Firebase
+
+interface Item {
+  id: string;
+  imageUrl: string;
+  title: string;
+  category: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,10 +23,13 @@ export class HomePage implements OnInit {
   hotDealsItems: any[] = [];
   recommendedItems: any[] = [];
   sidebarVisible: boolean = false; 
+  sidebarTimeout: any; 
   subMenuVisible: string | null = null;
   isSidebarOpen: boolean = false;
-  isAccordionOpen: string | undefined; 
+  activeAccordion: string | null = null; // Track the currently active accordion
   isLoggedIn: boolean = false; 
+  activeDropdown: string | null = null;
+
   user: any = {
     name: '',
     email: '',
@@ -30,87 +41,83 @@ export class HomePage implements OnInit {
     'trending': false,
     'recommended': false
   };
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
 
-    this.newCollectionItems = [
-      { id: '1', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '2',imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { id: '3', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { id: '4',imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { id: '5',imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { id: '6',imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '7',imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
-      { id: '8',imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { id: '9', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' }
-    ];
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private databaseService: DatabaseService // Inject DatabaseService
+  ) {}
 
-    this.hotDealsItems = [
-      { id: '8', imageUrl: '../../assets/examples/braceletsilver.png', title: 'Silver bracelet' },
-      { id: '7', imageUrl: '../../assets/examples/watch.png', title: 'Watch' },
-      { id: '9', imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-hirt' },
-      { id: '10', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { id: '11', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { id: '12', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '13', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { id: '14', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
-      { id: '15', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' }
-
-
-    ];
-
-    this.trendingItems = [
-      { id: '16', imageUrl: '../../assets/examples/whitetshirt.png', title: 'White basic T-shirt' },
-      { id: '17', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
-      { id: '18', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { id: '19', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '20', imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { id: '21', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { id: '22', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { id: '23', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' }
-    ];
-
-    this.recommendedItems = [
-      { id: '24', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { id: '25', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' },
-      { id: '26', imageUrl: '../../assets/examples/blacktshirt.png', title: 'Black T-shirt' },
-      { id: '27', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '28', imageUrl: '../../assets/examples/caramelhoodie.png', title: 'Beige Hoodie' },
-      { id: '29', imageUrl: '../../assets/examples/graytshirt.png', title: 'Gray Hoodie' },
-      { id: '30', imageUrl: '../../assets/examples/blackjacket.png', title: 'Black jacket' },
-      { id: '31', imageUrl: '../../assets/examples/braceletgold.png', title: 'Golden bracelet' },
-      { id: '32', imageUrl: '../../assets/examples/blackhoodie.png', title: 'Black Hoodie' },
-      { id: '33', imageUrl: '../../assets/examples/whitepuffer.png', title: 'White puffer' },
-      { id: '34', imageUrl: '../../assets/examples/redtshirt.png', title: 'Red T-Shirt' },
-      { id: '35', imageUrl: '../../assets/examples/bluetshirt.png', title: 'Blue T-shirt' }
-    ];
-  }
-// Show the loader
-showLoader() {
-  const loaderContainer = document.querySelector('.loader-container');
-  loaderContainer?.classList.remove('hidden');
-}
-
-// Hide the loader
-hideLoader() {
-  const loaderContainer = document.querySelector('.loader-container');
-  loaderContainer?.classList.add('hidden');
-}
-ngOnInit() {
-  // Subscribe to user state changes
-  this.authService.getUser().subscribe((user) => {
-    if (user) {
-      this.isLoggedIn = true;
-      this.user.name = user.displayName || 'User';
-      this.user.email = user.email || '';
-    } else {
-      // If user is not signed in, you can redirect to login
-      //ignore for now
+  ngOnDestroy() {
+    if (this.sidebarTimeout) {
+      clearTimeout(this.sidebarTimeout);
     }
-  });
-}
+  }
+
+  ngOnInit() {
+    // Subscribe to user state changes
+    this.authService.getUser().subscribe((user) => {
+      if (user) {
+        this.isLoggedIn = true;
+        this.user.name = user.displayName || 'User';
+        this.user.email = user.email || '';
+      }
+      this.fetchAllItems();
+    });
+  }
+
+  fetchAllItems() {
+    this.databaseService.getAllItems()
+      .then((data) => {
+        if (data) {
+          const itemsArray = Object.values(data) as Item[]; // Explicitly cast to Item[]
+  
+          // Filter items into categories as needed
+          this.newCollectionItems = itemsArray.filter(item => item.category === 'new-collection');
+          this.hotDealsItems = itemsArray.filter(item => item.category === 'hot-deals');
+          this.trendingItems = itemsArray.filter(item => item.category === 'trending');
+          this.recommendedItems = itemsArray.filter(item => item.category === 'recommended');
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching items:", error);
+      });
+  }
+
+  fetchNewCollectionItems() {
+    this.databaseService.getItemData('new-collection') // Assuming 'new-collection' is your collection ID
+      .then((data) => {
+        this.newCollectionItems = data ? Object.values(data) : []; // Convert the object to an array
+      })
+      .catch((error) => console.error("Error fetching new collection items:", error));
+  }
+
+  fetchHotDealsItems() {
+    this.databaseService.getItemData('hot-deals') // Assuming 'hot-deals' is your collection ID
+      .then((data) => {
+        this.hotDealsItems = data ? Object.values(data) : []; // Convert the object to an array
+      })
+      .catch((error) => console.error("Error fetching hot deals items:", error));
+  }
+
+  fetchTrendingItems() {
+    this.databaseService.getItemData('trending') // Assuming 'trending' is your collection ID
+      .then((data) => {
+        this.trendingItems = data ? Object.values(data) : []; // Convert the object to an array
+      })
+      .catch((error) => console.error("Error fetching trending items:", error));
+  }
+
+  fetchRecommendedItems() {
+    this.databaseService.getItemData('recommended') // Assuming 'recommended' is your collection ID
+      .then((data) => {
+        this.recommendedItems = data ? Object.values(data) : []; // Convert the object to an array
+      })
+      .catch((error) => console.error("Error fetching recommended items:", error));
+  }
 
   gotoProfile() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']); 
   }
 
   gotoSearch(searchText: string) {
@@ -118,54 +125,83 @@ ngOnInit() {
   }
 
   gotoLogout() {
-    const auth = getAuth(); // Ensure you're using the initialized Firebase app
-  
+    const auth = getAuth();
     if (auth.currentUser) {
-      // User is logged in, so sign them out and clear user data
       auth.signOut().then(() => {
-        // Clear any stored user information
-        this.user = {
-          name: '',
-          email: '',
-        };
-        this.router.navigate(['/login']); // Redirect to login page after sign out
-      }).catch((error) => {
-        console.error("Error logging out:", error);
-      });
+        this.user = { name: '', email: '' };
+        this.router.navigate(['/login']);
+      }).catch((error) => console.error("Error logging out:", error));
     } else {
-      // No user is logged in, just navigate to the login page
       this.router.navigate(['/login']);
     }
   }
-  
+
   gotoSettings() {
-    this.router.navigate(['/settings']);  // Use the injected Router
+    this.router.navigate(['/settings']);
   }
+
   gotoCart() {
     this.router.navigate(['/cart']);
-    }
+  }
 
-  
   gotoHotDeals() {
     this.router.navigate(['/settings']);
-    }
+  }
 
   gotoTrending() {
     this.router.navigate(['/settings']);
-    }
+  }
 
   gotoNewCollection() {
     this.router.navigate(['/settings']);
+  }
+
+
+
+  toggleAccordion(event: CustomEvent) {
+    const accordionValue = event.detail.value;
+    this.activeAccordion = this.activeAccordion === accordionValue ? null : accordionValue;
+  
+    document.querySelectorAll('ion-accordion .ion-padding').forEach((dropdown) => {
+      dropdown.classList.remove('expanded');
+    });
+  
+    const activeDropdown = document.querySelector(`ion-accordion[value="${this.activeAccordion}"] .ion-padding`);
+    if (activeDropdown) {
+      activeDropdown.classList.add('expanded');
     }
+  }
+toggleSidebar(visible: boolean) {
+  // Clear any existing timeout to avoid conflicts
+  if (this.sidebarTimeout) {
+    clearTimeout(this.sidebarTimeout);
+    this.sidebarTimeout = null; // Reset the timeout variable
+  }
+
+  // Toggle the sidebar state
+  this.isSidebarOpen = visible;
+  this.sidebarVisible = visible;
+
+  if (visible) {
+    // Set a timeout to hide the sidebar after 3 seconds if it's still open
+    this.sidebarTimeout = setTimeout(() => {
+      this.sidebarVisible = false;
+      this.isSidebarOpen = false;
+      this.sidebarTimeout = null; // Ensure the timeout is cleared
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+}
 
   
-    toggleAccordion(event: CustomEvent) {
-      const accordionValue = event.detail.value;
-      // Toggle the accordion value: close if already open, or set the new value
-      this.isAccordionOpen = this.isAccordionOpen === accordionValue ? undefined : accordionValue;
+  toggleDropdown(menu: string) {
+    // Close the sidebar if a dropdown is being opened
+    if (this.activeDropdown !== menu) {
+      this.isSidebarOpen = false; // Close the sidebar
+      this.sidebarVisible = false; // Ensure the sidebar visibility state is reset
     }
-  toggleSidebar(visible: boolean) {
-    this.sidebarVisible = visible;
+  
+    // Toggle the dropdown menu
+    this.activeDropdown = this.activeDropdown === menu ? null : menu;
   }
 
   toggleHover(section: string, state: boolean) {
@@ -173,11 +209,11 @@ ngOnInit() {
   }
 
   showSubMenu(menu: string) {
-    this.subMenuVisible = menu;  // Set the visible submenu based on the passed menu identifier
+    this.subMenuVisible = menu; 
   }
 
   hideSubMenu() {
-    this.subMenuVisible = null;  // Hide the submenu
+    this.subMenuVisible = null; 
   }
 
   gotoFacebookPage() {
@@ -200,16 +236,12 @@ ngOnInit() {
     this.router.navigate(['/favorites']);  // Use the injected Router
   }
 
-
   gotoItem(id: string) {
-    this.showLoader(); // Show loader on login click
-
-    // Simulate a delay before navigating (to show the loader)
+    this.showLoader(); 
     setTimeout(() => {
       this.router.navigate(['/item', id]); 
-      this.hideLoader(); // Hide loader after navigation
-    }, 2000); // Simulate a 2-second delay
-     // Navigates to the item detail page with the item's id
+      this.hideLoader();
+    }, 2000);
   }
 
   navigateToSearch() {
@@ -217,11 +249,20 @@ ngOnInit() {
       this.showLoader();
       setTimeout(() => {
         this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
-         this.hideLoader(); // Hide loader after navigation
+        this.hideLoader(); 
       }, 2000);
-      // Navigate to the search page and pass the search query as a parameter
-      
     }
   }
 
+  // Show the loader
+  showLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.remove('hidden');
+  }
+
+  // Hide the loader
+  hideLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.add('hidden');
+  }
 }

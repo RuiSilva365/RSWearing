@@ -86,11 +86,10 @@ export class LoginPage implements OnInit, OnDestroy {
         const user = userCredential.user;
         this.showSuccessMessage();
         this.user.name = user.displayName || user.email || 'User';
-        this.checkPrivacyPolicy(user.uid);
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
             setTimeout(() => {
-              this.checkPrivacyPolicy(user.uid);
+             // this.checkPrivacyPolicy(user.uid);
               this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a 2-second delay
@@ -217,7 +216,7 @@ export class LoginPage implements OnInit, OnDestroy {
     localStorage.setItem('continueWithoutLogin', 'true');
     
     setTimeout(() => {
-      this.checkPrivacyPolicy("");
+     // this.checkPrivacyPolicy("");
       this.navigateTo('/home');
       this.hideLoader(); // Hide loader after navigation
     }, 2000); // Simulate a 2-second delay

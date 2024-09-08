@@ -1,64 +1,195 @@
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
-  body, ion-content,ion-header, ion-page {
-    background-color: white !important;
-    color:black;
-    --background: white !important;
-    border-bottom: 2px solid black !important;
-  }
- 
-  ion-accordion .ion-padding[slot="content"] {
+  /* General settings for the mobile layout */
+  body, ion-content, ion-header, ion-toolbar, .header-content, .dropdown-container, .dropdown, .dropdown-menu {
     background-color: white !important;
     color: black !important;
   }
 
-  .services-section {
+  /* Header content adjustments */
+  .header-content {
     display: flex;
-    justify-content: space-evenly !important; /* Evenly distribute space between items */
-    align-items: center; /* Vertically center the items */
-    text-align: center;
-}
+    justify-content: space-between; /* Align logo to the left and buttons to the right */
+    align-items: center;
+    background-color: white !important;
+  }
+
+  /* Logo adjustments for mobile */
+  .brand-logo {
+    max-width: 60px; /* Further reduce the logo size */
+    height: auto;
+    margin-left: 5px; /* Ensure logo stays at the far left */
+  }
+
+  /* User actions (icons) adjustments for mobile */
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 1px; /* Minimized gap between icons */
+    justify-content: flex-end;
+    padding-right: 0px; /* Reduced padding on the right */
+  }
+
+  .user-icon {
+    background-size: 0px 0px !important; /* adjust the background size to match the button size */
+  }
+  .btn {
+    width: 20px; 
+    height: 20px; 
+    box-sizing: border-box; /* include padding and border in width and height calculations */
+  }
+  #user-icon ion-icon {
+    font-size: 20px; /* adjust the font size to your liking */
+  }
 
 
-  .service-item ion-icon {
-    max-width: 20px;
+  .user-name {
+    font-size: 12px; /* Smaller text size for the username */
     color: goldenrod;
   }
-  
-  .service-item p {
-  font-size: 10px !important;
-    color: black;
-    max-width: 100px;
-  }
-  .footer-section h3 {
-    font-size:14px;
-    }
-  
-    .footer-section ul {
-      font-size: 5px;
-      }
-  
-      .user-name {
-        font-size: 20px;/* Hide username on smaller screens */
-      }
-  
-      ion-title.test-font {
-        display: flex;
-        justify-content: flex-start; /* Aligns content to the left */
-        align-items: center; /* Centers items vertically if needed */
-        padding-left: 10px; /* Add some padding if needed for spacing */
-      }
-      
-      .brand-logo {
-        max-height: 50px; /* Adjust logo size as necessary */
-      }
 
-  
-  ion-content{
+  /* Dropdown container adjustments */
+  .dropdown-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0; /* Ensure no extra spacing */
+    background-color: white !important;
+  }
+
+  /* Dropdown button adjustments */
+  .dropdown {
+    width: 50%;
+    text-align: center;
+    background-color: white !important;
+    margin: 0; /* No extra margins */
+    padding: 0; /* No extra padding */
+    box-sizing: border-box; /* Ensure borders/padding are within width */
+  }
+
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    background-color: white !important;
+    color: black !important;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .dropdown-menu ion-item {
+    padding: 5px 10px; /* Reduced padding inside dropdown items */
+    font-size: 12px; /* Smaller text for better fit */
+    color: black !important;
+  }
+
+  /* Search bar adjustments */
+  .search {
+    display: flex;
+    justify-content: center; /* Center the search bar */
+    align-items: center;
+    width: 100%;
+    background-color: white !important;
+    padding: 5px 0; /* Reduced padding for less space usage */
+   
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 180px; /* Limit maximum width on smaller screens */
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 0 10px; /* Reduce padding inside the search box */
+    background: white !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right:200px !important;
+  }
+
+  .input {
+    width: 100%; /* Full width inside the search box */
+    color: black !important;
+    background-color: transparent !important;
+    padding-left: 5px; /* Add padding inside the input */
+    font-size: 14px; /* Adjust text size for readability */
+  }
+
+  /* Services section adjustments */
+  .services-section {
+    display: flex;
+    justify-content: space-evenly !important;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0; /* Add padding for better spacing */
+  }
+
+  .service-item ion-icon {
+    max-width: 18px; /* Smaller icon size */
+    color: goldenrod;
+  }
+
+  .service-item p {
+    font-size: 10px; /* Reduced font size */
+    color: black;
+    max-width: 80px;
+  }
+
+  /* Footer section adjustments */
+  .footer-section h3 {
+    font-size: 12px; /* Smaller font size for headers */
+  }
+
+  .footer-section ul {
+    font-size: 10px; /* Smaller font size for list items */
+  }
+
+  /* Background settings */
+  ion-content, .background-content, ion-item::part(native), ion-list::part(native), ion-padding::part(native) {
     background-color: white !important;
   }
 }
+  ion-content {
+    background-color: white !important; /* Force white background */
+  }
+  .background-content {
+    background-color: white !important;
+  }
+    /* Use ::part to target shadow DOM */
+    ion-item::part(native) {
+      --ion-background-color: white !important;
+      background-color: white !important;
+      color: black !important;
+    }
+    
+    ion-list::part(native) {
+      --ion-background-color: white !important;
+      background-color: white !important;
+    }
+    
+    /* Ensure padding section is white */
+    ion-padding::part(native) {
+      --ion-background-color: white !important;
+      background-color: white !important;
+    }
+
+  /* Use ::part to target shadow DOM */
+  ion-item::part(native) {
+    --ion-background-color: white !important;
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  ion-list::part(native) {
+    --ion-background-color: white !important;
+    background-color: white !important;
+  }
+  
+  /* Ensure padding section is white */
+  ion-padding::part(native) {
+    --ion-background-color: white !important;
+    background-color: white !important;
+  }
 
 
 //_____________________________________________________________________________________________
@@ -66,85 +197,210 @@
 //____________________________________
 //________________________
 //_________________
-ion-header {
+.header-content div, .dropdown-container div, .dropdown-menu div {
+  background-color: white !important;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+}
+
+.brand-logo {
+  width: 120px; /* Adjust the size of the logo */
+  height: auto;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between the user-related buttons */
+}
+#user-icon {
+  --background: black; /* Sets the background color */
+  background-size: 2 2px;
+  --color: white; /* Sets the icon color, change if needed */
+  border-radius: 50%; /* Optional: Make the button circular */
+
+}
+
+#user-icon:hover {
+  --background: #daa520; /* Slightly darker goldenrod on hover */
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0px; /* Space between 'Men' and 'Kids' */
+  flex: 1;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-container {
+  display: flex;
+  width: 100%; /* Full width to match the header */
+  background-color: white !important; /* Ensure it matches the header's background */
+  border-bottom: 1px solid #ddd; /* Optional: add a border for separation */
+}
+
+.dropdown {
   background-color: white;
   color:black;
-    .home-user-bar {
-    --background: white!important;
-    color:black;
+  width: 50%; /* Each dropdown takes 50% of the width */
+  position: relative;
+  text-align: center; /* Center the text within each button */
+}
 
-    .brand-logo {
-      width: 100px;  /* Set a fixed width */
-      height: auto;  /* Maintain aspect ratio */
-      max-width: 100%;  /* Ensure it doesn’t exceed the container */
-      object-fit: contain;  /* Prevent distortion */
-    }
 
-    ion-toolbar {
-      --background: transparent !important;
-      --min-height: 80px; /* Ensure consistent toolbar height */
-      display: flex;
-      justify-content: space-between; /* Ensure space between logo and search bar/user icon */
-      font-size: 24px;
-      font-weight: bold;
-      color: black;
-      font-family: 'Playfair Display', serif;
-    }
+.accordion-header {
+  margin-top: -10px;
+  margin-left:-10px;
+  background-color: white !important;
+  color:black;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 2px solid black; /* Underline effect */
+  width: 99%; /* Full widthfor the button */
+}
 
-    .btn-cart {
-      position: relative; /* Changed to relative for testing */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: transparent;
-      border: none;
-      margin-top: 1px;
-      margin-left: 10px;
-      z-index: 10; /* Ensures the icon is on top */
-  }
-  
-  .icon-cart {
-      width: 24.38px;
-      height: 30.52px;
-      fill: black; /* Ensures the icon is visible */
-  }
-  
-  .btn-cart:hover .icon-cart {
-      transform: scale(1.32);
-      fill: goldenrod; /* Ensures hover effect is visible */
-  }
-    .cart-dropdown {
-      display: none;
-      position: absolute;
-      top: -20px; /* Adjust based on where you want the dropdown to appear */
-      left: -60px; /* Adjust based on alignment */
-      width: 200px; /* Set width as needed */
-      background-color: white;
-      border: 1px solid goldenrod;
-      border-radius: 5px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      z-index: 1000;
-      text-align: center;
-    }
-    
-    .btn-cart:hover .cart-dropdown {
-      display: block;
-    }
-    
-    .cart-dropdown p {
-      margin: 0;
-      font-size: 14px;
-      color: black;
-    }
-    
-    .accordion-container {
-      z-index: 1000 !important; /* Adjust the value based on your stacking needs */
-    }
-    
-/* From Uiverse.io by boryanakrasteva */ 
+.accordion-header:hover {
+  border-bottom-color: goldenrod; /* Matches brand colors on hover */
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position below the button */
+  left: 0;
+  width: 100%; /* Matches the width of the button */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: visibility 0s, opacity 0.3s ease-out, transform 0.3s ease-out;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu ion-item {
+  padding: 8px 15px;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu ion-item:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.dropdown-menu ion-item:hover {
+  background-color: #f5f5f5; /* Highlight on hover */
+}
+
+
+ion-toolbar {
+  --background: white !important;
+  --min-height: 80px;
+  padding: 0;
+  overflow: visible !important;
+}
+
+ion-title.test-font {
+  display: flex;
+  align-items: center;
+}
+
+ion-buttons {
+  display: flex;
+  align-items: center;
+}
+ion-content {
+  --ion-background-color: white !important;
+  background-color: white !important;
+  color: black !important; /* Ensures text is visible */
+}
+
+/* Target inner shadow DOM components */
+ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(container), ion-item::part(native), ion-label::part(native) {
+  --ion-background-color: white !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+.user-name {
+  font-size: 15px;
+  color: goldenrod;
+  font-family: 'Playfair Display', serif;
+}
+
+
+
+
+
+
+.btn-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  z-index: 10;
+}
+
+.icon-cart {
+  width: 24.38px;
+  height: 30.52px;
+  fill: black;
+}
+
+.btn-cart:hover .icon-cart {
+  transform: scale(1.32);
+  fill: goldenrod;
+}
+
+.cart-dropdown {
+  display: none;
+  position: absolute;
+  top: -20px;
+  left: -60px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.btn-cart:hover .cart-dropdown {
+  display: block;
+}
+
+.cart-dropdown p {
+  margin: 0;
+  font-size: 14px;
+  color: black;
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -165,11 +421,17 @@ ion-header {
   position: absolute;
   font-size: 15px;
   color: black;
-  font-family:sans-serif;
+  font-family: sans-serif;
   opacity: 0;
   visibility: hidden;
   transition: 0.2s linear;
   top: 115%;
+}
+
+.btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: 105%;
 }
 
 .icon {
@@ -191,87 +453,10 @@ ion-header {
   fill: goldenrod;
 }
 
-.btn:hover::after {
-  visibility: visible;
-  opacity: 1;
-  top: 105%;
+
+search {
+  background-color: white;
 }
-
-    ion-buttons {
-      display: flex;
-      align-items: center;
-
-      .user-name {
-        font-size: 15px;
-        color: goldenrod;
-        font-family: 'Playfair Display', serif;
-      }
-
-      ion-button {
-        color: goldenrod;
-
-        ion-icon {
-          font-size: 28px;
-          color: rgba(1, 25, 32, 0.596);
-        }
-      }
-    }
-  }
-  ion-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .accordion-container {
-    display: flex;
-    flex-direction: row; /* Ensures the accordions are laid out horizontally */
-    flex: 1;
-    justify-content: flex-end; /* Push the accordion towards the end of the toolbar */
-  }
-  
-  ion-accordion {
-    --ion-background-color: white !important;
-    background-color: white !important;
-    color: black !important;
-    flex: 1;
-    margin-right: 10px; /* Add space between the two accordions */
-    position: relative;
-  }
-  
-  ion-label {
-    color: black;
-  }
-  
-  /* Use ::part to target shadow DOM */
-  ion-item::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-    color: black !important;
-  }
-  
-  ion-list::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-  }
-  
-  /* Ensure padding section is white */
-  ion-padding::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-  }
-  
-  ion-accordion:last-child {
-    margin-right: 0;
-  }
-
-  
-  
-  
-
-}
-
-
 
 .search {
   display: fixed;
@@ -288,6 +473,7 @@ ion-header {
   --search-min-width: 150px;
   --border-radius: 50px;
   --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
+  background-color: white !important;
 }
 
 .search-box {
@@ -523,7 +709,7 @@ ion-header {
   display: flex;
   right: 0;
   top: 0;
-  margin-top: 120px;
+  margin-top: 130px;
   width: 150px;
   height: 100%;
   background: white;
@@ -531,7 +717,7 @@ ion-header {
   transform: translateX(100%);
   transition: transform 0.3s ease;
   transition-delay: 0.3s;
-  z-index:999;;
+  z-index:99999;
   font-weight: 800; /* Set font weight to regular */
   font-style: normal; /* Set font style to normal */
 }
