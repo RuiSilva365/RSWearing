@@ -237,12 +237,9 @@ toggleSidebar(visible: boolean) {
   }
 
   gotoItem(id: string) {
-    this.showLoader(); 
-    setTimeout(() => {
-      this.router.navigate(['/item', id]); 
-      this.hideLoader();
-    }, 2000);
+    this.router.navigate(['/item', id]); 
   }
+  
 
   navigateToSearch() {
     if (this.searchQuery.trim().length > 0) {
@@ -253,16 +250,14 @@ toggleSidebar(visible: boolean) {
       }, 2000);
     }
   }
+showLoader() {
+  const loaderContainer = document.querySelector('.loader-container');
+  loaderContainer?.classList.add('visible'); // Add 'visible' class to show the loader
+}
 
-  // Show the loader
-  showLoader() {
-    const loaderContainer = document.querySelector('.loader-container');
-    loaderContainer?.classList.remove('hidden');
-  }
-
-  // Hide the loader
-  hideLoader() {
-    const loaderContainer = document.querySelector('.loader-container');
-    loaderContainer?.classList.add('hidden');
-  }
+// Hide the loader
+hideLoader() {
+  const loaderContainer = document.querySelector('.loader-container');
+  loaderContainer?.classList.remove('visible'); // Remove 'visible' class to hide the loader
+}
 }

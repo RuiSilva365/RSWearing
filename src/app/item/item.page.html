@@ -1,6 +1,8 @@
 <head><meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+
+
 <ion-header>
   <div class="home-user-bar">
     <ion-toolbar>
@@ -57,17 +59,12 @@
 <ion-content>
   <div class="item-details">
     <div class="item-image">
-      <button class="arrow-left" (click)="prevImage()">&#10094;</button> <!-- Left Arrow -->
-      <img [src]="currentImageUrl" alt="{{ item?.title }}">
-      <button class="arrow-right" (click)="nextImage()">&#10095;</button> <!-- Right Arrow -->
-      <div class="additional-images">
-        <img *ngFor="let img of item?.additionalImages; let i = index" [src]="img" (click)="setImage(i)" [alt]="'Additional Image ' + (i+1)">
-      </div>
+      <canvas #threeCanvas></canvas> <!-- Add a reference to the canvas -->
     </div>
     <div class="item-info">
       <h1>{{ item?.title }}</h1>
       <p class="price">{{ item?.price }}</p> 
-      <p>Insert item description here. This text can be longer and include details about the product.</p>
+      <p>{{ item?.description }}</p>
       <div class="size-selector">
         <label for="size">Select size:</label>
         <select id="size" class="custom-select">
@@ -109,12 +106,8 @@
       </ul>
     </div>
   </div>
+
 </ion-content>
-
-
-
-
-
 
 
 
@@ -196,3 +189,17 @@
       <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
     </ul>
   </div>
+
+
+  <div class="loader-container-wait hidden">
+    <div class="loader-wait">
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+      <div class="loader-wait-square"></div>
+    </div>
+  </div>
+  

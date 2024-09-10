@@ -1,154 +1,118 @@
-
-@media (max-width: 768px) {
-  /* General settings for the mobile layout */
-  body, ion-content, ion-header, ion-toolbar, .header-content, .dropdown-container, .dropdown, .dropdown-menu {
+/* For smaller screens (media query) */
+@media screen and (max-width: 768px) {
+  body, ion-content, ion-header, ion-page {
     background-color: white !important;
-    color: black !important;
+    color: black;
+    --background: white !important;
   }
 
-  /* Header content adjustments */
-  .header-content {
+  .item-details {
+    flex-direction: column; /* Stack items vertically */
+    max-width: 95%;
+    align-items: center; /* Center items on the screen */
+    padding: 10px; /* Add some padding */
+  }
+
+  .item-image {
+    width: 100%; /* Make the image take full width */
+    max-width: 100%; /* Ensure it fits within the screen */
+    height: auto; /* Adjust height to maintain aspect ratio */
+    margin-bottom: 15px; /* Add space below the image */
     display: flex;
-    justify-content: space-between; /* Align logo to the left and buttons to the right */
-    align-items: center;
-    background-color: white !important;
+    justify-content: center; /* Center the image */
   }
 
-  /* Logo adjustments for mobile */
-  .brand-logo {
-    max-width: 60px; /* Further reduce the logo size */
-    height: auto;
-    margin-left: 5px; /* Ensure logo stays at the far left */
-  }
-
-  /* User actions (icons) adjustments for mobile */
-  .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 1px; /* Minimized gap between icons */
-    justify-content: flex-end;
-    padding-right: 0px; /* Reduced padding on the right */
-  }
-
-  .user-icon {
-    background-size: 0px 0px !important; /* adjust the background size to match the button size */
-  }
-  .btn {
-    width: 20px; 
-    height: 20px; 
-    box-sizing: border-box; /* include padding and border in width and height calculations */
-  }
-  #user-icon ion-icon {
-    font-size: 20px; /* adjust the font size to your liking */
-  }
-
-
-  .user-name {
-    font-size: 12px; /* Smaller text size for the username */
-    color: goldenrod;
-  }
-
-  /* Dropdown container adjustments */
-  .dropdown-container {
-    display: flex;
+  canvas {
     width: 100%;
-    justify-content: space-around;
-    padding: 0;
-    margin: 0; /* Ensure no extra spacing */
-    background-color: white !important;
+    max-width: 300px; /* Limit the max width */
+    height: 300px; /* Set a height for the 3D model */
+    object-fit: contain; /* Maintain aspect ratio */
+    border-radius: 10px; /* Add border-radius */
+    display: block;
+    margin: 0 auto; /* Center the canvas */
   }
 
-  /* Dropdown button adjustments */
-  .dropdown {
-    width: 50%;
-    text-align: center;
-    background-color: white !important;
-    margin: 0; /* No extra margins */
-    padding: 0; /* No extra padding */
-    box-sizing: border-box; /* Ensure borders/padding are within width */
-  }
-
-  /* Dropdown menu styling */
-  .dropdown-menu {
-    background-color: white !important;
-    color: black !important;
+  .item-info {
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    text-align: center; /* Center the text */
+    padding: 0 10px; /* Add padding for breathing room */
   }
 
-  .dropdown-menu ion-item {
-    padding: 5px 10px; /* Reduced padding inside dropdown items */
-    font-size: 12px; /* Smaller text for better fit */
-    color: black !important;
+  .product {
+    position: absolute;
+    width: 12px;
+    border-radius: 3px;
+    content: "";
+    left: 0px !important;
+    bottom: 23px;
+    opacity: 0;
+    z-index: 1;
+    fill: rgb(211, 211, 211);
   }
 
-  /* Search bar adjustments */
-  .search {
-    display: flex;
-    justify-content: center; /* Center the search bar */
-    align-items: center;
+  .hover-underline-animation:after {
+    content: "";
+    position: absolute;
     width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
     background-color: white !important;
-    padding: 5px 0; /* Reduced padding for less space usage */
-   
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
   }
 
-  .search-box {
-    width: 100%;
-    max-width: 180px; /* Limit maximum width on smaller screens */
-    height: 40px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 0 10px; /* Reduce padding inside the search box */
-    background: white !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right:200px !important;
+  .cta:hover .hover-underline-animation:after {
+    transform: scaleX(2);
+    transform-origin: bottom left;
   }
 
-  .input {
-    width: 100%; /* Full width inside the search box */
-    color: black !important;
-    background-color: transparent !important;
-    padding-left: 5px; /* Add padding inside the input */
-    font-size: 14px; /* Adjust text size for readability */
-  }
-
-  /* Services section adjustments */
   .services-section {
     display: flex;
     justify-content: space-evenly !important;
     align-items: center;
     text-align: center;
-    padding: 10px 0; /* Add padding for better spacing */
   }
 
   .service-item ion-icon {
-    max-width: 18px; /* Smaller icon size */
+    max-width: 20px;
     color: goldenrod;
   }
 
   .service-item p {
-    font-size: 10px; /* Reduced font size */
+    font-size: 10px !important;
     color: black;
-    max-width: 80px;
+    max-width: 100px;
   }
 
-  /* Footer section adjustments */
   .footer-section h3 {
-    font-size: 12px; /* Smaller font size for headers */
+    font-size: 14px;
   }
 
   .footer-section ul {
-    font-size: 10px; /* Smaller font size for list items */
+    font-size: 5px;
   }
 
-  /* Background settings */
-  ion-content, .background-content, ion-item::part(native), ion-list::part(native), ion-padding::part(native) {
-    background-color: white !important;
+  .user-name {
+    font-size: 16px;
+  }
+
+  ion-title.test-font {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  .brand-logo {
+    max-height: 50px;
   }
 }
+
+
+//END OF MEDIA QUERY
+//THIS CODE ABOVE IS TO MAKE SURE THE COLORS STAYS DESPISE DARK MODE
   ion-content {
     background-color: white !important; /* Force white background */
   }
@@ -935,7 +899,6 @@ footer.footer {
 footer.footer {
 background-color: white
 }
-
 .loader-container {
   position: fixed;
   top: 0;
@@ -947,6 +910,19 @@ background-color: white
   justify-content: center;
   align-items: center;
   z-index: 9999; /* Ensures the loader is above other elements */
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevent interaction when hidden */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.loader-container.visible {
+  opacity: 1; /* Make it visible */
+  pointer-events: all; /* Allow interaction */
+}
+
+.loader-container.hidden {
+  opacity: 0; /* Keep it hidden */
+  pointer-events: none; /* No interaction */
 }
 
 .loader {
