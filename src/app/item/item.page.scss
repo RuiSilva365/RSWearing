@@ -324,6 +324,7 @@ ion-header {
       border-radius: 15px; /* Apply the desired border-radius */
       display: block; /* Remove extra space below the canvas */
       margin: 0 auto; /* Center the canvas horizontally */
+      background: white;
     }
     .item-info {
       flex: 1; /* Take remaining space for details */

@@ -5,7 +5,12 @@
     color: black;
     --background: white !important;
   }
-
+/* Ensuring ion-list and ion-item inside dropdowns have proper background */
+.dropdown-menu ion-list, 
+.dropdown-menu ion-item {
+  --background: white !important; /* Force white background for ion components */
+  color: black; /* Set text color to black for readability */
+}
 
   .services-section {
     display: flex;
@@ -34,6 +39,7 @@
   }
 
   .user-name {
+    font-family: Copperplate, Papyrus, fantasy;
     font-size: 16px;
   }
 
@@ -106,6 +112,7 @@
 //_________________
 .header-content div, .dropdown-container div, .dropdown-menu div {
   background-color: white !important;
+  background: white;
 }
 
 .header-content {
@@ -124,15 +131,12 @@
 .user-actions {
   display: flex;
   align-items: center;
-  background-color: white;
-  background: white;
 
 }
 
 .user-icon {
-  background: white;
-  background-color: white;
-  background-color: white;
+  background: goldenrod;
+
 }
 #user-icon:hover {
   --background: #daa520; /* Slightly darker goldenrod on hover */
@@ -144,7 +148,32 @@
   gap: 0px; /* Adjust gap appropriately */
   flex: 1;
 }
+.dropdown-menu {
+  background-color: white !important; /* Ensure the dropdown menu background is white */
+  border: 1px solid #ddd; /* Optional: add a subtle border */
+  box-shadow: none !important; /* Remove any shadows */
+}
 
+ion-item {
+  --background: white !important; /* Force background color to white */
+  --ion-background-color: white !important; /* Make sure Ionic respects this */
+  --ion-background: white !important; /* Another Ionic variable */
+  color: black; /* Ensure text color is visible */
+}
+
+ion-list {
+  background-color: white !important; /* Ensure list background is white */
+  --background: white !important;
+  --ion-background-color: white !important;
+}
+
+.dropdown-menu ion-item {
+  background-color: white !important; /* Force each item in the dropdown to be white */
+}
+
+.dropdown-menu ion-item::part(native) {
+  background-color: white !important; /* For Ionic's shadow DOM parts */
+}
 /* Dropdown Menu Styling */
 .dropdown-container {
   display: flex;
@@ -166,6 +195,9 @@
 
 
 .accordion-header {
+  --background-color:white;
+  --background:white;
+  --color:black;
   margin-top: -10px;
   margin-left: -10px;
   background-color: white !important;
@@ -178,11 +210,17 @@
 }
 
 .accordion-header:hover {
+  --background-color:white;
+  --background:white;
+  --color:black;
   border-bottom-color: goldenrod; /* Matches brand colors on hover */
 }
 
 /* Dropdown Menu Styles */
 .dropdown-menu {
+  --background-color:white;
+  --background:white;
+  --color:black;
   position: absolute;
   top: 100%; /* Position below the button */
   left: 0;
@@ -200,12 +238,18 @@
 }
 
 .dropdown-menu.show {
+  --background-color:white;
+  --background:white;
+  --color:black;
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
 
 .dropdown-menu ion-item {
+  --background-color:white;
+  --background:white;
+  --color:black;
   padding: 8px 15px;
   font-size: 14px;
   color: black;
@@ -215,10 +259,16 @@
 }
 
 .dropdown-menu ion-item:last-child {
+  --background-color:white;
+  --background:white;
+  --color:black;
   border-bottom: none; /* Remove border from the last item */
 }
 
 .dropdown-menu ion-item:hover {
+  --background-color:white;
+  --background:white;
+  --color:black;
   background-color: #f5f5f5; /* Highlight on hover */
 }
 
@@ -361,8 +411,10 @@ ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(contai
 }
 ion-button {
   background-color: goldenrod;
+  background: goldenrod;
 
   ion-icon {
+    background: goldenrod;
     background-color: goldenrod;
     font-size: 20px;
     color: black;
@@ -372,9 +424,9 @@ ion-button {
 ion-button#user-icon {
   --background: goldenrod !important; /* Change to 'goldenrod' for a golden background */
   --color: black; /* Icon color inside the button */
-  --background-activated: white !important; /* Adjust activated (clicked) state */
-  --background-focused: white !important; /* Adjust focused state */
-  --background-hover: white !important; /* Adjust hover state */
+  --background-activated: darkgoldenrod!important; /* Adjust activated (clicked) state */
+  --background-focused: goldenrod!important; /* Adjust focused state */
+  --background-hover: darkgoldenrod !important; /* Adjust hover state */
   padding: 0; /* Ensure no extra padding */
   border-radius: 5px; /* Optional: Rounded corners */
   border: none; /* Remove any border */
@@ -637,7 +689,7 @@ search {
   display: flex;
   right: 0;
   top: 0;
-  margin-top: 130px;
+  margin-top: 150px;
   width: 150px;
   height: 100%;
   background: white;

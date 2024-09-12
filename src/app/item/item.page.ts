@@ -84,7 +84,12 @@ export class ItemPage implements OnInit {
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
   
     if (this.threeCanvas && this.threeCanvas.nativeElement) {
-      const renderer = new THREE.WebGLRenderer({ canvas: this.threeCanvas.nativeElement });
+      const renderer = new THREE.WebGLRenderer({ 
+        canvas: this.threeCanvas.nativeElement, 
+        alpha: true // Enable transparency
+      });
+      renderer.setClearColor(0x000000, 0);
+
   
       const parentElement = this.threeCanvas.nativeElement.parentElement;
       if (parentElement) {
@@ -107,13 +112,22 @@ export class ItemPage implements OnInit {
         this.hideLoader(); // Hide loader if item not found
         console.error('Error loading 3D model:', error);
       });
-  
-      const light = new THREE.AmbientLight(0x404040);
-      scene.add(light);
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-      directionalLight.position.set(0, 1, 1).normalize();
-      scene.add(directionalLight);
-  
+    // Add stronger ambient light
+    const ambientLight = new THREE.AmbientLight(0x404040, 3); // Increase intensity
+    scene.add(ambientLight);
+
+    // Add stronger directional lights for front and back
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 2);
+    directionalLight1.position.set(0, 1, 1).normalize();
+    scene.add(directionalLight1);
+
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2.position.set(-1, 1, -1).normalize(); // Light from the opposite side
+    scene.add(directionalLight2);
+
+    const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1.5);
+    directionalLight3.position.set(1, -1, 0).normalize(); // Light from below
+    scene.add(directionalLight3);
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.dampingFactor = 0.2;

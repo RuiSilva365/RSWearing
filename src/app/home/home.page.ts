@@ -171,26 +171,19 @@ export class HomePage implements OnInit {
       activeDropdown.classList.add('expanded');
     }
   }
-toggleSidebar(visible: boolean) {
-  // Clear any existing timeout to avoid conflicts
-  if (this.sidebarTimeout) {
-    clearTimeout(this.sidebarTimeout);
-    this.sidebarTimeout = null; // Reset the timeout variable
+  toggleSidebar() {
+    // Toggle the sidebar's open/close state
+    this.sidebarVisible = !this.sidebarVisible;
+    if (this.sidebarVisible==true) {
+      // Set a timeout to hide the sidebar after 3 seconds if it's still open
+      this.sidebarTimeout = setTimeout(() => {
+        this.sidebarVisible = false;
+        this.isSidebarOpen = false;
+        this.sidebarTimeout = null; // Ensure the timeout is cleared
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
   }
-
-  // Toggle the sidebar state
-  this.isSidebarOpen = visible;
-  this.sidebarVisible = visible;
-
-  if (visible) {
-    // Set a timeout to hide the sidebar after 3 seconds if it's still open
-    this.sidebarTimeout = setTimeout(() => {
-      this.sidebarVisible = false;
-      this.isSidebarOpen = false;
-      this.sidebarTimeout = null; // Ensure the timeout is cleared
-    }, 3000); // 3000 milliseconds = 3 seconds
-  }
-}
+  
 
   
   toggleDropdown(menu: string) {

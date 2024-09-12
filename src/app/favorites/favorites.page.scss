@@ -237,7 +237,7 @@ ion-header {
     margin-top:100px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.05);
+    background: white;
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;

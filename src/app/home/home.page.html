@@ -29,7 +29,7 @@
             </svg>
           </button>
 
-          <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+          <ion-button id="user-icon" (click)="toggleSidebar()">
             <ion-icon name="navigate-circle-sharp"></ion-icon>
           </ion-button>
         </div>
@@ -143,7 +143,7 @@
 </div>
 </div>
 
-<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar()" (mouseleave)="toggleSidebar()">
   <div class="sidebar-content">
     <h3>Go to:</h3>
     <div id="buttons-sidebar">
