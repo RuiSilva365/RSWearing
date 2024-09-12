@@ -6,22 +6,12 @@
     --background: white !important;
   }
   .loader-container-wait {
-    display: flex !important; /* Force display on mobile */
-    opacity: 1 !important; /* Show loader */
-    pointer-events: all !important; /* Allow interaction */
-  }
-
-
-.loader-container-wait.visible {
-  opacity: 1 !important; /* Show */
-  pointer-events: all !important; /* Allow interaction */
+    width: 80px; /* Adjust loader size for mobile */
+    height: 80px;
+    top: calc(50% - 40px); /* Centering vertically */
+    left: calc(50% - 40px); /* Centering horizontally */
+    z-index: 1000; /* Ensure it's still on top but not excessively high */
 }
-
-.loader-container-wait.hidden {
-  opacity: 0; /* Hide */
-  pointer-events: none; /* No interaction */
-}
-
   .footer {
     display: none !important; /* Ensure it takes precedence */
   }
@@ -34,17 +24,18 @@
   }
 
   .item-image {
+    margin-top: 20px ;
     width: 100%;
     max-width: 100%;
     height: auto;
-    margin-bottom: 15px;
     display: flex;
     justify-content: center;
   }
 
   canvas {
-    width: 98%; /* Adjust width to be almost full */
-    max-width: 380px; /* Increase the max width for larger display */
+    margin-top: 20px;
+    width: 99%; /* Adjust width to be almost full */
+    max-width: 400px; /* Increase the max width for larger display */
     height: 400px; /* Increase height for better visibility */
     object-fit: contain;
     border-radius: 10px;
@@ -119,7 +110,11 @@
   }
 
   .brand-logo {
-    max-height: 50px;
+    width: 80px; /* Adjust brand logo size */
+    height: auto;
+    max-width: 100%;  /* Ensure it doesn’t exceed the container */
+    object-fit: contain;  /* Prevent distortion */
+    margin: 0;
   }
 }
 
@@ -202,58 +197,58 @@ ion-header {
       z-index: 1000 !important; /* Adjust the value based on your stacking needs */
     }
     
-/* From Uiverse.io by boryanakrasteva */ 
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  position: relative;
-}
+  /* From Uiverse.io by boryanakrasteva */ 
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: relative;
+  }
 
-.btn::after {
-  content: "Favorites";
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
-  font-size: 15px;
-  color: black;
-  font-family:sans-serif;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.2s linear;
-  top: 115%;
-}
+    .btn::after {
+      content: "Favorites";
+      width: fit-content;
+      height: fit-content;
+      position: absolute;
+      font-size: 15px;
+      color: black;
+      font-family:sans-serif;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s linear;
+      top: 115%;
+    }
 
-.icon {
-  width: 50px;
-  height: 50px;
-  transition: 0.2s linear;
-}
+    .icon {
+      width: 50px;
+      height: 50px;
+      transition: 0.2s linear;
+    }
 
-.icon path {
-  fill: gray;
-  transition: 0.2s linear;
-}
+    .icon path {
+      fill: gray;
+      transition: 0.2s linear;
+    }
 
-.btn:hover > .icon {
-  transform: scale(1.2);
-}
+    .btn:hover > .icon {
+      transform: scale(1.2);
+    }
 
-.btn:hover > .icon path {
-  fill: goldenrod;
-}
+    .btn:hover > .icon path {
+      fill: goldenrod;
+    }
 
-.btn:hover::after {
-  visibility: visible;
-  opacity: 1;
-  top: 105%;
-}
+    .btn:hover::after {
+      visibility: visible;
+      opacity: 1;
+      top: 105%;
+    }
 
     ion-buttons {
       display: flex;
@@ -274,110 +269,110 @@ ion-header {
         }
       }
     }
-  }
-  ion-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+    }
+    ion-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
 
-  
-  }
-  ion-page {
-    background-color: white;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-  ion-toolbar {
-    position: relative;
-  }
+    
+    }
+    ion-page {
+      background-color: white;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    ion-toolbar {
+      position: relative;
+    }
 
   
 
  //____________________________________________________________CONTENT
 
 
-/* Container for the item details and image */
-.item-details {
-  display: flex; /* Use flexbox for side-by-side alignment */
-  justify-content: space-between; /* Ensure space between the image and details */
-  align-items: center; /* Align items vertically in the center */
-  width: 100%; /* Full width of the container */
-  margin: 0 auto; /* Center within the parent container if needed */
-  padding: 20px; /* Adjust padding as needed */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
+  /* Container for the item details and image */
+  .item-details {
+    display: flex; /* Use flexbox for side-by-side alignment */
+    justify-content: space-between; /* Ensure space between the image and details */
+    align-items: center; /* Align items vertically in the center */
+    width: 100%; /* Full width of the container */
+    margin: 0 auto; /* Center within the parent container if needed */
+    padding: 20px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
 
-/* Styling for the image container */
-.item-image {
-  flex: 0 0 35%; /* Set width to 35% of the container */
-  height: auto; /* Let the height adjust based on the content */
-  display: flex; /* Center the canvas inside */
-  justify-content: center;
-  align-items: center; /* Center items vertically */
-  margin: 0; /* Reset margin */
-  padding: 0; /* Remove padding */
-  box-sizing: border-box; /* Include padding in the total size */
-}
+  /* Styling for the image container */
+  .item-image {
+    flex: 0 0 35%; /* Set width to 35% of the container */
+    height: auto; /* Let the height adjust based on the content */
+    display: flex; /* Center the canvas inside */
+    justify-content: center;
+    align-items: center; /* Center items vertically */
+    margin: 0; /* Reset margin */
+    padding: 0; /* Remove padding */
+    box-sizing: border-box; /* Include padding in the total size */
+  }
 
-canvas {
-  width: 100%; /* Ensures the canvas fills the container width */
-  height: auto; /* Adjust the height automatically */
-  max-width: 500px; /* Set the max width to match your design */
-  border-radius: 15px; /* Apply the desired border-radius */
-  display: block; /* Remove extra space below the canvas */
-  margin: 0 auto; /* Center the canvas horizontally */
-}
-.item-info {
-  flex: 1; /* Take remaining space for details */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px; /* Space inside the details block */
-  box-sizing: border-box; /* Include padding in the height calculation */
-}
+    canvas {
+      width: 100%; /* Ensures the canvas fills the container width */
+      height: auto; /* Adjust the height automatically */
+      max-width: 500px; /* Set the max width to match your design */
+      border-radius: 15px; /* Apply the desired border-radius */
+      display: block; /* Remove extra space below the canvas */
+      margin: 0 auto; /* Center the canvas horizontally */
+    }
+    .item-info {
+      flex: 1; /* Take remaining space for details */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px; /* Space inside the details block */
+      box-sizing: border-box; /* Include padding in the height calculation */
+    }
 
   
 
 
-  .item-info {
+    .item-info {
 
-    
-    h1 {
-      color: black;
-      font-size: 34px;
-      font-style: italic;
-      font-family: 'Segoe UI';
-      margin-bottom: 20px;
-    }
-  
-    p {
-      color: gray;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    .price {
-        font-size: 24px;
-        font-weight: bold;
-        color: goldenrod; // Change color as per your design
-        margin-bottom: 10px;
+      
+      h1 {
+        color: black;
+        font-size: 34px;
+        font-style: italic;
+        font-family: 'Segoe UI';
+        margin-bottom: 20px;
       }
-  
     
-   /* Container styling */
-.size-selector {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-
-    label {
-        font-family: 'Chakra Petch', sans-serif; /* Matching font */
+      p {
+        color: gray;
         font-size: 16px;
-        margin-right: 10px;
-        color: goldenrod;
-    }
+        margin-bottom: 20px;
+      }
+      .price {
+          font-size: 24px;
+          font-weight: bold;
+          color: goldenrod; // Change color as per your design
+          margin-bottom: 10px;
+        }
+  
+        
+      /* Container styling */
+    .size-selector {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        label {
+            font-family: 'Chakra Petch', sans-serif; /* Matching font */
+            font-size: 16px;
+            margin-right: 10px;
+            color: goldenrod;
+        }
 }
 .button-container {
   display: flex;
@@ -563,6 +558,7 @@ canvas {
   position: relative;
   display: flex;
   gap: 25px;
+  margin-left: 14px;
 }
 
 .custom-ul li {
@@ -652,6 +648,76 @@ canvas {
   transition-delay: 0.25s;
 }
 
+
+
+//GIF PREVIEW MANAGEMENT
+.show-gif-link {
+  display: inline-block;
+  margin-top: 8px; /* Space below the title */
+  font-size: 14px;
+  color: goldenrod; /* Match your brand colors */
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.show-gif-link:hover {
+  color: darkgoldenrod; /* Change color on hover */
+}
+
+
+.gif-modal {
+  position: fixed;
+  bottom: 6%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999 !important; /* Increase this value to ensure it's above other elements */
+}
+
+.gif-modal-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 80%;
+  overflow: hidden;
+  z-index: 9999 !important;
+}
+
+.gif-modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+//END OF GIF STYLES
+
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+
+
 //_____________________________
 //SIDEBAR_____________________________________________
   #user-sidebar {
@@ -659,10 +725,10 @@ canvas {
     display: flex;
     right: 0;
     top: 0;
-    margin-top: 120px;
+    margin-top: 90px;
     width: 150px;
     height: 100%;
-    background: transparentize($color: white, $amount: 0.10);
+    background: white;
     color: white;
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -759,6 +825,7 @@ canvas {
     display: flex;
     justify-content:space-evenly;
     background-color: white;
+    padding-bottom: 5%;
 }
   .service-item {
     display: flex;
@@ -868,15 +935,26 @@ footer.footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.75); /* Dark overlay background */
-  display: block !important;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999 !important; /* Ensures the loader is above other elements */
-  opacity: 0; /* Initially hidden */
-  pointer-events: none; /* Prevent interaction when hidden */
-  transition: opacity 0.3s ease; /* Smooth transition */
+  z-index: 777777777777 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
+
+.loader-container-wait.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-container-wait.visible {
+  opacity: 1 !important;
+  pointer-events: all;
+}
+
 .loader-wait {
   position: relative;
   width: 96px;
@@ -920,17 +998,5 @@ footer.footer {
 .loader-wait-square:nth-of-type(5) { animation-delay: -7.1428571429s; }
 .loader-wait-square:nth-of-type(6) { animation-delay: -8.5714285714s; }
 .loader-wait-square:nth-of-type(7) { animation-delay: -10s; }
-
-
-
-.loader-container-wait.visible {
-  opacity: 1 !important; /* Show */
-  pointer-events: all; /* Allow interaction */
-}
-
-.loader-container-wait.hidden {
-  opacity: 0; /* Hide */
-  pointer-events: none; /* No interaction */
-}
 
 

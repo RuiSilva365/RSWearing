@@ -6,67 +6,6 @@
     --background: white !important;
   }
 
-  .item-details {
-    flex-direction: column; /* Stack items vertically */
-    max-width: 95%;
-    align-items: center; /* Center items on the screen */
-    padding: 10px; /* Add some padding */
-  }
-
-  .item-image {
-    width: 100%; /* Make the image take full width */
-    max-width: 100%; /* Ensure it fits within the screen */
-    height: auto; /* Adjust height to maintain aspect ratio */
-    margin-bottom: 15px; /* Add space below the image */
-    display: flex;
-    justify-content: center; /* Center the image */
-  }
-
-  canvas {
-    width: 100%;
-    max-width: 300px; /* Limit the max width */
-    height: 300px; /* Set a height for the 3D model */
-    object-fit: contain; /* Maintain aspect ratio */
-    border-radius: 10px; /* Add border-radius */
-    display: block;
-    margin: 0 auto; /* Center the canvas */
-  }
-
-  .item-info {
-    width: 100%;
-    text-align: center; /* Center the text */
-    padding: 0 10px; /* Add padding for breathing room */
-  }
-
-  .product {
-    position: absolute;
-    width: 12px;
-    border-radius: 3px;
-    content: "";
-    left: 0px !important;
-    bottom: 23px;
-    opacity: 0;
-    z-index: 1;
-    fill: rgb(211, 211, 211);
-  }
-
-  .hover-underline-animation:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: white !important;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-
-  .cta:hover .hover-underline-animation:after {
-    transform: scaleX(2);
-    transform-origin: bottom left;
-  }
 
   .services-section {
     display: flex;
@@ -106,8 +45,12 @@
   }
 
   .brand-logo {
-    max-height: 50px;
+    width: 80px; /* Adjust brand logo size */
+    height: auto;
+    max-width: 100%;  /* Ensure it doesn’t exceed the container */
+    object-fit: contain;  /* Prevent distortion */
   }
+
 }
 
 
@@ -181,16 +124,16 @@
 .user-actions {
   display: flex;
   align-items: center;
-  gap: 5px; /* Space between the user-related buttons */
-}
-#user-icon {
-  --background: black; /* Sets the background color */
-  background-size: 2 2px;
-  --color: white; /* Sets the icon color, change if needed */
-  border-radius: 50%; /* Optional: Make the button circular */
+  background-color: white;
+  background: white;
 
 }
 
+.user-icon {
+  background: white;
+  background-color: white;
+  background-color: white;
+}
 #user-icon:hover {
   --background: #daa520; /* Slightly darker goldenrod on hover */
 }
@@ -198,7 +141,7 @@
 .nav-buttons {
   display: flex;
   justify-content: center;
-  gap: 0px; /* Space between 'Men' and 'Kids' */
+  gap: 0px; /* Adjust gap appropriately */
   flex: 1;
 }
 
@@ -208,6 +151,8 @@
   width: 100%; /* Full width to match the header */
   background-color: white !important; /* Ensure it matches the header's background */
   border-bottom: 1px solid #ddd; /* Optional: add a border for separation */
+  background-clip: padding-box; /* Add this rule to make the background color apply to the gap */
+
 }
 
 .dropdown {
@@ -216,19 +161,20 @@
   width: 50%; /* Each dropdown takes 50% of the width */
   position: relative;
   text-align: center; /* Center the text within each button */
+
 }
 
 
 .accordion-header {
   margin-top: -10px;
-  margin-left:-10px;
+  margin-left: -10px;
   background-color: white !important;
   color:black;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   border-bottom: 2px solid black; /* Underline effect */
-  width: 99%; /* Full widthfor the button */
+  width: 100%; /* Full widthfor the button */
 }
 
 .accordion-header:hover {
@@ -289,10 +235,7 @@ ion-title.test-font {
   align-items: center;
 }
 
-ion-buttons {
-  display: flex;
-  align-items: center;
-}
+
 ion-content {
   --ion-background-color: white !important;
   background-color: white !important;
@@ -415,6 +358,27 @@ ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(contai
 
 .btn:hover > .icon path {
   fill: goldenrod;
+}
+ion-button {
+  background-color: goldenrod;
+
+  ion-icon {
+    background-color: goldenrod;
+    font-size: 20px;
+    color: black;
+  }
+}
+
+ion-button#user-icon {
+  --background: goldenrod !important; /* Change to 'goldenrod' for a golden background */
+  --color: black; /* Icon color inside the button */
+  --background-activated: white !important; /* Adjust activated (clicked) state */
+  --background-focused: white !important; /* Adjust focused state */
+  --background-hover: white !important; /* Adjust hover state */
+  padding: 0; /* Ensure no extra padding */
+  border-radius: 5px; /* Optional: Rounded corners */
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any box shadow */
 }
 
 
@@ -969,6 +933,3 @@ background-color: white
 .loader-square:nth-of-type(6) { animation-delay: -8.5714285714s; }
 .loader-square:nth-of-type(7) { animation-delay: -10s; }
 
-.hidden {
-  display: none;
-}

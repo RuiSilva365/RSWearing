@@ -1,7 +1,7 @@
-import { Component, contentChild, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DatabaseService } from '../../services/database.service'; // Import DatabaseService
+import { getAuth } from 'firebase/auth'; // Import Firebase Auth
 
 interface CartItem {
   title: string;
@@ -10,13 +10,13 @@ interface CartItem {
   imageUrl: string;
   description: string;
 }
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
   styleUrls: ['./checkout.page.scss'],
 })
 export class CheckoutPage implements OnInit {
-  // Property to track if the credit card form should be shown
   showCreditCardForm = true;
   cartItems: CartItem[] = [];
   sidebarVisible: boolean = false;
@@ -25,16 +25,45 @@ export class CheckoutPage implements OnInit {
     email: '',
   };
 
+  constructor(private databaseService: DatabaseService, private router: Router) { }
 
+  ngOnInit() {
+    this.loadCartItems(); // Load cart items on component initialization
+  }
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  // Method to load cart items for the authenticated user
+  loadCartItems() {
+    const auth = getAuth();
+    const user = auth.currentUser;
 
+    if (user) {
+      this.databaseService.getCartItems(user.uid).then((cartItems) => {
+        if (cartItems) {
+          this.cartItems = Object.keys(cartItems).map((key) => {
+            return {
+              ...cartItems[key],
+              id: key // Include item ID if needed
+            };
+          });
+        } else {
+          this.cartItems = []; // Handle the case where there are no items
+        }
+      }).catch((error) => {
+        console.error("Error loading cart items:", error);
+      });
+    } else {
+      console.log("User is not logged in.");
+      // Optionally, redirect to login or show an error message
+      this.router.navigate(['/login']);
+    }
+  }
 
-  ngOnInit() {}
+  get totalPrice(): number {
+    return this.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  }
 
-  // Method to handle payment option selection
+  // Existing methods remain unchanged...
   selectPaymentMethod(method: string) {
-    // Check if the selected method is not a credit card method
     if (method === 'paypal' || method === 'apple-pay' || method === 'google-pay') {
       this.showCreditCardForm = false;
     } else {
@@ -42,50 +71,43 @@ export class CheckoutPage implements OnInit {
     }
   }
 
-
   toggleSidebar(visible: boolean) {
     this.sidebarVisible = visible;
   }
 
   gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
-  }
-
-  gotoSettings() {
-    this.router.navigate(['/settings']);  // Use the injected Router
+    this.router.navigate(['/login']);
   }
 
   gotoProfile() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']);
   }
 
   gotoHome() {
-    this.router.navigate(['/home']);  // Use the injected Router
+    this.router.navigate(['/home']);
   }
 
   gotoFavorites() {
-    this.router.navigate(['/favorites']);  // Use the injected Router
+    this.router.navigate(['/favorites']);
   }
+
   gotoCart() {
-    this.router.navigate(['/cart']);  // Use the injected Router
+    this.router.navigate(['/cart']);
   }
-  
 
   gotoFacebookPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']);
   }
-  
+
   gotoInstagramPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']);
   }
 
   gotoTwitterPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']);
   }
 
   gotoTiktokPage() {
-    this.router.navigate(['/profile']);  // Use the injected Router
+    this.router.navigate(['/profile']);
   }
-
 }
-

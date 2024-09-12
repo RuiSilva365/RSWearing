@@ -6,6 +6,7 @@ import { DatabaseService } from '../../services/database.service';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { AlertController } from '@ionic/angular'; // Import AlertController
 
 @Component({
   selector: 'app-item',
@@ -16,11 +17,16 @@ export class ItemPage implements OnInit {
   @ViewChild('threeCanvas', { static: false }) threeCanvas!: ElementRef<HTMLCanvasElement>;
   item: any;
   allItems: any[] = [];
+  gifUrl: string | null = null;
+  showGifModal: boolean = false;
   sidebarVisible: boolean = false;
   subMenuVisible: string | null = null;
   currentImageUrl: string = '';
   currentImageIndex: number = 0;
   isLoggedIn: boolean = false;
+  message: string = ''; // For general messages
+  cartMessage: string = '';
+  favoriteMessage: string = ''; // For favorite-specific messages
   user: any = {
     name: '',
     email: '',
@@ -30,7 +36,8 @@ export class ItemPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -136,20 +143,25 @@ export class ItemPage implements OnInit {
     this.currentImageUrl = this.item?.additionalImages[index] || this.item?.imageUrl;
   }
 
-  prevImage() {
-    if (this.item?.additionalImages) {
-      this.currentImageIndex = (this.currentImageIndex > 0) ? this.currentImageIndex - 1 : this.item.additionalImages.length - 1;
-      this.currentImageUrl = this.item.additionalImages[this.currentImageIndex];
+
+  
+
+  showGif(event: Event) {
+    event.preventDefault(); // Prevent default link behavior
+  
+    // Check if the item has a GIF URL and set it
+    if (this.item?.imageGif) {
+      this.gifUrl = this.item.imageGif;
+      this.showGifModal = true; // Show the modal
+    } else {
+      console.error("GIF URL not found in the item data.");
     }
   }
-
-  nextImage() {
-    if (this.item?.additionalImages) {
-      this.currentImageIndex = (this.currentImageIndex < this.item.additionalImages.length - 1) ? this.currentImageIndex + 1 : 0;
-      this.currentImageUrl = this.item.additionalImages[this.currentImageIndex];
-    }
+  
+  // Method to close the GIF modal
+  closeGifModal() {
+    this.showGifModal = false;
   }
-
 
   showLoader() {
     const loaderContainer = document.querySelector('.loader-container-wait');
@@ -157,6 +169,8 @@ export class ItemPage implements OnInit {
       loaderContainer.classList.add('visible');
       loaderContainer.classList.remove('hidden');
       console.log('Loader shown', loaderContainer);
+    } else {
+      console.warn('Loader container not found');
     }
   }
   
@@ -166,10 +180,90 @@ export class ItemPage implements OnInit {
       loaderContainer.classList.remove('visible');
       loaderContainer.classList.add('hidden');
       console.log('Loader hidden', loaderContainer);
+    } else {
+      console.warn('Loader container not found');
     }
   }
   
 
+  // Method to add item to favorites
+addToFavorites() {
+  if (this.isLoggedIn) {
+    // Make sure to get the user's UID correctly
+    const userId = this.authService.getCurrentUserId(); // Assuming this method returns the user ID as a string
+    if (userId && this.item && this.item.id) {
+      this.databaseService.addFavoriteItem(userId, this.item.id).then(() => {
+        this.favoriteMessage = `${this.item.title} added to favorites.`;
+        setTimeout(() => {
+          this.favoriteMessage = ''; // Clear message after a few seconds
+        }, 3000); // 3 seconds delay
+      }).catch((error) => {
+        console.error("Error adding favorite:", error);
+      });
+    } else {
+      console.error('User ID or item ID is missing.');
+    }
+  } else {
+    this.showLoginAlert(); // Show alert if not logged in
+  }
+}
+
+
+addToCart() {
+  const userId = this.authService.getCurrentUserId(); // Get the current user ID
+
+  if (userId) {
+    if (this.item && this.item.id) {
+      const cartItemData = {
+        title: this.item.title,
+        price: this.item.price,
+        quantity: 1, // Default quantity
+        imageUrl: this.item.imageUrl,
+        description: this.item.description
+      };
+
+      this.databaseService.addToCart(userId, this.item.id, cartItemData).then(() => {
+        this.cartMessage = `${this.item.title} added to cart!`;  // Set the cart message
+        // Clear the message after a few seconds
+        setTimeout(() => this.cartMessage = '', 3000);
+      }).catch((error) => {
+        console.error("Error adding item to cart:", error);
+      });
+    } else {
+      console.error('Item or item ID is missing.');
+    }
+  } else {
+    this.presentAlert('Login Required', 'Please log in to add items to your cart.', [
+      {
+        text: 'Login',
+        handler: () => {
+          this.router.navigate(['/login']);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+    ]);
+  }
+}
+
+async presentAlert(header: string, message: string, buttons: any[]) {
+  const alert = await this.alertController.create({
+    header: header,
+    message: message,
+    buttons: buttons
+  });
+  await alert.present();
+}
+  async showLoginAlert() {
+    const alert = await this.alertController.create({
+      header: 'Login Required',
+      message: 'Please log in to add items to your favorites.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
     // Toggle the sidebar
   toggleSidebar(visible: boolean) { this.sidebarVisible = visible; }
@@ -183,4 +277,5 @@ export class ItemPage implements OnInit {
   gotoProfile() { this.router.navigate(['/profile']); }
   gotoHome() { this.router.navigate(['/home']); }
   gotoCart() { this.router.navigate(['/cart']); }
+  gotoFavorites() { this.router.navigate(['/favorites']); }
 }

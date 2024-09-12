@@ -79,7 +79,15 @@ ion-header {
        color: black;
      }
      
-     
+     .success-message {
+      color: green;
+      font-weight: bold;
+    }
+    
+    .error-message {
+      color: red;
+      font-weight: bold;
+    }
      
  /* From Uiverse.io by boryanakrasteva */ 
  .btn {

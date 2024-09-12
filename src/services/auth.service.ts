@@ -48,6 +48,10 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+  getCurrentUserId(): string | null {
+    const auth = getAuth();
+    return auth.currentUser ? auth.currentUser.uid : null; // Return UID if logged in
+  }
   // Getter for logout flag
   get logoutFlag(): boolean {
     return this._logoutFlag;

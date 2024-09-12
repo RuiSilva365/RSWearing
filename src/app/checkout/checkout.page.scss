@@ -16,16 +16,35 @@
     background-color: white !important;
   }
   
-  .card {
-    display: none;
-  }
 
   .modal {
-    width: 100%; /* Full width on smaller devices */
-    max-height: 50vh !important; /* Ensure modal doesn't exceed 90% of viewport height */
-    padding: 10px;
+    position: relative; /* Use relative to stack normally */
+    width: 90%; /* Adjust width for better alignment */
+    max-height: 50vh !important; /* Ensure modal doesn't exceed viewport height */
+    margin: 0 auto; /* Center the modal horizontally */
     overflow-y: auto; /* Allow scrolling for overflow content */
+    z-index: 10;
+  }
+ .card.cart {
+  position: absolute; /* Use relative to stack below the modal */
+  top:90%;
+  width: 90%; /* Adjust width for better alignment */
+  max-width: 90vw; /* Ensure it fits well on mobile */
+  background-color: white;
+  color:black;
+  border-radius: 12px;
+  border: 1px solid goldenrod;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center the cart horizontally */
+  margin-left: 14px !important;
+  margin-bottom: 20% !important; /* Add space above the cart */
+  z-index: 10;
+
+  .span{
+    color: black;
+  }
 }
+    
 
 .payment-option-btn {
   padding: 8px 16px; /* Reduce padding for smaller screens */
@@ -200,68 +219,7 @@ ion-header {
       }
     }
   }
-  .accordion-container {
-    background-color: white !important;
-    color:black;
-    display: flex;
-    justify-content: space-between; /* Space out the two accordions */
-    position: relative; 
-    width: 100%;
-  }
-  
-  ion-accordion {
-    --ion-background-color: white !important;
-    background-color: white !important;
-    color: black !important;
-    flex: 1;
-    margin-right: 10px; /* Add space between the two accordions */
-    position: relative;
-  }
-  
-  ion-label {
-    color: goldenrod;
-  }
-  
-  /* Use ::part to target shadow DOM */
-  ion-item::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-    color: black !important;
-  }
-  
-  ion-list::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-  }
-  
-  /* Ensure padding section is white */
-  ion-padding::part(native) {
-    --ion-background-color: white !important;
-    background-color: white !important;
-  }
-  
-  ion-item::part(native),
-ion-list::part(native),
-ion-accordion::part(native) {
-  border: none !important;
-  box-shadow: none !important;
-  background-color: white !important;
-}
-
-ion-item,
-ion-list,
-ion-accordion {
-  border: none !important;
-  box-shadow: none !important;
-  background-color: white !important;
-}
-  ion-accordion:last-child {
-    margin-right: 0;
-  }
-
-  .card {
-    display: none;
-  }
+ 
   
   
   
@@ -278,7 +236,7 @@ ion-toolbar {
 
 .modal {
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%; /* Ensure the modal fits within the screen width on smaller devices */
@@ -289,7 +247,6 @@ ion-toolbar {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   border: 1px solid goldenrod;
-  z-index: 1000;
   overflow-y: auto; /* Add scrolling when content overflows */
   box-sizing: border-box; /* Make sure padding is included in width and height */
 }
@@ -446,6 +403,34 @@ ion-toolbar {
     display: flex;
     align-items: center;
   }
+
+  .product-image {
+    width: 60px;  /* Set the width */
+    height: 60px; /* Set the height */
+    object-fit: cover; /* Ensures the image scales nicely without distortion */
+    border-radius: 8.25px; /* Matches the SVG's border-radius */
+    margin-right: 10px; /* Add some spacing between the image and the text */
+  }
+
+  .total-price {
+    margin-top: 10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between; /* Aligns total text and value on opposite sides */
+    font-weight: bold; /* Makes the text bold */
+    font-size: 1.1em; /* Slightly increases font size */
+  }
+  
+  .total-price .total {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .total-price hr {
+    margin: 10px 0; /* Optional margin around the separating line */
+  }
+  
 
   #user-sidebar {
     position: fixed;

@@ -1,65 +1,188 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';  // Import both ActivatedRoute and Router
+import { DatabaseService } from '../../services/database.service'; 
+import { getAuth } from 'firebase/auth'; 
+import { AlertController } from '@ionic/angular'; 
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
 })
-export class FavoritesPage {
+export class FavoritesPage implements OnInit {
   favoriteItems: { id: string; name: string; price: number; imageUrl: string }[] = [];
   sidebarVisible: boolean = false;
   user: any = {
     name: '',
     email: '',
   };
+  cartMessage: string = ''; // To display cart messages
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+    private databaseService: DatabaseService,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     // Load favorite items from storage (or service)
     this.loadFavoriteItems();
   }
+
   toggleSidebar(visible: boolean) {
     this.sidebarVisible = visible;
   }
+
   loadFavoriteItems() {
-    // This is where you'd load the user's saved favorites from a service or local storage
-    // For now, we'll hardcode some data
-    this.favoriteItems = [
-      { id: '1', name: 'Black Hoodie', price: 50, imageUrl: '../../assets/examples/blackhoodie.png' },
-      { id: '2', name: 'Beige Hoodie', price: 60, imageUrl: '../../assets/examples/caramelhoodie.png' },
-      { id: '3', name: 'Gray T-Shirt', price: 20, imageUrl: '../../assets/examples/graytshirt.png' }
-    ];
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      const userId = user.uid; // Get the actual user ID
+      this.databaseService.getUserFavorites(userId).then((favoriteItemIds) => {
+        if (favoriteItemIds.length === 0) {
+          this.presentAlert('No Favorites', 'Your favorites list is empty.', [
+            {
+              text: 'Go to Shop',
+              handler: () => {
+                this.router.navigate(['/shop']); // Adjust this path as needed
+              }
+            },
+            {
+              text: 'Go Home',
+              handler: () => {
+                this.router.navigate(['/home']);
+              }
+            }
+          ]);
+        } else {
+          this.favoriteItems = [];
+          favoriteItemIds.forEach((itemId) => {
+            this.databaseService.getItemData(itemId).then((itemData) => {
+              if (itemData) {
+                this.favoriteItems.push({
+                  id: itemId,
+                  name: itemData.title,
+                  price: parseFloat(itemData.price.replace('€', '')), // Adjust based on your data format
+                  imageUrl: itemData.imageUrl,
+                });
+              }
+            });
+          });
+        }
+      }).catch((error) => {
+        console.error("Error loading favorite items:", error);
+      });
+    } else {
+      this.presentAlert('Not Logged In', 'You are not logged in.', [
+        {
+          text: 'Login',
+          handler: () => {
+            this.router.navigate(['/login']);
+          }
+        },
+        {
+          text: 'Go Home',
+          handler: () => {
+            this.router.navigate(['/home']);
+          }
+        }
+      ]);
+    }
   }
-  removeFromFavorites(item: any) {
-    this.favoriteItems = this.favoriteItems.filter(favItem => favItem.id !== item.id);
+
+  // Method to present an alert
+  async presentAlert(header: string, message: string, buttons: any[]) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: buttons
+    });
+    await alert.present();
+  }
+
+  addToFavorites(item: { id: string; name: string; price: number; imageUrl: string }) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+  
+    if (user) {
+      const userId = user.uid;
+      this.databaseService.addFavoriteItem(userId, item.id).then(() => {
+        console.log(`${item.name} added to favorites.`);
+      }).catch((error) => {
+        console.error("Error adding favorite:", error);
+      });
+    } else {
+      console.log("User is not logged in.");
+    }
+  }
+  
+  removeFromFavorites(item: { id: string; name: string; price: number; imageUrl: string }) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+  
+    if (user) {
+      const userId = user.uid;
+      this.databaseService.removeFavoriteItem(userId, item.id).then(() => {
+        this.favoriteItems = this.favoriteItems.filter(favItem => favItem.id !== item.id);
+        console.log(`${item.name} removed from favorites.`);
+      }).catch((error) => {
+        console.error("Error removing favorite:", error);
+      });
+    } else {
+      console.log("User is not logged in.");
+    }
+  }
+
+  addToCart(item: { id: string; name: string; price: number; imageUrl: string }) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      const userId = user.uid;
+      const cartItemData = {
+        title: item.name,
+        price: item.price,
+        quantity: 1, // Default quantity
+        imageUrl: item.imageUrl,
+        description: '' // Add a description if available
+      };
+
+      this.databaseService.addToCart(userId, item.id, cartItemData).then(() => {
+        this.cartMessage = `${item.name} added to cart!`;  // Set the cart message
+        // Clear the message after a few seconds
+        setTimeout(() => this.cartMessage = '', 3000);
+      }).catch((error) => {
+        console.error("Error adding item to cart:", error);
+      });
+    } else {
+      this.presentAlert('Login Required', 'Please log in to add items to your cart.', [
+        {
+          text: 'Login',
+          handler: () => {
+            this.router.navigate(['/login']);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]);
+    }
   }
 
   goToItemDetail(itemId: string) {
     this.router.navigate([`/item/${itemId}`]);
   }
 
-  addToCart(item: { id: string; name: string; price: number; imageUrl: string }) {
-    console.log(`Adding ${item.name} to cart.`);
-  }
-  gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
-  }
-
-  gotoSettings() {
-    this.router.navigate(['/settings']);  // Use the injected Router
-  }
-
-  gotoProfile() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-
-  gotoHome() {
-    this.router.navigate(['/home']);  // Use the injected Router
-  }
-  gotoSearch(searchText: string) {
-    this.router.navigate(['/search'], { queryParams: { query: searchText } });
-  }
-
+  // Navigation functions
+  gotoLogout() { this.router.navigate(['/login']); }
+  gotoSettings() { this.router.navigate(['/settings']); }
+  gotoProfile() { this.router.navigate(['/profile']); }
+  gotoHome() { this.router.navigate(['/home']); }
+  gotoCart() { this.router.navigate(['/cart']); }
+  gotoSearch(searchText: string) { this.router.navigate(['/search'], { queryParams: { query: searchText } }); }
 }

@@ -17,7 +17,7 @@
         
 
 
-        <button class="btn">
+        <button class="btn" (click)="gotoFavorites()">
           <svg
             class="icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -56,13 +56,11 @@
       <label class="title">Cart:</label>
       <div class="products">
         <div class="product" *ngFor="let item of cartItems">
-          <svg fill="none" viewBox="0 0 60 60" height="60" width="60" xmlns="http://www.w3.org/2000/svg">
-            <rect fill="#FFF6EE" rx="8.25" height="60" width="60"></rect>
-            <!-- Product icon here -->
-          </svg>
+          <a [routerLink]="['/item', item.id]" class="item-image">
+            <img [src]="item.imageUrl" alt="Product Image" class="product-image" />
+          </a>
           <div>
-            <span>{{ item.title }}</span>
-            <p>{{ item.description }}</p>
+            <a [routerLink]="['/item', item.id]" class="item-title">{{ item.title }}</a>
           </div>
           <div class="quantity">
             <button (click)="decreaseQuantity(item)">
@@ -77,6 +75,9 @@
               </svg>
             </button>
           </div>
+          <button class="delete-button" (click)="removeItem(item)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
           <label class="price small">{{ item.price | currency }}</label>
         </div>
       </div>
@@ -85,12 +86,13 @@
     <!-- Coupon Section -->
     <div class="card coupons">
       <label class="title">Coupons:</label>
-      <form class="form">
-        <input type="text" placeholder="Apply your coupons here" class="input_field_discount">
-        <button class="coupon_btn" (click)="applyCoupons(1)">Apply</button>
+      <form class="form" (submit)="applyCoupons(); $event.preventDefault()">
+        <input type="text" [(ngModel)]="couponInput" placeholder="Apply your coupons here" class="input_field_discount" name="coupon">
+        <button type="submit" class="coupon_btn">Apply</button>
       </form>
+      <p *ngIf="couponMessage" [ngStyle]="{'color': couponMessageColor}">{{ couponMessage }}</p>
     </div>
-
+    
     <!-- Checkout Section -->
     <div class="card checkout">
       <label class="title">Checkout:</label>
@@ -105,7 +107,7 @@
         </div>
         <div class="detail-row">
           <span class="description">Shipping fees:</span>
-          <span class="value">{{ 3.33 | currency }}</span>
+          <span class="value">{{ shippingFees | currency }}</span>
         </div>
       </div>
       

@@ -49,35 +49,6 @@
   </div>
 
 
-  <ion-accordion-group class="accordion-container">
-    <ion-accordion value="men">
-      <ion-item slot="header" color="white">
-        <ion-label>Men</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-list>
-          <ion-item [routerLink]="['/search']">Jackets</ion-item>
-          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
-          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
-          <ion-item [routerLink]="['/search']">Jeans</ion-item>
-        </ion-list>
-      </div>
-    </ion-accordion>
-  
-    <ion-accordion value="kids">
-      <ion-item slot="header" color="white">
-        <ion-label>Kids</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-list>
-          <ion-item [routerLink]="['/search']">T-shirts</ion-item>
-          <ion-item [routerLink]="['/search']">Sweatshirts</ion-item>
-          <ion-item [routerLink]="['/search']">Jeans</ion-item>
-          <ion-item [routerLink]="['/search']">Jackets</ion-item>
-        </ion-list>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
   
 </ion-header>
 
@@ -179,24 +150,31 @@
     <button class="purchase--btn">Checkout</button>
   </form>
 </div>
-
-<!-- Cart Items -->
-<div class="card cart">
-  <label class="title">Your cart <ion-icon name="cart-outline"></ion-icon></label>
-  <div class="products">
-    <div class="product" *ngFor="let item of cartItems">
-      <svg fill="none" viewBox="0 0 60 60" height="60" width="60" xmlns="http://www.w3.org/2000/svg">
-        <rect fill="#FFF6EE" rx="8.25" height="60" width="60"></rect>
-        <!-- Product icon here -->
-      </svg>
-      <div>
-        <span>{{ item.title }}</span>
-        <p>{{ item.description }}</p>
+<div class="modal-left">
+  <!-- Cart Items -->
+  <div class="card cart">
+    <label class="title">Your cart <ion-icon name="cart-outline"></ion-icon></label>
+    <div class="products">
+      <div class="product" *ngFor="let item of cartItems">
+        <img [src]="item.imageUrl" alt="Product Image" class="product-image" />
+        <div>
+          <span>{{ item.title }}</span>
+          <span>Quantity: {{ item.quantity }}</span> <!-- Display quantity -->
+        </div>
+        <label class="price small">{{ item.price | currency }}</label>
       </div>
-      <label class="price small">{{ item.price | currency }}</label>
+    </div>
+    <!-- Total Price Section -->
+    <div class="total-price">
+      <hr> <!-- Optional line to separate items from total -->
+      <div class="total">
+        <span>Total:</span>
+        <span>{{ totalPrice | currency }}</span> <!-- Display total price -->
+      </div>
     </div>
   </div>
 </div>
+
 </ion-content>
 
 
