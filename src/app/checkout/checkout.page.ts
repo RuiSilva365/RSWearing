@@ -9,6 +9,7 @@ interface CartItem {
   quantity: number;
   imageUrl: string;
   description: string;
+  size: string;
 }
 
 @Component({

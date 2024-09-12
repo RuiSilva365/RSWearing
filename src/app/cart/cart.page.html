@@ -61,6 +61,7 @@
           </a>
           <div>
             <a [routerLink]="['/item', item.id]" class="item-title">{{ item.title }}</a>
+            <p>Size: {{ item.size }}</p> <!-- Display the size of the item -->
           </div>
           <div class="quantity">
             <button (click)="decreaseQuantity(item)">

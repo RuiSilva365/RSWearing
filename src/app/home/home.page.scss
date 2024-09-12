@@ -424,9 +424,9 @@ ion-button {
 ion-button#user-icon {
   --background: goldenrod !important; /* Change to 'goldenrod' for a golden background */
   --color: black; /* Icon color inside the button */
-  --background-activated: darkgoldenrod!important; /* Adjust activated (clicked) state */
+  --background-activated: goldenrod!important; /* Adjust activated (clicked) state */
   --background-focused: goldenrod!important; /* Adjust focused state */
-  --background-hover: darkgoldenrod !important; /* Adjust hover state */
+  --background-hover: goldenrod !important; /* Adjust hover state */
   padding: 0; /* Ensure no extra padding */
   border-radius: 5px; /* Optional: Rounded corners */
   border: none; /* Remove any border */

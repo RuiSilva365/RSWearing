@@ -13,6 +13,8 @@ interface CartItem {
   quantity: number;
   imageUrl: string;
   description: string;
+  size: string; // Add the size property
+
 }
 
 @Component({

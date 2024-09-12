@@ -27,6 +27,7 @@ export class ItemPage implements OnInit {
   message: string = ''; // For general messages
   cartMessage: string = '';
   favoriteMessage: string = ''; // For favorite-specific messages
+  selectedSize: string = 'S'; 
   user: any = {
     name: '',
     email: '',
@@ -200,14 +201,19 @@ export class ItemPage implements OnInit {
   }
   
 
-  // Method to add item to favorites
+// In item.page.ts
 addToFavorites() {
   if (this.isLoggedIn) {
-    // Make sure to get the user's UID correctly
     const userId = this.authService.getCurrentUserId(); // Assuming this method returns the user ID as a string
     if (userId && this.item && this.item.id) {
-      this.databaseService.addFavoriteItem(userId, this.item.id).then(() => {
-        this.favoriteMessage = `${this.item.title} added to favorites.`;
+      const favoriteItemData = {
+        ...this.item,  // Include all item data
+        size: this.selectedSize,  // Include selected size
+      };
+
+      // Pass the additional data to the service
+      this.databaseService.addFavoriteItem(userId, this.item.id, favoriteItemData).then(() => {
+        this.favoriteMessage = `${this.item.title} (Size: ${this.selectedSize}) added to favorites.`;
         setTimeout(() => {
           this.favoriteMessage = ''; // Clear message after a few seconds
         }, 3000); // 3 seconds delay
@@ -223,6 +229,8 @@ addToFavorites() {
 }
 
 
+
+// Method to add item to cart
 addToCart() {
   const userId = this.authService.getCurrentUserId(); // Get the current user ID
 
@@ -233,11 +241,12 @@ addToCart() {
         price: this.item.price,
         quantity: 1, // Default quantity
         imageUrl: this.item.imageUrl,
-        description: this.item.description
+        description: this.item.description,
+        size: this.selectedSize, // Add selected size
       };
 
       this.databaseService.addToCart(userId, this.item.id, cartItemData).then(() => {
-        this.cartMessage = `${this.item.title} added to cart!`;  // Set the cart message
+        this.cartMessage = `${this.item.title} (Size: ${this.selectedSize}) added to cart!`;  // Set the cart message
         // Clear the message after a few seconds
         setTimeout(() => this.cartMessage = '', 3000);
       }).catch((error) => {
@@ -261,6 +270,7 @@ addToCart() {
     ]);
   }
 }
+
 
 async presentAlert(header: string, message: string, buttons: any[]) {
   const alert = await this.alertController.create({

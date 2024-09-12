@@ -104,9 +104,9 @@ export class DatabaseService {
   //________________FAVORITES PART_______________________
 
 // Add favorite item for a user
-addFavoriteItem(userId: string, itemId: string): Promise<void> {
+addFavoriteItem(userId: string, itemId: string, favoriteItemData: any): Promise<void> {
   const favoriteRef = ref(this.db, `users/${userId}/favorites/${itemId}`);
-  return set(favoriteRef, true);
+  return set(favoriteRef, favoriteItemData); // Store the complete item data
 }
 
 // Remove favorite item for a user

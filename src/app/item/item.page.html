@@ -75,10 +75,9 @@
         </div>
       </div>
       <p class="price">{{ item?.price }} €</p> 
-      <p>{{ item?.description }}</p>
       <div class="size-selector">
         <label for="size">Select size:</label>
-        <select id="size" class="custom-select">
+        <select id="size" class="custom-select" [(ngModel)]="selectedSize">
           <option value="S">S</option>
           <option value="M">M</option>
           <option value="L">L</option>

@@ -159,6 +159,7 @@
         <img [src]="item.imageUrl" alt="Product Image" class="product-image" />
         <div>
           <span>{{ item.title }}</span>
+          <span>Size: {{ item.size }}</span> <!-- Display the size of the item -->
           <span>Quantity: {{ item.quantity }}</span> <!-- Display quantity -->
         </div>
         <label class="price small">{{ item.price | currency }}</label>

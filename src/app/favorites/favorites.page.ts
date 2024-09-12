@@ -104,22 +104,7 @@ export class FavoritesPage implements OnInit {
     await alert.present();
   }
 
-  addToFavorites(item: { id: string; name: string; price: number; imageUrl: string }) {
-    const auth = getAuth();
-    const user = auth.currentUser;
-  
-    if (user) {
-      const userId = user.uid;
-      this.databaseService.addFavoriteItem(userId, item.id).then(() => {
-        console.log(`${item.name} added to favorites.`);
-      }).catch((error) => {
-        console.error("Error adding favorite:", error);
-      });
-    } else {
-      console.log("User is not logged in.");
-    }
-  }
-  
+
   removeFromFavorites(item: { id: string; name: string; price: number; imageUrl: string }) {
     const auth = getAuth();
     const user = auth.currentUser;
