@@ -2,17 +2,55 @@
   <meta name="color-scheme" content="light">
 
 </head>
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar()" (mouseleave)="toggleSidebar()">
+  <div class="sidebar-content">
+    <div class="user-info">
+      <img [src]="user.avatarUrl" alt="User Avatar" class="user-avatar">
+      <p class="user-name">{{ user.name }}</p>
+    </div>
+    <h3>Go to:</h3>
+    <div id="buttons-sidebar">
+      <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoSearch('Trending')">Trending</button>
+      <button (click)="gotoSearch('Campaigns')">Campaigns</button>
+      <button (click)="gotoSearch('')">Search</button>
+      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
+      <div class="logo-icon">
+        <img src="assets/icon/logo.png"  />
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <ion-header>
   <div class="home-user-bar">
     <ion-toolbar>
       <div class="header-content">
-        
-          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
-        
+          <div class= "logo-head-container">
+            <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+          </div>
 
         <!-- Group for username, cart, favorites, and navigation -->
         <div class="user-actions">
-          <span class="user-name">{{ user.name }}</span>
+          <div class="search">
+            <div class="search-box">
+              <div class="search-field">
+                <input [(ngModel)]="searchQuery" placeholder="Search..." class="input" type="text">
+                <div class="search-box-icon">
+                  <button class="btn-icon-content" (click)="navigateToSearch()">
+                    <i class="search-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512">
+                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                      </svg>
+                    </i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <button data-quantity="0" class="btn-cart" (click)="gotoCart()">
             <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
               <title>icon-cart</title>
@@ -75,22 +113,6 @@
 
 
 
-<div class="search">
-  <div class="search-box">
-    <div class="search-field">
-      <input [(ngModel)]="searchQuery" placeholder="Search..." class="input" type="text">
-      <div class="search-box-icon">
-        <button class="btn-icon-content" (click)="navigateToSearch()">
-          <i class="search-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 512">
-              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
-            </svg>
-          </i>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
   <div class="new-collection-section" 
   (mouseenter)="toggleHover('new-collection', true)" 
@@ -143,19 +165,6 @@
 </div>
 </div>
 
-<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar()" (mouseleave)="toggleSidebar()">
-  <div class="sidebar-content">
-    <h3>Go to:</h3>
-    <div id="buttons-sidebar">
-      <button (click)="gotoProfile()">Profile</button>
-      <button (click)="gotoSearch('Trending')">Trending</button>
-      <button (click)="gotoSearch('Campaigns')">Campaigns</button>
-      <button (click)="gotoSearch('')">Search</button>
-      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
-      <img src="assets/icon/logo.png" alt="logo Icon" />
-    </div>
-  </div>
-</div>
 
 
 <div class="services-section">

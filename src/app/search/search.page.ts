@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { DatabaseService } from '../../services/database.service'; 
-import { getAuth } from 'firebase/auth'; 
+import { DatabaseService } from '../../services/database.service'; // Import your DatabaseService
+import { getAuth } from 'firebase/auth'; // Import getAuth from Firebase
 
 interface SearchResultItem {
   title: string;
@@ -30,37 +29,61 @@ export class SearchPage implements OnInit {
   priceRange: { lower: number; upper: number } = { lower: 0, upper: 1000 };
   sidebarVisible: boolean = false;
   isLoggedIn: boolean = false;
+  sidebarTimeout: any; 
+  isSidebarOpen: boolean = false;
+
   user: any = {
     name: '',
     email: '',
+    avatarUrl: '',
   };
 
   searchResults: SearchResultItem[] = [];
   allItems: SearchResultItem[] = []; // Store all items initially fetched
 
   constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService, 
-    private databaseService: DatabaseService 
+    private authService: AuthService,
+    private databaseService: DatabaseService // Inject DatabaseService
   ) {}
+
 
   ngOnInit() {
     this.hideLoader();
-
+    // Subscribe to user state changes
     this.authService.getUser().subscribe((user) => {
       if (user) {
-        this.isLoggedIn = true;
         this.user.name = user.displayName || 'User';
-        this.user.email = user.email || '';
+  
+        // Fetch additional user data, including avatarUrl
+        this.databaseService.getUserData(user.uid).then((data) => {
+          if (data) {
+            this.user = { ...this.user, ...data };
+  
+            // Check if avatarUrl exists; if not, generate a random one
+            if (!this.user.avatarUrl) {
+              this.user.avatarUrl = this.generateRandomAvatarUrl();
+            }
+          }
+        }).catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
       } else {
-        this.isLoggedIn = false;
+        // Handle the case where the user is not logged in
+        this.user.name = 'Not Logged in';
+        this.user.avatarUrl = this.generateRandomAvatarUrl();
       }
+  
+      // Fetch items regardless of the user's login status
+      this.fetchAllItems();
     });
-
-    this.fetchAllItems();
   }
+
+    // Generates a random avatar URL if the user doesn't have one
+    generateRandomAvatarUrl() {
+      const randomSeed = Math.random().toString(36).substring(7);
+      return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
+    }
 
   showLoader() {
     const loaderContainer = document.querySelector('.loader-container');
@@ -116,11 +139,18 @@ export class SearchPage implements OnInit {
   goToItemDetail(itemId: string) {
     this.router.navigate(['/item', itemId]);
   }
-
-  toggleSidebar(visible: boolean) {
-    this.sidebarVisible = visible;
+  toggleSidebar() {
+    // Toggle the sidebar's open/close state
+    this.sidebarVisible = !this.sidebarVisible;
+    if (this.sidebarVisible==true) {
+      // Set a timeout to hide the sidebar after 3 seconds if it's still open
+      this.sidebarTimeout = setTimeout(() => {
+        this.sidebarVisible = false;
+        this.isSidebarOpen = false;
+        this.sidebarTimeout = null; // Ensure the timeout is cleared
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
   }
-
   gotoLogout() {
     const auth = getAuth();
     if (auth.currentUser) {

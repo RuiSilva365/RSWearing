@@ -6,19 +6,19 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { FormsModule } from '@angular/forms'; // Imported FormsModule for form handling
-import { environment } from '../environments/environment'; // Correct path
+import { FormsModule } from '@angular/forms'; // For handling forms
+import { environment } from '../environments/environment'; // Ensure path correctness
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PrivacyPolicyComponent } from './privacy-policy-modal/privacy-policy-modal.component'; // Ensure correct path
-import { EditAvatarComponent } from './edit-avatar/edit-avatar.component';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth.service'; // Ensure correct path to service
+// Import FirebaseService if needed, especially if it's handling initialization
 
 @NgModule({
   declarations: [
     AppComponent,
     PrivacyPolicyComponent,
-    // Add other components here if needed
+    // Include other components if needed
   ],
   imports: [
     BrowserModule,
@@ -26,15 +26,15 @@ import { AuthService } from '../services/auth.service';
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // Initialize Firebase
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    FormsModule,
-     // Import FormsModule for form handling
+    AngularFireDatabaseModule, // Firebase Database
+    AngularFireAuthModule, // Firebase Auth
+    FormsModule, // Import FormsModule for form handling
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows custom elements
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows use of custom elements
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AuthService, // Provide AuthService
+    AuthService, // Providing AuthService
+    // If using FirebaseService, ensure it's also provided here
   ],
   bootstrap: [AppComponent],
 })

@@ -363,6 +363,19 @@ ion-header {
     margin-bottom: 10px;
   }
   @media screen and (max-width: 768px) {
+    ion-header {
+      z-index: 9 !important;
+    }
+    #user-sidebar {
+      width: 200px; /* Slightly wider for mobile */
+      z-index: 20 !important;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      padding: 10px 10px;
+    }
+    
 
     /* Search Box adjustments */
     .search {
@@ -504,16 +517,19 @@ ion-header {
     display: flex;
     right: 0;
     top: 0;
-    margin-top:80px;
-    width: 190px;
+    flex-direction: column; 
+    margin-top: 0px;
+    padding-top: 40px;
+    width: 150px;
     height: 100%;
     background: white;
-    color: white;
+    border-left: 2px solid darkgoldenrod;
+    color: black;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     transition-delay: 0.3s;
-    font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
-    font-weight: 400; /* Set font weight to regular */
+    z-index:10!important;
+    font-weight: 800; /* Set font weight to regular */
     font-style: normal; /* Set font style to normal */
   }
   
@@ -525,33 +541,50 @@ ion-header {
   ion-button#user-icon:hover + #user-sidebar {
     transform: translateX(0);
   }
-  
-  .sidebar-content {
-    color: #000000;
-    padding: 20px;
-    font-family: "NexaRust"; /* Apply the font to the sidebar content */
+  .user-info {
+    display: flex;
+    flex-direction: column; /* Stack avatar and name */
+    align-items: center; /* Center them horizontally */
+    margin-bottom: 20px; /* Add space between user info and the rest */
+    width: 100%; /* Make sure it takes full width */
   }
   
+  .user-avatar {
+    max-width: 80px; /* Adjust size as needed */
+    max-height: 80px;
+    border: 2px solid black;
+    border-radius: 50%; /* Make the avatar round */
+    margin-bottom: 10px; /* Add space below the avatar */
+    object-fit: cover; /* Cover the space without distortion */
+  }
+  
+  .user-name {
+    font-size: 14px; /* Adjust text size */
+    text-align: center;
+  }
+  .sidebar-content {
+    display: flex;
+    flex-direction: column; /* Ensure items are stacked vertically */
+    align-items: center; /* Center items horizontally */
+    font-family: "Chakra Petch";
+  }
   .sidebar-content ul {
     list-style: none;
     color: #050100;
     padding: 0;
-    font-family: "NexaRust", sans-serif; /* Apply the font to the list items */
-    font-weight:bold ;
-    font-size: 1.8 r;
+    font-family: 'Helvetica Neue'; /* Apply the font to the list items */
   }
   
   .sidebar-content ul li {
     margin: 15px 0;
-    font-size: 20px;
     color: #000000;
   }
   
   .sidebar-content ul li a {
     color: #000000;
     text-decoration: none;
-    font-size: 28px;
-    font-family: "NexaRust", sans-serif; /* Apply the font to the links */
+    font-size: 18px;
+    font-family: "Chakra Petch", sans-serif; /* Apply the font to the links */
   }
   
   .sidebar-content ul li a:hover {
@@ -562,7 +595,6 @@ ion-header {
   .buttons-sidebar {
     color: #020000;
     text-decoration: wavy;
-    font-size: 20px;
     background-color: black;
   }
   
@@ -588,16 +620,14 @@ ion-header {
   }
   
   
-  .sidebar-content img {
+  .logo-icon {
     max-width: 100%; /* Adjust this value as needed */
     position: absolute;
-    bottom: 200px;
+    bottom: 10px;
     left: 50%; /* Center the logo horizontally */
     transform: translateX(-50%); /* Center the logo horizontally */
     height: auto;
   }
-
-
   
   footer.footer {
       --background-color: white;

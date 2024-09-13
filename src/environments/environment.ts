@@ -1,12 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
+// src/environments/environment.ts
 export const environment = {
-  production: false, // Set this to true in production environment
+  production: false,
   firebaseConfig: {
     apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
     authDomain: "rswearing-4b75f.firebaseapp.com",
-    databaseURL: "https://rswearing-4b75f-default-rtdb.europe-west1.firebasedatabase.app/", // Ensure this URL is correct
+    databaseURL: "https://rswearing-4b75f-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "rswearing-4b75f",
     storageBucket: "rswearing-4b75f.appspot.com",
     messagingSenderId: "287024306857",

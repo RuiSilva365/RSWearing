@@ -1,25 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { getDatabase } from 'firebase/database';
 import { ModalController } from '@ionic/angular';
-import { PrivacyPolicyComponent } from '../privacy-policy-modal/privacy-policy-modal.component'; // Import the privacy policy component
+import { PrivacyPolicyComponent } from '../privacy-policy-modal/privacy-policy-modal.component';
 import { DatabaseService } from '../../services/database.service';
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, setPersistence, browserLocalPersistence } from 'firebase/auth';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
-  authDomain: "rswearing-4b75f.firebaseapp.com",
-  databaseURL: "https://rswearing-4b75f-default-rtdb.europe-west1.firebasedatabase.app/",
-  projectId: "1:287024306857:web:85719ec1c07707648627b8",
-  storageBucket: "rswearing-4b75f.appspot.com",
-  messagingSenderId: "287024306857",
-  appId: "1:287024306857:web:85719ec1c07707648627b8"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const auth = getAuth(app);
+import { FirebaseService } from '../../services/firebase.service'; // Use Firebase service
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  setPersistence,
+  browserLocalPersistence
+} from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +33,12 @@ export class LoginPage implements OnInit, OnDestroy {
   };
   user: { name: string; email: string } = { name: '', email: '' };
 
-  constructor(private router: Router, private modalController: ModalController, private databaseService: DatabaseService) {}
+  constructor(
+    private router: Router,
+    private modalController: ModalController,
+    private databaseService: DatabaseService,
+    private firebaseService: FirebaseService // Inject Firebase service
+  ) {}
 
   ngOnInit() {}
 
@@ -80,6 +78,7 @@ export class LoginPage implements OnInit, OnDestroy {
   // Handle Email/Password login using Firebase Authentication
   login() {
     this.showLoader(); // Show loader on login click
+    const auth = this.firebaseService.auth; // Use initialized auth from FirebaseService
 
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
@@ -89,7 +88,6 @@ export class LoginPage implements OnInit, OnDestroy {
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
             setTimeout(() => {
-             // this.checkPrivacyPolicy(user.uid);
               this.navigateTo('/home');
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a 2-second delay
@@ -109,7 +107,7 @@ export class LoginPage implements OnInit, OnDestroy {
     try {
       const userData = await this.databaseService.getUserData(userId);
       console.log('User data:', userData); // Debugging line
-  
+
       // Show the privacy policy modal only if it hasn't been accepted
       if (!userData?.privacyAccepted) {
         console.log('Privacy policy not accepted, showing modal.'); // Debugging line
@@ -118,20 +116,19 @@ export class LoginPage implements OnInit, OnDestroy {
           backdropDismiss: false, // Prevent the user from dismissing the modal by clicking outside
           cssClass: 'privacy-policy-modal', // Add CSS class for additional styling if needed
         });
-  
+
         await modal.present();
-  
+
         // Wait for the modal to be dismissed and handle the result
         const { data } = await modal.onDidDismiss();
         console.log('Modal dismissed with data:', data); // Debugging line
-  
+
         if (data?.accepted) {
           // If the user accepted the privacy policy, proceed to the home page
           this.navigateTo('/home');
         } else {
           // Optionally handle if the user rejects the policy
           console.warn('User did not accept the privacy policy.');
-          // Stay on the login page or handle rejection appropriately
         }
       } else {
         // Directly navigate to home if the policy was already accepted
@@ -143,11 +140,12 @@ export class LoginPage implements OnInit, OnDestroy {
       // Handle any errors retrieving user data
     }
   }
-  
+
   // Google sign-in using Firebase Authentication
   signInWithGoogle(): void {
     const provider = new GoogleAuthProvider();
     this.showLoader(); // Show loader when sign-in starts
+    const auth = this.firebaseService.auth;
 
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -181,6 +179,7 @@ export class LoginPage implements OnInit, OnDestroy {
   signInWithFacebook(): void {
     const provider = new FacebookAuthProvider();
     this.showLoader(); // Show loader when sign-in starts
+    const auth = this.firebaseService.auth;
 
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -214,9 +213,8 @@ export class LoginPage implements OnInit, OnDestroy {
     this.showLoader(); // Show loader on continue without login click
 
     localStorage.setItem('continueWithoutLogin', 'true');
-    
+
     setTimeout(() => {
-     // this.checkPrivacyPolicy("");
       this.navigateTo('/home');
       this.hideLoader(); // Hide loader after navigation
     }, 2000); // Simulate a 2-second delay
@@ -257,11 +255,11 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   showSubMenu(menu: string) {
-    this.subMenuVisible = menu;  // Set the visible submenu based on the passed menu identifier
+    this.subMenuVisible = menu; // Set the visible submenu based on the passed menu identifier
   }
 
   hideSubMenu() {
-    this.subMenuVisible = null;  // Hide the submenu
+    this.subMenuVisible = null; // Hide the submenu
   }
 
   gotoFacebookPage() {

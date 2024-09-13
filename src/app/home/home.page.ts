@@ -33,6 +33,7 @@ export class HomePage implements OnInit {
   user: any = {
     name: '',
     email: '',
+    avatarUrl: '',
   };
   searchQuery: string = '';
 
@@ -58,12 +59,36 @@ export class HomePage implements OnInit {
     // Subscribe to user state changes
     this.authService.getUser().subscribe((user) => {
       if (user) {
-        this.isLoggedIn = true;
         this.user.name = user.displayName || 'User';
-        this.user.email = user.email || '';
+  
+        // Fetch additional user data, including avatarUrl
+        this.databaseService.getUserData(user.uid).then((data) => {
+          if (data) {
+            this.user = { ...this.user, ...data };
+  
+            // Check if avatarUrl exists; if not, generate a random one
+            if (!this.user.avatarUrl) {
+              this.user.avatarUrl = this.generateRandomAvatarUrl();
+            }
+          }
+        }).catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+      } else {
+        // Handle the case where the user is not logged in
+        this.user.name = 'Not Logged in';
+        this.user.avatarUrl = this.generateRandomAvatarUrl();
       }
+  
+      // Fetch items regardless of the user's login status
       this.fetchAllItems();
     });
+  }
+  
+  // Generates a random avatar URL if the user doesn't have one
+  generateRandomAvatarUrl() {
+    const randomSeed = Math.random().toString(36).substring(7);
+    return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
   }
 
   fetchAllItems() {

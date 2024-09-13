@@ -5,6 +5,47 @@
     color: black;
     --background: white !important;
   }
+  ion-header {
+    z-index: 9 !important;
+  }
+  #user-sidebar {
+    width: 200px; /* Slightly wider for mobile */
+    z-index: 20 !important;
+  }
+
+  .header-content {
+    flex-direction: column;
+    padding: 10px 10px;
+  }
+
+  .brand-logo {
+    max-width: 100%;
+    max-height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .search {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 4px;
+  }
+
+  .search-box {
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .input {
+    flex-grow: 1;
+    padding: 10px;
+  }
+
+  .btn-icon-content {
+    padding: 10px;
+  }
+
+
 /* Ensuring ion-list and ion-item inside dropdowns have proper background */
 .dropdown-menu ion-list, 
 .dropdown-menu ion-item {
@@ -38,24 +79,7 @@
     font-size: 5px;
   }
 
-  .user-name {
-    font-family: Copperplate, Papyrus, fantasy;
-    font-size: 16px;
-  }
-
-  ion-title.test-font {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 10px;
-  }
-
-  .brand-logo {
-    width: 80px; /* Adjust brand logo size */
-    height: auto;
-    max-width: 100%;  /* Ensure it doesn’t exceed the container */
-    object-fit: contain;  /* Prevent distortion */
-  }
+ 
 
 }
 
@@ -299,13 +323,6 @@ ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(contai
   color: black !important;
 }
 
-.user-name {
-  font-size: 15px;
-  color: goldenrod;
-  font-family: 'Playfair Display', serif;
-}
-
-
 
 
 
@@ -440,20 +457,18 @@ search {
 
 .search {
   display: fixed;
-  margin-left: 40%;
-  margin-right: 10%;
-  margin-top: 10%;
   --input-line: black;
   --input-text-color: black;
   --input-text-hover-color: #808080;
   --input-border-color: #808080;
   --input-border-hover-color: black;
   --input-bg-color:transparent ;
-  --search-max-width: 550px;
+  --search-max-width: 350px;
   --search-min-width: 150px;
   --border-radius: 50px;
   --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
   background-color: white !important;
+
 }
 
 .search-box {
@@ -464,7 +479,6 @@ search {
   border-radius: var(--border-radius);
   padding: 5px 15px;
   background: var(--input-bg-color);
-  box-shadow: 0 0 20px transparentize($color: goldenrod, $amount: 0.75);
   transition: var(--transition-cubic-bezier);
 }
 
@@ -520,11 +534,11 @@ search {
 
 /*Search button*/
 .search-box-icon {
-  width: 60px;
-  height: 48px;
+  width: 50px;
+  height: 38px;
   position: absolute;
-  top: -9px;
-  right: -24px;
+  top: -5px;
+  right: -20px;
   background: transparent;
   border-bottom-right-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
@@ -538,7 +552,7 @@ search {
 .btn-icon-content {
   width: 52px;
   height: 45px;
-  top: -6px;
+  top: -4px;
   right: -21px;
   background: transparent;
   border: none;
@@ -689,15 +703,18 @@ search {
   display: flex;
   right: 0;
   top: 0;
-  margin-top: 150px;
+  flex-direction: column; 
+  margin-top: 0px;
+  padding-top: 40px;
   width: 150px;
   height: 100%;
   background: white;
-  color: white;
+  border-left: 2px solid darkgoldenrod;
+  color: black;
   transform: translateX(100%);
   transition: transform 0.3s ease;
   transition-delay: 0.3s;
-  z-index:99999;
+  z-index:10!important;
   font-weight: 800; /* Set font weight to regular */
   font-style: normal; /* Set font style to normal */
 }
@@ -710,13 +727,33 @@ search {
 ion-button#user-icon:hover + #user-sidebar {
   transform: translateX(0);
 }
-
-.sidebar-content {
-  color: #000000;
-  padding: 20px;
-  font-family: "Chakra Petch"; /* Apply the font to the sidebar content */
+.user-info {
+  display: flex;
+  flex-direction: column; /* Stack avatar and name */
+  align-items: center; /* Center them horizontally */
+  margin-bottom: 20px; /* Add space between user info and the rest */
+  width: 100%; /* Make sure it takes full width */
 }
 
+.user-avatar {
+  max-width: 80px; /* Adjust size as needed */
+  max-height: 80px;
+  border: 2px solid black;
+  border-radius: 50%; /* Make the avatar round */
+  margin-bottom: 10px; /* Add space below the avatar */
+  object-fit: cover; /* Cover the space without distortion */
+}
+
+.user-name {
+  font-size: 14px; /* Adjust text size */
+  text-align: center;
+}
+.sidebar-content {
+  display: flex;
+  flex-direction: column; /* Ensure items are stacked vertically */
+  align-items: center; /* Center items horizontally */
+  font-family: "Chakra Petch";
+}
 .sidebar-content ul {
   list-style: none;
   color: #050100;
@@ -769,14 +806,15 @@ ion-button#user-icon:hover + #user-sidebar {
 }
 
 
-.sidebar-content img {
+.logo-icon {
   max-width: 100%; /* Adjust this value as needed */
   position: absolute;
-  bottom: 200px;
+  bottom: 10px;
   left: 50%; /* Center the logo horizontally */
   transform: translateX(-50%); /* Center the logo horizontally */
   height: auto;
 }
+
 
 .new-collection-items, .hot-deals-items, .trending-items, .recommended-items {
   display: flex;
