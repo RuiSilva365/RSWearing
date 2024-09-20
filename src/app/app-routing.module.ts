@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { OrdersPageComponent } from './orders-page/orders-page.component'; // Import the component
 
 const routes: Routes = [
   {
@@ -59,6 +60,13 @@ const routes: Routes = [
     path: 'cookie-policy',
     loadChildren: () => import('./cookie-policy/cookie-policy.module').then( m => m.CookiePolicyPageModule)
   },
+  {
+    path: 'payment-success',
+    loadChildren: () => import('./payment-success/payment-success.module').then( m => m.PaymentSuccessPageModule)
+  },
+  { path: 'orders-page', component: OrdersPageComponent },
+
+
 
 
 ];

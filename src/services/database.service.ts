@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, set, get, child, update } from 'firebase/database';
+import { getDatabase, ref, set, get, child, update,query, orderByChild, equalTo  } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 
 @Injectable({
@@ -176,6 +176,55 @@ getCartItems(userId: string) {
       return {};
     });
 }
+
+//ORDERS PART
+// Write order data
+writeOrderData(orderId: string, orderData: any): Promise<void> {
+  return set(ref(this.db, 'orders/' + orderId), orderData);
+}
+
+// Fetch orders by userId
+getOrders(userId: string): Promise<any[]> {
+  const ordersRef = ref(this.db, 'orders');
+  return get(ordersRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Filter orders by userId
+        const orders = Object.values(snapshot.val()).filter((order: any) => order.userId === userId);
+        return orders;
+      } else {
+        console.log("No orders available for user:", userId);
+        return [];
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching orders:", error.message);
+      throw error; // Rethrow the error for further handling
+    });
+}
+
+
+// Update order status
+updateOrderStatus(orderId: string, status: string): Promise<void> {
+  const orderRef = ref(this.db, `orders/${orderId}`);
+  return update(orderRef, { status })
+    .then(() => console.log(`Order ${orderId} status updated to ${status}`))
+    .catch((error) => {
+      console.error("Error updating order status:", error.message);
+      throw error;
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

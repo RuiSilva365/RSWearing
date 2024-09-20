@@ -36,7 +36,7 @@
   border: 1px solid goldenrod;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   margin: 0 auto; /* Center the cart horizontally */
-  margin-left: 14px !important;
+  margin-left: 16px !important;
   margin-bottom: 20% !important; /* Add space above the cart */
   z-index: 10;
 
@@ -51,7 +51,7 @@
 }
 
 .payment-option-btn svg {
-  max-width: 70px; /* Reduce the width of the logo slightly on smaller screens */
+  max-width: 45px; /* Reduce the width of the logo slightly on smaller screens */
   margin-left: 0; /* Ensure it's centered */
 }
   .footer-section h3 {
@@ -159,19 +159,7 @@ ion-header {
   position: relative;
 }
 
-.btn::after {
-  content: "Favorites";
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
-  font-size: 15px;
-  color: black;
-  font-family:sans-serif;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.2s linear;
-  top: 115%;
-}
+
 
 .icon {
   width: 50px;
@@ -264,12 +252,7 @@ ion-toolbar {
     margin-bottom: 15px;
   }
   
-  .input_label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
+
   
   .input_field {
     color:black;
@@ -605,3 +588,15 @@ ion-toolbar {
   }
 
 
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+  }
+
+  /* styles.css or styles.scss */
+.stripe-cvc-custom {
+  width: 150px; /* Adjust the width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@capacitor-community/stripe": "^6.2.1",
     "@capacitor/app": "6.0.0",
     "@capacitor/core": "6.1.1",
     "@capacitor/haptics": "6.0.0",
@@ -31,6 +32,8 @@
     "@dicebear/collection": "^9.2.1",
     "@dicebear/core": "^9.2.1",
     "@ionic/angular": "^8.0.0",
+    "@paypal/paypal-js": "^8.1.2",
+    "@stripe/stripe-js": "^4.5.0",
     "firebase": "^10.13.1",
     "firebaseui": "^6.1.0",
     "intl-tel-input": "^24.3.6",
@@ -70,5 +73,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.0"
   },
-  "description": "An Ionic project"
+  "description": "RSWearing project"
 }

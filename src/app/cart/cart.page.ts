@@ -143,6 +143,12 @@ export class CartPage implements OnInit {
   // Function to calculate subtotal
   calculateTotal() {
     this.cartSubtotal = this.cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      // Check if shipping is free
+      if (this.cartSubtotal >= 50) {
+        this.shippingFees = 0;
+      } else {
+        this.shippingFees = 4.99; // Set default shipping fee if subtotal is less than 50
+      }
   }
 
   // Getter for total price

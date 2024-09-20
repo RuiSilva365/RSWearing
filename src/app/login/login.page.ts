@@ -106,7 +106,7 @@ export class LoginPage implements OnInit, OnDestroy {
   async checkPrivacyPolicy(userId: string) {
     try {
       const userData = await this.databaseService.getUserData(userId);
-      console.log('User data:', userData); // Debugging line
+      //console.log('User data:', userData); // Debugging line
 
       // Show the privacy policy modal only if it hasn't been accepted
       if (!userData?.privacyAccepted) {
@@ -136,7 +136,7 @@ export class LoginPage implements OnInit, OnDestroy {
         this.navigateTo('/home');
       }
     } catch (error) {
-      console.error('Error checking privacy policy:', error);
+      //console.error('Error checking privacy policy:', error);
       // Handle any errors retrieving user data
     }
   }

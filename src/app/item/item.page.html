@@ -64,13 +64,14 @@
     <div class="item-info">
       <div class="item-title-container">
         <h1>{{ item?.title }}</h1>
+        <p>{{ item?.description }}</p>
         <a href="#" class="show-gif-link" (click)="showGif($event)">Click me to see the item GIF</a>
       </div>
       
       <!-- GIF Modal -->
       <div class="gif-modal" *ngIf="showGifModal">
         <div class="gif-modal-content">
-          <img [src]="gifUrl" alt="Item GIF">
+          <img [src]="gifUrl" alt="Item GIF" (load)="hideLoader()" (error)="hideLoader()">
           <button class="close-button" (click)="closeGifModal()"><ion-icon name="close-circle-outline"></ion-icon></button>
         </div>
       </div>

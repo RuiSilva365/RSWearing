@@ -70,13 +70,15 @@
         <ion-icon name="mail-outline"></ion-icon> E-mail: {{ user.email }}
       </div>
       <div class="card__detail">
-        <ion-icon name="location-outline"></ion-icon> Country : {{ user.country }}
+        <ion-icon name="location-outline"></ion-icon> Country : {{ user.address.country }}.
       </div>
       <div class="card__detail">
-        <ion-icon name="home-outline"></ion-icon> Address : {{ user.address }}
+        <ion-icon name="home-outline"></ion-icon> 
+        Address: {{ user.address.line1 }}, {{ user.address.line2 }}, {{ user.address.city }}.
       </div>
+      
       <div class="card__detail">
-        <ion-icon name="mail-open-outline"></ion-icon> Postal code:  {{ user.zipcode}}
+        <ion-icon name="mail-open-outline"></ion-icon> Postal code:  {{ user.address.postal_code}}
       </div>
       <div class="card__detail">
         <ion-icon name="calendar-outline"></ion-icon> Birthdate: {{ user.birthdate }}
@@ -117,8 +119,8 @@
           </ion-item>
           <div class="ion-padding" slot="content">
             <ion-list>
-              <ion-item [routerLink]="['/other-page']">Current orders</ion-item> <!-- Navigate to /other-page -->
-              <ion-item [routerLink]="['/other-page']">Order history</ion-item> <!-- Navigate to /other-page -->
+              <ion-item [routerLink]="['/orders-page']" [queryParams]="{ type: 'current' }">Current orders</ion-item>
+              <ion-item [routerLink]="['/orders-page']" [queryParams]="{ type: 'history' }">Order history</ion-item>
             </ion-list>
           </div>
         </ion-accordion>

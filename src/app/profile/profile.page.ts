@@ -64,11 +64,12 @@ export class ProfilePage implements OnInit {
   }
 
   generateRandomAvatarUrl() {
-    const randomSeed = Math.random().toString(36).substring(7); // Generate a random string as the seed
-    return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
+    //const randomSeed = Math.random().toString(36).substring(7); // Generate a random string as the seed
+    //return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
+    return   `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=agm2dg`;
+
   
   }
-  
   openEditFrame() {
     this.isEditFrameVisible = true;
     this.editableUser = { ...this.user }; // Ensure it's a fresh copy
