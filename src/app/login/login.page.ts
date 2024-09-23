@@ -10,6 +10,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  sendPasswordResetEmail,
   setPersistence,
   browserLocalPersistence
 } from 'firebase/auth';
@@ -89,6 +90,7 @@ export class LoginPage implements OnInit, OnDestroy {
           .then(() => {
             setTimeout(() => {
               this.navigateTo('/home');
+              this.checkPrivacyPolicy(user.uid);
               this.hideLoader(); // Hide loader after navigation
             }, 2000); // Simulate a 2-second delay
           })
@@ -184,10 +186,13 @@ export class LoginPage implements OnInit, OnDestroy {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
+        this.checkPrivacyPolicy(user.uid);
+
 
         // Show welcome message
         this.showSuccessMessage();
         this.user.name = user.displayName || user.email || 'User';
+        
 
         // Set auth persistence
         setPersistence(auth, browserLocalPersistence)
@@ -211,9 +216,9 @@ export class LoginPage implements OnInit, OnDestroy {
   // Continue without login
   continueWithoutLogin() {
     this.showLoader(); // Show loader on continue without login click
+    
 
     localStorage.setItem('continueWithoutLogin', 'true');
-
     setTimeout(() => {
       this.navigateTo('/home');
       this.hideLoader(); // Hide loader after navigation
@@ -247,9 +252,34 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   forgotPassword() {
-    this.errorMessage = 'Password reset is not implemented yet';
+    this.errorMessage = null; // Reset error message
+    this.forgotPasswordMessage = null; // Reset success message
+  
+    if (!this.email) {
+      this.errorMessage = 'Please enter your email address first.';
+      return;
+    }
+  
+    const auth = this.firebaseService.auth; // Use Firebase auth
+  
+    sendPasswordResetEmail(auth, this.email) // Use sendPasswordResetEmail with auth instance
+      .then(() => {
+        this.forgotPasswordMessage = 'A password reset email has been sent to your email address.';
+      })
+      .catch((error: any) => { // Explicitly type the error parameter
+        switch (error.code) {
+          case 'auth/invalid-email':
+            this.errorMessage = 'Invalid email address.';
+            break;
+          case 'auth/user-not-found':
+            this.errorMessage = 'No user found with this email address.';
+            break;
+          default:
+            this.errorMessage = 'An error occurred. Please try again.';
+        }
+      });
   }
-
+  
   toggleHover(section: string, state: boolean) {
     this.isHovering[section] = state;
   }

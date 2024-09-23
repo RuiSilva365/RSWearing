@@ -1,4 +1,3 @@
-// src/environments/environment.ts
 export const environment = {
   production: false,
   firebaseConfig: {
@@ -11,6 +10,6 @@ export const environment = {
     appId: "1:287024306857:web:85719ec1c07707648627b8",
     measurementId: "G-DECZ1P4QFZ"
   },
-  recaptchaSiteKey: '6Ld2JEYqAAAAAIziA96MSAriYgvgNdteSsFjkBFN', 
+  recaptchaSiteKey: '6Ld2JEYqAAAAAIziA96MSAriYgvgNdteSsFjkBFN',
+  apiUrl: 'https://rswearing-production.up.railway.app'
 };
-

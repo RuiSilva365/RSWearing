@@ -21,6 +21,8 @@ export class ItemPage implements OnInit {
   showGifModal: boolean = false;
   sidebarVisible: boolean = false;
   subMenuVisible: string | null = null;
+  sidebarTimeout: any; 
+  isSidebarOpen: boolean = false;
   currentImageUrl: string = '';
   currentImageIndex: number = 0;
   isLoggedIn: boolean = false;
@@ -48,10 +50,26 @@ export class ItemPage implements OnInit {
         this.isLoggedIn = true;
         this.user.name = user.displayName || 'User';
         this.user.email = user.email || '';
-      } else {
-        this.isLoggedIn = false;
+             // Fetch additional user data, including avatarUrl
+             this.databaseService.getUserData(user.uid).then((data) => {
+              if (data) {
+                this.user = { ...this.user, ...data };
+      
+                // Check if avatarUrl exists; if not, generate a random one
+                if (!this.user.avatarUrl) {
+                  this.user.avatarUrl = this.generateRandomAvatarUrl();
+                }
+              }
+            }).catch((error) => {
+              console.error("Error fetching user data:", error);
+            });
+          } else {
+            // Handle the case where the user is not logged in
+            this.user.name = 'Not Logged in';
+            this.user.avatarUrl = this.generateRandomAvatarUrl();
+            this.isLoggedIn = false;
+          
       }
-
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
         this.databaseService.getItemData(id).then((itemData) => {
@@ -299,8 +317,26 @@ async presentAlert(header: string, message: string, buttons: any[]) {
     await alert.present();
   }
 
+    // Generates a random avatar URL if the user doesn't have one
+    generateRandomAvatarUrl() {
+      const randomSeed = Math.random().toString(36).substring(7);
+      return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
+    }
+
+    
     // Toggle the sidebar
-  toggleSidebar(visible: boolean) { this.sidebarVisible = visible; }
+    toggleSidebar() {
+      // Toggle the sidebar's open/close state
+      this.sidebarVisible = !this.sidebarVisible;
+      if (this.sidebarVisible==true) {
+        // Set a timeout to hide the sidebar after 3 seconds if it's still open
+        this.sidebarTimeout = setTimeout(() => {
+          this.sidebarVisible = false;
+          this.isSidebarOpen = false;
+          this.sidebarTimeout = null; // Ensure the timeout is cleared
+        }, 3000); // 3000 milliseconds = 3 seconds
+      }
+    }
   // Navigation functions
   gotoFacebookPage() { this.router.navigate(['/profile']); }
   gotoInstagramPage() { this.router.navigate(['/profile']); }
@@ -311,5 +347,7 @@ async presentAlert(header: string, message: string, buttons: any[]) {
   gotoProfile() { this.router.navigate(['/profile']); }
   gotoHome() { this.router.navigate(['/home']); }
   gotoCart() { this.router.navigate(['/cart']); }
-  gotoFavorites() { this.router.navigate(['/favorites']); }
+  gotoFavorites() {this.router.navigate(['/favorites']); }  // Use the injected Router}
+  gotoSearch(searchText: string) {this.router.navigate(['/search'], { queryParams: { query: searchText } }); }
+
 }

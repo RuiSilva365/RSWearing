@@ -1,6 +1,5 @@
-// src/environments/environment.prod.ts
 export const environment = {
-  production: true,
+  production: false,
   firebaseConfig: {
     apiKey: "AIzaSyAk2kxLAofDJ3gyWNfz2_iwIU0PrJCqdYc",
     authDomain: "rswearing-4b75f.firebaseapp.com",
@@ -11,7 +10,8 @@ export const environment = {
     appId: "1:287024306857:web:85719ec1c07707648627b8",
     measurementId: "G-DECZ1P4QFZ"
   },
-  recaptchaSiteKey: '6Ld2JEYqAAAAAIziA96MSAriYgvgNdteSsFjkBFN', 
+  recaptchaSiteKey: '6Ld2JEYqAAAAAIziA96MSAriYgvgNdteSsFjkBFN',
+  apiUrl: 'https://rswearing.up.railway.app' // Add your deployed backend URL here
 };
 
 

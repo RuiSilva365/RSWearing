@@ -34,7 +34,7 @@
         </button>
         
         
-        <ion-button id="user-icon" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+        <ion-button id="user-icon" (mouseenter)="toggleSidebar()">
           <ion-icon name="navigate-circle-sharp"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -130,15 +130,23 @@
   
 </ion-content>
 
-<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar(true)" (mouseleave)="toggleSidebar(false)">
+
+<div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar()" (mouseleave)="toggleSidebar()">
   <div class="sidebar-content">
+    <div class="user-info">
+      <img [src]="user.avatarUrl" alt="User Avatar" class="user-avatar">
+      <p class="user-name">{{ user.name }}</p>
+    </div>
     <h3>Go to:</h3>
     <div id="buttons-sidebar">
-      <button (click)="gotoHome()">Home</button>
       <button (click)="gotoProfile()">Profile</button>
+      <button (click)="gotoSearch('Trending')">Trending</button>
+      <button (click)="gotoSearch('Campaigns')">Campaigns</button>
+      <button (click)="gotoSearch('')">Search</button>
       <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
-      <img src="assets/icon/logo.png" alt="logo Icon" />
+      <div class="logo-icon">
+        <img src="assets/icon/logo.png"  />
+      </div>
     </div>
   </div>
 </div>
-

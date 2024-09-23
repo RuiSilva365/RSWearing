@@ -738,8 +738,8 @@ ion-button#user-icon:hover + #user-sidebar {
 .user-avatar {
   max-width: 80px; /* Adjust size as needed */
   max-height: 80px;
-  border: 2px solid black;
-  border-radius: 50%; /* Make the avatar round */
+  border: 4px solid darkgoldenrod;
+  border-radius: 100%; /* Make the avatar round */
   margin-bottom: 10px; /* Add space below the avatar */
   object-fit: cover; /* Cover the space without distortion */
 }

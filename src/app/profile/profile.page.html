@@ -74,12 +74,12 @@
       </div>
       <div class="card__detail">
         <ion-icon name="home-outline"></ion-icon> 
-        Address: {{ user.address.line1 }}, {{ user.address.line2 }}, {{ user.address.city }}.
+        Address: {{ user.address.line1 }}, {{ user.address.city }}.
+      </div>
+      <div class="card__detail">
+        <ion-icon name="mail-open-outline"></ion-icon> Postal code:  {{ user.address.postal_code }}
       </div>
       
-      <div class="card__detail">
-        <ion-icon name="mail-open-outline"></ion-icon> Postal code:  {{ user.address.postal_code}}
-      </div>
       <div class="card__detail">
         <ion-icon name="calendar-outline"></ion-icon> Birthdate: {{ user.birthdate }}
       </div>
@@ -246,10 +246,10 @@
       
       <div class="input-box address">
         <label>Address</label>
-        <input required placeholder="Enter street address" type="text" [(ngModel)]="editableUser.address" name="address">
+        <input required placeholder="Enter street address" type="text" [(ngModel)]="editableUser.address.line1" name="address.line1">
         <div class="column">
           <div class="select-box">
-            <select [(ngModel)]="editableUser.country" name="country">
+            <select [(ngModel)]="editableUser.country" name="address.country">
               <option hidden>Country</option>
               <option value="AF">Afghanistan</option>
               <option value="AL">Albania</option>
@@ -499,12 +499,12 @@
               <option value="ZW">Zimbabwe</option>
           </select>
           </div>
-          <input required placeholder="Enter your city" type="text" [(ngModel)]="editableUser.city" name="city">
+          <input required placeholder="Enter your city" type="text" [(ngModel)]="editableUser.address.city" name="address.city">
         </div>
       </div>
       <div class="input-box">
         <label>Postal Code</label>
-        <input required placeholder="Enter postal code" type="text" [(ngModel)]="editableUser.zipcode" name="zipcode" (input)="formatPostalCode($event)">
+        <input required placeholder="Enter postal code" type="text" [(ngModel)]="editableUser.address.postal_code" name="address.postal_code" (input)="formatPostalCode($event)">
       </div>
       <div class="gender-box">
         <label>Preferred Size</label>

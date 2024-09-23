@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewEncapsulation } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { getAuth } from 'firebase/auth';
 
@@ -6,6 +6,8 @@ import { getAuth } from 'firebase/auth';
   selector: 'app-privacy-policy',
   templateUrl: './privacy-policy-modal.component.html',
   styleUrls: ['./privacy-policy-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class PrivacyPolicyComponent {
   constructor(private modalController: ModalController) {}

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { loadStripe, Stripe, StripeElements, StripeCardNumberElement, StripeCardExpiryElement, StripeCardCvcElement } from '@stripe/stripe-js';
 import { Observable } from 'rxjs';
 import { DatabaseService } from '../services/database.service'; // Importa o DatabaseService
+import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class StripeService {
   private cardNumber!: StripeCardNumberElement;
   private cardExpiry!: StripeCardExpiryElement;
   private cardCvc!: StripeCardCvcElement;
+  
 
   constructor(private http: HttpClient, private databaseService: DatabaseService) {
     this.initializeStripe();
@@ -68,12 +71,10 @@ export class StripeService {
     const brandImage = brandIconMap[brand] || brandIconMap['unknown'];
     brandIconElement.src = brandImage;
   }
-
   createPaymentIntent(amount: number, currency: string): Observable<{ clientSecret: string }> {
-    return this.http.post<{ clientSecret: string }>('http://localhost:3000/create-payment-intent', { amount, currency });
+    return this.http.post<{ clientSecret: string }>(`${environment.apiUrl}/create-payment-intent`, { amount, currency });
   }
-
-
+  
   async handlePayment(clientSecret: string, items: any[], totalAmount: number, currency: string, userDetails: any) {
     if (!this.stripe || !this.cardNumber || !this.cardExpiry || !this.cardCvc) {
       console.error('Stripe não foi inicializado ou o elemento de cartão está ausente');

@@ -20,7 +20,7 @@ export class ProfilePage implements OnInit {
     phone_num: '',
     country: '',
     address: '',
-    zipcode: '',
+    postal_code: '',
     birthdate: '',
     age: '',
     preferredSize: '',
@@ -82,27 +82,34 @@ export class ProfilePage implements OnInit {
   submitEditForm() {
     const auth = getAuth();
     const currentUser = auth.currentUser;
-
+  
     if (currentUser) {
-      // Ensure the birthdate is formatted as "YYYY-MM-DD"
+      // Ensure birthdate is formatted correctly
       if (this.editableUser.birthdate) {
         this.editableUser.birthdate = this.editableUser.birthdate.split('T')[0];
       }
-
-      // Use updateUserData to merge changes without overwriting other fields
+  
+      // Update address structure
+      const address = {
+        line1: this.editableUser.address.line1 || '',
+        line2: this.editableUser.address.line2 || '',
+        city: this.editableUser.address.city || '',
+        postal_code: this.editableUser.postal_code || '',
+        country: this.editableUser.country || ''
+      };
+      this.editableUser.address = address;
+  
       this.databaseService.updateUserData(currentUser.uid, this.editableUser)
         .then(() => {
-          this.user = { ...this.editableUser }; // Update user info with the new data
+          this.user = { ...this.editableUser }; // Update user info
           this.closeEditFrame(); // Close the edit frame
-          // Optionally, show a success message or toast
         })
         .catch((error) => {
           console.error("Error updating user data:", error);
-          // Optionally, show an error message to the user
         });
     }
   }
-
+  
   updateAvatar(newAvatarUrl: string) {
     this.isEditAvatarVisible = false;
     this.user.avatarUrl = newAvatarUrl; // Update local user data
@@ -154,9 +161,9 @@ export class ProfilePage implements OnInit {
   formatPostalCode(event: any) {
     const input = event.target.value.replace(/\D/g, ''); // Remove non-digit characters
     if (input.length > 4) {
-      this.editableUser.zipcode = input.substring(0, 4) + ' ' + input.substring(4, 7);
+      this.editableUser.postal_code = input.substring(0, 4) + ' ' + input.substring(4, 7);
     } else {
-      this.editableUser.zipcode = input;
+      this.editableUser.postal_code = input;
     }
   }
 
@@ -177,7 +184,7 @@ export class ProfilePage implements OnInit {
           phone_num: '',
           country: '',
           address: '',
-          zipcode: '',
+          postal_code: '',
           birthdate: '',
           age: '',
           preferredSize: ''

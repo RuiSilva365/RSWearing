@@ -28,11 +28,19 @@ export class DatabaseService {
       .then((snapshot) => {
         if (snapshot.exists()) {
           const userData = snapshot.val();
-          
-          if (typeof userData.privacyAccepted === 'undefined') {
-            console.log(`privacyAccepted field is missing for user: ${userId}`);
-            userData.privacyAccepted = false;
+  
+          // If address is not an object, transform it to the correct structure
+          if (typeof userData.address === 'string') {
+            const addressParts = userData.address.split(', ');
+            userData.address = {
+              line1: addressParts[0] || '',
+              line2: addressParts[1] || '',
+              city: addressParts[2] || '',
+              postal_code: addressParts[3] || '',
+              country: userData.country || ''
+            };
           }
+  
           return userData;
         } else {
           console.log("No data available");
@@ -44,7 +52,7 @@ export class DatabaseService {
         return null;
       });
   }
-
+  
   //_____________________________________________________________
   // _____________________________________________________
   //________________ITEMS PART_______________________
@@ -183,25 +191,21 @@ writeOrderData(orderId: string, orderData: any): Promise<void> {
   return set(ref(this.db, 'orders/' + orderId), orderData);
 }
 
-// Fetch orders by userId
 getOrders(userId: string): Promise<any[]> {
-  const ordersRef = ref(this.db, 'orders');
+  const ordersRef = query(ref(this.db, 'orders'), orderByChild('userId'), equalTo(userId));
   return get(ordersRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
-        // Filter orders by userId
-        const orders = Object.values(snapshot.val()).filter((order: any) => order.userId === userId);
-        return orders;
+        return Object.values(snapshot.val());
       } else {
-        console.log("No orders available for user:", userId);
         return [];
       }
     })
     .catch((error) => {
-      console.error("Error fetching orders:", error.message);
-      throw error; // Rethrow the error for further handling
+      throw error;
     });
 }
+
 
 
 // Update order status

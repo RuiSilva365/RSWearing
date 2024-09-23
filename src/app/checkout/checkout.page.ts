@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  StripeService  } from '../../services/stripe.service';
 
 interface CartItem {
+  id: string;
   title: string;
   price: number;
   quantity: number;
@@ -119,9 +120,12 @@ selectPaymentMethod(method: string) {
     };
 
     const items = this.cartItems.map(item => ({
-        itemId: item.title, // You might want to use a unique ID for the item
-        quantity: item.quantity,
-        price: item.price
+      itemId: item.id, // Use the unique item ID here
+      title: item.title, // You can still include the title for display purposes if needed
+      quantity: item.quantity,
+      price: item.price,
+      size: item.size,
+      imageUrl: item.imageUrl // Include image URL here if available
     }));
 
     const totalAmount = this.totalPrice * 100; // Convert to cents

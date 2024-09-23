@@ -545,6 +545,8 @@ ion-item {
     font-family: "Chakra Petch", sans-serif; /* Apply the font to the entire sidebar */
     font-weight: 400; /* Set font weight to regular */
     font-style: normal; /* Set font style to normal */
+    border-left: 2px solid darkgoldenrod;
+
   }
   
   #user-sidebar.visible {

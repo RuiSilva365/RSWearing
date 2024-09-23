@@ -28,10 +28,13 @@ export class CartPage implements OnInit {
   couponDiscount: number = 0;
   shippingFees: number = 4.99;
   sidebarVisible: boolean = false;
+  sidebarTimeout: any; 
+  isSidebarOpen: boolean = false;
   isLoggedIn: boolean = false; // Add this flag
   user: any = {
     name: '',
     email: '',
+    avatarUrl: '',
   };
   couponInput: string = '';
   couponMessage: string = '';
@@ -58,6 +61,20 @@ export class CartPage implements OnInit {
         this.isLoggedIn = true;
         this.user.name = user.displayName || 'User';
         this.user.email = user.email || '';
+        
+        // Fetch additional user data from the database
+        this.databaseService.getUserData(user.uid).then((userData) => {
+          if (userData) {
+            this.user = { ...this.user, ...userData }; // Merge additional data into user object
+          }
+          // Check if avatarUrl exists; if not, generate a random one
+          if (!this.user.avatarUrl) {
+            this.user.avatarUrl = this.generateRandomAvatarUrl();
+          }
+        }).catch((error) => {
+          console.error("Error fetching user data: ", error);
+        });
+  
         this.loadCartItems(user.uid); // Load cart items for logged-in user
       } else {
         this.isLoggedIn = false;
@@ -77,6 +94,11 @@ export class CartPage implements OnInit {
         ]);
       }
     });
+  }
+  
+  generateRandomAvatarUrl() {
+    const randomSeed = Math.random().toString(36).substring(7);
+    return `https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${randomSeed}`;
   }
 
   loadCartItems(userId: string) {
@@ -203,26 +225,21 @@ export class CartPage implements OnInit {
   proceedToCheckout(): void {
     this.router.navigate(['/checkout'], { state: { cartItems: this.cartItems } });
   }
-
-  toggleSidebar(visible: boolean) {
-    this.sidebarVisible = visible;
+  toggleSidebar() {
+    // Toggle the sidebar's open/close state
+    this.sidebarVisible = !this.sidebarVisible;
+    if (this.sidebarVisible==true) {
+      // Set a timeout to hide the sidebar after 3 seconds if it's still open
+      this.sidebarTimeout = setTimeout(() => {
+        this.sidebarVisible = false;
+        this.isSidebarOpen = false;
+        this.sidebarTimeout = null; // Ensure the timeout is cleared
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
   }
 
-  gotoLogout() {
-    this.router.navigate(['/login']);  // Use the injected Router
-  }
 
-  gotoSettings() {
-    this.router.navigate(['/settings']);  // Use the injected Router
-  }
 
-  gotoProfile() {
-    this.router.navigate(['/profile']);  // Use the injected Router
-  }
-
-  gotoHome() {
-    this.router.navigate(['/home']);  // Use the injected Router
-  }
   
   gotoFacebookPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
@@ -240,7 +257,11 @@ export class CartPage implements OnInit {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
 
-  gotoFavorites() {
-    this.router.navigate(['/favorites']);  // Use the injected Router
-  }
+  // Navigation functions
+  gotoLogout() { this.router.navigate(['/login']); }
+  gotoSettings() { this.router.navigate(['/settings']); }
+  gotoProfile() { this.router.navigate(['/profile']); }
+  gotoHome() { this.router.navigate(['/home']); }
+  gotoFavorites() { this.router.navigate(['/favorites']); }
+  gotoSearch(searchText: string) { this.router.navigate(['/search'], { queryParams: { query: searchText } }); }
 }
