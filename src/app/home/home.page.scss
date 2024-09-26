@@ -5,18 +5,17 @@
     color: black;
     --background: white !important;
   }
-  ion-header {
-    z-index: 9 !important;
-  }
+
   #user-sidebar {
+    margin-top: 70px !important;
     width: 200px; /* Slightly wider for mobile */
     z-index: 20 !important;
   }
 
-  .header-content {
-    flex-direction: column;
-    padding: 10px 10px;
+  .logo-icon {
+    margin-bottom: 62px !important;
   }
+  
 
   .brand-logo {
     max-width: 100%;
@@ -24,22 +23,7 @@
     margin-bottom: 10px;
   }
 
-  .search {
-    width: 100%;
-    padding: 0 10px;
-    margin-bottom: 4px;
-  }
-
-  .search-box {
-    display: flex;
-    width: 100%;
-    border-radius: 20px;
-  }
-
-  .input {
-    flex-grow: 1;
-    padding: 10px;
-  }
+  
 
   .btn-icon-content {
     padding: 10px;
@@ -415,7 +399,6 @@ ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(contai
 }
 
 .icon path {
-  fill: gray;
   transition: 0.2s linear;
 }
 
@@ -450,130 +433,79 @@ ion-button#user-icon {
   box-shadow: none; /* Remove any box shadow */
 }
 
-
-search {
-  background-color: white;
-}
-
-.search {
-  display: fixed;
-  --input-line: black;
-  --input-text-color: black;
-  --input-text-hover-color: #808080;
-  --input-border-color: #808080;
-  --input-border-hover-color: black;
-  --input-bg-color:transparent ;
-  --search-max-width: 350px;
-  --search-min-width: 150px;
-  --border-radius: 50px;
-  --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
-  background-color: white !important;
-
-}
-
-.search-box {
-  max-width: var(--search-max-width);
-  min-width: var(--search-min-width);
-  height: 45px;
-  border: 3px solid var(--input-border-color);
-  border-radius: var(--border-radius);
-  padding: 5px 15px;
-  background: var(--input-bg-color);
-  transition: var(--transition-cubic-bezier);
-}
-
-.search-box:hover {
-  border-color: var(--input-border-hover-color);
-}
-
-/*Section input*/
-.search-field {
+/* From Uiverse.io by ZAKARIAE48CHELLE */ 
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
   position: relative;
-  width: 100%;
-  height: 100%;
-  left: -5px;
-  border: 0;
 }
 
 .input {
-  width: calc(100% - 29px);
-  height: 100%;
-  border: 0;
-  border-color: transparent;
-  font-size: 1rem;
-  padding-right: 0px;
-  color: var(--input-line);
-  background: var(--input-bg-color);
-  border-right: 2px solid var(--input-border-color);
-  outline: none;
-}
-
-.input::-webkit-input-placeholder {
-  color: var(--input-text-color);
-}
-
-.input::-moz-input-placeholder {
-  color: var(--input-text-color);
-}
-
-.input::-ms-input-placeholder {
-  color: var(--input-text-color);
-}
-
-.input:focus::-webkit-input-placeholder {
-  color: var(--input-text-hover-color);
-}
-
-.input:focus::-moz-input-placeholder {
-  color: var(--input-text-hover-color);
-}
-
-.input:focus::-ms-input-placeholder {
-  color: var(--input-text-hover-color);
-}
-
-/*Search button*/
-.search-box-icon {
+  border-style: none;
+  height: 50px;
   width: 50px;
-  height: 38px;
+  padding: 10px;
+  outline: none;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  padding-right: 40px;
+  color: black;
+}
+
+.input::placeholder,
+.input {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 17px;
+}
+
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: -5px;
-  right: -20px;
-  background: transparent;
-  border-bottom-right-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  transition: var(--transition-cubic-bezier);
-}
-
-.search-box-icon:hover {
-  background: goldenrod;
-}
-
-.btn-icon-content {
-  width: 52px;
-  height: 45px;
-  top: -4px;
-  right: -21px;
-  background: transparent;
-  border: none;
+  right: 0px;
   cursor: pointer;
-  border-bottom-right-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  transition: var(--transition-cubic-bezier);
-  opacity: .4;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border-style: none;
+  border-radius: 50%;
+  pointer-events: painted;
+  transition: 0.2s linear;
+  background-color:transparent;
+
 }
 
-.btn-icon-content:hover {
-  opacity: .8;
+.icon:focus ~ .input,
+.input:focus {
+  box-shadow: none;
+  width: 200px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 3px solid goldenrod;
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+/* Ensure the input is touchable */
+.input {
+  -webkit-user-select: auto; /* Allow text selection */
+  -webkit-touch-callout: default; /* Ensure touch events are handled */
 }
 
-.search-icon {
-  width: 31px;
-  height: 31px;
-  position: absolute;
-  top: 7px;
-  right: 15px;
-  fill: black; 
+/* Add webkit-specific focus styles */
+.input:focus {
+  border-radius: 0px;
+  width: 250px;
+  border-bottom: 3px solid goldenrod;
+  -webkit-transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+
+.icon {
+  -webkit-tap-highlight-color: transparent; /* Remove grey highlight on iOS */
 }
 
 .new-collection-section,
@@ -717,6 +649,15 @@ search {
   z-index:10!important;
   font-weight: 800; /* Set font weight to regular */
   font-style: normal; /* Set font style to normal */
+  text-align:left;
+}
+
+
+#goto_sidebar {
+  margin: 0; /* Optional: Adjust margins if needed */
+  padding: 0; /* Optional: Adjust padding if needed */
+  text-align: left; /* Align text inside h3 to the left */
+  color: black; /* Keep the text color */
 }
 
 #user-sidebar.visible {

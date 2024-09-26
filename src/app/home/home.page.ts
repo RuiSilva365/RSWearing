@@ -148,7 +148,13 @@ export class HomePage implements OnInit {
   gotoSearch(searchText: string) {
     this.router.navigate(['/search'], { queryParams: { query: searchText } });
   }
-
+  focusInput() {
+    const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.focus();
+    }
+  }
+  
   gotoLogout() {
     const auth = getAuth();
     if (auth.currentUser) {
@@ -181,8 +187,6 @@ export class HomePage implements OnInit {
     this.router.navigate(['/settings']);
   }
 
-
-
   toggleAccordion(event: CustomEvent) {
     const accordionValue = event.detail.value;
     this.activeAccordion = this.activeAccordion === accordionValue ? null : accordionValue;
@@ -196,10 +200,11 @@ export class HomePage implements OnInit {
       activeDropdown.classList.add('expanded');
     }
   }
+  
   toggleSidebar() {
     // Toggle the sidebar's open/close state
     this.sidebarVisible = !this.sidebarVisible;
-    if (this.sidebarVisible==true) {
+    if (this.sidebarVisible) {
       // Set a timeout to hide the sidebar after 3 seconds if it's still open
       this.sidebarTimeout = setTimeout(() => {
         this.sidebarVisible = false;
@@ -208,9 +213,7 @@ export class HomePage implements OnInit {
       }, 3000); // 3000 milliseconds = 3 seconds
     }
   }
-  
 
-  
   toggleDropdown(menu: string) {
     // Close the sidebar if a dropdown is being opened
     if (this.activeDropdown !== menu) {
@@ -226,14 +229,26 @@ export class HomePage implements OnInit {
     this.isHovering[section] = state;
   }
 
-  showSubMenu(menu: string) {
-    this.subMenuVisible = menu; 
+  navigateToSearch() {
+    const searchInput = document.querySelector('.input-wrapper .input') as HTMLInputElement;
+    if (searchInput && searchInput.value.trim().length > 0) {
+      this.showLoader();
+      setTimeout(() => {
+        this.router.navigate(['/search'], { queryParams: { q: searchInput.value } });
+        this.hideLoader(); 
+      }, 2000);
+    }
   }
 
-  hideSubMenu() {
-    this.subMenuVisible = null; 
+  showLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.add('visible'); // Add 'visible' class to show the loader
   }
 
+  hideLoader() {
+    const loaderContainer = document.querySelector('.loader-container');
+    loaderContainer?.classList.remove('visible'); // Remove 'visible' class to hide the loader
+  }
   gotoFacebookPage() {
     this.router.navigate(['/profile']);  // Use the injected Router
   }
@@ -257,25 +272,24 @@ export class HomePage implements OnInit {
   gotoItem(id: string) {
     this.router.navigate(['/item', id]); 
   }
-  
 
-  navigateToSearch() {
-    if (this.searchQuery.trim().length > 0) {
-      this.showLoader();
-      setTimeout(() => {
-        this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
-        this.hideLoader(); 
-      }, 2000);
-    }
-  }
-showLoader() {
-  const loaderContainer = document.querySelector('.loader-container');
-  loaderContainer?.classList.add('visible'); // Add 'visible' class to show the loader
-}
 
-// Hide the loader
-hideLoader() {
-  const loaderContainer = document.querySelector('.loader-container');
-  loaderContainer?.classList.remove('visible'); // Remove 'visible' class to hide the loader
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
