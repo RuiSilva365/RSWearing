@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../assets/fonts/NatureBeautyPersonalUse-9Y2DK.ttf') format('truetype');
+}
+
+
 /* For smaller screens (media query) */
 @media screen and (max-width: 768px) {
   body, ion-content, ion-header, ion-page {
@@ -517,7 +523,9 @@ ion-button#user-icon {
   padding-top: 30px;
   padding: 20px;
   color: goldenrod;
-  overflow-x: hidden;  /* Hide scrollbar by default */
+  overflow-x: hidden;  /* Hide scrollbar by default */;
+  font-family: 'MyFont', sans-serif;
+
 }
 
 .new-collection-section:hover,
