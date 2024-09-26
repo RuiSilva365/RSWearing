@@ -15,7 +15,7 @@
   #user-sidebar {
     margin-top: 70px !important;
     width: 200px; /* Slightly wider for mobile */
-    z-index: 20 !important;
+    z-index: 4 !important;
   }
 
   .logo-icon {
@@ -133,7 +133,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
   background-color: white;
 }
 
@@ -521,7 +520,6 @@ ion-button#user-icon {
   background-color: white;
   margin-top: 80px;
   padding-top: 30px;
-  padding: 20px;
   color: goldenrod;
   overflow-x: hidden;  /* Hide scrollbar by default */;
   font-family: 'MyFont', sans-serif;
@@ -560,6 +558,78 @@ ion-button#user-icon {
   border-radius: 10px;
   border: 2px solid #333;
 }
+.carousel-container {
+  display: flex;
+  overflow-x: hidden; /* Hide scrollbars */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.carousel-prev,
+.carousel-next {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  font-size: 2em;
+  padding: 1px;
+}
+
+.carousel-prev {
+  left: 1px;
+}
+
+.carousel-next {
+  right: 1px;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+.carousel-container {
+  display: flex;
+  overflow-x: hidden; /* Hide scrollbars */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Keyframes for the scrolling animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Apply the animation to each section */
+.new-collection-items {
+  animation: scroll-left 20s linear infinite;
+}
+
+.hot-deals-items {
+  animation: scroll-left 23s linear infinite;
+}
+
+.trending-items {
+  animation: scroll-left 25s linear infinite;
+}
+
+.recommended-items {
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Pause the animation on hover */
+.new-collection-items:hover,
+.hot-deals-items:hover,
+.trending-items:hover,
+.recommended-items:hover {
+  animation-play-state: paused;
+}
+
 .item {
   flex: 0 0 auto;
   margin-right: 10px;

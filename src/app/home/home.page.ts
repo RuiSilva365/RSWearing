@@ -84,7 +84,15 @@ export class HomePage implements OnInit {
       this.fetchAllItems();
     });
   }
-  
+  // Function to scroll with looping effect
+scrollLeftWithLoop(container: HTMLElement, speed: number) {
+  container.scrollLeft += speed;
+
+  // Check if scroll has reached the end
+  if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+    container.scrollLeft = 0; // Loop back to the start
+  }
+}
   // Generates a random avatar URL if the user doesn't have one
   generateRandomAvatarUrl() {
     const randomSeed = Math.random().toString(36).substring(7);
@@ -240,6 +248,18 @@ export class HomePage implements OnInit {
     }
   }
 
+  scrollCarousel(section: string, direction: 'prev' | 'next') {
+    const container = document.querySelector(`.${section}-items`) as HTMLElement;
+    if (!container) return;
+  
+    const scrollAmount = container.offsetWidth; // Scroll by the width of the container
+    if (direction === 'next') {
+      container.scrollLeft += scrollAmount;
+    } else {
+      container.scrollLeft -= scrollAmount;
+    }
+  }
+  
   showLoader() {
     const loaderContainer = document.querySelector('.loader-container');
     loaderContainer?.classList.add('visible'); // Add 'visible' class to show the loader

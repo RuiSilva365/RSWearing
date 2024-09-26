@@ -117,179 +117,171 @@
     margin: 0;
   }
 }
+//____________________
 
 
-ion-header {
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
-  color:black;
-    .home-user-bar {
-    --background: white!important;
-    color:black;
+}
 
-    .brand-logo {
-      width: 100px;  /* Set a fixed width */
-      height: auto;  /* Maintain aspect ratio */
-      max-width: 100%;  /* Ensure it doesn’t exceed the container */
-      object-fit: contain;  /* Prevent distortion */
-    }
+.brand-logo {
+  width: 120px; /* Adjust the size of the logo */
+  height: auto;
+}
 
-    ion-toolbar {
-      --background: transparent !important;
-      --min-height: 80px; /* Ensure consistent toolbar height */
-      display: flex;
-      justify-content: space-between; /* Ensure space between logo and search bar/user icon */
-      font-size: 24px;
-      font-weight: bold;
-      color: black;
-      font-family: 'Playfair Display', serif;
-    }
+.user-actions {
+  display: flex;
+  align-items: center;
 
-    .btn-cart {
-      position: relative; /* Changed to relative for testing */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: transparent;
-      border: none;
-      margin-top: 1px;
-      margin-left: 10px;
-      z-index: 10; /* Ensures the icon is on top */
+}
+
+.user-icon {
+  background: goldenrod;
+
+}
+#user-icon:hover {
+  --background: #daa520; /* Slightly darker goldenrod on hover */
+}
+
+
+.btn-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  z-index: 10;
+}
+
+.icon-cart {
+  width: 24.38px;
+  height: 30.52px;
+  fill: black;
+}
+
+.btn-cart:hover .icon-cart {
+  transform: scale(1.32);
+  fill: goldenrod;
+}
+
+.cart-dropdown {
+  display: none;
+  position: absolute;
+  top: -20px;
+  left: -60px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.btn-cart:hover .cart-dropdown {
+  display: block;
+}
+
+.cart-dropdown p {
+  margin: 0;
+  font-size: 14px;
+  color: black;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.btn::after {
+  content: "Favorites";
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  font-size: 15px;
+  color: black;
+  font-family: sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s linear;
+  top: 115%;
+}
+
+.btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: 105%;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  transition: 0.2s linear;
+}
+
+.icon path {
+  transition: 0.2s linear;
+}
+
+.btn:hover > .icon {
+  transform: scale(1.2);
+}
+
+.btn:hover > .icon path {
+  fill: goldenrod;
+}
+ion-button {
+  background-color: goldenrod;
+  background: goldenrod;
+
+  ion-icon {
+    background: goldenrod;
+    background-color: goldenrod;
+    font-size: 20px;
+    color: black;
   }
-  
-  .icon-cart {
-      width: 24.38px;
-      height: 30.52px;
-      fill: black; /* Ensures the icon is visible */
-  }
-  
-  .btn-cart:hover .icon-cart {
-      transform: scale(1.32);
-      fill: goldenrod; /* Ensures hover effect is visible */
-  }
-    .cart-dropdown {
-      display: none;
-      position: absolute;
-      top: -20px; /* Adjust based on where you want the dropdown to appear */
-      left: -60px; /* Adjust based on alignment */
-      width: 200px; /* Set width as needed */
-      background-color: white;
-      border: 1px solid goldenrod;
-      border-radius: 5px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      z-index: 1000;
-      text-align: center;
-    }
-    
-    .btn-cart:hover .cart-dropdown {
-      display: block;
-    }
-    
-    .cart-dropdown p {
-      margin: 0;
-      font-size: 14px;
-      color: black;
-    }
-    
-    .accordion-container {
-      z-index: 1000 !important; /* Adjust the value based on your stacking needs */
-    }
-    
-  /* From Uiverse.io by boryanakrasteva */ 
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    position: relative;
-  }
+}
 
-    .btn::after {
-      content: "Favorites";
-      width: fit-content;
-      height: fit-content;
-      position: absolute;
-      font-size: 15px;
-      color: black;
-      font-family:sans-serif;
-      opacity: 0;
-      visibility: hidden;
-      transition: 0.2s linear;
-      top: 115%;
-    }
+ion-button#user-icon {
+  --background: goldenrod !important; /* Change to 'goldenrod' for a golden background */
+  --color: black; /* Icon color inside the button */
+  --background-activated: goldenrod!important; /* Adjust activated (clicked) state */
+  --background-focused: goldenrod!important; /* Adjust focused state */
+  --background-hover: goldenrod !important; /* Adjust hover state */
+  padding: 0; /* Ensure no extra padding */
+  border-radius: 5px; /* Optional: Rounded corners */
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any box shadow */
+}
+ion-toolbar {
+  --background: white !important;
+  --min-height: 80px;
+  padding: 0;
+  overflow: visible !important;
+}
 
-    .icon {
-      width: 50px;
-      height: 50px;
-      transition: 0.2s linear;
-    }
+/* Target inner shadow DOM components */
+ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(container), ion-item::part(native), ion-label::part(native) {
+  --ion-background-color: white !important;
+  background-color: white !important;
+  color: black !important;
+}
 
-    .icon path {
-      fill: gray;
-      transition: 0.2s linear;
-    }
-
-    .btn:hover > .icon {
-      transform: scale(1.2);
-    }
-
-    .btn:hover > .icon path {
-      fill: goldenrod;
-    }
-
-    .btn:hover::after {
-      visibility: visible;
-      opacity: 1;
-      top: 105%;
-    }
-
-    ion-buttons {
-      display: flex;
-      align-items: center;
-
-      .user-name {
-        font-size: 15px;
-        color: goldenrod;
-        font-family: 'Playfair Display', serif;
-      }
-
-      ion-button {
-        color: goldenrod;
-
-        ion-icon {
-          font-size: 28px;
-          color: rgba(1, 25, 32, 0.596);
-        }
-      }
-    }
-    }
-    ion-toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-
-    
-    }
-    ion-page {
-      background-color: white;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
-    ion-toolbar {
-      position: relative;
-    }
-
-  
 
  //____________________________________________________________CONTENT
 
