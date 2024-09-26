@@ -64,7 +64,11 @@ const routes: Routes = [
     path: 'payment-success',
     loadChildren: () => import('./payment-success/payment-success.module').then( m => m.PaymentSuccessPageModule)
   },
-  { path: 'orders-page', component: OrdersPageComponent },
+  { path: 'orders-page', component: OrdersPageComponent },  {
+    path: 'whoareus',
+    loadChildren: () => import('./whoareus/whoareus.module').then( m => m.WhoareusPageModule)
+  },
+
 
 
 

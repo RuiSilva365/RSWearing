@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('../../assets/fonts/NatureBeautyPersonalUse-9Y2DK.ttf') format('truetype');
+  }
+  
+.header-title {
+    font-family: 'MyFont', sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    padding: 1rem 0;
+    border-bottom: 2px solid #DAA520; /* Gold underline */
+  }
+  
+  .intro-card {
+    background: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .intro-text {
+    font-family: 'MyFont2', sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .value-card {
+    text-align: center;
+    background: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .header-title {
+    font-family: 'YourCustomFont', sans-serif; /* Use your custom font here */
+    text-align: center;
+    font-size: 1.5rem;
+    color: #000; /* Black text color */
+    padding: 1rem 0;
+    border-bottom: 2px solid #DAA520; /* Gold underline */
+  }
+  
+  .intro-card {
+    background: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 1rem; /* Adds space between cards */
+  }
+  
+  .intro-text {
+    font-family: 'YourCustomFont', sans-serif;
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .value-card {
+    text-align: center;
+    background: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem; /* Adds space between cards */
+  }
+  
+  .value-card h3 {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .value-card p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .cta-button {
+    margin: 2rem auto;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #DAA520;
+    border-radius: 25px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .cta-button:hover {
+    transform: scale(1.05);
+  }
+  
+  ion-icon {
+    margin-bottom: 0.5rem;
+    color: #DAA520; /* Gold icons */
+  }
+  
