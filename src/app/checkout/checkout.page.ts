@@ -86,10 +86,15 @@ export class CheckoutPage implements OnInit {
 
  // TypeScript
 selectPaymentMethod(method: string) {
-  if (method === 'paypal-pay' || method === 'apple-pay' || method === 'google-pay') {
-    // ...
+  if (method === 'google-pay') {
+    this.stripeService.initializeGooglePay();
+  } else if (method === 'apple-pay') {
+    // Handle Apple Pay
+  } else if (method === 'paypal-pay') {
+    // Handle PayPal Pay
   }
 }
+
 
 
 

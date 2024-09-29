@@ -75,6 +75,33 @@ export class StripeService {
     return this.http.post<{ clientSecret: string }>(`${environment.apiUrl}/create-payment-intent`, { amount, currency });
   }
   
+  initializeGooglePay() {
+    const totalAmount = 5000; // Example total amount in cents
+    const paymentRequest = this.stripe!.paymentRequest({
+      country: 'US', // or your country code
+      currency: 'eur',
+      total: {
+        label: 'Total',
+        amount: totalAmount, // Total in cents
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+  
+    paymentRequest.canMakePayment().then((result) => {
+      if (result) {
+        const googlePayButton = this.elements!.create('paymentRequestButton', { paymentRequest });
+        googlePayButton.mount('#google-pay-button');
+      } else {
+        console.log('Google Pay is not available');
+      }
+    });
+  }
+  
+
+
+
+
   async handlePayment(clientSecret: string, items: any[], totalAmount: number, currency: string, userDetails: any) {
     if (!this.stripe || !this.cardNumber || !this.cardExpiry || !this.cardCvc) {
       console.error('Stripe não foi inicializado ou o elemento de cartão está ausente');
@@ -104,6 +131,27 @@ export class StripeService {
         }
       }
     });
+
+    const paymentRequest = this.stripe.paymentRequest({
+      country: 'US', // or your country
+      currency: 'eur',
+      total: {
+        label: 'Total',
+        amount: totalAmount, // in cents
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+    
+    paymentRequest.canMakePayment().then((result) => {
+      if (result) {
+        const googlePayButton = this.elements!.create('paymentRequestButton', { paymentRequest }); 
+        googlePayButton.mount('#google-pay-button');
+      } else {
+        console.log('Google Pay is not available');
+      }
+    });
+    
 
     if (error) {
       console.error('Erro ao processar pagamento:', error);
