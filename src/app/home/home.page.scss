@@ -29,8 +29,6 @@
     margin-bottom: 10px;
   }
 
-  
-
   .btn-icon-content {
     padding: 10px;
   }
@@ -69,7 +67,25 @@
     font-size: 5px;
   }
 
- 
+
+  .carousel-item img {
+    width: 220px;  /* Adjust image size for mobile */
+    height: 220px;
+  }
+  
+  .carousel-item {
+    margin: 0 0px !important;  /* Reduce margin for mobile */
+    opacity: 0.2;    /* Default opacity on mobile */
+  }
+.carousel-wrapper {
+  padding: 0;
+}
+  .carousel-item.highlighted {
+    transform: scale(1.4) !important;  /* Increase the scale a bit more for better visibility */
+    opacity: 1 !important;  /* Full opacity for highlighted items */
+  }
+
+
 
 }
 
@@ -306,7 +322,7 @@ ion-content {
 }
 
 /* Target inner shadow DOM components */
-ion-content::part(scroll), ion-header::part(container), ion-toolbar::part(container), ion-item::part(native), ion-label::part(native) {
+ ion-header::part(container), ion-toolbar::part(container), ion-item::part(native), ion-label::part(native) {
   --ion-background-color: white !important;
   background-color: white !important;
   color: black !important;
@@ -438,6 +454,17 @@ ion-button#user-icon {
   box-shadow: none; /* Remove any box shadow */
 }
 
+#kids_label {
+  align-items: center;
+  margin-left: 50%;
+  }
+
+#men_label {
+  align-items: center;
+  margin-left: 50%;
+  }
+  
+
 /* From Uiverse.io by ZAKARIAE48CHELLE */ 
 .input-wrapper {
   display: flex;
@@ -509,139 +536,58 @@ ion-button#user-icon {
   transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
 
-.icon {
-  -webkit-tap-highlight-color: transparent; /* Remove grey highlight on iOS */
-}
 
-.new-collection-section,
-.hot-deals-section,
-.trending-section,
-.recommended-section {
-  background-color: white;
-  margin-top: 80px;
-  padding-top: 30px;
+.types_items {
+  padding-top: 5% !important;
+  margin-left: 2% !important;
   color: goldenrod;
-  overflow-x: hidden;  /* Hide scrollbar by default */;
   font-family: 'MyFont', sans-serif;
-
 }
-
-.new-collection-section:hover,
-.hot-deals-section:hover,
-.trending-section:hover,
-.recommended-section:hover {
-  overflow-x: scroll;  /* Show scrollbar on hover */
-  scrollbar-width: thin;
-  scrollbar-color: goldenrod black;
-}
-
-.new-collection-section::-webkit-scrollbar,
-.hot-deals-section::-webkit-scrollbar,
-.trending-section::-webkit-scrollbar,
-.recommended-section::-webkit-scrollbar {
-  height: 8px;
-  border-radius: 4px;
-}
-
-.new-collection-section::-webkit-scrollbar-track,
-.hot-deals-section ::-webkit-scrollbar-track,
-.trending-section::-webkit-scrollbar-track,
-.recommended-items::-webkit-scrollbar-track {
-  background: #333;
-}
-
-.new-collection-section::-webkit-scrollbar-thumb,
-.hot-deals-section::-webkit-scrollbar-thumb,
-.trending-section::-webkit-scrollbar-thumb,
-.recommended-section::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 10px;
-  border: 2px solid #333;
-}
-.carousel-container {
+.podium-carousel {
+  /* Adjust carousel height to prevent clipping */
+  width: 100%;
   display: flex;
-  overflow-x: hidden; /* Hide scrollbars */
-  scroll-behavior: smooth; /* Smooth scrolling */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  max-height: 450px;  /* Set a fixed height for images */
 }
 
-.carousel-prev,
-.carousel-next {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  font-size: 2em;
-  padding: 1px;
-}
-
-.carousel-prev {
-  left: 1px;
-}
-
-.carousel-next {
-  right: 1px;
-}
-
-.carousel-container::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar */
-}
-.carousel-container {
+.carousel-wrapper {
   display: flex;
-  overflow-x: hidden; /* Hide scrollbars */
-  scroll-behavior: smooth; /* Smooth scrolling */
+  overflow-y: hidden;
+  scroll-behavior: smooth;
 }
 
-/* Keyframes for the scrolling animation */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.carousel-wrapper::-webkit-scrollbar {
+  display: none !important;  /* Hide scrollbar in Chrome, Safari, and Opera */
 }
 
-/* Apply the animation to each section */
-.new-collection-items {
-  animation: scroll-left 20s linear infinite;
+.carousel-item {
+  /* Make the transition smoother for both scaling and opacity */
+  margin: 0 20px;
+  max-height: 400px;
+  opacity: 0.6;
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Adjust transition time */
+  user-select: none;
 }
 
-.hot-deals-items {
-  animation: scroll-left 23s linear infinite;
+
+
+.carousel-item.highlighted {
+  transform: scale(1.2); /* Increase size on hover */
+  opacity: 1 !important;
 }
 
-.trending-items {
-  animation: scroll-left 25s linear infinite;
+.carousel-item img {
+  max-width: 500px;
+  max-height: 300px;
+  object-fit: cover; /* Ensure images cover the container without distortion */
 }
 
-.recommended-items {
-  animation: scroll-left 20s linear infinite;
-}
-
-/* Pause the animation on hover */
-.new-collection-items:hover,
-.hot-deals-items:hover,
-.trending-items:hover,
-.recommended-items:hover {
-  animation-play-state: paused;
-}
-
-.item {
-  flex: 0 0 auto;
-  margin-right: 10px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.item img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
+.carousel-wrapper {
+  overflow-y: hidden;
 }
 
 .item p {
@@ -669,44 +615,7 @@ ion-button#user-icon {
   height: 25px;
 }
 
-.cube {
-  transition: all 0.4s;
-  transform-style: preserve-3d;
-  width: 200px;
-  height: 20px;
-}
 
-.button-icon:hover {
-  border-color: goldenrod;
-}
-
-.button-icon:hover .cube {
-  transform: rotateX(90deg);
-}
-
-.side {
-  position: absolute;
-  height: 47px;
-  width: 200px;
-  display: flex;
-  font-size: 0.8em;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-}
-
-.top {
-  background: #ff6124;
-  color: #fff;
-  transform: rotateX(-90deg) translate3d(0, 13.5px, 2em);
-}
-
-.front {
-  color: #fff;
-  transform: translate3d(0, 0, 1em);
-}
 
 #user-sidebar {
   position: fixed;
@@ -835,38 +744,13 @@ ion-button#user-icon:hover + #user-sidebar {
 }
 
 
-.new-collection-items, .hot-deals-items, .trending-items, .recommended-items {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  gap: 15px;
-  padding: 10px 0;
-}
-
-.new-collection-items .item, 
-.hot-deals-items .item, 
-.trending-items .item, 
-.recommended-items .item {
-  min-width: 40px; // Set a minimum width for each item
-  max-width: 300px; // Set a maximum width for each item
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.new-collection-items img, 
-.hot-deals-items img, 
-.trending-items img, 
-.recommended-items img {
-  max-width: 500px;
-  max-height: 550px; // Set a fixed height for images
-  object-fit: cover; // Ensure images cover the container without distortion
-  border-radius: 8px;
-}
-
 
 
 
 .services-section {
+  margin-top: 30px !important;
+  padding-top: 30px !important;
+
   display: flex;
   justify-content:space-evenly;
   background-color: white;
@@ -897,7 +781,7 @@ footer.footer {
   justify-content: space-between;
   background-color: white;
   color:black;
-  border-top: 2px solid goldenrod;
+  border-top: 2px solid darkgoldenrod;
   padding-bottom: 10px !important;
 }
 .footer-section {

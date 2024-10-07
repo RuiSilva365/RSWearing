@@ -163,33 +163,23 @@ ion-header {
     --background: transparent !important;
 
     .filter {
-        position: absolute;
-        margin-top: -50px;
-        margin-left: 58%;
         width: 50px;
         height: 50px;
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid rgba(0, 0, 0, 0.192);
         cursor: pointer;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.021);
         transition: all 0.3s;
         background: transparent !important;
-        border: 2px solid goldenrod;
         color: gold;
       }
       
       .filter svg {
-        height: 16px;
         fill: rgb(77, 77, 77);
         transition: all 0.3s;
       }
-      .filter:hover {
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.11);
-        background-color: goldenrod;
-      }
+ 
       .filter:hover svg {
         fill: black;
       }
@@ -203,12 +193,11 @@ ion-header {
         --background: transparent !important;
         --inner-padding: 10px;
         border-radius: 10px;
-        background-color:transparentize($color: white, $amount: 0.77); /* Transparent white background */
+        background-color:transparent; /* Transparent white background */
       }
       
       .filter-container ion-range {
         --bar-background: goldenrod !important;
-        --bar-background-active: black !important;
       }
       
       .filter-container ion-label {
@@ -223,130 +212,146 @@ ion-header {
       .filter-container ion-select-option {
         color: black;
       }
-      .search {
-        display: fixed;
-        margin-top: 40px;
-        margin-left: 30%;
-        --input-line: black;
-        --input-text-color: black;
-        --input-text-hover-color: #808080;
-        --input-border-color: #808080;
-        --input-border-hover-color: black;
-        --input-bg-color:transparent ;
-        --search-max-width: 550px;
-        --search-min-width: 150px;
-        --border-radius: 50px;
-        --transition-cubic-bezier: 150ms cubic-bezier(0.4,0,0.2,1);
-      }
-      
-      .search-box {
-        max-width: var(--search-max-width);
-        min-width: var(--search-min-width);
-        height: 45px;
-        border: 1px solid var(--input-border-color);
-        border-radius: var(--border-radius);
-        padding: 5px 15px;
-        background: var(--input-bg-color);
-        box-shadow: 0 0 20px transparentize($color: goldenrod, $amount: 0.75);
-        transition: var(--transition-cubic-bezier);
-      }
-      
-      .search-box:hover {
-        border-color: var(--input-border-hover-color);
-      }
-      
-      /*Section input*/
-      .search-field {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        left: -5px;
-        border: 0;
-      }
-      
-      .input {
-        width: calc(100% - 29px);
-        height: 100%;
-        border: 0;
-        border-color: transparent;
-        font-size: 1rem;
-        padding-right: 0px;
-        color: var(--input-line);
-        background: var(--input-bg-color);
-        border-right: 2px solid var(--input-border-color);
-        outline: none;
-      }
-      
-      .input::-webkit-input-placeholder {
-        color: var(--input-text-color);
-      }
-      
-      .input::-moz-input-placeholder {
-        color: var(--input-text-color);
-      }
-      
-      .input::-ms-input-placeholder {
-        color: var(--input-text-color);
-      }
-      
-      .input:focus::-webkit-input-placeholder {
-        color: var(--input-text-hover-color);
-      }
-      
-      .input:focus::-moz-input-placeholder {
-        color: var(--input-text-hover-color);
-      }
-      
-      .input:focus::-ms-input-placeholder {
-        color: var(--input-text-hover-color);
-      }
-      
-      .search-filter-container {
-        padding: 90px;
+      /* From Uiverse.io by Harsha2lucky */ 
+.input {
+  color: black;
+  font: 1em/1.5 Hind, sans-serif;
+}
 
-      }
-      /*Search button*/
-      .search-box-icon {
-        width: 52px;
-        height: 45px;
-        position: absolute;
-        top: -6px;
-        right: -21px;
-        background: transparent;
-        border-bottom-right-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        transition: var(--transition-cubic-bezier);
-      }
-      
-      .search-box-icon:hover {
-        background: black;
-      }
-      .btn-icon-content {
-        width: 52px;
-        height: 45px;
-        top: -6px;
-        right: -21px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        border-bottom-right-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        transition: var(--transition-cubic-bezier);
-        opacity: .4;
-      }
-      
-      .btn-icon-content:hover {
-        opacity: .8;
-      }
-      
-      .search-icon {
-        width: 31px;
-        height: 31px;
-        position: absolute;
-        top: 7px;
-        right: 15px;
-        fill: gold; 
-      }
+form, .input, .caret {
+  margin: auto;
+}
+.search-filter-container {
+  padding: 10px;
+  display: flex;
+  margin-left: 50%;
+  margin-top:5%;
+}
+
+form {
+  position: relative;
+  width: 100%;
+  max-width: 17em;
+}
+
+.input, .caret {
+  display: block;
+  transition: all calc(1s * 0.5) linear;
+}
+
+.input {
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.25em inset;
+  caret-color: white;
+  width: 2em;
+  height: 2em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input:focus, .input:valid {
+  background: white;
+  border-radius: 0.25em;
+  box-shadow: none;
+  padding: 0.75em 1em;
+  transition-duration: calc(1s * 0.25);
+  transition-delay: calc(1s * 0.25);
+  width: 100%;
+  height: 3em;
+  border-color: goldenrod;
+}
+
+.input:focus {
+  animation: showCaret 1s steps(1);
+  outline: transparent;
+}
+
+.input:focus + .caret, .input:valid + .caret {
+  animation: handleToCaret 1s linear;
+  background: transparent;
+  width: 1px;
+  height: 1.5em;
+  transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+}
+
+.input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label {
+  color: #e3e4e8;
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.caret {
+  background: black;
+  border-radius: 0 0 0.125em 0.125em;
+  margin-bottom: -0.6em;
+  width: 0.25em;
+  height: 1em;
+  transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+  transform-origin: 50% 0;
+}
+
+/* Animations */
+@keyframes showCaret {
+  from {
+    caret-color: transparent;
+  }
+
+  to {
+    caret-color: white;
+  }
+}
+
+@keyframes handleToCaret {
+  from {
+    background: currentColor;
+    width: 0.25em;
+    height: 1em;
+    transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+  }
+
+  25% {
+    background: currentColor;
+    width: 0.25em;
+    height: 1em;
+    transform: translate(0,-1em) rotate(-180deg) translate(0,0.875em);
+  }
+
+  50%, 62.5% {
+    background: white;
+    width: 1px;
+    height: 1.5em;
+    transform: translate(0,-1em) rotate(-180deg) translate(7.5em,2.5em);
+  }
+
+  75%, 99% {
+    background: white;
+    width: 1px;
+    height: 1.5em;
+    transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+  }
+
+  87.5% {
+    background: white;
+    width: 1px;
+    height: 1.5em;
+    transform: translate(0,-1em) rotate(-180deg) translate(7.5em,0.125em);
+  }
+
+  to {
+    background: transparent;
+    width: 1px;
+    height: 1.5em;
+    transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+  }
+}
     }
 
   /* Product Card adjustments */
@@ -374,63 +379,6 @@ ion-header {
     .header-content {
       flex-direction: column;
       padding: 10px 10px;
-    }
-    
-
-    /* Search Box adjustments */
-    .search {
-      position: absolute;
-      display: fixed;
-      max-width: 40px;
-      top:-30px;
-      display: block;
-      margin: 5px auto;
-      width: 100%; /* Make the search bar more responsive */
-      padding: 2px;
-    }
-  
-    .search-box {
-      min-width: 90%; /* Adjust the search box to fit the screen width */
-      max-width: none;
-      height: 45px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* Slight shadow for visibility */
-    }
-  
-    .search-field {
-      width: 100%;
-    }
-  
-    .input {
-      width: calc(100% - 40px); /* Ensures padding fits within screen */
-      font-size: 16px;
-      padding-left: 10px;
-    }
-  
-    .btn-icon-content {
-      width: 40px; /* Adjust icon button size */
-      height: 40px;
-      right: -10px; /* Position correctly on smaller screens */
-    }
-  
-    .search-icon {
-      width: 24px; /* Adjust icon size */
-      height: 24px;
-      top: 10px; /* Align with search bar */
-    }
-  
-    /* Filter Button adjustments */
-    .filter {
-      position: absolute;
-      display: fixed;
-      bottom: 90%;
-      left: -80px;
-
-    }
-  
-    .filter svg {
-      height: 20px; /* Adjust icon size for smaller screens */
     }
   
     /* Product Card adjustments */
@@ -460,22 +408,7 @@ ion-header {
       font-size: 1rem;
     }
   
-    /* Filter container adjustments */
-    .filter-container {
-      position: relative;
-      width: 100%; /* Full width on smaller screens */
-      box-shadow: none; /* Remove shadow to make it less cluttered */
-    }
-  
-    .filter-container ion-item {
-      --inner-padding: 5px;
-      border-radius: 8px;
-    }
-  
-    /* Adjust the font size inside the filter container */
-    .filter-container ion-label {
-      font-size: 8px;
-    }
+   
   
     /* Adjust ion-cards for small screens */
     ion-card {
@@ -509,7 +442,9 @@ ion-header {
     .footer-section ul {
       font-size: 5px;
       }
- 
+      .search-filter-container {
+        margin-left: 0% !important;
+      }
   }
   
   #user-sidebar {

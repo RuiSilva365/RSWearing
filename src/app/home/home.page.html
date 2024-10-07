@@ -1,10 +1,10 @@
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
-
 </head>
 
 <div id="user-sidebar" [ngClass]="{'visible': sidebarVisible}" (mouseenter)="toggleSidebar()" (mouseleave)="toggleSidebar()">
-  <div class="sidebar-contecnt">
+  <div class="sidebar-content">
     <div class="user-info">
       <img [src]="user.avatarUrl" alt="User Avatar" class="user-avatar">
       <p class="user-name">{{ user.name }}</p>
@@ -15,55 +15,33 @@
       <button (click)="gotoSearch('Trending')">Trending</button>
       <button (click)="gotoSearch('Campaigns')">Campaigns</button>
       <button (click)="gotoSearch('')">Search</button>
-      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button> <!-- Conditionally change text -->
+      <button (click)="gotoLogout()">{{ isLoggedIn ? 'Logout' : 'Login' }}</button>
       <div class="logo-icon">
-        <img src="assets/icon/logo.png"  />
+        <img src="assets/icon/logo.png" />
       </div>
     </div>
   </div>
 </div>
 
-
 <ion-header>
   <div class="home-user-bar">
     <ion-toolbar>
       <div class="header-content">
-          <div class= "logo-head-container">
-            <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
-          </div>
-
+        <div class="logo-head-container">
+          <img src="assets/icon/logo.png" alt="Brand Logo" class="brand-logo">
+        </div>
         <!-- Group for username, cart, favorites, and navigation -->
         <div class="user-actions">
           <div class="input-wrapper" (click)="focusInput()">
             <button class="icon" (click)="navigateToSearch()">
-              <svg
-                width="25px"
-                height="25px"
-                viewBox="0 0 24 24"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  d="M22 22L20 20"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
+              <svg width="25px" height="25px" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M22 22L20 20" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </button>
             <input type="text" name="text" class="input" id="searchInput" placeholder="search.." />
           </div>
-          
-          
-          
+
           <button data-quantity="0" class="btn-cart" (click)="gotoCart()">
             <svg class="icon-cart" viewBox="0 0 24.38 30.52" height="30.52" width="24.38" xmlns="http://www.w3.org/2000/svg">
               <title>icon-cart</title>
@@ -89,11 +67,12 @@
   </div>
 </ion-header>
 
-<!-- New container for dropdown triggers -->
+<ion-content [fullscreen]="true">
+  <!-- New container for dropdown triggers -->
 <div class="dropdown-container">
   <div class="dropdown">
     <ion-item class="accordion-header" (click)="toggleDropdown('men')">
-      <ion-label>Men</ion-label>
+      <ion-label id="men_label">Men</ion-label>
     </ion-item>
     <div class="dropdown-menu" [ngClass]="{'show': activeDropdown === 'men'}">
       <ion-list>
@@ -107,7 +86,7 @@
 
   <div class="dropdown">
     <ion-item class="accordion-header" (click)="toggleDropdown('kids')">
-      <ion-label>Kids</ion-label>
+      <ion-label id="kids_label">Kids</ion-label>
     </ion-item>
     <div class="dropdown-menu" [ngClass]="{'show': activeDropdown === 'kids'}">
       <ion-list>
@@ -120,141 +99,132 @@
   </div>
 </div>
 
-
-<ion-content [fullscreen]="true">
-
-
-
-
-
-  <div class="new-collection-section" 
-  (mouseenter)="toggleHover('new-collection', true)" 
-  (mouseleave)="toggleHover('new-collection', false)">
-  
-  <h2 (click)="gotoNewCollection()">New Collection <ion-icon name="pulse-sharp"></ion-icon></h2>
-  
-  <div class="new-collection-items">
-    <div class="item" *ngFor="let item of newCollectionItems" (click)="gotoItem(item.id)">
-      <img [src]="item.imageUrl" alt="{{ item.title }}">
-    </div>
-  </div>
- </div>
-
-<div class="hot-deals-section" 
-  (mouseenter)="toggleHover('hot-deal', true)" 
-  (mouseleave)="toggleHover('hot-deal', false)">
-  
-  <h2 (click)="gotoHotDeals()">Hot deals <ion-icon name="flame-sharp"></ion-icon></h2>
-  
-  <div class="hot-deals-items">
-    <div class="item" *ngFor="let item of hotDealsItems" (click)="gotoItem(item.id)">
-      <img [src]="item.imageUrl" alt="{{ item.title }}">
+<!-- New Collection Section -->
+<h2 (click)="gotoSearch('new-collection')" class="types_items">New Collection <ion-icon name="pulse-sharp"></ion-icon></h2>
+<div class="new-collection-section podium-carousel" *ngIf="newCollectionItems?.length">
+  <div class="carousel-wrapper" id="new-collection-carousel">
+    <div *ngFor="let item of newCollectionItems; let i = index"
+         class="carousel-item" 
+         (click)="gotoItem(item.id)"
+         (mouseenter)="highlightItem($event)"
+         (mouseleave)="resetHighlight($event)">
+      <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
     </div>
   </div>
 </div>
 
-<div class="trending-section" 
-  (mouseenter)="toggleHover('trending', true)" 
-  (mouseleave)="toggleHover('trending', false)">
-  
-  <h2 (click)="gotoTrending()">Trending right now <ion-icon name="trending-up-sharp"></ion-icon></h2>
-  
-  <div class="trending-items">
-    <div class="item" *ngFor="let item of trendingItems" (click)="gotoItem(item.id)">
-      <img [src]="item.imageUrl" alt="{{ item.title }}">
+
+
+<!-- Hot Deals Section -->
+<h2 (click)="gotoSearch('hot-deals')" class="types_items">Hot deals <ion-icon name="flame-sharp"></ion-icon></h2>
+<div class="hot-deals-section podium-carousel" *ngIf="hotDealsItems?.length">
+  <div class="carousel-wrapper" id="hot-deals-carousel">
+    <div *ngFor="let item of hotDealsItems; let i = index"
+         class="carousel-item" 
+         (click)="gotoItem(item.id)"
+         (mouseenter)="highlightItem($event)"
+         (mouseleave)="resetHighlight($event)">
+      <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
     </div>
   </div>
 </div>
 
-<!--
-<div class="recommended-section" 
-  (mouseenter)="toggleHover('recommended', true)" 
-  (mouseleave)="toggleHover('recommended', false)">
-  <h2 (click)="gotoHotDeals()">Recommend for you <ion-icon name="finger-print-sharp"></ion-icon></h2>
-<div class="recommended-items">
- <div class="item" *ngFor="let item of recommendedItems" (click)="gotoItem(item.id)">
-   <img [src]="item.imageUrl" alt="{{ item.title }}">
- </div>
-</div>
-
-</div>
--->
-
-
-<div class="services-section">
-  <div class="service-item">
-    <ion-icon name="speedometer-outline"></ion-icon>
-      <p>Fast shipping</p>
-  </div>
-  <div class="service-item">
-    <ion-icon name="airplane-outline"></ion-icon>
-      <p>Free delivery for purchases above 50€</p>
-  </div>
-  <div class="service-item">
-    <ion-icon name="help-buoy-outline"></ion-icon>
-      <p>Customer support ready for assistance</p>
+<!-- Trending Section -->
+<h2 (click)="gotoSearch('trending')" class="types_items">Trending right now <ion-icon name="trending-up-sharp"></ion-icon></h2>
+<div class="trending-section podium-carousel" *ngIf="trendingItems?.length">
+  <div class="carousel-wrapper" id="trending-carousel">
+    <div *ngFor="let item of trendingItems; let i = index"
+         class="carousel-item" 
+         (click)="gotoItem(item.id)"
+         (mouseenter)="highlightItem($event)"
+         (mouseleave)="resetHighlight($event)">
+      <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
+    </div>
   </div>
 </div>
 
-<footer class="footer">
-  <div class="footer-section">
-    <h3>Resources</h3>
-    <ul>
-      <li><a href="#">Newsletter</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </div>
-  
-  <div class="footer-section">
-    <h3>Help</h3>
-    <ul>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Support</a></li>
-      <li><a href="#">Contact us</a></li>
-    </ul>
-  </div>
-  
-  <div class="footer-section">
-    <h3>Company</h3>
-    <ul>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Careers</a></li>
-      <li><a>Social media:</a></li>
-      <li class="social-buttons">
-        <button (click)="gotoFacebookPage()" class="social-btn">
-          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
-        </button>
-        <button (click)="gotoInstagramPage()" class="social-btn">
-          <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
-        </button>
-        <button (click)="gotoTwitterPage()" class="social-btn">
-          <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
-        </button>
-        <button (click)="gotoTiktokPage()" class="social-btn">
-          <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
-        </button>
-      </li>
-    </ul>
-  </div>
-  
-  
-  <div class="footer-section">
-    <h3>Country</h3>
-    <ul>
-      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
-    </ul>
-  </div>
-</footer>
 
-<div class="loader-container hidden">
-  <div class="loader">
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
-    <div class="loader-square"></div>
+
+
+
+
+  <div class="services-section">
+    <div class="service-item">
+      <ion-icon name="speedometer-outline"></ion-icon>
+        <p>Fast shipping</p>
+    </div>
+    <div class="service-item">
+      <ion-icon name="airplane-outline"></ion-icon>
+        <p>Free delivery for purchases above 50€</p>
+    </div>
+    <div class="service-item">
+      <ion-icon name="help-buoy-outline"></ion-icon>
+        <p>Customer support ready for assistance</p>
+    </div>
   </div>
-</div>
+  
+  <footer class="footer">
+    <div class="footer-section">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Link 3</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Help</h3>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a>Social media:</a></li>
+        <li class="social-buttons">
+          <button (click)="gotoFacebookPage()" class="social-btn">
+            <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+          </button>
+          <button (click)="gotoInstagramPage()" class="social-btn">
+            <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
+          </button>
+          <button (click)="gotoTwitterPage()" class="social-btn">
+            <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
+          </button>
+          <button (click)="gotoTiktokPage()" class="social-btn">
+            <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
+          </button>
+        </li>
+      </ul>
+    </div>
+    
+    
+    <div class="footer-section">
+      <h3>Country</h3>
+      <ul>
+        <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+  <div class="loader-container hidden">
+    <div class="loader">
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+    </div>
+  </div>
+  
+</ion-content>
+

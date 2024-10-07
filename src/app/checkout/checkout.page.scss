@@ -17,38 +17,14 @@
   }
   
 
-  .modal {
-    position: relative; /* Use relative to stack normally */
-    width: 90%; /* Adjust width for better alignment */
-    max-height: 50vh !important; /* Ensure modal doesn't exceed viewport height */
-    margin: 0 auto; /* Center the modal horizontally */
-    overflow-y: auto; /* Allow scrolling for overflow content */
-    z-index: 10;
-  }
- .card.cart {
-  position: absolute; /* Use relative to stack below the modal */
-  top:90%;
-  width: 90%; /* Adjust width for better alignment */
-  max-width: 90vw; /* Ensure it fits well on mobile */
-  background-color: white;
-  color:black;
-  border-radius: 12px;
-  border: 1px solid goldenrod;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Center the cart horizontally */
-  margin-left: 16px !important;
-  margin-bottom: 20% !important; /* Add space above the cart */
-  z-index: 10;
 
-  .span{
-    color: black;
-  }
-}
     
 
 .payment-option-btn {
   padding: 8px 16px; /* Reduce padding for smaller screens */
 }
+
+
 
 .payment-option-btn svg {
   max-width: 45px; /* Reduce the width of the logo slightly on smaller screens */
@@ -223,20 +199,30 @@ ion-toolbar {
 
 
 .modal {
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%; /* Ensure the modal fits within the screen width on smaller devices */
-  max-width: 800px;
-  max-height: 80vh; /* Limit modal height to 90% of the viewport height */
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  border: 1px solid goldenrod;
-  overflow-y: auto; /* Add scrolling when content overflows */
-  box-sizing: border-box; /* Make sure padding is included in width and height */
+  padding-top: 10px !important;
+  position: relative; /* Use relative to stack normally */
+  max-width: 90%; /* Adjust width for better alignment */
+  margin: 0 auto; /* Center the modal horizontally */
+  overflow-y: auto; /* Allow scrolling for overflow content */
+  z-index: 10;
+}
+.card.cart {
+margin-top: 5% !important;
+width: 90%; /* Adjust width for better alignment */
+max-width: 90%;/* Ensure it fits well on mobile */
+background-color: white;
+color:black;
+border-radius: 12px;
+border: 1px solid goldenrod;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+margin: 0 auto; /* Center the cart horizontally */
+margin-bottom: 5% !important;
+
+z-index: 10;
+
+.span{
+  color: black;
+}
 }
 
   
@@ -246,6 +232,12 @@ ion-toolbar {
     background-color: white;
     display: flex;
     flex-direction: column;
+    width: 100% !important;
+
+  }
+  #card-cvc-element {
+    width: 50px !important; /* Set to 100% of the container or any other value like '200px' */
+    max-width: 420px !important; /* Set a max width */
   }
   
   .input_container {
@@ -257,7 +249,7 @@ ion-toolbar {
   .input_field {
     color:black;
     background-color: white;
-    width: 100%;
+    width: 100% ;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -276,9 +268,9 @@ ion-toolbar {
     padding: 10px;
   }
   
-  .payment--options button {
+  payment--options button {
     height: 55px;
-    background: rgb(233, 231, 231);
+    background:white;
     border: 1px solid goldenrod !important;
     border-radius: 11px;
     padding: 0;
@@ -294,10 +286,7 @@ ion-toolbar {
     height: 22px;
   }
   
-  .payment-option-btn:hover {
-    background-color: gold;
-  }
-  
+
   .separator {
     display: flex;
     align-items: center;
@@ -510,6 +499,7 @@ ion-toolbar {
     transform: translateX(-50%); /* Center the logo horizontally */
     height: auto;
   }
+
 
 
   footer.footer {

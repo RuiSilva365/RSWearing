@@ -3,15 +3,17 @@
     "public": "www",
     "ignore": [
       "firebase.json",
-      "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "/.well-known/apple-developer-merchantid-domain-association",
+        "destination": "/.well-known/apple-developer-merchantid-domain-association"
+      },
       {
         "source": "**",
         "destination": "/index.html"
       }
     ]
   }
-
 }

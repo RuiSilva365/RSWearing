@@ -29,6 +29,7 @@ export class CheckoutPage implements OnInit {
   cartItems: CartItem[] = [];
   sidebarVisible: boolean = false;
   couponDiscount: number = 0;
+  selectedPaymentMethod: string = 'card'; 
   user: any = {
     name: '',
     email: '',
@@ -85,18 +86,30 @@ export class CheckoutPage implements OnInit {
 
 
  // TypeScript
-selectPaymentMethod(method: string) {
-  if (method === 'google-pay') {
-    this.stripeService.initializeGooglePay();
-  } else if (method === 'apple-pay') {
-    // Handle Apple Pay
-  } else if (method === 'paypal-pay') {
-    // Handle PayPal Pay
+  handlePayment() {
+    if (this.selectedPaymentMethod === 'card') {
+      this.handleStripePayment();
+    } else if (this.selectedPaymentMethod === 'google-pay') {
+      this.stripeService.initializeGooglePay(this.totalPrice * 100);
+    } else if (this.selectedPaymentMethod === 'apple-pay') {
+      // Trigger Apple Pay payment
+    } else if (this.selectedPaymentMethod === 'paypal-pay') {
+      this.stripeService.initializePayPalButton(this.totalPrice * 100);
+    }
   }
-}
 
 
-
+  setPaymentMethod(method: string) {
+    this.selectedPaymentMethod = method;
+    if (method === 'apple-pay') {
+      this.stripeService.initializeApplePay(this.totalPrice * 100); // Ensure totalPrice is passed in cents
+    } else if (method === 'google-pay') {
+      this.stripeService.initializeGooglePay(this.totalPrice * 100);
+    } else if (method === 'paypal-pay') {
+      this.stripeService.initializePayPalButton(this.totalPrice * 100);  // Automatically triggers PayPal payment
+    }
+  }
+  
 
   // Ensure that the form is valid before handling payment
   async handleStripePayment() {
