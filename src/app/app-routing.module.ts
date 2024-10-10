@@ -68,7 +68,15 @@ const routes: Routes = [
   {
     path: 'whoareus',
     loadChildren: () => import('./whoareus/whoareus.module').then( m => m.WhoareusPageModule)
+  },  {
+    path: 'careers',
+    loadChildren: () => import('./careers/careers.module').then( m => m.CareersPageModule)
   },
+  {
+    path: 'socialmedias',
+    loadChildren: () => import('./socialmedias/socialmedias.module').then( m => m.SocialmediasPageModule)
+  },
+
 
 
 

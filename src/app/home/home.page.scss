@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'MyFont';
-  src: url('../../assets/fonts/NatureBeautyPersonalUse-9Y2DK.ttf') format('truetype');
+  src: url('../../assets/fonts/BrilliantHoneyDemo-RpV7l.ttf') format('truetype');
 }
 
 
@@ -71,14 +71,25 @@
   .carousel-item img {
     width: 220px;  /* Adjust image size for mobile */
     height: 220px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
   }
   
   .carousel-item {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
     margin: 0 0px !important;  /* Reduce margin for mobile */
     opacity: 0.2;    /* Default opacity on mobile */
   }
 .carousel-wrapper {
   padding: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
   .carousel-item.highlighted {
     transform: scale(1.4) !important;  /* Increase the scale a bit more for better visibility */
@@ -542,6 +553,7 @@ ion-button#user-icon {
   margin-left: 2% !important;
   color: goldenrod;
   font-family: 'MyFont', sans-serif;
+  font-weight: bolder;
 }
 .podium-carousel {
   /* Adjust carousel height to prevent clipping */
@@ -551,13 +563,14 @@ ion-button#user-icon {
   align-items: center;
   overflow: hidden;
   position: relative;
-  max-height: 450px;  /* Set a fixed height for images */
+  max-height: 750px;  /* Set a fixed height for images */
 }
 
 .carousel-wrapper {
   display: flex;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 .carousel-wrapper::-webkit-scrollbar {
@@ -567,7 +580,7 @@ ion-button#user-icon {
 .carousel-item {
   /* Make the transition smoother for both scaling and opacity */
   margin: 0 20px;
-  max-height: 400px;
+  max-height: 700px;
   opacity: 0.6;
   transition: transform 0.5s ease, opacity 0.5s ease; /* Adjust transition time */
   user-select: none;
@@ -584,7 +597,29 @@ ion-button#user-icon {
   max-width: 500px;
   max-height: 300px;
   object-fit: cover; /* Ensure images cover the container without distortion */
+  background-color: transparent;
+  border-radius: 100%;
+  
 }
+.carousel-item {
+  text-align: center; /* Center the text */
+}
+
+.item-info {
+  color: black;
+  margin-top: 10px; /* Add some space between the image and the text */
+}
+
+.item-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.item-price {
+  color: #ff5722; /* Example color for price */
+  font-size: 0.9rem;
+}
+
 
 .carousel-wrapper {
   overflow-y: hidden;
@@ -750,7 +785,7 @@ ion-button#user-icon:hover + #user-sidebar {
 .services-section {
   margin-top: 30px !important;
   padding-top: 30px !important;
-
+  padding-bottom: 30px !important;
   display: flex;
   justify-content:space-evenly;
   background-color: white;
@@ -808,9 +843,24 @@ footer.footer {
 }
 
 .footer-section ul li a:hover {
-  text-decoration: underline;
-  color: #f0a500; /* Slightly lighter goldenrod for hover */
+  background-color: white;
+  color:black;
 }
+/* Ensure the ion-router-link has the same style as the other list items */
+.footer-section ul li ion-router-link {
+  font-size: 14px;
+  text-decoration: none; /* Remove the underline */
+  background-color: white;
+  color:black;
+}
+
+.footer-section ul li ion-router-link:hover {
+  font-size: 14px;
+
+  background-color: white;
+  color:black;
+}
+
 
 .social-btn img {
   width: 15px;

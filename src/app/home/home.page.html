@@ -109,6 +109,10 @@
          (mouseenter)="highlightItem($event)"
          (mouseleave)="resetHighlight($event)">
       <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
+      <div class="item-info">
+        <p class="item-title">{{ item?.title || 'No title available' }}</p>
+        <p class="item-price">{{ item?.price | currency: 'EUR' }}</p>
+      </div>
     </div>
   </div>
 </div>
@@ -125,6 +129,10 @@
          (mouseenter)="highlightItem($event)"
          (mouseleave)="resetHighlight($event)">
       <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
+      <div class="item-info">
+        <p class="item-title">{{ item?.title || 'No title available' }}</p>
+        <p class="item-price">{{ item?.price | currency: 'EUR' }}</p>
+      </div>
     </div>
   </div>
 </div>
@@ -139,6 +147,10 @@
          (mouseenter)="highlightItem($event)"
          (mouseleave)="resetHighlight($event)">
       <img *ngIf="item?.imageUrl" [src]="item.imageUrl" alt="{{ item?.title || 'No title available' }}" loading="lazy">
+      <div class="item-info">
+        <p class="item-title">{{ item?.title || 'No title available' }}</p>
+        <p class="item-price">{{ item?.price | currency: 'EUR' }}</p>
+      </div>
     </div>
   </div>
 </div>
@@ -185,9 +197,9 @@
     <div class="footer-section">
       <h3>Company</h3>
       <ul>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a>Social media:</a></li>
+        <li><ion-router-link routerLink="/whoareus">About us</ion-router-link></li>
+        <li><ion-router-link routerLink="/careers">Careers</ion-router-link></li>
+        <li><ion-router-link routerLink="/socialmedias">Social Media</ion-router-link></li>
         <li class="social-buttons">
           <button (click)="gotoFacebookPage()" class="social-btn">
             <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">

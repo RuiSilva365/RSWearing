@@ -1,16 +1,23 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar >
     <ion-title class="header-title">Who We Are</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
+  <!-- Background Image -->
+  <div class="hero-section">
+    <h1>Discover the Story Behind RSWearing</h1>
+    <p>Your style, your identity, our mission.</p>
+  </div>
+
   <!-- Introduction Section -->
   <ion-card class="intro-card">
     <ion-card-content>
       <p class="intro-text">
-        At RS Wearing, we believe in quality, style, and a commitment to delivering the best to our customers. Our story began with a vision to create clothing that not only looks good but also feels great.
+        At RSWearing, we believe in more than just fashion. We believe in creating experiences that resonate with your identity and passion. 
+        Our journey started with the desire to craft clothing that combines quality, comfort, and style — because you deserve nothing less.
       </p>
     </ion-card-content>
   </ion-card>
@@ -22,14 +29,14 @@
         <ion-card class="value-card">
           <ion-icon name="ribbon-outline" size="large" color="warning"></ion-icon>
           <h3>Quality</h3>
-          <p>We use the best materials for the best experience.</p>
+          <p>We use the finest materials to ensure lasting comfort and style.</p>
         </ion-card>
       </ion-col>
       <ion-col size="6">
         <ion-card class="value-card">
           <ion-icon name="leaf-outline" size="large" color="warning"></ion-icon>
           <h3>Sustainability</h3>
-          <p>Our products are made with eco-friendly materials.</p>
+          <p>Committed to eco-friendly practices for a better tomorrow.</p>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -38,22 +45,35 @@
         <ion-card class="value-card">
           <ion-icon name="people-outline" size="large" color="warning"></ion-icon>
           <h3>Community</h3>
-          <p>We support our community through various initiatives.</p>
+          <p>We give back by supporting community-driven projects.</p>
         </ion-card>
       </ion-col>
       <ion-col size="6">
         <ion-card class="value-card">
           <ion-icon name="trending-up-outline" size="large" color="warning"></ion-icon>
           <h3>Innovation</h3>
-          <p>We are always looking for ways to improve and innovate.</p>
+          <p>Always pushing boundaries to offer the best to our customers.</p>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+  
+   <!-- New Text Section -->
+   <ion-card class="vision-card">
+    <ion-card-content>
+      <h2 class="vision-title">Our Vision</h2>
+      <p class="vision-text">
+        At RS Wearing, our vision is to shape the future of fashion by combining innovation, sustainability, and style. 
+        We aspire to be more than just a clothing brand; we aim to inspire a movement that promotes ethical fashion and empowers individuals 
+        to express themselves confidently. Every piece we create reflects our dedication to quality and our commitment to reducing our environmental footprint.
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Call to Action -->
-  <ion-button expand="block" color="warning" class="cta-button" routerLink="/home">
-    Join Us on Our Journey
-  </ion-button>
 
+  <button class="cta-button" routerLink="/home" expand="block" >
+    <svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>
+   Explore
+ </button>
+ 
 </ion-content>
