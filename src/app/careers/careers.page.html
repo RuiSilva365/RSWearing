@@ -38,6 +38,25 @@
     <ion-row>
       <ion-col size="12">
         <ion-item>
+          <ion-label>Department</ion-label>
+          <ion-select placeholder="Select Department" required>
+            <ion-select-option value="marketing">Marketing</ion-select-option>
+            <ion-select-option value="backend">Backend Development</ion-select-option>
+            <ion-select-option value="frontend">Frontend Development</ion-select-option>
+            <ion-select-option value="sales">Sales</ion-select-option>
+            <ion-select-option value="supplier">Supplier Relations</ion-select-option>
+            <ion-select-option value="hr">Human Resources</ion-select-option>
+            <ion-select-option value="customer_service">Customer Service</ion-select-option>
+            <ion-select-option value="design">Design</ion-select-option>
+            <ion-select-option value="other">Other</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
           <ion-label position="floating">Why do you want to work with us?</ion-label>
           <ion-textarea rows="6" placeholder="Explain your motivations here..." required></ion-textarea>
         </ion-item>
@@ -65,7 +84,7 @@
     <ion-row>
       <ion-col size="12">
         <ion-item>
-          <ion-label position="floating">LinkedIn or Portfolio:</ion-label>
+          <ion-label position="floating">LinkedIn, Portfolio or Website:</ion-label>
           <p></p>
           <ion-input type="url" placeholder="Optional, but helpful"></ion-input>
         </ion-item>

@@ -1,3 +1,28 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../assets/fonts/NatureBeautyPersonalUse-9Y2DK.ttf') format('truetype');
+}
+
+ion-title {
+font-family: 'MyFont', sans-serif;
+font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .linktree-section {
+    width: 90%;
+    position: relative;
+    margin-bottom: 10%;
+  }
+}
+
+ion-content {
+  --ion-background-color: white !important;
+  background-color: white !important;
+  color: black !important; /* Ensures text is visible */
+}
+
+
 /* From Uiverse.io by Praashoo7 */ 
 .main_back {
     position: absolute;
@@ -39,7 +64,24 @@
     border: 1px solid transparent;
     -webkit-backdrop-filter: blur(5px);
   }
+  .card img {
+    background: transparent !important;
+    opacity: 0; /* Initially hidden, like the other icons */
+    transition: opacity 0.2s ease-in-out; /* Add transition */
+  }
   
+  .main:hover .card img {
+    opacity: 1; /* Make the image visible on hover */
+  }
+  
+  .card:nth-child(5):hover img {
+    opacity: 1; /* Ensure the image is visible when hovering over this specific card */
+  }
+  
+  .card:nth-child(5):hover {
+    animation: backgroundIMG 0.1s;
+    animation-fill-mode: forwards;
+  }
   .card .instagram {
     opacity: 0;
     transition: 0.2s ease-in-out;
@@ -74,7 +116,6 @@
   .card:nth-child(4) .codepen {
     opacity: 0;
     transition: 0.2s ease-in-out;
-    fill: black;
   }
   
   .card:nth-child(5) {
@@ -97,6 +138,7 @@
     opacity: 0;
     transition: 0.2s ease-in-out;
     fill: darkgoldenrod;
+    background: transparent;
   }
   
   .card:nth-child(7) {
@@ -107,7 +149,6 @@
   .card:nth-child(7) .github {
     opacity: 0;
     transition: 0.2s ease-in-out;
-    fill: black;
   }
   
   .card:nth-child(8) {
@@ -129,7 +170,36 @@
     opacity: 0;
     transition: 0.2s ease-in-out;
   }
-  
+  /* Discord and Telegram icon visibility on hover */
+.card .discord, 
+.card .telegram {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.2s ease-in-out; /* Add smooth transition */
+}
+
+/* Make discord and telegram visible when hovering */
+.main:hover .discord,
+.main:hover .telegram {
+  opacity: 1; /* Show on hover */
+}
+
+/* Discord and Telegram hover effect */
+.card:nth-child(4):hover .discord {
+  fill: white;
+}
+
+.card:nth-child(5):hover .telegram > path:nth-of-type(1) {
+  fill: white; /* Change Telegram outer circle to white */
+}
+
+.card:nth-child(5):hover .telegram > path:nth-of-type(2) {
+  fill: darkgoldenrod; /* Ensure the inner path changes color */
+}
+
+.card:nth-child(5):hover .telegram > path:nth-of-type(3) {
+  fill: #29b6f6; /* Ensure the third path (paper plane) is properly colored */
+}
+
   .main:hover {
     width: 14em;
     cursor: pointer;
@@ -255,9 +325,7 @@
     fill: white;
   }
   
-  .card:nth-child(7):hover {
-    background-color: black;
-  }
+
   
   .card:nth-child(7):hover .github {
     fill: white;
