@@ -224,8 +224,7 @@
       </div>
 
 <!-- Credit Card Form Section -->
-<div class="credit-card-info--form" *ngIf="selectedPaymentMethod === 'card'">
-  <!-- Card Holder Full Name -->
+<div class="credit-card-info--form">
   <div class="input_container">
     <label for="card_name" class="input_label">Card Holder Full Name</label>
     <input
@@ -281,13 +280,10 @@
 
 
       <!-- Submit Button -->
-      <button
-        class="purchase--btn"
-        [disabled]="checkoutForm.invalid"
-        (click)="handleStripePayment()"
-      >
-        Checkout
-      </button>
+<!-- Submit Button -->
+    <button class="purchase--btn" [disabled]="checkoutForm.invalid" (click)="handlePayment()">
+      Checkout
+    </button>
     </form>
   </div>
 
@@ -322,6 +318,54 @@
       </div>
     </div>
   </div>
+  <footer class="footer">
+    <div class="footer-section">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Link 3</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Help</h3>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a>Social media:</a></li>
+        <li class="social-buttons">
+          <button (click)="gotoFacebookPage()" class="social-btn">
+            <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
+          </button>
+          <button (click)="gotoInstagramPage()" class="social-btn">
+            <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
+          </button>
+          <button (click)="gotoTwitterPage()" class="social-btn">
+            <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
+          </button>
+          <button (click)="gotoTiktokPage()" class="social-btn">
+            <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Country</h3>
+      <ul>
+        <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
+      </ul>
+    </div>
+    </footer>
 </ion-content>
 
 
@@ -337,50 +381,3 @@
   </div>
 </div>
 
-<footer class="footer">
-  <div class="footer-section">
-    <h3>Resources</h3>
-    <ul>
-      <li><a href="#">Newsletter</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Link 3</a></li>
-    </ul>
-  </div>
-  
-  <div class="footer-section">
-    <h3>Help</h3>
-    <ul>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Support</a></li>
-      <li><a href="#">Contact us</a></li>
-    </ul>
-  </div>
-  
-  <div class="footer-section">
-    <h3>Company</h3>
-    <ul>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Careers</a></li>
-      <li><a>Social media:</a></li>
-      <li class="social-buttons">
-        <button (click)="gotoFacebookPage()" class="social-btn">
-          <img src="../../assets/icon/facebook-logo.png" alt="Facebook Logo">
-        </button>
-        <button (click)="gotoInstagramPage()" class="social-btn">
-          <img src="../../assets/icon/instagram-logo.png" alt="Instagram Logo">
-        </button>
-        <button (click)="gotoTwitterPage()" class="social-btn">
-          <img src="../../assets/icon/twitter-logo.png" alt="Twitter Logo">
-        </button>
-        <button (click)="gotoTiktokPage()" class="social-btn">
-          <img src="../../assets/icon/tiktok-logo.png" alt="Twitter Logo">
-        </button>
-      </li>
-    </ul>
-  </div>
-  <div class="footer-section">
-    <h3>Country</h3>
-    <ul>
-      <li><a href="#"><ion-icon name="globe-outline"></ion-icon> Portugal</a></li>
-    </ul>
-  </div>

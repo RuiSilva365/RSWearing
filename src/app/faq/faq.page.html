@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>FAQ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <!-- Introduction -->
+  <ion-card class="intro-card">
+    <ion-card-content>
+      <p class="intro-text"> FAQs  </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Search Bar -->
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterFaqs($event)" placeholder="Search questions"></ion-searchbar>
+
+  <!-- Accordion Group for FAQs -->
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let faq of filteredFaqs">
+      <ion-item slot="header">
+        <ion-label>{{ faq.question }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{ faq.answer }}
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

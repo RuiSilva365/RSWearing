@@ -101,14 +101,17 @@ export class CheckoutPage implements OnInit {
 
   setPaymentMethod(method: string) {
     this.selectedPaymentMethod = method;
+
+    // Keep the card form visible and just trigger the right logic based on selected method
     if (method === 'apple-pay') {
-      this.stripeService.initializeApplePay(this.totalPrice * 100); // Ensure totalPrice is passed in cents
+        this.stripeService.initializeApplePay(this.totalPrice * 100);
     } else if (method === 'google-pay') {
-      this.stripeService.initializeGooglePay(this.totalPrice * 100);
+        this.stripeService.initializeGooglePay(this.totalPrice * 100);
     } else if (method === 'paypal-pay') {
-      this.stripeService.initializePayPalButton(this.totalPrice * 100);  // Automatically triggers PayPal payment
-    }
-  }
+        this.stripeService.initializePayPalButton(this.totalPrice * 100);
+    } 
+}
+
   
 
   // Ensure that the form is valid before handling payment
