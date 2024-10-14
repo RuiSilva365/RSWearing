@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../assets/fonts/NatureBeautyPersonalUse-9Y2DK.ttf') format('truetype');
+}
+
 .faq-header {
     text-align: center;
     margin-bottom: 20px;
@@ -9,7 +14,8 @@
   }
   
   ion-searchbar {
-    margin: 20px;
+    width: 99.9%;
+
   }
   
   ion-accordion-group {
@@ -38,5 +44,65 @@
       font-size: 2rem;
       color: #fff;
       margin-bottom: 1rem;
+      text-decoration: underline darkgoldenrod;
     }
       
+
+    .btns {
+      display: flex;
+      justify-content: center; /* Para centrar os botões horizontalmente */
+      gap: 10px; /* Espaço entre os botões, ajusta conforme necessário */
+    }
+    
+    /* Chat Button */ 
+.chatBtn {
+  position: fixed;
+  margin-top: 5%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background-color: goldenrod;
+  background-image: linear-gradient(147deg, goldenrod, darkgoldenrod,goldenrod);
+  cursor: pointer;
+  padding-top: 3px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.164);
+  position: relative;
+  background-size: 300%;
+  background-position: left;
+  transition-duration: 1s;
+}
+
+.tooltip {
+  position: absolute;
+  top: -40px;
+  opacity: 0;
+  background-color: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: .5s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.chatBtn:hover .tooltip {
+  opacity: 1;
+  transition-duration: .5s;
+}
+
+.chatBtn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+#supportBtn svg {
+  height: 1.5em;
+  fill: white;
+}
