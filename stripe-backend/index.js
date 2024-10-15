@@ -4,6 +4,7 @@ const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
 const cors = require('cors');  // Importa o middleware CORS
 const backendUrl = 'https://rswearing-production.up.railway.app';
+const axios = require('axios'); // Add axios to make HTTP requests
 
 app.use(cors({
   origin: ['http://localhost:8100', 'https://rswearing.online', 'https://rswearing-production.up.railway.app'],
@@ -36,7 +37,27 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 
+
+// Botpress Webhook Proxy
+app.post('/botpress-webhook', async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    const response = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', {
+      message: message
+    });
+    res.json(response.data); // Send Botpress response back to frontend
+  } catch (error) {
+    console.error('Error forwarding to Botpress:', error);
+    res.status(500).send({ error: 'Botpress request failed' });
+  }
+});
+
+
+
+
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor a correr na porta ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

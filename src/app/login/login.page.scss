@@ -1,4 +1,10 @@
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../assets/fonts/BrilliantHoneyDemo-RpV7l.ttf') format('truetype');
+}
+
+
 
 @media screen and (max-width: 768px) {
 
@@ -96,10 +102,10 @@ ion-header {
   }
   
   .site-title-btn {
-    font-family: 'NexaRust', sans-serif;
-    font-weight: bold;
-    font-size: 18px; /* Font size for larger screens */
     color: black;
+    font-family: 'MyFont', sans-serif;
+    font-weight: bolder;
+    font-size: 1.5rem;
     background: transparent;
     border: none;
     cursor: pointer;

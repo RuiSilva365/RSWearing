@@ -34,6 +34,8 @@ export class ItemPage implements OnInit {
     name: '',
     email: '',
   };
+  showInteractionText: boolean = true; // Initially show the text
+
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +47,7 @@ export class ItemPage implements OnInit {
 
   ngOnInit() {
     this.showLoader();
+    
     this.authService.getUser().subscribe((user) => {
       if (user) {
         this.isLoggedIn = true;
@@ -89,6 +92,8 @@ export class ItemPage implements OnInit {
         this.hideLoader(); // Hide loader if item not found
       }
     });
+    this.showInteractionText = false;
+
   }
 
 
@@ -126,8 +131,8 @@ export class ItemPage implements OnInit {
       const loader = new GLTFLoader();
       loader.load(this.item['3d_image'], (gltf) => {
         const object = gltf.scene;
-        object.position.set(0, -0.5, 0); // Position as in the first script
-        object.scale.set(1, 0.8, 1); // Scale as in the first script
+        object.position.set(0, -1.5, 0); // Position as in the first script
+        object.scale.set(1.3, 1, 1.3); // Scale as in the first script
 
         scene.add(object);
         this.hideLoader();
@@ -161,6 +166,10 @@ export class ItemPage implements OnInit {
       controls.maxDistance = 100;
       controls.maxPolarAngle = Math.PI / 2;
   
+      controls.addEventListener('start', () => {
+        this.showInteractionText = false; // Hide the text on first interaction
+      })
+      
       const animate = () => {
         requestAnimationFrame(animate);
         controls.update();

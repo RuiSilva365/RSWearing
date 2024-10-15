@@ -1,0 +1,181 @@
+@media screen and (max-width: 768px) {
+
+
+    .card-container {
+    height: 100% !important;
+    }
+    .messages-container {
+        height: 90% !important; 
+      }
+}
+
+/* From Uiverse.io by ahmed150up */ 
+.card-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0;    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+
+  }
+  
+  /* From Uiverse.io by asgardOP */ 
+.ul {
+    width: fit-content;
+    height: fit-content;
+    background-color: transparent;
+    list-style: none;
+  }
+
+  .button {
+    background-color: transparent;
+    font-family: sans-serif;
+    color: black;
+    border: none;
+    font-size: 0.5rem;
+    text-decoration: underline black;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    transition: 0.1s;
+    z-index: 1;
+  }
+  
+  .p {
+    z-index: 2;
+    position: relative;
+  }
+  
+  .button:hover {
+    color: black;
+    text-align: center;
+    width: 100%;
+  }
+  .button:hover::before {
+    transform: rotate(0deg);
+    width: 110%;
+    height: 20px;
+    top: 2px;
+    border-radius: 3px;
+    background-color: goldenrod;
+  }
+  .button::before {
+    content: "";
+    border-radius: 1px;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: darkgoldenrod;
+    left: -10px;
+    top: 10px;
+    cursor: pointer;
+    transform: rotate(225deg);
+    transition: 0.3s;
+    z-index: -1;
+  }
+  
+  .button:active::before {
+    background-color: orange;
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    flex-shrink: 0; /* Prevent shrinking */
+
+  }
+  
+  .card-header .img-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+    background-color: #333;
+  }
+  
+  .card-header .text-chat {
+    color: black;
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .card-body {
+    flex-grow: 1;  /* Ensure it grows to take up available space */
+    overflow-y: auto;
+    padding-bottom: 20px; /* Ensure there's padding above the input */
+  }
+  
+  .messages-container {
+    height: 100%;
+    padding: 15px;
+  }
+  
+  .message-box {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  
+  .message-box.left {
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 13px;
+    left: 0;
+  }
+  
+  .message-box.right {
+    background-color: #333;
+    color: #fff;
+    font-size: 13px;
+    right: 0;
+  }
+  
+  .message-input {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: white;
+    color:black;
+    position: sticky;
+    bottom: 0;
+    justify-content: space-between;
+    width: 100%;  /* Ensure the form takes full width */
+}
+
+.message-input form {
+    display: flex;
+    width: 100%; /* Ensure the form takes full width */
+}
+
+.message-input .message-send {
+    flex-grow: 1; /* Allow the textarea to take available space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    margin-right: 10px;
+}
+
+.message-input .button-send {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 13px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+  
+  .message-input .button-send:hover {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  

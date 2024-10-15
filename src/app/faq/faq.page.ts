@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-faq',
@@ -9,9 +11,9 @@ export class FaqPage implements OnInit {
 
   // Define the type explicitly
   faqs: { question: string, answer: string }[] = [
-    { question: 'What is the return policy?', answer: 'Our return policy lasts 30 days. If 30 days have gone by since your purchase, we can’t offer you a refund or exchange.' },
-    { question: 'How long does shipping take?', answer: 'Shipping typically takes 5-7 business days.' },
-    { question: 'Do you offer international shipping?', answer: 'Yes, we offer international shipping to select countries.' },
+    { question: 'What is the return policy?', answer: ' Our return policy lasts 30 days. If 30 days have gone by since your purchase, we can’t offer you a refund or exchange.' },
+    { question: 'How long does shipping take?', answer: ' Shipping typically takes 5-7 business days.' },
+    { question: 'Do you offer international shipping?', answer: ' No, at the moment we do not offer international shipping outside Portugal, yet.' },
   ];
 
   // Define filteredFaqs with the same type as faqs
@@ -19,7 +21,7 @@ export class FaqPage implements OnInit {
 
   searchTerm: string = '';  // For search bar
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.filteredFaqs = this.faqs; // Initialize with all FAQs
@@ -36,4 +38,21 @@ export class FaqPage implements OnInit {
       this.filteredFaqs = this.faqs; // Reset if no search term
     }
   }
+
+
+
+
+
+
+  gotoCustomerSupport() {
+    this.router.navigate(['/customer-support']);
+  }
+
+
+
+
+
+
+
+
 }
