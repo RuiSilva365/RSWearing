@@ -40,22 +40,24 @@ app.post('/create-payment-intent', async (req, res) => {
 
 
 // Endpoint para enviar mensagem para Botpress
-app.post('/send-message', async (req, res) => {
-  const { message } = req.body;
+
+// New Botpress integration reusing create-payment-intent structure
+app.post('/send-botpress-message', async (req, res) => {
+  const { message } = req.body; // Get the user message
 
   try {
-    // Chama o endpoint do Botpress para processar a mensagem do usuário
+    // Make a request to Botpress with user message
     const botpressResponse = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', {
       message: message
     });
 
-    // Devolve a resposta do Botpress para o frontend
-    res.json({
+    // Respond with the Botpress response
+    res.send({
       botResponse: botpressResponse.data,
     });
   } catch (error) {
-    console.error('Erro ao processar mensagem com o Botpress:', error.message);
-    res.status(500).send({ error: 'Falha ao processar mensagem com Botpress' });
+    console.error('Error in Botpress request:', error.message);
+    res.status(500).send({ error: 'Botpress request failed' });
   }
 });
 

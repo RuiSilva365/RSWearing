@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class CustomerSupportPage implements OnInit {
   messages: Array<{ user: string, text: string }> = [];
   userMessage: string = '';
-  botpressUrl = 'https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57'; // Replace with your Botpress URL
+  apiUrl = 'https://rswearing-production.up.railway.app/send-botpress-message'; // Updated to point to new botpress endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -19,20 +19,17 @@ export class CustomerSupportPage implements OnInit {
 
   sendMessage() {
     if (this.userMessage.trim() === '') return;
-
+  
     this.messages.push({ user: 'me', text: this.userMessage });
-
-    const payload = {
-      message: this.userMessage
-    };
-
-    // Alterei aqui para chamar o endpoint /send-message do backend
-    this.http.post('https://rswearing-production.up.railway.app/send-message', payload).subscribe((response: any) => {
-      const botMessage = response.botResponse; // Corrigido para 'botResponse'
+  
+    const payload = { message: this.userMessage };
+  
+    // Make the request to the backend
+    this.http.post(this.apiUrl, payload).subscribe((response: any) => {
+      const botMessage = response.botResponse;
       this.messages.push({ user: 'bot', text: botMessage });
     });
-
+  
     this.userMessage = '';
   }
-  
 }
