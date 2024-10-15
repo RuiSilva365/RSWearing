@@ -19,18 +19,19 @@ export class CustomerSupportPage implements OnInit {
 
   sendMessage() {
     if (this.userMessage.trim() === '') return;
-  
+
     this.messages.push({ user: 'me', text: this.userMessage });
-  
+
     const payload = {
       message: this.userMessage
     };
-  
-    this.http.post('https://rswearing-production.up.railway.app/botpress-webhook', payload).subscribe((response: any) => {
-      const botMessage = response.response;
+
+    // Alterei aqui para chamar o endpoint /send-message do backend
+    this.http.post('https://rswearing-production.up.railway.app/send-message', payload).subscribe((response: any) => {
+      const botMessage = response.botResponse; // Corrigido para 'botResponse'
       this.messages.push({ user: 'bot', text: botMessage });
     });
-  
+
     this.userMessage = '';
   }
   

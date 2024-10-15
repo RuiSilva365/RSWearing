@@ -38,18 +38,24 @@ app.post('/create-payment-intent', async (req, res) => {
 
 
 
-// Botpress Webhook Proxy
-app.post('/botpress-webhook', async (req, res) => {
+
+// Endpoint para enviar mensagem para Botpress
+app.post('/send-message', async (req, res) => {
   const { message } = req.body;
 
   try {
-    const response = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', {
+    // Chama o endpoint do Botpress para processar a mensagem do usuário
+    const botpressResponse = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', {
       message: message
     });
-    res.json(response.data); // Send Botpress response back to frontend
+
+    // Devolve a resposta do Botpress para o frontend
+    res.json({
+      botResponse: botpressResponse.data,
+    });
   } catch (error) {
-    console.error('Error forwarding to Botpress:', error);
-    res.status(500).send({ error: 'Botpress request failed' });
+    console.error('Erro ao processar mensagem com o Botpress:', error.message);
+    res.status(500).send({ error: 'Falha ao processar mensagem com Botpress' });
   }
 });
 
