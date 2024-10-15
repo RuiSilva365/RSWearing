@@ -4,7 +4,6 @@ const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
 const cors = require('cors');  // Importa o middleware CORS
 const backendUrl = 'https://rswearing-production.up.railway.app';
-const axios = require('axios'); // Add axios to make HTTP requests
 
 app.use(cors({
   origin: ['http://localhost:8100', 'https://rswearing.online', 'https://rswearing-production.up.railway.app'],
@@ -37,35 +36,23 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 
-
-
-// Endpoint para enviar mensagem para Botpress
-
-// New Botpress integration reusing create-payment-intent structure
+// Chatbot Message Endpoint (REUSE CONFIG)
 app.post('/send-botpress-message', async (req, res) => {
-  const { message } = req.body; // Get the user message
+  const { message } = req.body;
+  console.log("Received chatbot message:", message);
 
   try {
-    // Make a request to Botpress with user message
-    const botpressResponse = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', {
-      message: message
-    });
-
-    // Respond with the Botpress response
-    res.send({
-      botResponse: botpressResponse.data,
-    });
+    const response = await axios.post('https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57', { message });
+    console.log('Botpress response:', response.data);
+    res.send(response.data); // Send Botpress response back to the frontend
   } catch (error) {
-    console.error('Error in Botpress request:', error.message);
-    res.status(500).send({ error: 'Botpress request failed' });
+    console.error('Error communicating with Botpress:', error.message);
+    res.status(500).send({ error: 'Failed to communicate with Botpress' });
   }
 });
 
 
-
-
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Servidor a correr na porta ${PORT}`);
 });

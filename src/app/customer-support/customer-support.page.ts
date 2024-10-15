@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class CustomerSupportPage implements OnInit {
   messages: Array<{ user: string, text: string }> = [];
   userMessage: string = '';
-  apiUrl = 'https://rswearing-production.up.railway.app/send-botpress-message'; // Updated to point to new botpress endpoint
+  botpressUrl = 'https://webhook.botpress.cloud/6374e7a7-b100-443f-bda2-215ec7574d57'; // Using your specific Botpress webhook
 
   constructor(private http: HttpClient) {}
 
@@ -22,13 +22,28 @@ export class CustomerSupportPage implements OnInit {
   
     this.messages.push({ user: 'me', text: this.userMessage });
   
-    const payload = { message: this.userMessage };
+    const payload = {
+      type: 'text',
+      text: this.userMessage
+    };
   
-    // Make the request to the backend
-    this.http.post(this.apiUrl, payload).subscribe((response: any) => {
-      const botMessage = response.botResponse;
-      this.messages.push({ user: 'bot', text: botMessage });
-    });
+    // Make the request directly to Botpress webhook
+    this.http.post(this.botpressUrl, payload).subscribe(
+      (response: any) => {
+        console.log("Botpress response:", response); // Log the full response to the console
+  
+        if (response && response.responses && response.responses.length > 0) {
+          const botMessage = response.responses[0].text;
+          this.messages.push({ user: 'bot', text: botMessage });
+        } else {
+          this.messages.push({ user: 'bot', text: "Sorry, I didn't understand that." });
+        }
+      },
+      (error) => {
+        console.error('Error in botpress response:', error);
+        this.messages.push({ user: 'bot', text: "Error communicating with the bot. Please try again later." });
+      }
+    );
   
     this.userMessage = '';
   }
