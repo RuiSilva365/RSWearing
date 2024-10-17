@@ -1,32 +1,33 @@
-
 <ion-content [fullscreen]="true">
   <div class="card-container">
     <div class="card-header">
       <div class="img-avatar">
-        <img src="assets/icon/bot.png" />
+        <img src="assets/icon/bot.png" alt="Chatbot Avatar" />
       </div>
       <div class="text-chat">Chatbot</div>
       <ul class="ul">
         <li class="li">
           <button class="button"><p class="p">Click here to return to homepage</p></button>
+        </li>
       </ul>      
     </div>
+
     <div class="card-body">
-      <div class="messages-container">
+      <div #messagesContainer class="messages-container">
         <div *ngFor="let message of messages" [ngClass]="{'left': message.user === 'bot', 'right': message.user === 'me'}" class="message-box">
           <p>{{message.text}}</p>
+          <div *ngIf="message.options">
+            <button *ngFor="let option of message.options" class="button-option" (click)="handleOptionClick(option)">{{option}}</button>
+          </div>
         </div>
       </div>
-      
+
       <div class="message-input">
         <form (submit)="sendMessage()">
-          <textarea [(ngModel)]="userMessage" name="message" placeholder="Type your message here" class="message-send"></textarea>
-          <button type="submit" class="button-send">Send</button>
+          <textarea [(ngModel)]="userMessage" name="message" placeholder="Type your message here" class="message-send" rows="1"></textarea>
+          <button [disabled]="isSending" type="submit" class="button-send">Send</button>
         </form>
       </div>
-      
-
     </div>
   </div>
-  
 </ion-content>

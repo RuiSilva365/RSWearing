@@ -105,14 +105,33 @@
   }
   
   .card-body {
-    flex-grow: 1;  /* Ensure it grows to take up available space */
-    overflow-y: auto;
-    padding-bottom: 20px; /* Ensure there's padding above the input */
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px); /* Adjust to ensure space for header and input */
   }
-  
+
+
+  .button-option {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.button-option:hover {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
   .messages-container {
-    height: 100%;
+    height: calc(100% - 100px); /* Adjust height to ensure it doesn't overlap with input */
+    overflow-y: auto;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
   }
   
   .message-box {
