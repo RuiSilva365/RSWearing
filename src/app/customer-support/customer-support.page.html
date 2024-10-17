@@ -7,7 +7,7 @@
       <div class="text-chat">Chatbot</div>
       <ul class="ul">
         <li class="li">
-          <button class="button"><p class="p">Click here to return to homepage</p></button>
+          <button class="button"><p class="p" (click)="gotoHome()">Click here to return to homepage</p></button>
         </li>
       </ul>      
     </div>
@@ -15,12 +15,16 @@
     <div class="card-body">
       <div #messagesContainer class="messages-container">
         <div *ngFor="let message of messages" [ngClass]="{'left': message.user === 'bot', 'right': message.user === 'me'}" class="message-box">
-          <p>{{message.text}}</p>
+          <p *ngIf="message.user === 'bot'" [innerHTML]="message.text"></p> <!-- Renders sanitized HTML for bot -->
+          <p *ngIf="message.user === 'me'">{{message.text}}</p> <!-- Displays raw text for user -->
           <div *ngIf="message.options">
             <button *ngFor="let option of message.options" class="button-option" (click)="handleOptionClick(option)">{{option}}</button>
           </div>
         </div>
+        
       </div>
+
+        
 
       <div class="message-input">
         <form (submit)="sendMessage()">
