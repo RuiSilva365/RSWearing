@@ -870,6 +870,8 @@ ion-button#user-icon:hover + #user-sidebar {
     background-color: white;
     color:black;
     border-top: 2px solid goldenrod;
+    padding-bottom: 20px !important;
+
   }
   .footer-section {
     background-color: white;
@@ -938,7 +940,25 @@ ion-button#user-icon:hover + #user-sidebar {
     opacity: 0.8; /* Slightly dim the icon on hover */
   }
 
-  
+  .footer-section ul li a {
+    color: black!important;
+  }
+
+  /* Ensure the ion-router-link has the same style as the other list items */
+.footer-section ul li ion-router-link {
+  font-size: 14px;
+  text-decoration: none; /* Remove the underline */
+  background-color: white;
+  color:black;
+}
+
+.footer-section ul li ion-router-link:hover {
+  font-size: 14px;
+
+  background-color: white;
+  color:black;
+}
+
   .item-details, 
 .services-section, 
 footer.footer {

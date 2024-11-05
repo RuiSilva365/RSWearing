@@ -143,7 +143,9 @@ export class FavoritesPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      buttons: buttons
+      buttons: buttons,
+      backdropDismiss: false,
+
     });
     await alert.present();
   }

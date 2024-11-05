@@ -133,6 +133,7 @@ export class ProfilePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Not Logged In',
       message: 'Would you like to log in or sign up?',
+      backdropDismiss: false,
       buttons: [
         {
           text: 'Log In',

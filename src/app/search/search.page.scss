@@ -571,6 +571,8 @@ label {
     background: transparent;
     background-color: transparent;
     border-top: 2px solid goldenrod; 
+    padding-bottom: 20px !important;
+
  }
   .footer-section {
     color:black;
@@ -599,15 +601,25 @@ label {
     text-decoration: underline;
     color: #f0a500; /* Slightly lighter goldenrod for hover */
   }
-  
-  .social-btn img {
-    width: auto;
-    height: auto;
+  .footer-section ul li a:hover {
+    background-color: white;
+    color:black;
+  }
+  /* Ensure the ion-router-link has the same style as the other list items */
+  .footer-section ul li ion-router-link {
+    font-size: 14px;
+    text-decoration: none; /* Remove the underline */
+    background-color: white;
+    color:black;
   }
   
-  .social-btn:hover img {
-    opacity: 0.8;
+  .footer-section ul li ion-router-link:hover {
+    font-size: 14px;
+  
+    background-color: white;
+    color:black;
   }
+  
   
   /* If there are any other specific rules overriding the color, add !important */
   .footer-section ul li a {

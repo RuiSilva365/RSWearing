@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gallery Timelapse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="gallery-fullscreen">
+  <!-- Filters Section -->
+  <div class="filter-section">
+    <ion-item>
+      <ion-label>Collection</ion-label>
+      <ion-select placeholder="Select a Collection" (ionChange)="filterByCollection($event)">
+        <ion-select-option *ngFor="let collection of collections" [value]="collection">
+          {{ collection }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Black & White</ion-label>
+      <ion-toggle (ionChange)="toggleBlackAndWhite($event)"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Search by Tag</ion-label>
+      <ion-input placeholder="Enter tag..." (ionInput)="filterByTag($event)"></ion-input>
+    </ion-item>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-container">
+    <div class="gallery-timeline">
+      <div *ngFor="let image of filteredImages" class="gallery-item">
+        <img [src]="image.src" [alt]="image.alt" [ngClass]="{ 'bw': isBlackAndWhite }" />
+        <p>{{ image.title }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call-to-Action Description -->
+  <div class="rs-icon-description">
+    <h2>Wanna be an RS Icon?</h2>
+    <p>
+      Icons are proactive individuals, selected by our team, who are always seeking to improve and help the community. They wear our products with pride and confidence! Interested in joining us?
+    </p>
+    <ion-button href="https://www.rswearing.online/careers" expand="block">Click Here to Apply</ion-button>
+  </div>
+</ion-content>
